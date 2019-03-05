@@ -8,6 +8,13 @@ The desired parced output is the PFM date. (last printf line output)
 
 The PFM date string will be further converted by Bash into a detailed date time format.
 
+### Example Input:
+```
+gcc -o main main.c -lm
+
+bashTestVar=$(./main)
+```
+
 ### Example Output:
 
 ```bash
