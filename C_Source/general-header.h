@@ -31,6 +31,8 @@ void dispDemoArray (char *inputString);
 int binary2hex(char *inputString);
 struct tm defineTMstruct(int yearInput, int monthInput, int dayInput);
 
+int compareStrings(char input[],char check[]);
+
 /* Function Definition */
 
 int returnYear() {
@@ -158,7 +160,10 @@ char *outputDate2OutputString(struct EasterDay outputDate) {
 
 	char *yearNo, *monthNo, *dayNo, *str1, *str2;
 	
-	if ( outputDate.month == "March") {
+		//if ( outputDate.month == "March" ) {
+    char *monthCharStr = outputDate.month;
+    int isMarch = compareStrings( monthCharStr, "March");
+    if ( isMarch ) {
 		monthNo = "03";
 	} else {
 		monthNo = "04";
@@ -208,7 +213,7 @@ void dispDemoArray (char *inputString) {
 		count++;
 	}
 	// manually display known the null terminator char value
-	printf("%d\t %p\t \\0\t  %x / %x\t\t %s \n", 
+	printf("%d\t %p\t \\0\t  %x / %x\t\t %ld \n", 
 		count, &ptrChar[count],  *ptrChar, *ptrChar, decimalToBinary(*ptrChar));
 		
 
@@ -245,4 +250,15 @@ struct tm defineTMstruct(int yearInput, int monthInput, int dayInput) {
 	
 	return myTMstruct;
 	
+}
+
+int compareStrings(char input[],char check[]) {
+    int i,result=1;
+    for(i=0; input[i]!='\0' || check[i]!='\0'; i++) {
+        if(input[i] != check[i]) {
+            result=0;
+            break;
+        }
+    }
+    return result;
 }

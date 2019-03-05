@@ -80,7 +80,10 @@ int daysUntillPFM(int yearInt) {
     pfmYear = pfmStruct.year;
     pfmDay = pfmStruct.day;
     
-    if ( pfmStruct.month == "March" ) {
+	//if ( pfmStruct.month == "March" ) {
+    char *monthCharStr = pfmStruct.month;
+    int isMarch = compareStrings( monthCharStr, "March");
+    if ( isMarch ) {
 		pfmMonth = 3;
 	} else {
 		pfmMonth = 4;
