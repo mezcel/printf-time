@@ -1,6 +1,25 @@
+/* Easter Day Calculations (runFunctions.h)
+ *
+ * functions used in main.c
+ * */
+
+/*
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <math.h>
+ * #include <time.h>
+ * #include "general-header.h"
+ * #include "pfm-tables.h"
+ * #include "easter-algorithms.h"
+ * */
+
+/* Function Prototypes */
+
 void verboseDisplay(int yearInt);
 int daysUntillPFM(int yearInt);
 void nextPFM();
+
+/* Function Definition */
 
 void verboseDisplay(int yearInt) {
 	
@@ -43,6 +62,8 @@ void verboseDisplay(int yearInt) {
 	// Demo Array Illustration
 	dispDemoArray(outputString);
 	
+	// Last line is for a Bash value parse, for use in other applications
+	printf("\n------------------------\nThis next last line will ne used as a string to input into Bash for any futher POSIX date calculations.\n");
 	printf("\n%s", outputString);
 	
 }

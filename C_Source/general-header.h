@@ -159,9 +159,9 @@ char *outputDate2OutputString(struct EasterDay outputDate) {
 	char *yearNo, *monthNo, *dayNo, *str1, *str2;
 	
 	if ( outputDate.month == "March") {
-		monthNo = "-03-";
+		monthNo = "03";
 	} else {
-		monthNo = "-04-";
+		monthNo = "04";
 	}
 	
 	yearNo = itoa(outputDate.year);
