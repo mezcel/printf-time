@@ -12,13 +12,12 @@ Tested on Linux. I am not sure (yet :/) how Windows handles the [POSIX](http://p
 
 This app is a C refresher as well as an exercise to learn the how to use the CLI as an IDE, debug in GDB, and inspecting assembly code in the desktop environment.
 
-I deliberately ommited the ```strings.h``` library. It is a handycap which limits the use of existing library functions which require that library.
+I deliberately ommited the ```string.h``` library. It is a handycap which limits the use of existing library functions which require that library.
 
 Output Modes:
 
-* This Year Date				(working)
-* Upcoming Year Date			(working)
-* Any Year ( 1900AD ~ 3000AD )	(working but not appied)
+* This Year Date & Upcoming Year Date	(working)
+* Any Year ( 1900AD ~ 3000AD )			(working but not applied)
 
 #### Feature algorithms:
 

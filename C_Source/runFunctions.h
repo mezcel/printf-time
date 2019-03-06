@@ -18,6 +18,7 @@
 void verboseDisplay(int yearInt);
 int daysUntillPFM(int yearInt);
 void nextPFM();
+static int inspectMainInputs( int argc, const char *argv[] );
 
 /* Function Definition */
 
@@ -114,4 +115,59 @@ void nextPFM() {
     
 		printf("\nThe next Paschal Ful Moon:\n\t NEXT year \n\tOn %s %d %s %d", pfmStruct.weekday, pfmStruct.day,  pfmStruct.month, pfmStruct.year);
 	} 
+}
+
+static int inspectMainInputs( int argc, const char *argv[] ) {
+	/*
+	 * Can the function use the value inputed into it?
+	 * Is the input 0-1?
+	 * If the inpput is 1, is the 1 input a 4 digit char?
+	 * return 1 if all tests passed
+	 * */
+	
+	char *endptr;
+	char *yearChar;
+	
+	static int inputLength, isNumber, is4chars, isValidInputLength, isGoodInput;
+
+	switch (argc) {
+		
+		case 2: // input char
+			// check if char is a 4 digit year number
+			yearChar = (char *)argv[1];
+			inputLength = noOfChars(yearChar);
+			strtol(yearChar, &endptr, 10);
+			
+			if (*endptr == '\0') {
+				isNumber = 1;
+			}
+			
+			if ( (isNumber == 1) && (inputLength == 4) ) {
+				is4chars = 1;
+			}
+			
+			isValidInputLength = 1;
+			
+			break;
+			
+		case 1:
+			isValidInputLength = 1;
+			break;
+		
+		default:
+			isValidInputLength = 0;
+			
+	}
+	
+	if (isValidInputLength) {
+		if (argc == 2) {
+			isGoodInput = is4chars;
+		} else {
+			isGoodInput = 1;
+		}
+	}	
+	
+	return isGoodInput;
+	
+	
 }

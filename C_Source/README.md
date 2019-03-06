@@ -13,11 +13,9 @@ gcc -o myExec main.c -lm
 ## run
 
 ```bash
-./myExec		## this year
+./myExec		## this year's or upcoming year(as needed)
 
-./myExec n		## upcoming date
-
-./myExec 2030	## date for 2030
+./myExec 2030	## output date for 2030
 
 ```
 
