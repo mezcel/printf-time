@@ -117,10 +117,12 @@ void nextPFM() {
 	} 
 }
 
+
 static int inspectMainInputs( int argc, const char *argv[] ) {
 	/*
 	 * Can the function use the value inputed into it?
-	 * Is the input 0-1?
+	 * Is the input 0-2?
+	 * Is the input verbose, -v
 	 * If the inpput is 1, is the 1 input a 4 digit char?
 	 * return 1 if all tests passed
 	 * */
@@ -128,46 +130,47 @@ static int inspectMainInputs( int argc, const char *argv[] ) {
 	char *endptr;
 	char *yearChar;
 	
-	static int inputLength, isNumber, is4chars, isValidInputLength, isGoodInput;
-
-	switch (argc) {
-		
-		case 2: // input char
-			// check if char is a 4 digit year number
-			yearChar = (char *)argv[1];
-			inputLength = noOfChars(yearChar);
-			strtol(yearChar, &endptr, 10);
-			
-			if (*endptr == '\0') {
-				isNumber = 1;
-			}
-			
-			if ( (isNumber == 1) && (inputLength == 4) ) {
-				is4chars = 1;
-			}
-			
-			isValidInputLength = 1;
-			
-			break;
-			
-		case 1:
-			isValidInputLength = 1;
-			break;
-		
-		default:
-			isValidInputLength = 0;
-			
-	}
+	static int inputLength, isNumber, isVerbose, isGoodInput;
 	
-	if (isValidInputLength) {
-		if (argc == 2) {
-			isGoodInput = is4chars;
+	if ( argc == 1 ) {
+		isGoodInput = 1;
+	} else if ( ( argc > 1 ) && ( argc < 4 ) ) {
+		// check if char is a number for 4 digit year number inputs
+		yearChar = (char *)argv[1];
+		inputLength = noOfChars(yearChar);
+		strtol(yearChar, &endptr, 10);
+		
+		// is char a 4 digit number
+		if ( (*endptr == '\0') && (inputLength == 4) ) {
+			isNumber = 1;
+		}
+		
+		// check if char is a verbose flag if not a year number
+		if ( ( !isNumber ) && (argc > 2) ) {
+			isVerbose = compareStrings(yearChar, "-v");
+			// if verbose, then check if the year input is a usable input
+			if ( isVerbose ) {
+				// check if the next char input is a 4 digit year number input
+				yearChar = (char *)argv[2];
+				inputLength = noOfChars(yearChar);
+				strtol(yearChar, &endptr, 10);
+				// is char a 4 digit number
+				if ( (*endptr == '\0') && (inputLength == 4) ) {
+					isNumber = 1;
+				}
+			}
+		}
+		
+		if (!isNumber) {
+			isGoodInput = 0;
 		} else {
 			isGoodInput = 1;
 		}
-	}	
+		
+	} else {
+		isGoodInput = 0;
+	}
 	
 	return isGoodInput;
-	
-	
+		
 }

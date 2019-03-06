@@ -11,13 +11,12 @@
 
 #include "runFunctions.h"
 
+
 // Run
 int main(int argc, const char *argv[]) {
 	
 	static int isInputValid;
 	isInputValid = inspectMainInputs( argc, argv );
-	
-	printf("\n isInputValid = %d\n", isInputValid);
 	
 	if (isInputValid) {
 		static int yearInt;
@@ -30,7 +29,7 @@ int main(int argc, const char *argv[]) {
 		verboseDisplay(yearInt);
 		
 	} else {
-		printf("\n\n!!! Execution interupted !!!\nProvide valid inputs and try again :)\n\nExample:\n\n  ./main\n or\n  ./main 1985\n\n0000000");
+		printf("\n!!! Execution interupted !!!\nProvide valid inputs and try again :)\n\nExample:\n\n  ./main\n or\n  ./main 1985\n or\n  ./main -v 1985\n\n0000000");
 		exit(1);
 	}
 	
