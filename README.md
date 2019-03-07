@@ -8,16 +8,7 @@ version: ```0.1.1```
 
 A C program which uses C syntax and the GCC compiler to calculate the date of the Paschal Full Moon (PMF) and the date of Easter Day.
 
-This app is a C refresher as well as an exercise in using the CLI to debug in GDB.
-
-I deliberately omitted the ```string.h``` library to force Me the use of manual C string manipulations.
-
-Output Modes:
-
-* This Year Date & Upcoming Year Date
-* Any Year Between ( 2018AD ~ 2029AD )
-	Add a wider year range by modifying (Table AB, D, E) in ```pfm-tables.h```
-* Verbose CLI display ```-v```
+This app is a C refresher as well as an exercise in using the CLI to debug in GDB. I deliberately omitted the ```string.h``` library to force Me the use of manual C string manipulations.
 
 #### Feature algorithms:
 
