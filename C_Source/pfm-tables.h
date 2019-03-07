@@ -215,7 +215,7 @@ struct EasterDay pfm_algorithm(int yearInt) {
 	char *dayOfWeekChar[]={"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"},
 			*tableAChar, *monthChar, *charDayNo;
 
-	yearInt = returnYear();
+	// yearInt = returnYear();
 
 	tableAB = returnTableAB(yearInt);
 
@@ -248,6 +248,7 @@ struct EasterDay pfm_algorithm(int yearInt) {
 
     charDayNo = tableAChar+1;
     dayNo = atoi(charDayNo);
+	
 
 	pfmOutputDate.weekday = dayOfWeekChar[dayOfWeekNo];
     pfmOutputDate.day = dayNo ;
