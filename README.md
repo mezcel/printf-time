@@ -8,7 +8,7 @@ version: ```0.1.1```
 
 A C program which uses C syntax and the GCC compiler to calculate the date of the Paschal Full Moon (PMF) and the date of Easter Day.
 
-This app is a C refresher as well as an exercise in using the CLI to debug in GDB. I deliberately omitted the ```string.h``` library to force Me the use of manual C string manipulations.
+This app is a C refresher as well as an exercise in using the CLI to debug in GDB. I deliberately omitted the ```string.h``` library to force myself to manually perform C string manipulations.
 
 #### Feature algorithms:
 
@@ -33,7 +33,7 @@ This app is a C refresher as well as an exercise in using the CLI to debug in GD
 Basic PMF Output Render:
 ------------------------
 
-The next Paschal Ful Moon:
+The next Paschal Full Moon:
 	This year
 	In 44.151701 days
 	On Thursday 18 April 2019
@@ -79,7 +79,7 @@ Index 	 Hex Address 	 Char 	 Hex / Dec 	 Byte
 8	 0x55bcb49d99d0	 \0	  0 / 0		 (null)
 
 ------------------------
-This next last line will ne used as a string to input into Bash for any further POSIX date calculations.
+This next last line will be used as a string to input into Bash for any further POSIX date calculations.
 
 20190418
 

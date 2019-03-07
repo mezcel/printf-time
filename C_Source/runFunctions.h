@@ -65,7 +65,7 @@ void verboseDisplay(int yearInt) {
 	dispDemoArray(outputString);
 
 	// Last line is for a Bash value parse, for use in other applications
-	printf("\n------------------------\nThis following 'last line' line will ne used as a string to input into Bash for any further POSIX formatted date calculations.\n");
+	printf("\n------------------------\nThis following 'last line' line will be used as a string to input into Bash for any further POSIX formatted date calculations.\n");
 	printf("\n%s", outputString);
 
 }
@@ -116,7 +116,7 @@ int daysUntillPFM(int yearInt) {
 	double seconds = difftime(inputPfmTime, now); // end, start
 	double days = seconds / 86400; // 86400 seconds / 1 day
 
-	printf("\nThe next Paschal Ful Moon:\n\tThis year\n\tIn %f days\n\tOn %s %d %s %d", days, pfmStruct.weekday, pfmStruct.day,  pfmStruct.month, pfmStruct.year);
+	printf("\nThe next Paschal Full Moon:\n\tThis year\n\tIn %f days\n\tOn %s %d %s %d", days, pfmStruct.weekday, pfmStruct.day,  pfmStruct.month, pfmStruct.year);
 
 	return days;
 }
