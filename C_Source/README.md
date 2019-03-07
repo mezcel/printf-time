@@ -30,11 +30,11 @@ gcc -S myExec main.c -lm
 ## Dependencies for my headers
 
 general-header.h | easter-algorithms.h | pmf-tables.h | runFunctions.h
---- | --- | ---
+--- | --- | --- | ---
 stdlib.h | stdio.h | stdlib.h | all included headers
-stdio.h | stdlib.h | stdio.h | -
-math.h | math.h | math.h | -
-time.h | general-header.h | general-header.h | -
+stdio.h | stdlib.h | stdio.h | ...
+math.h | math.h | math.h | ...
+time.h | general-header.h | general-header.h | ...
 
 ---
 

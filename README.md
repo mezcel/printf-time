@@ -1,4 +1,4 @@
-# printf-time (under construction)
+# printf-time
 
 C syntax which calculates Easter day and Paschal Full Moon. (gcc)
 
