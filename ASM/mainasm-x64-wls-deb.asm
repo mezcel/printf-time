@@ -1282,9 +1282,6 @@ pfm_algorithm:
 	movq	%rax, -136(%rbp)
 	leaq	.LC45(%rip), %rax
 	movq	%rax, -128(%rbp)
-	movl	$0, %eax
-	call	returnYear
-	movl	%eax, -188(%rbp)
 	movl	-188(%rbp), %eax
 	movl	%eax, %edi
 	call	returnTableAB
@@ -2085,7 +2082,7 @@ meeus_Julian_algorithm:
 	.string	"PFM output as a single char array value:\n\tString array: %s\n"
 	.align 8
 .LC54:
-	.string	"\n------------------------\nThis next last line will ne used as a string to input into Bash for any futher POSIX date calculations."
+	.string	"\n------------------------\nThis following 'last line' line will be used as a string to input into Bash for any further POSIX formatted date calculations."
 .LC55:
 	.string	"\n%s"
 	.text
@@ -2186,18 +2183,18 @@ verboseDisplay:
 	pushq	-32(%rbp)
 	call	outputDate2OutputString
 	addq	$32, %rsp
-	movq	%rax, outputString.4207(%rip)
-	movq	outputString.4207(%rip), %rax
+	movq	%rax, outputString.4212(%rip)
+	movq	outputString.4212(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC53(%rip), %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	movq	outputString.4207(%rip), %rax
+	movq	outputString.4212(%rip), %rax
 	movq	%rax, %rdi
 	call	dispDemoArray
 	leaq	.LC54(%rip), %rdi
 	call	puts@PLT
-	movq	outputString.4207(%rip), %rax
+	movq	outputString.4212(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC55(%rip), %rdi
 	movl	$0, %eax
@@ -2210,14 +2207,54 @@ verboseDisplay:
 .LFE23:
 	.size	verboseDisplay, .-verboseDisplay
 	.section	.rodata
+.LC56:
+	.string	"%s"
+	.text
+	.globl	simpleDisplay
+	.type	simpleDisplay, @function
+simpleDisplay:
+.LFB24:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$48, %rsp
+	movl	%edi, -36(%rbp)
+	leaq	-32(%rbp), %rax
+	movl	-36(%rbp), %edx
+	movl	%edx, %esi
+	movq	%rax, %rdi
+	call	pfm_algorithm
+	subq	$8, %rsp
+	pushq	-16(%rbp)
+	pushq	-24(%rbp)
+	pushq	-32(%rbp)
+	call	outputDate2OutputString
+	addq	$32, %rsp
+	movq	%rax, outputString.4217(%rip)
+	movq	outputString.4217(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC56(%rip), %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	nop
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE24:
+	.size	simpleDisplay, .-simpleDisplay
+	.section	.rodata
 	.align 8
-.LC57:
-	.string	"\nThe next Paschal Ful Moon:\n\tThis year\n\tIn %f days\n\tOn %s %d %s %d"
+.LC58:
+	.string	"\nThe next Paschal Full Moon:\n\tThis year\n\tIn %f days\n\tOn %s %d %s %d"
 	.text
 	.globl	daysUntillPFM
 	.type	daysUntillPFM, @function
 daysUntillPFM:
-.LFB24:
+.LFB25:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2243,12 +2280,12 @@ daysUntillPFM:
 	call	compareStrings
 	movl	%eax, -28(%rbp)
 	cmpl	$0, -28(%rbp)
-	je	.L103
+	je	.L104
 	movl	$3, -4(%rbp)
-	jmp	.L104
-.L103:
-	movl	$4, -4(%rbp)
+	jmp	.L105
 .L104:
+	movl	$4, -4(%rbp)
+.L105:
 	leaq	-240(%rbp), %rax
 	movl	-12(%rbp), %ecx
 	movl	-4(%rbp), %edx
@@ -2285,7 +2322,7 @@ daysUntillPFM:
 	movq	%xmm0, %rax
 	movq	%rax, -40(%rbp)
 	movsd	-40(%rbp), %xmm0
-	movsd	.LC56(%rip), %xmm1
+	movsd	.LC57(%rip), %xmm1
 	divsd	%xmm1, %xmm0
 	movsd	%xmm0, -48(%rbp)
 	movl	-124(%rbp), %edi
@@ -2296,7 +2333,7 @@ daysUntillPFM:
 	movl	%edi, %r8d
 	movq	%rax, -248(%rbp)
 	movsd	-248(%rbp), %xmm0
-	leaq	.LC57(%rip), %rdi
+	leaq	.LC58(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movsd	-48(%rbp), %xmm0
@@ -2305,17 +2342,17 @@ daysUntillPFM:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE24:
+.LFE25:
 	.size	daysUntillPFM, .-daysUntillPFM
 	.section	.rodata
 	.align 8
-.LC58:
+.LC59:
 	.string	"\nThe next Paschal Ful Moon:\n\t NEXT year \n\tOn %s %d %s %d"
 	.text
 	.globl	nextPFM
 	.type	nextPFM, @function
 nextPFM:
-.LFB25:
+.LFB26:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2329,7 +2366,7 @@ nextPFM:
 	call	daysUntillPFM
 	movl	%eax, -8(%rbp)
 	cmpl	$0, -8(%rbp)
-	jns	.L108
+	jns	.L109
 	movl	-4(%rbp), %eax
 	leal	1(%rax), %edx
 	movl	%edx, -4(%rbp)
@@ -2343,56 +2380,211 @@ nextPFM:
 	movq	-32(%rbp), %rax
 	movl	%esi, %r8d
 	movq	%rax, %rsi
-	leaq	.LC58(%rip), %rdi
+	leaq	.LC59(%rip), %rdi
 	movl	$0, %eax
 	call	printf@PLT
-.L108:
+.L109:
 	nop
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE25:
+.LFE26:
 	.size	nextPFM, .-nextPFM
 	.section	.rodata
-	.align 8
-.LC59:
-	.string	"------------------------\nBasic PMF Output Render:\n------------------------"
-	.align 8
 .LC60:
-	.string	"\n\n\nVerbose PMF and Easter Output Render:"
+	.string	"-v"
 	.text
-	.globl	main
-	.type	main, @function
-main:
-.LFB26:
+	.type	inspectMainInputs, @function
+inspectMainInputs:
+.LFB27:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movl	%edi, -4(%rbp)
-	movq	%rsi, -16(%rbp)
-	leaq	.LC59(%rip), %rdi
-	call	puts@PLT
-	movl	$0, %eax
-	call	nextPFM
-	leaq	.LC60(%rip), %rdi
-	call	puts@PLT
-	movl	$0, %eax
-	call	returnYear
-	movl	%eax, yearInt.4232(%rip)
-	movl	yearInt.4232(%rip), %eax
-	movl	%eax, %edi
-	call	verboseDisplay
-	movl	$0, %eax
+	subq	$32, %rsp
+	movl	%edi, -20(%rbp)
+	movq	%rsi, -32(%rbp)
+	cmpl	$1, -20(%rbp)
+	jne	.L111
+	movl	$1, isGoodInput.4247(%rip)
+	jmp	.L112
+.L111:
+	cmpl	$1, -20(%rbp)
+	jle	.L113
+	cmpl	$3, -20(%rbp)
+	jg	.L113
+	movq	-32(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	%rax, %rdi
+	call	noOfChars
+	movl	%eax, inputLength.4244(%rip)
+	leaq	-16(%rbp), %rcx
+	movq	-8(%rbp), %rax
+	movl	$10, %edx
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	strtol@PLT
+	movq	-16(%rbp), %rax
+	movzbl	(%rax), %eax
+	testb	%al, %al
+	jne	.L114
+	movl	inputLength.4244(%rip), %eax
+	cmpl	$4, %eax
+	jne	.L114
+	movl	$1, isNumber.4245(%rip)
+.L114:
+	movl	isNumber.4245(%rip), %eax
+	testl	%eax, %eax
+	jne	.L115
+	cmpl	$2, -20(%rbp)
+	jle	.L115
+	movq	-8(%rbp), %rax
+	leaq	.LC60(%rip), %rsi
+	movq	%rax, %rdi
+	call	compareStrings
+	movl	%eax, isVerbose.4246(%rip)
+	movl	isVerbose.4246(%rip), %eax
+	testl	%eax, %eax
+	je	.L115
+	movq	-32(%rbp), %rax
+	movq	16(%rax), %rax
+	movq	%rax, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	%rax, %rdi
+	call	noOfChars
+	movl	%eax, inputLength.4244(%rip)
+	leaq	-16(%rbp), %rcx
+	movq	-8(%rbp), %rax
+	movl	$10, %edx
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	strtol@PLT
+	movq	-16(%rbp), %rax
+	movzbl	(%rax), %eax
+	testb	%al, %al
+	jne	.L115
+	movl	inputLength.4244(%rip), %eax
+	cmpl	$4, %eax
+	jne	.L115
+	movl	$1, isNumber.4245(%rip)
+.L115:
+	movl	isNumber.4245(%rip), %eax
+	testl	%eax, %eax
+	jne	.L116
+	movl	$0, isGoodInput.4247(%rip)
+	jmp	.L112
+.L116:
+	movl	$1, isGoodInput.4247(%rip)
+	jmp	.L112
+.L113:
+	movl	$0, isGoodInput.4247(%rip)
+.L112:
+	movl	isGoodInput.4247(%rip), %eax
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE26:
+.LFE27:
+	.size	inspectMainInputs, .-inspectMainInputs
+	.section	.rodata
+	.align 8
+.LC61:
+	.string	"------------------------\nBasic PMF Output Render:\n------------------------"
+	.align 8
+.LC62:
+	.string	"\n\n\nVerbose PMF and Easter Output Render:"
+	.align 8
+.LC63:
+	.string	"\n!!! Execution interupted !!!\nProvide valid inputs and try again :)\n\nExample:\n\n  ./main\n or\n  ./main 1985\n or\n  ./main -v 1985\n\n0000000"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB28:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$32, %rsp
+	movl	%edi, -20(%rbp)
+	movq	%rsi, -32(%rbp)
+	movq	-32(%rbp), %rdx
+	movl	-20(%rbp), %eax
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	inspectMainInputs
+	movl	%eax, isInputValid.4252(%rip)
+	movl	isInputValid.4252(%rip), %eax
+	testl	%eax, %eax
+	je	.L120
+	movl	-20(%rbp), %eax
+	cmpl	$2, %eax
+	je	.L122
+	cmpl	$3, %eax
+	je	.L123
+	cmpl	$1, %eax
+	jne	.L121
+	movl	$0, %eax
+	call	returnYear
+	movl	%eax, yearInt.4253(%rip)
+	movl	yearInt.4253(%rip), %eax
+	movl	%eax, %edi
+	call	simpleDisplay
+	jmp	.L121
+.L122:
+	movq	-32(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	%rax, %rdi
+	call	atoi@PLT
+	movl	%eax, yearInt.4253(%rip)
+	movl	yearInt.4253(%rip), %eax
+	movl	%eax, %edi
+	call	simpleDisplay
+	jmp	.L121
+.L123:
+	leaq	.LC61(%rip), %rdi
+	call	puts@PLT
+	movl	$0, %eax
+	call	nextPFM
+	leaq	.LC62(%rip), %rdi
+	call	puts@PLT
+	movq	-32(%rbp), %rax
+	movq	16(%rax), %rax
+	movq	%rax, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	%rax, %rdi
+	call	atoi@PLT
+	movl	%eax, yearInt.4253(%rip)
+	movl	yearInt.4253(%rip), %eax
+	movl	%eax, %edi
+	call	verboseDisplay
+	nop
+.L121:
+	movl	$10, %edi
+	call	putchar@PLT
+	movl	$0, %eax
+	jmp	.L126
+.L120:
+	leaq	.LC63(%rip), %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L126:
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE28:
 	.size	main, .-main
 	.local	str1Len.3943
 	.comm	str1Len.3943,4,4
@@ -2408,10 +2600,22 @@ main:
 	.comm	count1.3941,4,4
 	.local	returnArray.4092
 	.comm	returnArray.4092,8,8
-	.local	outputString.4207
-	.comm	outputString.4207,8,8
-	.local	yearInt.4232
-	.comm	yearInt.4232,4,4
+	.local	outputString.4212
+	.comm	outputString.4212,8,8
+	.local	outputString.4217
+	.comm	outputString.4217,8,8
+	.local	isGoodInput.4247
+	.comm	isGoodInput.4247,4,4
+	.local	inputLength.4244
+	.comm	inputLength.4244,4,4
+	.local	isNumber.4245
+	.comm	isNumber.4245,4,4
+	.local	isVerbose.4246
+	.comm	isVerbose.4246,4,4
+	.local	isInputValid.4252
+	.comm	isInputValid.4252,4,4
+	.local	yearInt.4253
+	.comm	yearInt.4253,4,4
 	.section	.rodata
 	.align 8
 .LC22:
@@ -2426,7 +2630,7 @@ main:
 	.long	0
 	.long	1083129856
 	.align 8
-.LC56:
+.LC57:
 	.long	0
 	.long	1089804288
 	.ident	"GCC: (Debian 6.3.0-18+deb9u1) 6.3.0 20170516"
