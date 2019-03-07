@@ -1,0 +1,63 @@
+/* Easter Day Calculations (main.c) */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
+
+#include "general-header.h"
+#include "pfm-tables.h"
+#include "easter-algorithms.h"
+
+#include "runFunctions.h"
+
+
+// Run
+int main(int argc, const char *argv[]) {
+	
+	static int isInputValid, yearInt;
+	char *yearChar;
+	
+	isInputValid = inspectMainInputs( argc, argv );
+	
+	if (isInputValid) {
+		
+		switch (argc) {
+			case 1: // minimal output with no char input
+				yearInt = returnYear();
+				simpleDisplay(yearInt);
+				break;
+			
+			case 2: // minimal output 4 digit char input
+				// char *yearChar;
+				yearChar = (char *)argv[1];
+				yearInt = atoi(yearChar);
+				
+				simpleDisplay(yearInt);
+				break;
+			
+			case 3: // verbose output 4 digit char input
+				printf("------------------------\nBasic PMF Output Render:\n------------------------\n"); 
+				nextPFM();
+				
+				printf("\n\n\nVerbose PMF and Easter Output Render:\n");
+				// yearInt = returnYear();
+				yearChar = (char *)argv[2];
+				yearInt = atoi(yearChar);
+				
+				verboseDisplay(yearInt);
+				
+				break;
+		}				
+		
+	} else {
+		
+		printf("\n!!! Execution interupted !!!\nProvide valid inputs and try again :)\n\nExample:\n\n  ./main\n or\n  ./main 1985\n or\n  ./main -v 1985\n\n0000000");
+		exit(1);
+		
+	}
+	printf("\n");
+	
+	return 0; // 8-bit return val in unix, 255 limit
+
+}
