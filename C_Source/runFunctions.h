@@ -19,6 +19,9 @@ void verboseDisplay(int yearInt);
 void simpleDisplay(int yearInt);
 int daysUntillPFM(int yearInt);
 void nextPFM();
+int is4DigitChar(char *charInput);
+int isVerboseFlag(char *charFlag, char *yearChar);
+int isFileOutFlag(char *charFlag, char *filePathChar);
 static int inspectMainInputs( int argc, const char *argv[] );
 
 /* Function Definition */
@@ -133,57 +136,126 @@ void nextPFM() {
 	}
 }
 
+/////////// v0.1.1 //////////////////
+
+int inputFlagType (char *inputChar) {
+	int isVerbose, isPrintToFile, returnState;
+	
+	isVerbose = compareStrings(inputChar, "-v");
+	isPrintToFile = compareStrings(inputChar, "-b");
+	
+	if (isVerbose) {
+		returnState = 1;
+	} else if(isPrintToFile) {
+		returnState = 2;
+	} else {
+		returnState = 0;
+	}
+	
+	return returnState;	
+}
+
+int is4DigitChar(char *charInput) {
+	char *endptr;
+	static int inputLength, isNumber;
+	
+	inputLength = noOfChars(charInput);	
+	strtol(charInput, &endptr, 10);
+
+	// is char a 4 digit number
+	if ( (*endptr == '\0') && (inputLength == 4) ) {
+		isNumber = 1;
+	}
+	
+	return isNumber;
+}
+
+int isVerboseFlag(char *charFlag, char *yearChar) {
+	static int isVerbose, isNumber; // default 0
+		
+	isVerbose = compareStrings(charFlag, "-v");	
+	if ( isVerbose ) {
+		isNumber = is4DigitChar(charFlag); // want number
+	}
+	
+	if (isNumber) { 
+		isVerbose = 1; 
+	}
+	
+	return isVerbose; 
+}
+
+int isFileOutFlag(char *charFlag, char *filePathChar) {
+	static int isFileOut, isNumber;
+	
+	isFileOut = compareStrings(charFlag, "-f");	
+	if ( isFileOut ) {			
+		isNumber = is4DigitChar(filePathChar); // dont want number
+	}
+	
+	if (!isNumber) { 
+		isFileOut = 1;
+	}
+	
+	return isFileOut;
+}
+
 static int inspectMainInputs( int argc, const char *argv[] ) {
 	/*
 	 * Can the function use the value inputed into it?
-	 * Is the input 0-2?
-	 * Is the input verbose, -v
-	 * If the inpput is 1, is the 1 input a 4 digit char?
+	 * Is the input 0-4?
+	 * Are output flags present
+	 * Are the flags and year in the appropriate format
 	 * return 1 if all tests passed
 	 * */
 
-	char *endptr;
 	char *yearChar;
 
-	static int inputLength, isNumber, isVerbose, isGoodInput;
-
-	if ( argc == 1 ) {
-		isGoodInput = 1;
-	} else if ( ( argc > 1 ) && ( argc < 4 ) ) {
-		// check if char is a number for 4 digit year number inputs
-		yearChar = (char *)argv[1];
-		inputLength = noOfChars(yearChar);
-		strtol(yearChar, &endptr, 10);
-
-		// is char a 4 digit number
-		if ( (*endptr == '\0') && (inputLength == 4) ) {
-			isNumber = 1;
-		}
-
-		// check if char is a verbose flag if not a year number
-		if ( ( !isNumber ) && (argc > 2) ) {
-			isVerbose = compareStrings(yearChar, "-v");
-			// if verbose, then check if the year input is a usable input
-			if ( isVerbose ) {
-				// check if the next char input is a 4 digit year number input
-				yearChar = (char *)argv[2];
-				inputLength = noOfChars(yearChar);
-				strtol(yearChar, &endptr, 10);
-				// is char a 4 digit number
-				if ( (*endptr == '\0') && (inputLength == 4) ) {
-					isNumber = 1;
-				}
-			}
-		}
-
-		if (!isNumber) {
-			isGoodInput = 0;
-		} else {
+	static int isNumber, isVerbose, isFileOut, isGoodInput;
+	
+	switch (argc) {
+		case 1: // no input
 			isGoodInput = 1;
-		}
-
-	} else {
-		isGoodInput = 0;
+			break;
+		case 2: // year input only or verbose only
+			yearChar = (char *)argv[1];
+			isNumber = is4DigitChar(yearChar);
+			if (isNumber) {
+				isGoodInput = 1;
+			}
+			break;
+		case 3: // 1 flag input with value
+		
+			isVerbose = isVerboseFlag((char *)argv[1], (char *)argv[2]);
+			isFileOut = isFileOutFlag((char *)argv[1], (char *)argv[2]);
+		
+			if ( isVerbose || isFileOut ) {
+				isGoodInput = 1;
+			}
+			
+			break;
+			
+		case 5: // 2 flag inputs with values
+		
+			isVerbose = isVerboseFlag((char *)argv[1], (char *)argv[2]);
+			isFileOut = isFileOutFlag((char *)argv[1], (char *)argv[2]);
+		
+			if ( isVerbose || isFileOut ) {
+				isGoodInput = 1;
+			}
+			
+			isVerbose = isVerboseFlag((char *)argv[3], (char *)argv[4]);
+			isFileOut = isFileOutFlag((char *)argv[3], (char *)argv[4]);
+		
+			if ( isVerbose || isFileOut ) {
+				isGoodInput = 1;
+			}
+			
+			break;
+		
+		default:
+			isGoodInput = 0;
+			
 	}
 
 	return isGoodInput;
