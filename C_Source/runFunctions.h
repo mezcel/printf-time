@@ -1,6 +1,6 @@
 /* Easter Day Calculations (runFunctions.h)
  *
- * functions used in main.c
+ * functions used just for the main.c
  * */
 
 /*
@@ -19,6 +19,7 @@ void verboseDisplay(int yearInt);
 void simpleDisplay(int yearInt);
 int daysUntillPFM(int yearInt);
 void nextPFM();
+void print2file();
 int is4DigitChar(char *charInput);
 int isVerboseFlag(char *charFlag, char *yearChar);
 int isFileOutFlag(char *charFlag, char *filePathChar);
@@ -32,7 +33,8 @@ void verboseDisplay(int yearInt) {
 	struct EasterDay outputDate;
 
 	printf("----------------------------------------\n"
-			"Easter %d Dates:\n----------------------------------------\n",
+			"Easter %d Dates:\n"
+			"----------------------------------------\n",
 			yearInt);
 
 	/* Gauss Algorithm */
@@ -68,7 +70,9 @@ void verboseDisplay(int yearInt) {
 	dispDemoArray(outputString);
 
 	// Last line is for a Bash value parse, for use in other applications
-	printf("\n------------------------\nThis following 'last line' line will be used as a string to input into Bash for any further POSIX formatted date calculations.\n");
+	printf("\n------------------------\n"
+		"This following 'last line' line will be used as a string to"
+		" input into Bash for any further POSIX formatted date calculations.\n");
 	printf("\n%s", outputString);
 
 }
@@ -119,7 +123,9 @@ int daysUntillPFM(int yearInt) {
 	double seconds = difftime(inputPfmTime, now); // end, start
 	double days = seconds / 86400; // 86400 seconds / 1 day
 
-	printf("\nThe next Paschal Full Moon:\n\tThis year\n\tIn %f days\n\tOn %s %d %s %d", days, pfmStruct.weekday, pfmStruct.day,  pfmStruct.month, pfmStruct.year);
+	printf("\nThe next Paschal Full Moon:\n\tThis year\n\tIn %f days"
+		"\n\tOn %s %d %s %d",
+		days, pfmStruct.weekday, pfmStruct.day,  pfmStruct.month, pfmStruct.year);
 
 	return days;
 }
@@ -132,18 +138,31 @@ void nextPFM() {
 		struct EasterDay pfmStruct;
 		pfmStruct = pfm_algorithm(yearInt++);
 
-		printf("\nThe next Paschal Ful Moon:\n\t NEXT year \n\tOn %s %d %s %d", pfmStruct.weekday, pfmStruct.day,  pfmStruct.month, pfmStruct.year);
+		printf("\nThe next Paschal Ful Moon:\n\t NEXT year "
+			"\n\tOn %s %d %s %d",
+			pfmStruct.weekday, pfmStruct.day,  pfmStruct.month, pfmStruct.year);
 	}
 }
 
 /////////// v0.1.1 //////////////////
 
+void print2file() {
+
+	FILE *fp;
+
+   fp = fopen("/tmp/test.txt", "w+");
+   fprintf(fp, "This is testing for fprintf...\n");
+   fputs("This is testing for fputs...\n", fp);
+   fclose(fp);
+
+}
+
 int inputFlagType (char *inputChar) {
 	int isVerbose, isPrintToFile, returnState;
-	
+
 	isVerbose = compareStrings(inputChar, "-v");
 	isPrintToFile = compareStrings(inputChar, "-b");
-	
+
 	if (isVerbose) {
 		returnState = 1;
 	} else if(isPrintToFile) {
@@ -151,52 +170,52 @@ int inputFlagType (char *inputChar) {
 	} else {
 		returnState = 0;
 	}
-	
-	return returnState;	
+
+	return returnState;
 }
 
 int is4DigitChar(char *charInput) {
 	char *endptr;
 	static int inputLength, isNumber;
-	
-	inputLength = noOfChars(charInput);	
+
+	inputLength = noOfChars(charInput);
 	strtol(charInput, &endptr, 10);
 
 	// is char a 4 digit number
 	if ( (*endptr == '\0') && (inputLength == 4) ) {
 		isNumber = 1;
 	}
-	
+
 	return isNumber;
 }
 
 int isVerboseFlag(char *charFlag, char *yearChar) {
 	static int isVerbose, isNumber; // default 0
-		
-	isVerbose = compareStrings(charFlag, "-v");	
+
+	isVerbose = compareStrings(charFlag, "-v");
 	if ( isVerbose ) {
 		isNumber = is4DigitChar(charFlag); // want number
 	}
-	
-	if (isNumber) { 
-		isVerbose = 1; 
+
+	if (isNumber) {
+		isVerbose = 1;
 	}
-	
-	return isVerbose; 
+
+	return isVerbose;
 }
 
 int isFileOutFlag(char *charFlag, char *filePathChar) {
 	static int isFileOut, isNumber;
-	
-	isFileOut = compareStrings(charFlag, "-f");	
-	if ( isFileOut ) {			
+
+	isFileOut = compareStrings(charFlag, "-f");
+	if ( isFileOut ) {
 		isNumber = is4DigitChar(filePathChar); // dont want number
 	}
-	
-	if (!isNumber) { 
+
+	if (!isNumber) {
 		isFileOut = 1;
 	}
-	
+
 	return isFileOut;
 }
 
@@ -212,7 +231,7 @@ static int inspectMainInputs( int argc, const char *argv[] ) {
 	char *yearChar;
 
 	static int isNumber, isVerbose, isFileOut, isGoodInput;
-	
+
 	switch (argc) {
 		case 1: // no input
 			isGoodInput = 1;
@@ -225,37 +244,37 @@ static int inspectMainInputs( int argc, const char *argv[] ) {
 			}
 			break;
 		case 3: // 1 flag input with value
-		
+
 			isVerbose = isVerboseFlag((char *)argv[1], (char *)argv[2]);
 			isFileOut = isFileOutFlag((char *)argv[1], (char *)argv[2]);
-		
+
 			if ( isVerbose || isFileOut ) {
 				isGoodInput = 1;
 			}
-			
+
 			break;
-			
+
 		case 5: // 2 flag inputs with values
-		
+
 			isVerbose = isVerboseFlag((char *)argv[1], (char *)argv[2]);
 			isFileOut = isFileOutFlag((char *)argv[1], (char *)argv[2]);
-		
+
 			if ( isVerbose || isFileOut ) {
 				isGoodInput = 1;
 			}
-			
+
 			isVerbose = isVerboseFlag((char *)argv[3], (char *)argv[4]);
 			isFileOut = isFileOutFlag((char *)argv[3], (char *)argv[4]);
-		
+
 			if ( isVerbose || isFileOut ) {
 				isGoodInput = 1;
 			}
-			
+
 			break;
-		
+
 		default:
 			isGoodInput = 0;
-			
+
 	}
 
 	return isGoodInput;
