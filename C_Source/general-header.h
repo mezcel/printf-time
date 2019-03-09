@@ -30,7 +30,6 @@ char *outputDate2OutputString(struct EasterDay outputDate);
 void dispDemoArray (char *inputString);
 int binary2hex(char *inputString);
 struct tm defineTMstruct(int yearInput, int monthInput, int dayInput);
-
 int compareStrings(char input[],char check[]);
 
 /* Function Definition */
@@ -159,7 +158,7 @@ char *stringTocharArray(char *inputString) {
 char *outputDate2OutputString(struct EasterDay outputDate) {
 
 	char *yearNo, *monthNo, *dayNo, *str1, *str2;
-	
+
 		//if ( outputDate.month == "March" ) {
     char *monthCharStr = outputDate.month;
     int isMarch = compareStrings( monthCharStr, "March");
@@ -168,10 +167,10 @@ char *outputDate2OutputString(struct EasterDay outputDate) {
 	} else {
 		monthNo = "04";
 	}
-	
+
 	yearNo = itoa(outputDate.year);
 	str1 = myConcat( yearNo , monthNo );
-	
+
 	dayNo =  itoa(outputDate.day);
 	str2 = myConcat( str1 , dayNo );
 
@@ -182,7 +181,7 @@ void dispDemoArray (char *inputString) {
 	printf("\n----------------------------------------\n"
 			"Demo Array Illustration through printf():"
 			"\n----------------------------------------\n");
-	
+
 	int count = 0;
 
 	/* char string array */
@@ -201,21 +200,21 @@ void dispDemoArray (char *inputString) {
 		charStr++;
 	}
 	printf("\n");
-	
+
 	/* char address pointer */
 	printf("\nIndex \t Hex Address \t Char \t Hex / Dec \t Byte\n");
 	char *ptrChar = inputString;
 	count=0;
 	while (*ptrChar) {
-		printf("%d\t %p\t %c\t %x / %u\t %ld \n", 
+		printf("%d\t %p\t %c\t %x / %u\t %ld \n",
 			count, &ptrChar[count], *ptrChar, *ptrChar, *ptrChar, decimalToBinary(*ptrChar));
 		ptrChar++;
 		count++;
 	}
 	// manually display known the null terminator char value
-	printf("%d\t %p\t \\0\t  %x / %x\t\t %ld \n", 
+	printf("%d\t %p\t \\0\t  %x / %x\t\t %ld \n",
 		count, &ptrChar[count],  *ptrChar, *ptrChar, decimalToBinary(*ptrChar));
-		
+
 
 }
 
@@ -236,7 +235,7 @@ int binary2hex(char *inputChar) {
 }
 
 struct tm defineTMstruct(int yearInput, int monthInput, int dayInput) {
-	
+
 	struct tm myTMstruct;
 
 	myTMstruct.tm_mday = dayInput;
@@ -247,9 +246,9 @@ struct tm defineTMstruct(int yearInput, int monthInput, int dayInput) {
 	myTMstruct.tm_min = 0;
 	myTMstruct.tm_sec = 1;
 	myTMstruct.tm_isdst = 0;
-	
+
 	return myTMstruct;
-	
+
 }
 
 int compareStrings(char input[],char check[]) {
