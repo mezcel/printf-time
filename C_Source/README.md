@@ -23,6 +23,8 @@ gcc -S myExec main.c -lm
 
 ./myExec -v 2020	## verbose output date for 2020
 
+./myExec -v 2020 -f ~/Downloads/mytextfile.txt	## verbose output date for 2020 && pmf date to file
+
 ```
 
 ---

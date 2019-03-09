@@ -2,7 +2,7 @@
 
 C syntax which calculates Easter day and Paschal Full Moon. (gcc)
 
-version: ```0.1.1```
+version: ```0.1.1``` added a 'print to file' feature and GDB notes
 
 #### Description:
 
@@ -10,12 +10,14 @@ A C program which uses C syntax and the GCC compiler to calculate the date of th
 
 This app is a C refresher as well as an exercise in using the CLI to debug in GDB. I deliberately omitted the ```string.h``` library to force myself to manually perform C string manipulations.
 
+The program is in the [C_Source](./C_Source/) or [github path](https://github.com/mezcel/printf-time/tree/master/C_Source) folder.
+
 #### Feature algorithms:
 
 * Gauss Easter Algorithm
 * Anonymous Easter Algorithm
 * Meeus Easter Algorithm
-* Paschal Full Moon (PFM) -- *Just the full moon day*
+* Paschal Full Moon (PFM) -- *primary output*
 
 ---
 

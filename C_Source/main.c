@@ -2,62 +2,95 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <math.h> // non-standard library
 #include <time.h>
 
+// my libraries
 #include "general-header.h"
 #include "pfm-tables.h"
 #include "easter-algorithms.h"
-
 #include "runFunctions.h"
-
 
 // Run
 int main(int argc, const char *argv[]) {
-	
-	static int isInputValid, yearInt;
-	char *yearChar;
-	
+
+	static int isInputValid, yearInt, flagInt;
+	char *yearChar, *flagChar, *filePathInputChar, *outputString;
+	struct EasterDay outputDate, outputDate1, outputDate2, outputDate3;
+
 	isInputValid = inspectMainInputs( argc, argv );
-	
+
 	if (isInputValid) {
-		
+
 		switch (argc) {
 			case 1: // minimal output with no char input
 				yearInt = returnYear();
 				simpleDisplay(yearInt);
 				break;
-			
+
 			case 2: // minimal output 4 digit char input
-				// char *yearChar;
 				yearChar = (char *)argv[1];
 				yearInt = atoi(yearChar);
-				
+
 				simpleDisplay(yearInt);
 				break;
-			
-			case 3: // verbose output 4 digit char input
-				printf("------------------------\nBasic PMF Output Render:\n------------------------\n"); 
+
+			case 3: // verbose output or print to file
+				flagChar = (char *)argv[1];
+				flagInt = inputFlagType(flagChar);
+
+				if ( flagInt == 1 ) { // verbose year
+					printf("------------------------\nBasic PMF Output Render:"
+						"\n------------------------\n");
+					nextPFM();
+
+					printf("\n\n\nVerbose PMF and Easter Output Render:\n");
+					yearChar = (char *)argv[2];
+					yearInt = atoi(yearChar);
+					verboseDisplay(yearInt);
+
+				} else { // output to file
+					filePathInputChar = (char *)argv[2];
+					yearInt = returnYear();
+					outputDate = pfm_algorithm(yearInt);
+					outputString = outputDate2OutputString(outputDate);
+					print2file(outputString, filePathInputChar);
+				}
+				break;
+
+			case 5: // verbose and print to file
+				printf("------------------------\nBasic PMF Output Render:"
+					"\n------------------------\n");
 				nextPFM();
-				
+
 				printf("\n\n\nVerbose PMF and Easter Output Render:\n");
-				// yearInt = returnYear();
 				yearChar = (char *)argv[2];
 				yearInt = atoi(yearChar);
-				
 				verboseDisplay(yearInt);
-				
+
+				filePathInputChar = (char *)argv[4];
+				outputDate = pfm_algorithm(yearInt);
+				outputString = outputDate2OutputString(outputDate);
+				print2file(outputString, filePathInputChar);
+
+
 				break;
-		}				
-		
+		}
+
 	} else {
-		
-		printf("\n!!! Execution interupted !!!\nProvide valid inputs and try again :)\n\nExample:\n\n  ./main\n or\n  ./main 1985\n or\n  ./main -v 1985\n\n0000000");
+
+		printf("\n!!! Execution interupted !!!\nProvide valid inputs and try again :)"
+			"\n\nExample:\n\n  ./main\n or"
+			"\n  ./main 2018\n or"
+			"\n  ./main -v 2018\n or"
+			"\n  ./main -v 2018 -f ~/MyDocument/myOutput.txt"
+			"\n\n0000000"); // this last line is just for returing a 0 date
+
 		exit(1);
-		
+
 	}
 	printf("\n");
-	
+
 	return 0; // 8-bit return val in unix, 255 limit
 
 }
