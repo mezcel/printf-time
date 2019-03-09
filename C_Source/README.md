@@ -3,27 +3,26 @@
 ## compile & build
 
 ```bash
-## -lm links the math.h lib
-
+## -lm links the non-standard math.h lib
 ## standard system executable
 gcc -o myExec main.c -lm
 
-
 ## ASM (optional for jollies)
-
 gcc -S myExec main.c -lm
 ```
 
 ## run
 
 ```bash
-./myExec		## this year's or upcoming year(as needed)
+./myExec            ## this year's or upcoming year(as needed)
 
-./myExec 2020	## output date for 2020
+./myExec 2020       ## output date for 2020
 
-./myExec -v 2020	## verbose output date for 2020
+./myExec -v 2020    ## verbose output date for 2020
 
 ./myExec -v 2020 -f ~/Downloads/mytextfile.txt	## verbose output date for 2020 && pmf date to file
+
+./myExec -h         ## display help in using this program
 
 ```
 
@@ -61,3 +60,4 @@ function | function description
 ```struct EasterDay gauss_Easter_algorithm(int yearInt);``` | returns Easter day Gregorian calendar date
 ```struct EasterDay meeus_Julian_algorithm(int yearInt);``` | returns Easter day Julian calendar date
 ```struct EasterDay pfm_algorithm(int yearInt);``` | returns PFM day Gregorian calendar date
+```void helpDisplay();``` | display help info in the CLI

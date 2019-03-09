@@ -25,7 +25,7 @@ The program is in the [C_Source](./C_Source/) folder.
 ```bash
 ## Bash UI
 
-bashVar=$(./main) 				## Store printf output to bash var
+bashVar=$(./main) 			## Store printf output to bash var
 lastLine=$(echo "$bashVar" | tail -n1) 	## parse only the last output line
 date --date=$lastLine 			## use printf string to generate a Bash date
 
