@@ -19,6 +19,7 @@ void verboseDisplay(int yearInt);
 void simpleDisplay(int yearInt);
 int daysUntillPFM(int yearInt);
 void nextPFM();
+void print2file(char *stringInput, char *filePathInputChar);
 void print2file();
 int is4DigitChar(char *charInput);
 int isVerboseFlag(char *charFlag, char *yearChar);
@@ -146,14 +147,12 @@ void nextPFM() {
 
 /////////// v0.1.1 //////////////////
 
-void print2file() {
+void print2file(char *stringInput, char *filePathInputChar) {
 
 	FILE *fp;
-
-   fp = fopen("/tmp/test.txt", "w+");
-   fprintf(fp, "This is testing for fprintf...\n");
-   fputs("This is testing for fputs...\n", fp);
-   fclose(fp);
+	fp = fopen( filePathInputChar, "w+" );
+	fputs(stringInput, fp);
+	fclose(fp);
 
 }
 
@@ -161,7 +160,7 @@ int inputFlagType (char *inputChar) {
 	int isVerbose, isPrintToFile, returnState;
 
 	isVerbose = compareStrings(inputChar, "-v");
-	isPrintToFile = compareStrings(inputChar, "-b");
+	isPrintToFile = compareStrings(inputChar, "-f");
 
 	if (isVerbose) {
 		returnState = 1;
