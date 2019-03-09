@@ -36,6 +36,12 @@ Thu Apr 18 00:00:00 EDT 2019
 
 ---
 
+### Demo Screen Capture
+
+[asciinema demo video link](https://asciinema.org/a/232779)
+
+[![asciicast](https://asciinema.org/a/232779.svg)](https://asciinema.org/a/232779)
+
 #### Example CLI Input:
 ```bash
 ## Verbose PFM for 2019
