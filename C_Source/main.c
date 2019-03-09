@@ -69,7 +69,6 @@ int main(int argc, const char *argv[]) {
 				verboseDisplay(yearInt);
 
 				filePathInputChar = (char *)argv[4];
-				yearInt = returnYear();
 				outputDate = pfm_algorithm(yearInt);
 				outputString = outputDate2OutputString(outputDate);
 				print2file(outputString, filePathInputChar);
