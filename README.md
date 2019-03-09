@@ -2,7 +2,7 @@
 
 C syntax which calculates Easter day and Paschal Full Moon. (gcc)
 
-version: ```0.1.1``` added a 'print to file' feature and GDB notes
+version: ```0.1.1``` added a 'print to file' feature, GDB notes Dir, and a a help/error feature.
 
 #### Description:
 
@@ -25,9 +25,9 @@ The program is in the [C_Source](./C_Source/) folder.
 ```bash
 ## Bash UI
 
-bashVar=$(./main) 						## Store printf output to bash var
+bashVar=$(./main) 				## Store printf output to bash var
 lastLine=$(echo "$bashVar" | tail -n1) 	## parse only the last output line
-date --date=$lastLine 					## use printf string to generate a Bash date
+date --date=$lastLine 			## use printf string to generate a Bash date
 
 ## Bash generated output
 

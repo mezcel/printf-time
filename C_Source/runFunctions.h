@@ -24,6 +24,7 @@ int is4DigitChar(char *charInput);
 int isVerboseFlag(char *charFlag, char *yearChar);
 int isFileOutFlag(char *charFlag, char *filePathChar);
 static int inspectMainInputs( int argc, const char *argv[] );
+void helpDisplay();
 
 /* Function Definition */
 
@@ -228,18 +229,20 @@ static int inspectMainInputs( int argc, const char *argv[] ) {
 
 	char *yearChar;
 
-	static int isNumber, isVerbose, isFileOut, isGoodInput;
+	static int isNumber, isHelp, isVerbose, isFileOut, isGoodInput;
 
 	switch (argc) {
 		case 1: // no input
 			isGoodInput = 1;
 			break;
-		case 2: // year input only or verbose only
+		case 2: // year or help only
 			yearChar = (char *)argv[1];
 			isNumber = is4DigitChar(yearChar);
-			if (isNumber) {
+			isHelp = compareStrings(yearChar, "-h");
+			if ( isNumber || isHelp ) {
 				isGoodInput = 1;
 			}
+
 			break;
 		case 3: // 1 flag input with value
 
@@ -277,4 +280,19 @@ static int inspectMainInputs( int argc, const char *argv[] ) {
 
 	return isGoodInput;
 
+}
+
+void helpDisplay() {
+    printf("--------\n  Help\n--------\n"
+        "\nCompile and build:\n"
+        "\t gcc main.c -o anyNameYouWant -lm\n"
+		"\t gcc -o main main.c -lm"
+        "\n\nExample:\n"
+		"\n  ./main -h\t\t## display this help display and return a 0-time to bash\n or"
+		"\n  ./main\t\t## return the PFM for this year\n or"
+        "\n  ./main 2018\t\t## return the PFM for desired year\n or"
+        "\n  ./main -v 2018\t## return the PFM for desired year and Verbose info: Easter Day, next PFM, and memory allocation\n or"
+        "\n  ./main -f ~/MyDocument/myOutputFile.txt\t\t## return the PFM for this year to a File\n or"
+        "\n  ./main -v 2018 -f ~/MyDocument/myOutputFile.txt\t## return the PFM for desired year along with Verbose info"
+        "\n\n0000000");
 }

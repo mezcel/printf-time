@@ -31,8 +31,13 @@ int main(int argc, const char *argv[]) {
 			case 2: // minimal output 4 digit char input
 				yearChar = (char *)argv[1];
 				yearInt = atoi(yearChar);
+				int isHelp = compareStrings((char *)argv[1], "-h");
+				if (!isHelp){
+					simpleDisplay(yearInt);
+				} else {
+					helpDisplay();
+				}
 
-				simpleDisplay(yearInt);
 				break;
 
 			case 3: // verbose output or print to file
@@ -79,12 +84,10 @@ int main(int argc, const char *argv[]) {
 
 	} else {
 
-		printf("\n!!! Execution interupted !!!\nProvide valid inputs and try again :)"
-			"\n\nExample:\n\n  ./main\n or"
-			"\n  ./main 2018\n or"
-			"\n  ./main -v 2018\n or"
-			"\n  ./main -v 2018 -f ~/MyDocument/myOutput.txt"
-			"\n\n0000000"); // this last line is just for returing a 0 date
+		printf("\n!!! Execution interupted !!!\n"
+			"Provide valid inputs and try again :)\n"); // this last line is just for returing a 0 date
+
+		helpDisplay();
 
 		exit(1);
 
