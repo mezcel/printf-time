@@ -20,6 +20,21 @@ The program is in the [C_Source](./C_Source/) folder.
 * Paschal Full Moon (PFM) -- *primary output*
 
 ---
+#### Practical Bash Usecase
+
+```bash
+## Bash UI
+
+bashVar=$(./main) 						## Store printf output to bash var
+lastLine=$(echo "$bashVar" | tail -n1) 	## parse only the last output line
+date --date=$lastLine 					## use printf string to generate a Bash date
+
+## Bash generated output
+
+Thu Apr 18 00:00:00 EDT 2019
+```
+
+---
 
 #### Example CLI Input:
 ```bash
