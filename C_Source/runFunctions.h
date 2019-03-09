@@ -20,7 +20,6 @@ void simpleDisplay(int yearInt);
 int daysUntillPFM(int yearInt);
 void nextPFM();
 void print2file(char *stringInput, char *filePathInputChar);
-void print2file();
 int is4DigitChar(char *charInput);
 int isVerboseFlag(char *charFlag, char *yearChar);
 int isFileOutFlag(char *charFlag, char *filePathChar);
