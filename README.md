@@ -10,7 +10,7 @@ A C program which uses C syntax and the GCC compiler to calculate the date of th
 
 This app is a C refresher as well as an exercise in using the CLI to debug in GDB. I deliberately omitted the ```string.h``` library to force myself to manually perform C string manipulations.
 
-The program is in the [C_Source](./C_Source/) or [github path](https://github.com/mezcel/printf-time/tree/master/C_Source) folder.
+The program is in the [C_Source](./C_Source/) folder.
 
 #### Feature algorithms:
 
