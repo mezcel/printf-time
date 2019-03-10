@@ -19,11 +19,12 @@ void verboseDisplay(int yearInt);
 void simpleDisplay(int yearInt);
 int daysUntillPFM(int yearInt);
 void nextPFM();
-void print2file(char *stringInput, char *filePathInputChar);
 int is4DigitChar(char *charInput);
 int isVerboseFlag(char *charFlag, char *yearChar);
 int isFileOutFlag(char *charFlag, char *filePathChar);
 static int inspectMainInputs( int argc, const char *argv[] );
+void print2file(int yearInt, char *filePathInputChar);
+void print2fileVerbose(int yearInt, char *filePathInputChar);
 void helpDisplay();
 
 /* Function Definition */
@@ -61,7 +62,6 @@ void verboseDisplay(int yearInt) {
 			" mixed var array\n\n",
 			outputDate.weekday, outputDate.day, outputDate.month, outputDate.year);
 
-
 	// Output as as a string variable
 	outputString = outputDate2OutputString(outputDate);
 	printf("PFM output as a single char array value:\n\tString array: %s\n",
@@ -80,7 +80,8 @@ void verboseDisplay(int yearInt) {
 
 void simpleDisplay(int yearInt) {
 
-	static char *outputString='\0';
+	// static char *outputString='\0';
+	static char *outputString;
 	struct EasterDay outputDate;
 
 	/* PFM Table Algorithm */
@@ -146,15 +147,6 @@ void nextPFM() {
 }
 
 /////////// v0.1.1 //////////////////
-
-void print2file(char *stringInput, char *filePathInputChar) {
-
-	FILE *fp;
-	fp = fopen( filePathInputChar, "w+" );
-	fputs(stringInput, fp);
-	fclose(fp);
-
-}
 
 int inputFlagType (char *inputChar) {
 	int isVerbose, isPrintToFile, returnState;
@@ -281,6 +273,78 @@ static int inspectMainInputs( int argc, const char *argv[] ) {
 	return isGoodInput;
 
 }
+
+void print2file(int yearInt, char *filePathInputChar) {
+
+	FILE *fp;
+	static char *outputString;
+	struct EasterDay outputDate;
+
+	/* PFM Table Algorithm */
+	outputDate = pfm_algorithm(yearInt);
+
+	// Output as as a string variable
+	outputString = outputDate2OutputString(outputDate);
+
+	// printf("%s", outputString);
+	fp = fopen( filePathInputChar, "w+" );
+	fputs(outputString, fp);
+	fclose(fp);
+
+}
+
+void print2fileVerbose(int yearInt, char *filePathInputChar) {
+
+	FILE *fptr = fopen(filePathInputChar, "w");
+	static char *outputString='\0';
+	struct EasterDay outputDate;
+
+	// fprintf(fptr,"%d.%s\n", i, str);
+
+	fprintf(fptr, "----------------------------------------\n"
+			"Easter %d Dates:\n"
+			"----------------------------------------\n",
+			yearInt);
+
+	/* Gauss Algorithm */
+	outputDate = gauss_Easter_algorithm(yearInt);
+	fprintf(fptr, "\nGauss Output:\n\t%s %d, %s %d -- Gregorian Calendar,"
+			" mixed var array\n", outputDate.weekday, outputDate.day,
+			outputDate.month, outputDate.year);
+
+	/* Anonymous Algorithm */
+	outputDate = anonymous_Gregorian_algorithm(yearInt);
+	fprintf(fptr, "\nAnonymous Output:\n\t%s %d, %s %d -- Gregorian Calendar,"
+			" mixed var array\n", outputDate.weekday, outputDate.day,
+			outputDate.month, outputDate.year);
+
+	/* Meeus Algorithm */
+	outputDate = meeus_Julian_algorithm(yearInt);
+	fprintf(fptr, "\nMeeus Output:\n\t%s %d, %s %d -- Julian Calendar, mixed var array\n",
+			outputDate.weekday, outputDate.day, outputDate.month, outputDate.year);
+
+	/* PFM Table Algorithm */
+	outputDate = pfm_algorithm(yearInt);
+	fprintf(fptr, "\nPaschal Full Moon (PFM) Output:\n\t%s %d, %s %d -- Gregorian Calendar,"
+			" mixed var array\n\n",
+			outputDate.weekday, outputDate.day, outputDate.month, outputDate.year);
+
+
+	// Output as as a string variable
+	outputString = outputDate2OutputString(outputDate);
+	fprintf(fptr, "PFM output as a single char array value:\n\tString array: %s\n",
+			outputString);
+
+	// Last line is for a Bash value parse, for use in other applications
+	fprintf(fptr, "\n------------------------\n"
+		"This following 'last line' line will be used as a string to"
+		" input into Bash for any further POSIX formatted date calculations.\n");
+	fprintf(fptr,"\n%s", outputString);
+
+	fclose(fptr);
+
+}
+
 
 void helpDisplay() {
     printf("--------\n  Help\n--------\n"

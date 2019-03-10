@@ -47,7 +47,7 @@ int main(int argc, const char *argv[]) {
 				if ( flagInt == 1 ) { // verbose year
 					printf("------------------------\nBasic PMF Output Render:"
 						"\n------------------------\n");
-					nextPFM();
+					nextPFM(); // display next upcoming PFM
 
 					printf("\n\n\nVerbose PMF and Easter Output Render:\n");
 					yearChar = (char *)argv[2];
@@ -55,11 +55,11 @@ int main(int argc, const char *argv[]) {
 					verboseDisplay(yearInt);
 
 				} else { // output to file
-					filePathInputChar = (char *)argv[2];
+
 					yearInt = returnYear();
-					outputDate = pfm_algorithm(yearInt);
-					outputString = outputDate2OutputString(outputDate);
-					print2file(outputString, filePathInputChar);
+					filePathInputChar = (char *)argv[2];
+					print2file(yearInt, filePathInputChar);
+
 				}
 				break;
 
@@ -74,9 +74,7 @@ int main(int argc, const char *argv[]) {
 				verboseDisplay(yearInt);
 
 				filePathInputChar = (char *)argv[4];
-				outputDate = pfm_algorithm(yearInt);
-				outputString = outputDate2OutputString(outputDate);
-				print2file(outputString, filePathInputChar);
+				print2fileVerbose(yearInt, filePathInputChar);
 
 
 				break;
@@ -92,7 +90,7 @@ int main(int argc, const char *argv[]) {
 		exit(1);
 
 	}
-	printf("\n");
+	// printf("\n");
 
 	return 0; // 8-bit return val in unix, 255 limit
 
