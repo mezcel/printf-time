@@ -1,20 +1,20 @@
 ## asm example
 
-Assembly code main.c render (gcc generated)
+Assembly code based on main.c (gcc generated)
 
 ```bash
 gcc -S -o mainasm main.c -lm
 ```
 
-* Note: *
-
-* The ASM is a demo illustration for observational curiosity. Just for jollies.
+*Note:* The ASM is a demo illustration for observational curiosity. Just for jollies.
 
 ---
 
 ## Enclosed ASM is from a mini-pc running Arch. ( a "burner" device )
 
-(Fun Fact: The machine fits in a shirt pocket and runs 1/2 day on battery with adhoc wifi & no terminal) other external devices are its UI
+(Fun Fact: The machine fits in a shirt pocket and runs 1/2 day on battery with adhoc wifi & no terminal. Other external devices are its UI)
+
+Assembly architecture (Intel):
 
 ```bash
 ## cpu specs
@@ -49,6 +49,8 @@ NUMA node0 CPU(s):   0-3
 Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 movbe popcnt tsc_deadline_timer aes rdrand lahf_lm 3dnowprefetch epb pti tpr_shadow vnmi flexpriority ept vpid tsc_adjust smep erms dtherm ida arat
 
 ```
+
+Assembly generator (gcc):
 
 ```bash
 ## gcc version
