@@ -2221,18 +2221,18 @@ verboseDisplay:
 	pushq	-32(%rbp)
 	call	outputDate2OutputString
 	addq	$32, %rsp
-	movq	%rax, outputString.4384(%rip)
-	movq	outputString.4384(%rip), %rax
+	movq	%rax, outputString.4399(%rip)
+	movq	outputString.4399(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC51(%rip), %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	movq	outputString.4384(%rip), %rax
+	movq	outputString.4399(%rip), %rax
 	movq	%rax, %rdi
 	call	dispDemoArray
 	leaq	.LC52(%rip), %rdi
 	call	puts@PLT
-	movq	outputString.4384(%rip), %rax
+	movq	outputString.4399(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC53(%rip), %rdi
 	movl	$0, %eax
@@ -2279,8 +2279,8 @@ simpleDisplay:
 	pushq	-32(%rbp)
 	call	outputDate2OutputString
 	addq	$32, %rsp
-	movq	%rax, outputString.4389(%rip)
-	movq	outputString.4389(%rip), %rax
+	movq	%rax, outputString.4404(%rip)
+	movq	outputString.4404(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC54(%rip), %rdi
 	movl	$0, %eax
@@ -2460,9 +2460,12 @@ nextPFM:
 	.section	.rodata
 .LC58:
 	.string	"-v"
+.LC59:
+	.string	"-f"
 	.text
-	.type	inspectMainInputs, @function
-inspectMainInputs:
+	.globl	inputFlagType
+	.type	inputFlagType, @function
+inputFlagType:
 .LFB31:
 	.cfi_startproc
 	pushq	%rbp
@@ -2470,116 +2473,166 @@ inspectMainInputs:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	subq	$48, %rsp
-	movl	%edi, -36(%rbp)
-	movq	%rsi, -48(%rbp)
-	movq	%fs:40, %rax
-	movq	%rax, -8(%rbp)
-	xorl	%eax, %eax
-	cmpl	$1, -36(%rbp)
-	jne	.L119
-	movl	$1, isGoodInput.4419(%rip)
-	jmp	.L120
-.L119:
-	cmpl	$1, -36(%rbp)
-	jle	.L121
-	cmpl	$3, -36(%rbp)
-	jg	.L121
-	movq	-48(%rbp), %rax
-	movq	8(%rax), %rax
-	movq	%rax, -16(%rbp)
-	movq	-16(%rbp), %rax
-	movq	%rax, %rdi
-	call	noOfChars
-	movl	%eax, inputLength.4416(%rip)
-	leaq	-24(%rbp), %rcx
-	movq	-16(%rbp), %rax
-	movl	$10, %edx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	strtol@PLT
+	subq	$24, %rsp
+	movq	%rdi, -24(%rbp)
 	movq	-24(%rbp), %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	jne	.L122
-	movl	inputLength.4416(%rip), %eax
-	cmpl	$4, %eax
-	jne	.L122
-	movl	$1, isNumber.4417(%rip)
-.L122:
-	movl	isNumber.4417(%rip), %eax
-	testl	%eax, %eax
-	jne	.L123
-	cmpl	$2, -36(%rbp)
-	jle	.L123
-	movq	-16(%rbp), %rax
 	leaq	.LC58(%rip), %rsi
 	movq	%rax, %rdi
 	call	compareStrings
-	movl	%eax, isVerbose.4418(%rip)
-	movl	isVerbose.4418(%rip), %eax
-	testl	%eax, %eax
-	je	.L123
-	movq	-48(%rbp), %rax
-	movq	16(%rax), %rax
-	movq	%rax, -16(%rbp)
-	movq	-16(%rbp), %rax
-	movq	%rax, %rdi
-	call	noOfChars
-	movl	%eax, inputLength.4416(%rip)
-	leaq	-24(%rbp), %rcx
-	movq	-16(%rbp), %rax
-	movl	$10, %edx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	strtol@PLT
+	movl	%eax, -8(%rbp)
 	movq	-24(%rbp), %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	jne	.L123
-	movl	inputLength.4416(%rip), %eax
-	cmpl	$4, %eax
-	jne	.L123
-	movl	$1, isNumber.4417(%rip)
-.L123:
-	movl	isNumber.4417(%rip), %eax
-	testl	%eax, %eax
-	jne	.L124
-	movl	$0, isGoodInput.4419(%rip)
+	leaq	.LC59(%rip), %rsi
+	movq	%rax, %rdi
+	call	compareStrings
+	movl	%eax, -4(%rbp)
+	cmpl	$0, -8(%rbp)
+	je	.L119
+	movl	$1, -12(%rbp)
 	jmp	.L120
-.L124:
-	movl	$1, isGoodInput.4419(%rip)
+.L119:
+	cmpl	$0, -4(%rbp)
+	je	.L121
+	movl	$2, -12(%rbp)
 	jmp	.L120
 .L121:
-	movl	$0, isGoodInput.4419(%rip)
+	movl	$0, -12(%rbp)
 .L120:
-	movl	isGoodInput.4419(%rip), %eax
-	movq	-8(%rbp), %rdx
-	xorq	%fs:40, %rdx
-	je	.L127
-	call	__stack_chk_fail@PLT
-.L127:
+	movl	-12(%rbp), %eax
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE31:
-	.size	inspectMainInputs, .-inspectMainInputs
-	.section	.rodata
-	.align 8
-.LC59:
-	.string	"------------------------\nBasic PMF Output Render:\n------------------------"
-	.align 8
-.LC60:
-	.string	"\n\n\nVerbose PMF and Easter Output Render:"
-	.align 8
-.LC61:
-	.string	"\n!!! Execution interupted !!!\nProvide valid inputs and try again :)\n\nExample:\n\n  ./main\n or\n  ./main 1985\n or\n  ./main -v 1985\n\n0000000"
-	.text
-	.globl	main
-	.type	main, @function
-main:
+	.size	inputFlagType, .-inputFlagType
+	.globl	is4DigitChar
+	.type	is4DigitChar, @function
+is4DigitChar:
 .LFB32:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$32, %rsp
+	movq	%rdi, -24(%rbp)
+	movq	%fs:40, %rax
+	movq	%rax, -8(%rbp)
+	xorl	%eax, %eax
+	movq	-24(%rbp), %rax
+	movq	%rax, %rdi
+	call	noOfChars
+	movl	%eax, inputLength.4435(%rip)
+	leaq	-16(%rbp), %rcx
+	movq	-24(%rbp), %rax
+	movl	$10, %edx
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	strtol@PLT
+	movq	-16(%rbp), %rax
+	movzbl	(%rax), %eax
+	testb	%al, %al
+	jne	.L124
+	movl	inputLength.4435(%rip), %eax
+	cmpl	$4, %eax
+	jne	.L124
+	movl	$1, isNumber.4436(%rip)
+.L124:
+	movl	isNumber.4436(%rip), %eax
+	movq	-8(%rbp), %rdx
+	xorq	%fs:40, %rdx
+	je	.L126
+	call	__stack_chk_fail@PLT
+.L126:
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE32:
+	.size	is4DigitChar, .-is4DigitChar
+	.globl	isVerboseFlag
+	.type	isVerboseFlag, @function
+isVerboseFlag:
+.LFB33:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	-8(%rbp), %rax
+	leaq	.LC58(%rip), %rsi
+	movq	%rax, %rdi
+	call	compareStrings
+	movl	%eax, isVerbose.4441(%rip)
+	movl	isVerbose.4441(%rip), %eax
+	testl	%eax, %eax
+	je	.L128
+	movq	-8(%rbp), %rax
+	movq	%rax, %rdi
+	call	is4DigitChar
+	movl	%eax, isNumber.4442(%rip)
+.L128:
+	movl	isNumber.4442(%rip), %eax
+	testl	%eax, %eax
+	je	.L129
+	movl	$1, isVerbose.4441(%rip)
+.L129:
+	movl	isVerbose.4441(%rip), %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE33:
+	.size	isVerboseFlag, .-isVerboseFlag
+	.globl	isFileOutFlag
+	.type	isFileOutFlag, @function
+isFileOutFlag:
+.LFB34:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	-8(%rbp), %rax
+	leaq	.LC59(%rip), %rsi
+	movq	%rax, %rdi
+	call	compareStrings
+	movl	%eax, isFileOut.4447(%rip)
+	movl	isFileOut.4447(%rip), %eax
+	testl	%eax, %eax
+	je	.L132
+	movq	-16(%rbp), %rax
+	movq	%rax, %rdi
+	call	is4DigitChar
+	movl	%eax, isNumber.4448(%rip)
+.L132:
+	movl	isNumber.4448(%rip), %eax
+	testl	%eax, %eax
+	jne	.L133
+	movl	$1, isFileOut.4447(%rip)
+.L133:
+	movl	isFileOut.4447(%rip), %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE34:
+	.size	isFileOutFlag, .-isFileOutFlag
+	.section	.rodata
+.LC60:
+	.string	"-h"
+	.text
+	.type	inspectMainInputs, @function
+inspectMainInputs:
+.LFB35:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2589,74 +2642,558 @@ main:
 	subq	$32, %rsp
 	movl	%edi, -20(%rbp)
 	movq	%rsi, -32(%rbp)
-	movq	-32(%rbp), %rdx
-	movl	-20(%rbp), %eax
-	movq	%rdx, %rsi
-	movl	%eax, %edi
-	call	inspectMainInputs
-	movl	%eax, isInputValid.4424(%rip)
-	movl	isInputValid.4424(%rip), %eax
-	testl	%eax, %eax
-	je	.L129
 	cmpl	$2, -20(%rbp)
-	je	.L130
-	cmpl	$3, -20(%rbp)
-	je	.L131
+	je	.L136
+	cmpl	$2, -20(%rbp)
+	jg	.L137
 	cmpl	$1, -20(%rbp)
-	jne	.L133
-	movl	$0, %eax
-	call	returnYear
-	movl	%eax, yearInt.4425(%rip)
-	movl	yearInt.4425(%rip), %eax
-	movl	%eax, %edi
-	call	simpleDisplay
-	jmp	.L133
-.L130:
+	je	.L138
+	jmp	.L139
+.L137:
+	cmpl	$3, -20(%rbp)
+	je	.L140
+	cmpl	$5, -20(%rbp)
+	je	.L141
+	jmp	.L139
+.L138:
+	movl	$1, isGoodInput.4458(%rip)
+	jmp	.L142
+.L136:
 	movq	-32(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, -8(%rbp)
 	movq	-8(%rbp), %rax
 	movq	%rax, %rdi
-	call	atoi@PLT
-	movl	%eax, yearInt.4425(%rip)
-	movl	yearInt.4425(%rip), %eax
+	call	is4DigitChar
+	movl	%eax, isNumber.4454(%rip)
+	movq	-8(%rbp), %rax
+	leaq	.LC60(%rip), %rsi
+	movq	%rax, %rdi
+	call	compareStrings
+	movl	%eax, isHelp.4455(%rip)
+	movl	isNumber.4454(%rip), %eax
+	testl	%eax, %eax
+	jne	.L143
+	movl	isHelp.4455(%rip), %eax
+	testl	%eax, %eax
+	je	.L152
+.L143:
+	movl	$1, isGoodInput.4458(%rip)
+	jmp	.L152
+.L140:
+	movq	-32(%rbp), %rax
+	addq	$16, %rax
+	movq	(%rax), %rdx
+	movq	-32(%rbp), %rax
+	addq	$8, %rax
+	movq	(%rax), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	isVerboseFlag
+	movl	%eax, isVerbose.4456(%rip)
+	movq	-32(%rbp), %rax
+	addq	$16, %rax
+	movq	(%rax), %rdx
+	movq	-32(%rbp), %rax
+	addq	$8, %rax
+	movq	(%rax), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	isFileOutFlag
+	movl	%eax, isFileOut.4457(%rip)
+	movl	isVerbose.4456(%rip), %eax
+	testl	%eax, %eax
+	jne	.L145
+	movl	isFileOut.4457(%rip), %eax
+	testl	%eax, %eax
+	je	.L153
+.L145:
+	movl	$1, isGoodInput.4458(%rip)
+	jmp	.L153
+.L141:
+	movq	-32(%rbp), %rax
+	addq	$16, %rax
+	movq	(%rax), %rdx
+	movq	-32(%rbp), %rax
+	addq	$8, %rax
+	movq	(%rax), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	isVerboseFlag
+	movl	%eax, isVerbose.4456(%rip)
+	movq	-32(%rbp), %rax
+	addq	$16, %rax
+	movq	(%rax), %rdx
+	movq	-32(%rbp), %rax
+	addq	$8, %rax
+	movq	(%rax), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	isFileOutFlag
+	movl	%eax, isFileOut.4457(%rip)
+	movl	isVerbose.4456(%rip), %eax
+	testl	%eax, %eax
+	jne	.L147
+	movl	isFileOut.4457(%rip), %eax
+	testl	%eax, %eax
+	je	.L148
+.L147:
+	movl	$1, isGoodInput.4458(%rip)
+.L148:
+	movq	-32(%rbp), %rax
+	addq	$32, %rax
+	movq	(%rax), %rdx
+	movq	-32(%rbp), %rax
+	addq	$24, %rax
+	movq	(%rax), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	isVerboseFlag
+	movl	%eax, isVerbose.4456(%rip)
+	movq	-32(%rbp), %rax
+	addq	$32, %rax
+	movq	(%rax), %rdx
+	movq	-32(%rbp), %rax
+	addq	$24, %rax
+	movq	(%rax), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	isFileOutFlag
+	movl	%eax, isFileOut.4457(%rip)
+	movl	isVerbose.4456(%rip), %eax
+	testl	%eax, %eax
+	jne	.L149
+	movl	isFileOut.4457(%rip), %eax
+	testl	%eax, %eax
+	je	.L154
+.L149:
+	movl	$1, isGoodInput.4458(%rip)
+	jmp	.L154
+.L139:
+	movl	$0, isGoodInput.4458(%rip)
+	jmp	.L142
+.L152:
+	nop
+	jmp	.L142
+.L153:
+	nop
+	jmp	.L142
+.L154:
+	nop
+.L142:
+	movl	isGoodInput.4458(%rip), %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE35:
+	.size	inspectMainInputs, .-inspectMainInputs
+	.section	.rodata
+.LC61:
+	.string	"w+"
+	.text
+	.globl	print2file
+	.type	print2file, @function
+print2file:
+.LFB36:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$64, %rsp
+	movl	%edi, -52(%rbp)
+	movq	%rsi, -64(%rbp)
+	movq	%fs:40, %rax
+	movq	%rax, -8(%rbp)
+	xorl	%eax, %eax
+	leaq	-32(%rbp), %rax
+	movl	-52(%rbp), %edx
+	movl	%edx, %esi
+	movq	%rax, %rdi
+	call	pfm_algorithm
+	subq	$8, %rsp
+	pushq	-16(%rbp)
+	pushq	-24(%rbp)
+	pushq	-32(%rbp)
+	call	outputDate2OutputString
+	addq	$32, %rsp
+	movq	%rax, outputString.4470(%rip)
+	movq	-64(%rbp), %rax
+	leaq	.LC61(%rip), %rsi
+	movq	%rax, %rdi
+	call	fopen@PLT
+	movq	%rax, -40(%rbp)
+	movq	outputString.4470(%rip), %rax
+	movq	-40(%rbp), %rdx
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	fputs@PLT
+	movq	-40(%rbp), %rax
+	movq	%rax, %rdi
+	call	fclose@PLT
+	nop
+	movq	-8(%rbp), %rax
+	xorq	%fs:40, %rax
+	je	.L156
+	call	__stack_chk_fail@PLT
+.L156:
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE36:
+	.size	print2file, .-print2file
+	.section	.rodata
+.LC62:
+	.string	"w"
+	.align 8
+.LC63:
+	.string	"\n------------------------\nThis following 'last line' line will be used as a string to input into Bash for any further POSIX formatted date calculations.\n"
+	.text
+	.globl	print2fileVerbose
+	.type	print2fileVerbose, @function
+print2fileVerbose:
+.LFB37:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$96, %rsp
+	movl	%edi, -52(%rbp)
+	movq	%rsi, -64(%rbp)
+	movq	%fs:40, %rax
+	movq	%rax, -8(%rbp)
+	xorl	%eax, %eax
+	movq	-64(%rbp), %rax
+	leaq	.LC62(%rip), %rsi
+	movq	%rax, %rdi
+	call	fopen@PLT
+	movq	%rax, -40(%rbp)
+	movl	-52(%rbp), %edx
+	movq	-40(%rbp), %rax
+	leaq	.LC46(%rip), %rsi
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	fprintf@PLT
+	leaq	-32(%rbp), %rax
+	movl	-52(%rbp), %edx
+	movl	%edx, %esi
+	movq	%rax, %rdi
+	call	gauss_Easter_algorithm
+	movl	-12(%rbp), %edi
+	movq	-24(%rbp), %rsi
+	movl	-16(%rbp), %ecx
+	movq	-32(%rbp), %rdx
+	movq	-40(%rbp), %rax
+	movl	%edi, %r9d
+	movq	%rsi, %r8
+	leaq	.LC47(%rip), %rsi
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	fprintf@PLT
+	leaq	-96(%rbp), %rax
+	movl	-52(%rbp), %edx
+	movl	%edx, %esi
+	movq	%rax, %rdi
+	call	anonymous_Gregorian_algorithm
+	movq	-96(%rbp), %rax
+	movq	-88(%rbp), %rdx
+	movq	%rax, -32(%rbp)
+	movq	%rdx, -24(%rbp)
+	movq	-80(%rbp), %rax
+	movq	%rax, -16(%rbp)
+	movl	-12(%rbp), %edi
+	movq	-24(%rbp), %rsi
+	movl	-16(%rbp), %ecx
+	movq	-32(%rbp), %rdx
+	movq	-40(%rbp), %rax
+	movl	%edi, %r9d
+	movq	%rsi, %r8
+	leaq	.LC48(%rip), %rsi
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	fprintf@PLT
+	leaq	-96(%rbp), %rax
+	movl	-52(%rbp), %edx
+	movl	%edx, %esi
+	movq	%rax, %rdi
+	call	meeus_Julian_algorithm
+	movq	-96(%rbp), %rax
+	movq	-88(%rbp), %rdx
+	movq	%rax, -32(%rbp)
+	movq	%rdx, -24(%rbp)
+	movq	-80(%rbp), %rax
+	movq	%rax, -16(%rbp)
+	movl	-12(%rbp), %edi
+	movq	-24(%rbp), %rsi
+	movl	-16(%rbp), %ecx
+	movq	-32(%rbp), %rdx
+	movq	-40(%rbp), %rax
+	movl	%edi, %r9d
+	movq	%rsi, %r8
+	leaq	.LC49(%rip), %rsi
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	fprintf@PLT
+	leaq	-96(%rbp), %rax
+	movl	-52(%rbp), %edx
+	movl	%edx, %esi
+	movq	%rax, %rdi
+	call	pfm_algorithm
+	movq	-96(%rbp), %rax
+	movq	-88(%rbp), %rdx
+	movq	%rax, -32(%rbp)
+	movq	%rdx, -24(%rbp)
+	movq	-80(%rbp), %rax
+	movq	%rax, -16(%rbp)
+	movl	-12(%rbp), %edi
+	movq	-24(%rbp), %rsi
+	movl	-16(%rbp), %ecx
+	movq	-32(%rbp), %rdx
+	movq	-40(%rbp), %rax
+	movl	%edi, %r9d
+	movq	%rsi, %r8
+	leaq	.LC50(%rip), %rsi
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	fprintf@PLT
+	subq	$8, %rsp
+	pushq	-16(%rbp)
+	pushq	-24(%rbp)
+	pushq	-32(%rbp)
+	call	outputDate2OutputString
+	addq	$32, %rsp
+	movq	%rax, outputString.4477(%rip)
+	movq	outputString.4477(%rip), %rdx
+	movq	-40(%rbp), %rax
+	leaq	.LC51(%rip), %rsi
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	fprintf@PLT
+	movq	-40(%rbp), %rax
+	movq	%rax, %rcx
+	movl	$153, %edx
+	movl	$1, %esi
+	leaq	.LC63(%rip), %rdi
+	call	fwrite@PLT
+	movq	outputString.4477(%rip), %rdx
+	movq	-40(%rbp), %rax
+	leaq	.LC53(%rip), %rsi
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	fprintf@PLT
+	movq	-40(%rbp), %rax
+	movq	%rax, %rdi
+	call	fclose@PLT
+	nop
+	movq	-8(%rbp), %rax
+	xorq	%fs:40, %rax
+	je	.L158
+	call	__stack_chk_fail@PLT
+.L158:
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE37:
+	.size	print2fileVerbose, .-print2fileVerbose
+	.section	.rodata
+	.align 8
+.LC64:
+	.ascii	"--------\n  Help\n--------\n\nCompile and build:\n\t gcc mai"
+	.ascii	"n.c -o anyNameYouWant -lm\n\t gcc -o main main.c -lm\n\nExam"
+	.ascii	"ple:\n\n  ./main -h\t\t## display this help display and retu"
+	.ascii	"rn a 0-time to bash\n or\n  ./main\t\t## return the PFM for "
+	.ascii	"this year\n or\n  ./main 2018\t\t## return the PFM for desir"
+	.ascii	"ed year\n or\n  ./main -v 2018\t## return the PFM for desire"
+	.ascii	"d year and Verbose info"
+	.string	": Easter Day, next PFM, and memory allocation\n or\n  ./main -f ~/MyDocument/myOutputFile.txt\t\t## return the PFM for this year to a File\n or\n  ./main -v 2018 -f ~/MyDocument/myOutputFile.txt\t## return the PFM for desired year along with Verbose info\n\n0000000"
+	.text
+	.globl	helpDisplay
+	.type	helpDisplay, @function
+helpDisplay:
+.LFB38:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	leaq	.LC64(%rip), %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	nop
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE38:
+	.size	helpDisplay, .-helpDisplay
+	.section	.rodata
+	.align 8
+.LC65:
+	.string	"------------------------\nBasic PMF Output Render:\n------------------------"
+	.align 8
+.LC66:
+	.string	"\n\n\nVerbose PMF and Easter Output Render:"
+	.align 8
+.LC67:
+	.string	"\n!!! Execution interupted !!!\nProvide valid inputs and try again :)"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB39:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$80, %rsp
+	movl	%edi, -68(%rbp)
+	movq	%rsi, -80(%rbp)
+	movq	-80(%rbp), %rdx
+	movl	-68(%rbp), %eax
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	inspectMainInputs
+	movl	%eax, isInputValid.4485(%rip)
+	movl	isInputValid.4485(%rip), %eax
+	testl	%eax, %eax
+	je	.L161
+	cmpl	$2, -68(%rbp)
+	je	.L162
+	cmpl	$2, -68(%rbp)
+	jg	.L163
+	cmpl	$1, -68(%rbp)
+	je	.L164
+	jmp	.L172
+.L163:
+	cmpl	$3, -68(%rbp)
+	je	.L166
+	cmpl	$5, -68(%rbp)
+	je	.L167
+	jmp	.L172
+.L164:
+	movl	$0, %eax
+	call	returnYear
+	movl	%eax, yearInt.4486(%rip)
+	movl	yearInt.4486(%rip), %eax
 	movl	%eax, %edi
 	call	simpleDisplay
-	jmp	.L133
-.L131:
-	leaq	.LC59(%rip), %rdi
+	jmp	.L172
+.L162:
+	movq	-80(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, -56(%rbp)
+	movq	-56(%rbp), %rax
+	movq	%rax, %rdi
+	call	atoi@PLT
+	movl	%eax, yearInt.4486(%rip)
+	movq	-80(%rbp), %rax
+	addq	$8, %rax
+	movq	(%rax), %rax
+	leaq	.LC60(%rip), %rsi
+	movq	%rax, %rdi
+	call	compareStrings
+	movl	%eax, -60(%rbp)
+	cmpl	$0, -60(%rbp)
+	jne	.L168
+	movl	yearInt.4486(%rip), %eax
+	movl	%eax, %edi
+	call	simpleDisplay
+	jmp	.L172
+.L168:
+	movl	$0, %eax
+	call	helpDisplay
+	jmp	.L172
+.L166:
+	movq	-80(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, -48(%rbp)
+	movq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	inputFlagType
+	movl	%eax, flagInt.4487(%rip)
+	movl	flagInt.4487(%rip), %eax
+	cmpl	$1, %eax
+	jne	.L170
+	leaq	.LC65(%rip), %rdi
 	call	puts@PLT
 	movl	$0, %eax
 	call	nextPFM
-	leaq	.LC60(%rip), %rdi
+	leaq	.LC66(%rip), %rdi
 	call	puts@PLT
-	movq	-32(%rbp), %rax
+	movq	-80(%rbp), %rax
 	movq	16(%rax), %rax
-	movq	%rax, -8(%rbp)
-	movq	-8(%rbp), %rax
+	movq	%rax, -56(%rbp)
+	movq	-56(%rbp), %rax
 	movq	%rax, %rdi
 	call	atoi@PLT
-	movl	%eax, yearInt.4425(%rip)
-	movl	yearInt.4425(%rip), %eax
+	movl	%eax, yearInt.4486(%rip)
+	movl	yearInt.4486(%rip), %eax
 	movl	%eax, %edi
 	call	verboseDisplay
-	nop
-	jmp	.L133
-.L129:
-	leaq	.LC61(%rip), %rdi
+	jmp	.L172
+.L170:
 	movl	$0, %eax
-	call	printf@PLT
+	call	returnYear
+	movl	%eax, yearInt.4486(%rip)
+	movq	-80(%rbp), %rax
+	movq	16(%rax), %rax
+	movq	%rax, -40(%rbp)
+	movl	yearInt.4486(%rip), %eax
+	movq	-40(%rbp), %rdx
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	print2file
+	jmp	.L172
+.L167:
+	leaq	.LC65(%rip), %rdi
+	call	puts@PLT
+	movl	$0, %eax
+	call	nextPFM
+	leaq	.LC66(%rip), %rdi
+	call	puts@PLT
+	movq	-80(%rbp), %rax
+	movq	16(%rax), %rax
+	movq	%rax, -56(%rbp)
+	movq	-56(%rbp), %rax
+	movq	%rax, %rdi
+	call	atoi@PLT
+	movl	%eax, yearInt.4486(%rip)
+	movl	yearInt.4486(%rip), %eax
+	movl	%eax, %edi
+	call	verboseDisplay
+	movq	-80(%rbp), %rax
+	movq	32(%rax), %rax
+	movq	%rax, -40(%rbp)
+	movl	yearInt.4486(%rip), %eax
+	movq	-40(%rbp), %rdx
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	print2fileVerbose
+	nop
+	jmp	.L172
+.L161:
+	leaq	.LC67(%rip), %rdi
+	call	puts@PLT
+	movl	$0, %eax
+	call	helpDisplay
 	movl	$1, %edi
 	call	exit@PLT
-.L133:
-	movl	$10, %edi
-	call	putchar@PLT
+.L172:
 	movl	$0, %eax
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE32:
+.LFE39:
 	.size	main, .-main
 	.local	str1Len.4115
 	.comm	str1Len.4115,4,4
@@ -2672,22 +3209,42 @@ main:
 	.comm	count1.4113,4,4
 	.local	returnArray.4264
 	.comm	returnArray.4264,8,8
-	.local	outputString.4384
-	.comm	outputString.4384,8,8
-	.local	outputString.4389
-	.comm	outputString.4389,8,8
-	.local	isGoodInput.4419
-	.comm	isGoodInput.4419,4,4
-	.local	inputLength.4416
-	.comm	inputLength.4416,4,4
-	.local	isNumber.4417
-	.comm	isNumber.4417,4,4
-	.local	isVerbose.4418
-	.comm	isVerbose.4418,4,4
-	.local	isInputValid.4424
-	.comm	isInputValid.4424,4,4
-	.local	yearInt.4425
-	.comm	yearInt.4425,4,4
+	.local	outputString.4399
+	.comm	outputString.4399,8,8
+	.local	outputString.4404
+	.comm	outputString.4404,8,8
+	.local	inputLength.4435
+	.comm	inputLength.4435,4,4
+	.local	isNumber.4436
+	.comm	isNumber.4436,4,4
+	.local	isVerbose.4441
+	.comm	isVerbose.4441,4,4
+	.local	isNumber.4442
+	.comm	isNumber.4442,4,4
+	.local	isFileOut.4447
+	.comm	isFileOut.4447,4,4
+	.local	isNumber.4448
+	.comm	isNumber.4448,4,4
+	.local	isGoodInput.4458
+	.comm	isGoodInput.4458,4,4
+	.local	isNumber.4454
+	.comm	isNumber.4454,4,4
+	.local	isHelp.4455
+	.comm	isHelp.4455,4,4
+	.local	isVerbose.4456
+	.comm	isVerbose.4456,4,4
+	.local	isFileOut.4457
+	.comm	isFileOut.4457,4,4
+	.local	outputString.4470
+	.comm	outputString.4470,8,8
+	.local	outputString.4477
+	.comm	outputString.4477,8,8
+	.local	isInputValid.4485
+	.comm	isInputValid.4485,4,4
+	.local	yearInt.4486
+	.comm	yearInt.4486,4,4
+	.local	flagInt.4487
+	.comm	flagInt.4487,4,4
 	.section	.rodata
 	.align 8
 .LC2:
