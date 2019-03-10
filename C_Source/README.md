@@ -46,7 +46,8 @@ function | function description
 ```static int inspectMainInputs( int argc, const char *argv[] );``` | returns 1 if program inputs are valid, 0 if not
 ```void simpleDisplay(int yearInt);``` | printf POSIX Bash Calendar date of this years PFM
 ```void verboseDisplay(int yearInt);``` |  printf POSIX Bash Calendar date with Easter dates and illustration of Char memory allocation
-```void print2file(char *stringInput, char *filePathInputChar);``` | print pfm date to file
+```void print2file(int yearInt, char *filePathInputChar);``` | print pfm date to file
+```void print2fileVerbose(int yearInt, char *filePathInputChar)``` |  print verbose pfm date and Easter date to file
 ```int is4DigitChar(char *charInput);``` | determin if char represent a 4digit number
 ```int isVerboseFlag(char *charFlag, char *yearChar);``` | determine if input flag indicates a verbose output
 ```int isFileOutFlag(char *charFlag, char *filePathChar);``` | determine if input flag indicates a write to file operation
