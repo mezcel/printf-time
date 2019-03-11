@@ -2,7 +2,7 @@
 
 C syntax which calculates Easter day and Paschal Full Moon. (gcc)
 
-version: ```0.1.1``` added a 'print to file' feature, GDB notes Dir, and a a help/error feature.
+version: ```0.1.2``` new data structure technique, and applied functions differently
 
 #### Description:
 
@@ -11,6 +11,10 @@ A C program which uses C syntax and the GCC compiler to calculate the date of th
 This app is a C refresher as well as an exercise in using the CLI to debug in GDB. I deliberately omitted the ```string.h``` library to force myself to manually perform C string manipulations.
 
 The program is in the [C_Source](./C_Source/) folder.
+
+*Why C ?*
+
+Just for the portability between Cpp and C#, and the bare bones simplicity in scope the C language targets its results for. My motivation was also for legacy and historical nostalgia too.
 
 #### Feature algorithms:
 
