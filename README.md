@@ -116,6 +116,22 @@ This is (way way way) too bloated for what it is.
 
 The quick and dirty would have just been a ~10 liner with a ```return date char```, but I felt like making an embellished personal C refresher.
 
+Exercise Objectives (Accomplished):
+
+* Data Types & Data Structure
+* Input a variety of data types into a function and process
+* Output a variety of data types from a function
+* Type conversions
+* Char, 'String', Ascii analysis and Display
+* Observing memory dynamic allocation
+* Interfacing with known and discovered address locations.
+* Writing to file
+* Read input from an outside application
+* Write data to an outside application
+* Debugging/Watching with GCC, Oracle, AtomIO, VsStudio
+* Assembly Language Inspection on different CPUs.
+
+
 ### MinGW & MSYS
 
 GCC and G++ is just GNU. [Windows GNU](https://osdn.net/projects/mingw/releases/)
