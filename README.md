@@ -2,7 +2,7 @@
 
 C syntax which calculates Easter day and Paschal Full Moon. (gcc)
 
-version: ```0.1.2``` modified data structures, and applied some functions differently. Tried to improve readability in pfm-tables.h.
+version: ```0.1.2``` modified data structures, and extended PFM year range. Tried to improve readability in ```pfm-tables.h```.
 
 #### Description:
 
