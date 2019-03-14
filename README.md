@@ -2,7 +2,7 @@
 
 C syntax which calculates Easter day and Paschal Full Moon. (gcc)
 
-version: ```0.1.2``` new data structure technique, and applied functions differently
+version: ```0.1.2``` modified data structures, and applied some functions differently. Tried to improve readability in pfm-tables.h.
 
 #### Description:
 
@@ -14,7 +14,7 @@ The program is in the [C_Source](./C_Source/) folder.
 
 *Why C ?*
 
-Just for the portability between Cpp and C#, and the bare bones simplicity in scope the C language targets its results for. My motivation was also for legacy and historical nostalgia too.
+Just for the portability between Cpp and C#.
 
 #### Feature algorithms:
 

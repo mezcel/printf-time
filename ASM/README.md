@@ -3,7 +3,7 @@
 Assembly code based on main.c (gcc generated)
 
 ```bash
-gcc -S -o mainasm main.c -lm
+gcc -S -o mainasm simple-easter.c -lm
 ```
 
 *Note:* The ASM is a demo illustration for observational curiosity. Just for jollies.
@@ -64,6 +64,6 @@ COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/lto-wrapper
 Target: x86_64-pc-linux-gnu
 Configured with: /build/gcc/src/gcc/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --enable-multilib --disable-werror --enable-checking=release --enable-default-pie --enable-default-ssp --enable-cet=auto
 Thread model: posix
-gcc version 8.2.1 20181127 (GCC) 
+gcc version 8.2.1 20181127 (GCC)
 
 ```
