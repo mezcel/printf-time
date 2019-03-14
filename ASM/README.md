@@ -10,11 +10,9 @@ gcc -S -o mainasm simple-easter.c -lm
 
 ---
 
-## Enclosed ASM is from a mini-pc running Arch. ( a "burner" device )
+## Enclosed ASM is from an ancient AMD cpu running Arch. ( a "burner" device )
 
-(Fun Fact: The machine fits in a shirt pocket and runs 1/2 day on battery with adhoc wifi & no terminal. Other external devices are its UI)
-
-Assembly architecture (Intel):
+Assembly architecture (AMD):
 
 ```bash
 ## cpu specs
