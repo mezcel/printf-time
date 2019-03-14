@@ -6,7 +6,7 @@
 #include <time.h>
 
 // my libraries
-#include "general-header.h"
+#include "general-functions.h"
 #include "pfm-tables.h"
 #include "easter-algorithms.h"
 #include "runFunctions.h"

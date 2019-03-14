@@ -1,4 +1,4 @@
-/* Easter Day Calculations (general-header.h)
+/* Easter Day Calculations (general-functions.h)
  *
  * char counter, into to char conversion, define struct
  * */
@@ -161,8 +161,13 @@ char *outputDate2OutputString(struct EasterDay outputDate) {
 
 		//if ( outputDate.month == "March" ) {
     char *monthCharStr = outputDate.month;
-    int isMarch = compareStrings( monthCharStr, "March");
-    if ( isMarch ) {
+
+    int isMarch1, isMarch2;
+
+    isMarch1 = compareStrings( monthCharStr, "March");
+    isMarch2 = compareStrings( monthCharStr, "M");
+
+    if ( isMarch1 || isMarch2 ) {
 		monthNo = "03";
 	} else {
 		monthNo = "04";
