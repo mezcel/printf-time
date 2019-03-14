@@ -2,7 +2,7 @@
 
 C syntax which calculates Easter day and Paschal Full Moon. (gcc)
 
-version: ```0.1.2``` modified data structures, and extended PFM year range. Tried to improve readability in ```pfm-tables.h```.
+version: ```0.1.2``` modified data structures, and extended PFM year range. Improved the readability in ```pfm-tables.h```.
 
 #### Description:
 
@@ -11,10 +11,6 @@ A C program which uses C syntax and the GCC compiler to calculate the date of th
 This app is a C refresher as well as an exercise in using the CLI to debug in GDB. I deliberately omitted the ```string.h``` library to force myself to manually perform C string manipulations.
 
 The program is in the [C_Source](./C_Source/) folder.
-
-*Why C ?*
-
-Just for the portability between Cpp and C#.
 
 #### Feature algorithms:
 
