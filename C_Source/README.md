@@ -9,6 +9,12 @@ gcc -o myExec main.c -lm
 
 ## ASM (optional for jollies)
 gcc -S myExec main.c -lm
+
+## Compile on Debian for use on Windows mingw
+sudo apt-get install mingw-w64
+
+i686-w64-mingw32-gcc -o main32.exe main.c
+x86_64-w64-mingw32-gcc -o main64.exe main.c
 ```
 
 ## run
