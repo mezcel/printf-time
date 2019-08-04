@@ -5,20 +5,15 @@
 * C version
 
     * gcc compiler focused
+    * jsmn json parser
     * standalone PFM calulator (embeleshed/bloated version)
     * Rosary App
 
 * C++ version
 
     * g++ compiler focused
+    * jsoncpp json parser
     * Rosary App
-
-
-JSON Parsers
-
-	* jq (primary)
-	* jsmn (unused alternatives)
-	* jsoncpp (unused alternatives)
 
 ### Backstory:
 
