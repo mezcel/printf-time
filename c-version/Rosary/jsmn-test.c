@@ -3,21 +3,19 @@
 #include <string.h>
 #include "jsmn.h"
 
-// #include <math.h> /* gcc jsmn-test2.c -lm */
-//#include <time.h>
-//#include "/home/mezcel/Downloads/MyCPrgm/general-functions.h"
+// #include <math.h> /* gcc jsmn-test.c -lm */
+// #include <time.h>
+// #include "/home/mezcel/Downloads/MyCPrgm/general-functions.h"
 
 
 /*
- * A small example of jsmn parsing when JSON structure is known and number of
- * tokens is predictable.
+ * A small example of jsmn parsing when J SON structure is known and the number 
+ * of tokens is predictable.
  */
 
-/*static const char *JSON_STRING =
-    "{\"user\": \"johndoe\", \"admin\": false, \"uid\": 1000,\n  "
-    "\"groups\": [\"users\", \"wheel\", \"audio\", \"video\"]}";*/
 
 /* Prototypes */
+
 int noOfChars(char *inputString);
 char *myConcat(char *str1, char *str2);
 static int jsoneq(const char *json, jsmntok_t *tok, const char *s);
@@ -26,6 +24,7 @@ char *returnJsonObject( char *jsonDBstring, char *jsonObjName );
 char *returnJsonTokenValue(char *jsonDBstring, char *attrString, int indexNo );
 
 /* Functions */
+
 int noOfChars(char *inputString) {
 	int count=0;
 
@@ -146,10 +145,10 @@ char *returnJsonTokenValue(char *jsonEntityObj, char *attrString, int indexNo ) 
 
 				sprintf(jsonTokenValue, "%.*s", t[i + 1].end - t[i + 1].start, jsonEntityObj + t[i + 1].start);
 
-				char *openBracket = "{";
+				/*char *openBracket = "{";
 				char *closeBracket = "}";
 				jsonTokenValue = myConcat(openBracket, jsonTokenValue);
-				jsonTokenValue = myConcat(jsonTokenValue, closeBracket);
+				jsonTokenValue = myConcat(jsonTokenValue, closeBracket);*/
 
 				break;
 			} else {
