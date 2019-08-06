@@ -1,17 +1,17 @@
-﻿"bookID","bookName","library"
-"0","NAB Bible",""
-"1","Judith",""
-"2","Psalms",""
-"3","Proverbs",""
-"4","Songs a.ka. Ecclesiastes",""
-"5","Sirach",""
-"6","Isiah",""
-"7","Matthew",""
-"8","Mark",""
-"9","Luke",""
-"10","John",""
-"11","Acts",""
-"12","1 Corinthians",""
-"13","Revelations",""
-"14","Queenship of the B.V.M., Gradual","<a href='http://w2.vatican.va/content/pius-xii/en/encyclicals/documents/hf_p-xii_enc_11101954_ad-caeli-reginam.html' target='_blank'>AD CAELI REGINAM - ENCYCLICAL OF POPE PIUS XII, October 11, 1954 </a>"
-"15","Oremus","<a href='http://www.oremus.org/liturgy/ccp/07mon.html' target='_blank'>Pentecost Alleluia</a>"
+﻿"book.bookID";"book.bookName";"book.library"
+0;"NAB Bible";
+1;"Judith";
+2;"Psalms";
+3;"Proverbs";
+4;"Songs a.ka. Ecclesiastes";
+5;"Sirach";
+6;"Isiah";
+7;"Matthew";
+8;"Mark";
+9;"Luke";
+10;"John";
+11;"Acts";
+12;"1 Corinthians";
+13;"Revelations";
+14;"Queenship of the B.V.M., Gradual";"<a href='http://w2.vatican.va/content/pius-xii/en/encyclicals/documents/hf_p-xii_enc_11101954_ad-caeli-reginam.html' target='_blank'>AD CAELI REGINAM - ENCYCLICAL OF POPE PIUS XII, October 11, 1954 </a>"
+15;"Oremus";"<a href='http://www.oremus.org/liturgy/ccp/07mon.html' target='_blank'>Pentecost Alleluia</a>"
