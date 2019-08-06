@@ -1,0 +1,1410 @@
+{	"scripture": [
+		{
+			"scriptureID": 0,
+            "bookIndex": 0,
+            "chapterIndex": 0,
+            "verseIndex": 0,
+            "scriptureText": ""
+		},
+		{
+			"scriptureID": 1,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 1,
+			"scriptureText": "In the beginning* was the Word, and the Word was with God, and the Word was God. - John 1:1"
+		},
+		{
+			"scriptureID": 2,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 2,
+			"scriptureText": "He was in the beginning with God. - John 1:2"
+		},
+		{
+			"scriptureID": 3,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 3,
+			"scriptureText": "All things came to be through him, and without him nothing came to be. What came to be - John 1:3"
+		},
+		{
+			"scriptureID": 4,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 4,
+			"scriptureText": "through him was life, and this life was the light of the human race; - John 1:4"
+		},
+		{
+			"scriptureID": 5,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 5,
+			"scriptureText": "the light shines in the darkness, and the darkness has not overcome it. - John 1:5"
+		},
+		{
+			"scriptureID": 6,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 6,
+			"scriptureText": "A man named John was sent from God. - John 1:6"
+		},
+		{
+			"scriptureID": 7,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 7,
+			"scriptureText": "He came for testimony, to testify to the light, so that all might believe through him. - John 1:7"
+		},
+		{
+			"scriptureID": 8,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 8,
+			"scriptureText": "He was not the light, but came to testify to the light. - John 1:8"
+		},
+		{
+			"scriptureID": 9,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 9,
+			"scriptureText": "The true light, which enlightens everyone, was coming into the world. - John 1:9"
+		},
+		{
+			"scriptureID": 10,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 10,
+			"scriptureText": "He was in the world, and the world came to be through him, but the world did not know him. - John 1:10"
+		},
+		{
+			"scriptureID": 11,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 11,
+			"scriptureText": "He came to what was his own, but his own people* did not accept him. - John 1:11"
+		},
+		{
+			"scriptureID": 12,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 12,
+			"scriptureText": "But to those who did accept him he gave power to become children of God, to those who believe in his name, - John 1:12"
+		},
+		{
+			"scriptureID": 13,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 13,
+			"scriptureText": "who were born not by natural generation nor by human choice nor by a man's decision but of God. - John 1:13"
+		},
+		{
+			"scriptureID": 14,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 14,
+			"scriptureText": "And the Word became flesh and made his dwelling among us, and we saw his glory, the glory as of the Father's only Son, full of grace and truth. - John 1:14"
+		},
+		{
+			"scriptureID": 15,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 26,
+			"scriptureText": "In the sixth month, the angel Gabriel was sent from God to a town of Galilee called Nazareth - Luke 1:26"
+		},
+		{
+			"scriptureID": 16,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 27,
+			"scriptureText": "to a virgin betrothed to a man named Joseph, of the house of David, and the virgin's name was Mary - Luke 1:27"
+		},
+		{
+			"scriptureID": 17,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 28,
+			"scriptureText": "And coming to her, he said, \"Hail, favored one! The Lord is with you.\" - Luke 1:28"
+		},
+		{
+			"scriptureID": 18,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 29,
+			"scriptureText": "But she was greatly troubled at what was said and pondered what sort of greeting this might be. - Luke 1:29"
+		},
+		{
+			"scriptureID": 19,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 30,
+			"scriptureText": "Then the angel said to her, \"Do not be afraid, Mary, for you have found favor with God.\"- Luke 1:30"
+		},
+		{
+			"scriptureID": 20,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 31,
+			"scriptureText": "Behold, you will conceive in your womb and bear a son, and you shall name him Jesus. - Luke 1:31"
+		},
+		{
+			"scriptureID": 21,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 32,
+			"scriptureText": "He will be great and will be called Son of the Most High, and the Lord God will give him the throne of David his father, - Luke: 1:32"
+		},
+		{
+			"scriptureID": 22,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 33,
+			"scriptureText": "and he will rule over the house of Jacob forever, and of his kingdom there will be no end.\" - Luke 1:33"
+		},
+		{
+			"scriptureID": 23,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 34,
+			"scriptureText": "But Mary said to the angel, \"How can this be, since I have no relations with a man? - Luke 1: 34"
+		},
+		{
+			"scriptureID": 24,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 35,
+			"scriptureText": "And the angel said to her in reply, The holy Spirit will come upon you, and the power of the Most High will overshadow you. Therefore the child to be born will be called holy, the Son of God. - Luke 1: 35"
+		},
+		{
+			"scriptureID": 25,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 36,
+			"scriptureText": "And behold, Elizabeth, your relative, has also conceived a son in her old age, and this is the sixth month for her who was called barren; - Luke 1: 36"
+		},
+		{
+			"scriptureID": 26,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 37,
+			"scriptureText": "for nothing will be impossible for God.\" - Luke 1: 37"
+		},
+		{
+			"scriptureID": 27,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 38,
+			"scriptureText": "Mary said, Behold, I am the handmaid of the Lord. May it be done to me according to your word.\" Then the angel departed from her - Luke 1: 38"
+		},
+		{
+			"scriptureID": 28,
+			"bookIndex": 7,
+			"chapterIndex": 1,
+			"verseIndex": 20,
+			"scriptureText": "Such was his intention when, behold, the angel of the Lord* appeared to him in a dream and said, \"Joseph, son of David, do not be afraid to take Mary your wife into your home. For it is through the holy Spirit that this child has been conceived in her. - Matthew 1:20"
+		},
+		{
+			"scriptureID": 29,
+			"bookIndex": 7,
+			"chapterIndex": 1,
+			"verseIndex": 21,
+			"scriptureText": "She will bear a son and you are to name him Jesus,* because he will save his people from their sins.\" -  Matthew 1:21"
+		},
+		{
+			"scriptureID": 30,
+			"bookIndex": 7,
+			"chapterIndex": 1,
+			"verseIndex": 22,
+			"scriptureText": "All this took place to fulfill what the Lord had said through the prophet: - Matthew 1:22"
+		},
+		{
+			"scriptureID": 31,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 39,
+			"scriptureText": "During those days Mary set out and traveled to the hill country in haste to a town of Judah, - Luke 1:39"
+		},
+		{
+			"scriptureID": 32,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 40,
+			"scriptureText": "where she entered the house of Zechariah and greeted Elizabeth. - Luke 1:40"
+		},
+		{
+			"scriptureID": 33,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 41,
+			"scriptureText": "When Elizabeth heard Mary's greeting, the infant leaped in her womb, and Elizabeth, filled with the holy Spirit, - Luke 1:41"
+		},
+		{
+			"scriptureID": 34,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 42,
+			"scriptureText": "cried out in a loud voice and said, \"Most blessed are you among women, and blessed is the fruit of your womb. - Luke 1:42"
+		},
+		{
+			"scriptureID": 35,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 43,
+			"scriptureText": "And how does this happen to me, that the mother of my Lordshould come to me? - Luke 1:43"
+		},
+		{
+			"scriptureID": 36,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 44,
+			"scriptureText": "For at the moment the sound of your greeting reached my ears, the infant in my womb leaped for joy. - Luke 1:44"
+		},
+		{
+			"scriptureID": 37,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 45,
+			"scriptureText": "Blessed are you who believed that what was spoken to you by the Lord would be fulfilled.\" - Luke 1:45"
+		},
+		{
+			"scriptureID": 38,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 46,
+			"scriptureText": "And Mary said: \"My soul proclaims the greatness of the Lord; - Luke 1:46"
+		},
+		{
+			"scriptureID": 39,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 47,
+			"scriptureText": "my spirit rejoices in God my savior. - Luke 1:47"
+		},
+		{
+			"scriptureID": 40,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 48,
+			"scriptureText": "For he has looked upon his handmaid's lowliness; behold, from now on will all ages call me blessed. - Luke 1:48"
+		},
+		{
+			"scriptureID": 41,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 49,
+			"scriptureText": "The Mighty One has done great things for me, and holy is his name. - Luke 1:49"
+		},
+		{
+			"scriptureID": 42,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 50,
+			"scriptureText": "His mercy is from age to age to those who fear him. - Luke 1:50"
+		},
+		{
+			"scriptureID": 43,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 51,
+			"scriptureText": "He has shown might with his arm, dispersed the arrogant of mind and heart. - Luke 1:51"
+		},
+		{
+			"scriptureID": 44,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 52,
+			"scriptureText": "He has thrown down the rulers from their thrones but lifted up the lowly. - Luke 1:52"
+		},
+		{
+			"scriptureID": 45,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 53,
+			"scriptureText": "The hungry he has filled with good things, the rich he has sent away empty. - Luke 1:53"
+		},
+		{
+			"scriptureID": 46,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 54,
+			"scriptureText": "He has helped Israel his servant, remembering his mercy, - Luke 1:54"
+		},
+		{
+			"scriptureID": 47,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 55,
+			"scriptureText": "according to his promise to our fathers, to Abraham and to his descendants forever.\" - Luke 1:55"
+		},
+		{
+			"scriptureID": 48,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 56,
+			"scriptureText": "Mary remained with her about three months and then returned to her home. - Luke 1:56"
+		},
+		{
+			"scriptureID": 49,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 57,
+			"scriptureText": "When the time arrived for Elizabeth to have her child she gave birth to a son. - Luke 1:57"
+		},
+		{
+			"scriptureID": 50,
+			"bookIndex": 9,
+			"chapterIndex": 1,
+			"verseIndex": 58,
+			"scriptureText": "Her neighbors and relatives heard that the Lord had shown his great mercy toward her, and they rejoiced with her. - Luke 1:58"
+		},
+		{
+			"scriptureID": 51,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 23,
+			"scriptureText": "He (John the Baptist) said: \"I am 'the voice of one crying out in the desert, \"Make straight the way of the Lord,\"' as Isaiah the prophet said.\" - John 1:23"
+		},
+		{
+			"scriptureID": 52,
+			"bookIndex": 8,
+			"chapterIndex": 1,
+			"verseIndex": 7,
+			"scriptureText": "And this is what he (John the Baptist) proclaimed: \"One mightier than I is coming after me. I am not worthy to stoop and loosen the thongs of his sandals. - Mark 1:7"
+		},
+		{
+			"scriptureID": 53,
+			"bookIndex": 7,
+			"chapterIndex": 3,
+			"verseIndex": 11,
+			"scriptureText": "I am baptizing you with water, for repentance, but the one who is coming after me is mightier than I. I am not worthy to carry his sandals. He will baptize you with the holy Spirit and fire. - Matthew 3:11"
+		},
+		{
+			"scriptureID": 54,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 29,
+			"scriptureText": "The next day he saw Jesus coming toward him and said, \"Behold, the Lamb of God,* who takes away the sin of the world. - John 1:29"
+		},
+		{
+			"scriptureID": 55,
+			"bookIndex": 7,
+			"chapterIndex": 3,
+			"verseIndex": 13,
+			"scriptureText": "Then Jesus came from Galilee to John at the Jordan to be baptized by him. - Matthew 3:13"
+		},
+		{
+			"scriptureID": 56,
+			"bookIndex": 7,
+			"chapterIndex": 3,
+			"verseIndex": 14,
+			"scriptureText": "John tried to prevent him, saying, \"I need to be baptized by you, and yet you are coming to me?\" - Matthew 3:14"
+		},
+		{
+			"scriptureID": 57,
+			"bookIndex": 7,
+			"chapterIndex": 3,
+			"verseIndex": 15,
+			"scriptureText": "Jesus said to him in reply, \"Allow it now, for thus it is fitting for us to fulfill all righteousness.\" Then he allowed him.  - Matthew 3:15"
+		},
+		{
+			"scriptureID": 58,
+			"bookIndex": 7,
+			"chapterIndex": 3,
+			"verseIndex": 16,
+			"scriptureText": "After Jesus was baptized, he came up from the water and behold, the heavens were opened [for him], and he saw the Spirit of God descending like a dove [and] coming upon him. - Matthew 3:16"
+		},
+		{
+			"scriptureID": 59,
+			"bookIndex": 7,
+			"chapterIndex": 3,
+			"verseIndex": 17,
+			"scriptureText": "And a voice came from the heavens, saying, \"This is my beloved Son,* with whom I am well pleased.\" - Matthew 3:17"
+		},
+		{
+			"scriptureID": 60,
+			"bookIndex": 8,
+			"chapterIndex": 1,
+			"verseIndex": 12,
+			"scriptureText": "At once the Spirit drove him out into the desert / and he remained in the desert for forty days, tempted by Satan. He was among wild beasts, and the angels ministered to him. - Mark 1:12-13"
+		},
+		{
+			"scriptureID": 61,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 1,
+			"scriptureText": "On the third day there was a wedding* in Cana* in Galilee, and the mother of Jesus was there. - John 2:1"
+		},
+		{
+			"scriptureID": 62,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 3,
+			"scriptureText": "When the wine ran short, the mother of Jesus said to him, \"They have no wine.\" - John 2:3"
+		},
+		{
+			"scriptureID": 63,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 4,
+			"scriptureText": "[And] Jesus said to her, \"Woman, how does your concern affect me? My hour has not yet come.\" - John 2:4"
+		},
+		{
+			"scriptureID": 64,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 5,
+			"scriptureText": "His mother said to the servers, \"Do whatever he tells you.\" - John 2:5"
+		},
+		{
+			"scriptureID": 65,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 6,
+			"scriptureText": "Now there were six stone water jars there for Jewish ceremonial washings,d each holding twenty to thirty gallons. - John 2:6"
+		},
+		{
+			"scriptureID": 66,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 7,
+			"scriptureText": "Jesus told them, \"Fill the jars with water.\" So they filled them to the brim. - John 2:7"
+		},
+		{
+			"scriptureID": 67,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 8,
+			"scriptureText": "Then he told them, \"Draw some out now and take it to the headwaiter.\" So they took it. - John 2:8"
+		},
+		{
+			"scriptureID": 68,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 9,
+			"scriptureText": "And when the headwaiter tasted the water that had become wine, without knowing where it came from (although the servers who had drawn the water knew), the headwaiter called the bridegroom - John 2:9"
+		},
+		{
+			"scriptureID": 69,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 10,
+			"scriptureText": "and said to him, \"Everyone serves good wine first, and then when people have drunk freely, an inferior one; but you have kept the good wine until now.\" - John 2:10"
+		},
+		{
+			"scriptureID": 70,
+			"bookIndex": 10,
+			"chapterIndex": 2,
+			"verseIndex": 11,
+			"scriptureText": "Jesus did this as the beginning of his signs* in Cana in Galilee and so revealed his glory, and his disciples began to believe in him. - John 2:11"
+		},
+		{
+			"scriptureID": 71,
+			"bookIndex": 8,
+			"chapterIndex": 1,
+			"verseIndex": 14,
+			"scriptureText": "After John had been arrested,* Jesus came to Galilee proclaiming the gospel of God: - Mark 1:14"
+		},
+		{
+			"scriptureID": 72,
+			"bookIndex": 10,
+			"chapterIndex": 1,
+			"verseIndex": 4,
+			"scriptureText": "through him was life, and this life was the light of the human race; / the light shines in the darkness, and the darkness has not overcome it. - John 1:4-5"
+		},
+		{
+			"scriptureID": 73,
+			"bookIndex": 8,
+			"chapterIndex": 1,
+			"verseIndex": 15,
+			"scriptureText": "\"This is the time of fulfillment. The kingdom of God is at hand. Repent, and believe in the gospel.\" - Mark 1:15"
+		},
+		{
+			"scriptureID": 74,
+			"bookIndex": 8,
+			"chapterIndex": 2,
+			"verseIndex": 2,
+			"scriptureText": "Many gathered together so that there was no longer room for them, not even around the door, and he preached the word to them. - Mark 2:2"
+		},
+		{
+			"scriptureID": 75,
+			"bookIndex": 8,
+			"chapterIndex": 2,
+			"verseIndex": 4,
+			"scriptureText": "Unable to get near Jesus because of the crowd, they opened up the roof above him. After they had broken through, they let down the mat on which the paralytic was lying. - Mark 2:4"
+		},
+		{
+			"scriptureID": 76,
+			"bookIndex": 8,
+			"chapterIndex": 2,
+			"verseIndex": 9,
+			"scriptureText": "Which is easier, to say to the paralytic, 'Your sins are forgiven,' or to say, 'Rise, pick up your mat and walk'? - Mark 2:9"
+		},
+		{
+			"scriptureID": 77,
+			"bookIndex": 8,
+			"chapterIndex": 2,
+			"verseIndex": 10,
+			"scriptureText": "But that you may know that the Son of Man has authority to forgive sins on earth\" / he said to the paralytic, \"I say to you, rise, pick up your mat, and go home.\" - Mark 2:10-11"
+		},
+		{
+			"scriptureID": 78,
+			"bookIndex": 7,
+			"chapterIndex": 10,
+			"verseIndex": 1,
+			"scriptureText": "Then he summoned his twelve disciples* and gave them authority over unclean spirits to drive them out and to cure every disease and every illness. - Matthew 10:1"
+		},
+		{
+			"scriptureID": 79,
+			"bookIndex": 7,
+			"chapterIndex": 10,
+			"verseIndex": 5,
+			"scriptureText": "Jesus sent out these twelve* after instructing them thus, \"Do not go into pagan territory or enter a Samaritan town. / As you go, make this proclamation: 'The kingdom of heaven is at hand.' - Matthew 10:5 & 7"
+		},
+		{
+			"scriptureID": 80,
+			"bookIndex": 10,
+			"chapterIndex": 20,
+			"verseIndex": 22,
+			"scriptureText": "And when he had said this, he breathed on them and said to them, \"Receive the holy Spirit. / Whose sins you forgive are forgiven them, and whose sins you retain are retained.\" - John 20:22-23"
+		},
+		{
+			"scriptureID": 81,
+			"bookIndex": 7,
+			"chapterIndex": 17,
+			"verseIndex": 2,
+			"scriptureText": "When he entered the house, the blind men approached him and Jesus said to them, \"Do you believe that I can do this?\" \"Yes, Lord,\" they said to him. - Luke 9:28"
+		},
+		{
+			"scriptureID": 82,
+			"bookIndex": 7,
+			"chapterIndex": 17,
+			"verseIndex": 2,
+			"scriptureText": "And he was transfigured before them; his face shone like the sun and his clothes became white as light.  - Matthew 17:2"
+		},
+		{
+			"scriptureID": 83,
+			"bookIndex": 7,
+			"chapterIndex": 17,
+			"verseIndex": 3,
+			"scriptureText": "And behold, Moses and Elijah appeared to them, conversing with him. - Matthew 17:3"
+		},
+		{
+			"scriptureID": 84,
+			"bookIndex": 9,
+			"chapterIndex": 9,
+			"verseIndex": 31,
+			"scriptureText": "who appeared in glory and spoke of his exodus that he was going to accomplish in Jerusalem. - Luke 9:31"
+		},
+		{
+			"scriptureID": 85,
+			"bookIndex": 7,
+			"chapterIndex": 17,
+			"verseIndex": 4,
+			"scriptureText": "Then Peter said to Jesus in reply, \"Lord, it is good that we are here. If you wish, I will make three tents* here, one for you, one for Moses, and one for Elijah.\" - Matthew 17:4"
+		},
+		{
+			"scriptureID": 86,
+			"bookIndex": 9,
+			"chapterIndex": 9,
+			"verseIndex": 34,
+			"scriptureText": "While he was still speaking, a cloud came and cast a shadow over them, and they became frightened when they entered the cloud. - Luke 9:34"
+		},
+		{
+			"scriptureID": 87,
+			"bookIndex": 9,
+			"chapterIndex": 9,
+			"verseIndex": 35,
+			"scriptureText": "Then from the cloud came a voice that said, \"This is my chosen Son; listen to him.\" - Luke 9:35"
+		},
+		{
+			"scriptureID": 88,
+			"bookIndex": 8,
+			"chapterIndex": 9,
+			"verseIndex": 8,
+			"scriptureText": "Suddenly, looking around, they no longer saw anyone but Jesus alone with them. - Mark 9:8"
+		},
+		{
+			"scriptureID": 89,
+			"bookIndex": 8,
+			"chapterIndex": 9,
+			"verseIndex": 9,
+			"scriptureText": "As they were coming down from the mountain, he charged them not to relate what they had seen to anyone, except when the Son of Man had risen from the dead. - Mark 9:9"
+		},
+		{
+			"scriptureID": 90,
+			"bookIndex": 8,
+			"chapterIndex": 9,
+			"verseIndex": 10,
+			"scriptureText": "So they kept the matter to themselves, questioning what rising from the dead meant. - Mark 9:10"
+		},
+		{
+			"scriptureID": 91,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 17,
+			"scriptureText": "On the first day of the Feast of Unleavened Bread,* the disciples approached Jesus and said, \"Where do you want us to prepare for you to eat the Passover?\" - Matthew 26:17"
+		},
+		{
+			"scriptureID": 92,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 18,
+			"scriptureText": "He said, \"Go into the city to a certain man and tell him, 'The teacher says, \"My appointed time draws near; in your house I shall celebrate the Passover with my disciples.\" ' \" - Matthew 26:18"
+		},
+		{
+			"scriptureID": 93,
+			"bookIndex": 9,
+			"chapterIndex": 22,
+			"verseIndex": 14,
+			"scriptureText": "When the hour came, he took his place at table with the apostles. / He said to them, \"I have eagerly desired to eat this Passover* with you before I suffer, - Luke 22:14-15"
+		},
+		{
+			"scriptureID": 94,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 21,
+			"scriptureText": "And while they were eating, he said, \"Amen, I say to you, one of you will betray me.\" - Matthew 26:21"
+		},
+		{
+			"scriptureID": 95,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 25,
+			"scriptureText": "Then Judas, his betrayer, said in reply, \"Surely it is not I, Rabbi?\" He answered, \"You have said so.\" - Matthew 26:25"
+		},
+		{
+			"scriptureID": 96,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 26,
+			"scriptureText": "While they were eating, Jesus took bread, said the blessing, broke it, and giving it to his disciples said, \"Take and eat; this is my body.\" - Matthew 26:26"
+		},
+		{
+			"scriptureID": 97,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 27,
+			"scriptureText": "Then he took a cup, gave thanks,* and gave it to them, saying, \"Drink from it, all of you, / for this is my blood of the covenant, which will be shed on behalf of many for the forgiveness of sins.  - Matthew 26:27-28"
+		},
+		{
+			"scriptureID": 98,
+			"bookIndex": 12,
+			"chapterIndex": 11,
+			"verseIndex": 26,
+			"scriptureText": "For as often as you eat this bread and drink the cup, you proclaim the death of the Lord until he comes. - 1 Corinthians 11:26"
+		},
+		{
+			"scriptureID": 99,
+			"bookIndex": 10,
+			"chapterIndex": 6,
+			"verseIndex": 51,
+			"scriptureText": "I am the living bread that came down from heaven; whoever eats this bread will live forever; and the bread that I will give is my flesh for the life of the world.\" - John 6:51"
+		},
+		{
+			"scriptureID": 100,
+			"bookIndex": 10,
+			"chapterIndex": 6,
+			"verseIndex": 54,
+			"scriptureText": "'He who eats my flesh and drinks my blood has eternal life, and I will raise him at the last day.' - John 6:54"
+		},
+		{
+			"scriptureID": 101,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 36,
+			"scriptureText": "Then Jesus went with them to a place called Gethsemane. / And he began to be sorrowful and troubled. - Matthew 26:36-37"
+		},
+		{
+			"scriptureID": 102,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 38,
+			"scriptureText": "Then Jesus came with them to a place called Gethsemane,* and he said to his disciples, \"Sit here while I go over there and pray.\" / He took along Peter and the two sons of Zebedee,* and began to feel sorrow and distress. - Matthew 26:38"
+		},
+		{
+			"scriptureID": 103,
+			"bookIndex": 9,
+			"chapterIndex": 22,
+			"verseIndex": 41,
+			"scriptureText": "After withdrawing about a stone's throw from them and kneeling, he prayed, - Luke 22:41"
+		},
+		{
+			"scriptureID": 104,
+			"bookIndex": 9,
+			"chapterIndex": 22,
+			"verseIndex": 42,
+			"scriptureText": "saying, \"Father, if you are willing, take this cup away from me; still, not my will but yours be done.\" - Luke 22:42"
+		},
+		{
+			"scriptureID": 105,
+			"bookIndex": 9,
+			"chapterIndex": 22,
+			"verseIndex": 43,
+			"scriptureText": "And to strengthen him an angel from heaven appeared to him. - Luke 22:43"
+		},
+		{
+			"scriptureID": 106,
+			"bookIndex": 9,
+			"chapterIndex": 22,
+			"verseIndex": 44,
+			"scriptureText": "He was in such agony and he prayed so fervently that his sweat became like drops of blood falling on the ground.] - Luke 22:44 - Luke 22:44"
+		},
+		{
+			"scriptureID": 107,
+			"bookIndex": 9,
+			"chapterIndex": 22,
+			"verseIndex": 44,
+			"scriptureText": "He was in such agony and he prayed so fervently that his sweat became like drops of blood falling on the ground.] - Luke 22:44"
+		},
+		{
+			"scriptureID": 108,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 40,
+			"scriptureText": "When he returned to his disciples he found them asleep. He said to Peter, \"So you could not keep watch with me for one hour? - Matthew 26:40"
+		},
+		{
+			"scriptureID": 109,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 41,
+			"scriptureText": "Watch and pray that you may not undergo the test.* The spirit is willing, but the flesh is weak.\" - Matthew 26:41"
+		},
+		{
+			"scriptureID": 110,
+			"bookIndex": 7,
+			"chapterIndex": 26,
+			"verseIndex": 41,
+			"scriptureText": "Watch and pray that you may not undergo the test.* The spirit is willing, but the flesh is weak.\" - Matthew 26:41"
+		},
+		{
+			"scriptureID": 111,
+			"bookIndex": 8,
+			"chapterIndex": 15,
+			"verseIndex": 1,
+			"scriptureText": "As soon as morning came, the chief priests with the elders and the scribes, that is, the whole Sanhedrin, held a council.* They bound Jesus, led him away, and handed him over to Pilate. / Pilate questioned him, \"Are you the king of the Jews?\"* He said to him in reply, \"You say so.\" - Mark 15:1-2"
+		},
+		{
+			"scriptureID": 112,
+			"bookIndex": 10,
+			"chapterIndex": 18,
+			"verseIndex": 36,
+			"scriptureText": "Jesus answered, \"My kingdom does not belong to this world. If my kingdom did belong to this world, my attendants [would] be fighting to keep me from being handed over to the Jews. But as it is, my kingdom is not here.\" - John 18:36"
+		},
+		{
+			"scriptureID": 113,
+			"bookIndex": 10,
+			"chapterIndex": 18,
+			"verseIndex": 37,
+			"scriptureText": "So Pilate said to him, \"Then you are a king?\" Jesus answered, \"You say I am a king.* For this I was born and for this I came into the world, to testify to the truth. Everyone who belongs to the truth listens to my voice.\" - John 18:37"
+		},
+		{
+			"scriptureID": 114,
+			"bookIndex": 10,
+			"chapterIndex": 18,
+			"verseIndex": 38,
+			"scriptureText": "Pilate said to him, \"What is truth?\" When he had said this, he again went out to the Jews and said to them, \"I find no guilt in him. - John 18:38"
+		},
+		{
+			"scriptureID": 115,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 16,
+			"scriptureText": "Therefore I shall have him flogged and then release him.\" / Then Pilate took Jesus and had him scourged. - Luke 23:16, John 19:1"
+		},
+		{
+			"scriptureID": 116,
+			"bookIndex": 6,
+			"chapterIndex": 53,
+			"verseIndex": 3,
+			"scriptureText": "He was spurned and avoided by men, a man of suffering, knowing pain, Like one from whom you turn your face, spurned, and we held him in no esteem. - Isaiah 53:3"
+		},
+		{
+			"scriptureID": 117,
+			"bookIndex": 6,
+			"chapterIndex": 3,
+			"verseIndex": 7,
+			"scriptureText": "Though harshly treated, he submitted and did not open his mouth; Like a lamb led to slaughter or a sheep silent before shearers, he did not open his mouth. - Isaiah 53:7"
+		},
+		{
+			"scriptureID": 118,
+			"bookIndex": 6,
+			"chapterIndex": 53,
+			"verseIndex": 5,
+			"scriptureText": "But he was pierced for our sins, crushed for our iniquity. He bore the punishment that makes us whole, by his wounds we were healed. - Isaiah 53:5"
+		},
+		{
+			"scriptureID": 119,
+			"bookIndex": 6,
+			"chapterIndex": 53,
+			"verseIndex": 4,
+			"scriptureText": "Yet it was our pain that he bore, our sufferings he endured. We thought of him as stricken, struck down by God* and afflicted, - Isaiah 53:4"
+		},
+		{
+			"scriptureID": 120,
+			"bookIndex": 6,
+			"chapterIndex": 53,
+			"verseIndex": 5,
+			"scriptureText": "But he was pierced for our sins, crushed for our iniquity. He bore the punishment that makes us whole, by his wounds we were healed. - Isaiah 53:5"
+		},
+		{
+			"scriptureID": 121,
+			"bookIndex": 8,
+			"chapterIndex": 15,
+			"verseIndex": 16,
+			"scriptureText": "The soldiers led him away inside the palace, that is, the praetorium, and assembled the whole cohort. / They clothed him in purple and, weaving a crown of thorns, placed it on him. / They stripped off his clothes and threw a scarlet military cloak* about him. - Mark 15:16-17, Matthew 27:28"
+		},
+		{
+			"scriptureID": 122,
+			"bookIndex": 7,
+			"chapterIndex": 27,
+			"verseIndex": 29,
+			"scriptureText": "Weaving a crown out of thorns,* they placed it on his head, and a reed in his right hand. And kneeling before him, they mocked him, saying, \"Hail, King of the Jews!\" - Matthew 27:29"
+		},
+		{
+			"scriptureID": 123,
+			"bookIndex": 7,
+			"chapterIndex": 27,
+			"verseIndex": 29,
+			"scriptureText": "Weaving a crown out of thorns,* they placed it on his head, and a reed in his right hand. And kneeling before him, they mocked him, saying, \"Hail, King of the Jews!\" - Matthew 27:29"
+		},
+		{
+			"scriptureID": 124,
+			"bookIndex": 7,
+			"chapterIndex": 27,
+			"verseIndex": 30,
+			"scriptureText": "They spat upon him* and took the reed and kept striking him on the head. - Matthew 27:30"
+		},
+		{
+			"scriptureID": 125,
+			"bookIndex": 7,
+			"chapterIndex": 27,
+			"verseIndex": 24,
+			"scriptureText": "When Pilate saw that he was not succeeding at all, but that a riot was breaking out instead, he took water and washed his hands in the sight of the crowd, saying, \"I am innocent of this man's blood. Look to it yourselves.\" - Matthew 27:24"
+		},
+		{
+			"scriptureID": 126,
+			"bookIndex": 10,
+			"chapterIndex": 19,
+			"verseIndex": 15,
+			"scriptureText": "So Jesus came out, wearing the crown of thorns and the purple cloak. And he said to them, \"Behold, the man!\" - John 19:5"
+		},
+		{
+			"scriptureID": 127,
+			"bookIndex": 10,
+			"chapterIndex": 19,
+			"verseIndex": 15,
+			"scriptureText": "They cried out, \"Take him away, take him away! Crucify him!\" Pilate said to them, \"Shall I crucify your king?\" The chief priests answered, \"We have no king but Caesar.\" - John 19:15"
+		},
+		{
+			"scriptureID": 128,
+			"bookIndex": 8,
+			"chapterIndex": 15,
+			"verseIndex": 14,
+			"scriptureText": "Pilate said to them, \"Why? What evil has he done?\" They only shouted the louder, \"Crucify him.\" - Mark 15:14"
+		},
+		{
+			"scriptureID": 129,
+			"bookIndex": 10,
+			"chapterIndex": 19,
+			"verseIndex": 15,
+			"scriptureText": "They cried out, \"Take him away, take him away! Crucify him!\" Pilate said to them, \"Shall I crucify your king?\" The chief priests answered, \"We have no king but Caesar.\" - John 19:15"
+		},
+		{
+			"scriptureID": 130,
+			"bookIndex": 8,
+			"chapterIndex": 15,
+			"verseIndex": 15,
+			"scriptureText": "So Pilate, wishing to satisfy the crowd, released Barabbas to them and, after he had Jesus scourged, handed him over to be crucified. - Mark 15:15"
+		},
+		{
+			"scriptureID": 131,
+			"bookIndex": 9,
+			"chapterIndex": 9,
+			"verseIndex": 23,
+			"scriptureText": "Then he said to all, \"If anyone wishes to come after me, he must deny himself and take up his cross daily* and follow me. - Luke 9:23"
+		},
+		{
+			"scriptureID": 132,
+			"bookIndex": 9,
+			"chapterIndex": 9,
+			"verseIndex": 23,
+			"scriptureText": "Then he said to all, \"If anyone wishes to come after me, he must deny himself and take up his cross daily* and follow me. - Luke 9:23"
+		},
+		{
+			"scriptureID": 133,
+			"bookIndex": 10,
+			"chapterIndex": 19,
+			"verseIndex": 17,
+			"scriptureText": "and carrying the cross himself* he went out to what is called the Place of the Skull, in Hebrew, Golgotha. - John 19:17"
+		},
+		{
+			"scriptureID": 134,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 26,
+			"scriptureText": "As they led him away they took hold of a certain Simon, a Cyrenian, who was coming in from the country; and after laying the cross on him, they made him carry it behind Jesus. - Luke 23:26"
+		},
+		{
+			"scriptureID": 135,
+			"bookIndex": 7,
+			"chapterIndex": 11,
+			"verseIndex": 28,
+			"scriptureText": "\"Come to me, all you who labor and are burdened,* and I will give you rest. - Matthew 11:28"
+		},
+		{
+			"scriptureID": 136,
+			"bookIndex": 7,
+			"chapterIndex": 11,
+			"verseIndex": 29,
+			"scriptureText": "Take my yoke upon you and learn from me, for I am meek and humble of heart; and you will find rest for yourselves. - Matthew 11:29"
+		},
+		{
+			"scriptureID": 137,
+			"bookIndex": 7,
+			"chapterIndex": 11,
+			"verseIndex": 30,
+			"scriptureText": "For my yoke is easy, and my burden light.\" - Matthew 11:30"
+		},
+		{
+			"scriptureID": 138,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 27,
+			"scriptureText": "A large crowd of people followed Jesus, including many women who mourned and lamented him. - Luke 23:27"
+		},
+		{
+			"scriptureID": 139,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 28,
+			"scriptureText": "Jesus turned to them and said, \"Daughters of Jerusalem, do not weep for me; weep instead for yourselves and for your children, - Luke 23:28"
+		},
+		{
+			"scriptureID": 140,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 31,
+			"scriptureText": "for if these things are done when the wood is green what will happen when it is dry?\" - Luke 23:31"
+		},
+		{
+			"scriptureID": 141,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 33,
+			"scriptureText": "When they came to the place called the Skull, they crucified him and the criminals there, one on his right, the other on his left. - Luke 23:33"
+		},
+		{
+			"scriptureID": 142,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 34,
+			"scriptureText": "[Then Jesus said, \"Father, forgive them, they know not what they do.\"]* They divided his garments by casting lots. - Luke 23:34"
+		},
+		{
+			"scriptureID": 143,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 39,
+			"scriptureText": "Now one of the criminals hanging there reviled Jesus, saying, \"Are you not the Messiah? Save yourself and us.\" / Let the Messiah, the King of Israel, come down now from the cross that we may see and believe.\" Those who were crucified with him also kept abusing him. - Luke 23:39, 42; Mark 15:32"
+		},
+		{
+			"scriptureID": 144,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 43,
+			"scriptureText": "He replied to him, \"Amen, I say to you, today you will be with me in Paradise.\" - Luke 23:43"
+		},
+		{
+			"scriptureID": 145,
+			"bookIndex": 10,
+			"chapterIndex": 19,
+			"verseIndex": 25,
+			"scriptureText": "Standing by the cross of Jesus were his mother and his mother's sister, Mary the wife of Clopas, and Mary of Magdala. - John 19:25"
+		},
+		{
+			"scriptureID": 146,
+			"bookIndex": 10,
+			"chapterIndex": 19,
+			"verseIndex": 26,
+			"scriptureText": "JThen he said to the disciple, \"Behold, your mother.\" And from that hour the disciple took her into his home. - John 19:26"
+		},
+		{
+			"scriptureID": 147,
+			"bookIndex": 10,
+			"chapterIndex": 19,
+			"verseIndex": 27,
+			"scriptureText": "Then he said to the disciple, \"Behold, your mother.\" And from that hour the disciple took her into his home. - John 19:27"
+		},
+		{
+			"scriptureID": 148,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 44,
+			"scriptureText": "It was now about noon and darkness came over the whole land until three in the afternoon / And behold, the veil of the sanctuary was torn in two from top to bottom.* The earth quaked, rocks were split, - Luke 23:44; Matthew 27:51"
+		},
+		{
+			"scriptureID": 149,
+			"bookIndex": 9,
+			"chapterIndex": 23,
+			"verseIndex": 46,
+			"scriptureText": "Jesus cried out in a loud voice, \"Father, into your hands I commend my spirit\"; and when he had said this he breathed his last. - Luke 23:46"
+		},
+		{
+			"scriptureID": 150,
+			"bookIndex": 10,
+			"chapterIndex": 19,
+			"verseIndex": 30,
+			"scriptureText": "When Jesus had taken the wine, he said, \"It is finished.\" And bowing his head, he handed over the spirit. - John 19:30"
+		},
+		{
+			"scriptureID": 151,
+			"bookIndex": 10,
+			"chapterIndex": 16,
+			"verseIndex": 20,
+			"scriptureText": "\"Truly, Truly, I say to you, / you will weep and lament, / but the world will rejoice; / you will be sorrowful, / but your sorrow will turn into joy.\" - John 16:20"
+		},
+		{
+			"scriptureID": 152,
+			"bookIndex": 10,
+			"chapterIndex": 16,
+			"verseIndex": 22,
+			"scriptureText": "So you also are now in anguish. But I will see you again, and your hearts will rejoice, and no one will take your joy away from you. - John 16:22"
+		},
+		{
+			"scriptureID": 153,
+			"bookIndex": 9,
+			"chapterIndex": 24,
+			"verseIndex": 1,
+			"scriptureText": "But at daybreak on the first day of the week they took the spices they had prepared and went to the tomb. - Luke 24:1"
+		},
+		{
+			"scriptureID": 154,
+			"bookIndex": 7,
+			"chapterIndex": 28,
+			"verseIndex": 2,
+			"scriptureText": "And behold, there was a great earthquake; for an angel of the Lord descended from heaven, approached, rolled back the stone, and sat upon it. - Matthew 28:2"
+		},
+		{
+			"scriptureID": 155,
+			"bookIndex": 7,
+			"chapterIndex": 28,
+			"verseIndex": 5,
+			"scriptureText": "Then the angel said to the women in reply, \"Do not be afraid! I know that you are seeking Jesus the crucified. - Matthew 28:5"
+		},
+		{
+			"scriptureID": 156,
+			"bookIndex": 9,
+			"chapterIndex": 24,
+			"verseIndex": 6,
+			"scriptureText": "He is not here, but he has been raised.* Remember what he said to you while he was still in Galilee, - Luke 24:6"
+		},
+		{
+			"scriptureID": 157,
+			"bookIndex": 7,
+			"chapterIndex": 28,
+			"verseIndex": 7,
+			"scriptureText": "Then go quickly and tell his disciples, 'He has been raised from the dead, and he is going before you to Galilee; there you will see him.' Behold, I have told you.\" - Matthew 28:7"
+		},
+		{
+			"scriptureID": 158,
+			"bookIndex": 8,
+			"chapterIndex": 16,
+			"verseIndex": 8,
+			"scriptureText": "Then they went out and fled from the tomb, seized with trembling and bewilderment. They said nothing to anyone, for they were afraid. / Then they went away quickly from the tomb, fearful yet overjoyed, and ran to announce* this to his disciples. - Mark 16:8; Mt 28:8"
+		},
+		{
+			"scriptureID": 159,
+			"bookIndex": 10,
+			"chapterIndex": 11,
+			"verseIndex": 25,
+			"scriptureText": "\"I am the resurrection and the life; / he who believes in me, / though he die, / yet shall he live.\" - John 11:25"
+		},
+		{
+			"scriptureID": 160,
+			"bookIndex": 10,
+			"chapterIndex": 11,
+			"verseIndex": 26,
+			"scriptureText": "and everyone who lives and believes in me will never die. Do you believe this?\" - John 11:26"
+		},
+		{
+			"scriptureID": 161,
+			"bookIndex": 9,
+			"chapterIndex": 24,
+			"verseIndex": 50,
+			"scriptureText": "Then he led them [out] as far as Bethany, raised his hands, and blessed them. - Luke 24:50"
+		},
+		{
+			"scriptureID": 162,
+			"bookIndex": 7,
+			"chapterIndex": 28,
+			"verseIndex": 18,
+			"scriptureText": "Then Jesus approached and said to them, \"All power in heaven and on earth has been given to me. - Matthew 28:18"
+		},
+		{
+			"scriptureID": 163,
+			"bookIndex": 7,
+			"chapterIndex": 28,
+			"verseIndex": 19,
+			"scriptureText": "Go, therefore,* and make disciples of all nations, baptizing them in the name of the Father, and of the Son, and of the holy Spirit, - Matthew 28:19"
+		},
+		{
+			"scriptureID": 164,
+			"bookIndex": 7,
+			"chapterIndex": 28,
+			"verseIndex": 19,
+			"scriptureText": "Go, therefore,* and make disciples of all nations, baptizing them in the name of the Father, and of the Son, and of the holy Spirit, - Matthew 28:19"
+		},
+		{
+			"scriptureID": 165,
+			"bookIndex": 7,
+			"chapterIndex": 28,
+			"verseIndex": 20,
+			"scriptureText": "teaching them to observe all that I have commanded you.* And behold, I am with you always, until the end of the age.\" - Matthew 28:20"
+		},
+		{
+			"scriptureID": 166,
+			"bookIndex": 8,
+			"chapterIndex": 16,
+			"verseIndex": 16,
+			"scriptureText": "Whoever believes and is baptized will be saved; whoever does not believe will be condemned. - Mark 16:16"
+		},
+		{
+			"scriptureID": 167,
+			"bookIndex": 8,
+			"chapterIndex": 16,
+			"verseIndex": 16,
+			"scriptureText": "Whoever believes and is baptized will be saved; whoever does not believe will be condemned. - Mark 16:16"
+		},
+		{
+			"scriptureID": 168,
+			"bookIndex": 7,
+			"chapterIndex": 28,
+			"verseIndex": 20,
+			"scriptureText": "teaching them to observe all that I have commanded you.* And behold, I am with you always, until the end of the age.\" - Matthew 28:20"
+		},
+		{
+			"scriptureID": 169,
+			"bookIndex": 11,
+			"chapterIndex": 1,
+			"verseIndex": 9,
+			"scriptureText": "When he had said this, as they were looking on, he was lifted up, and a cloud took him from their sight. - Acts 1:9"
+		},
+		{
+			"scriptureID": 170,
+			"bookIndex": 8,
+			"chapterIndex": 16,
+			"verseIndex": 19,
+			"scriptureText": "So then the Lord Jesus, after he spoke to them, was taken up into heaven and took his seat at the right hand of God. - Mark 16:19"
+		},
+		{
+			"scriptureID": 171,
+			"bookIndex": 11,
+			"chapterIndex": 2,
+			"verseIndex": 1,
+			"scriptureText": "When the time for Pentecost was fulfilled, they were all in one place together. - Acts 2:1"
+		},
+		{
+			"scriptureID": 172,
+			"bookIndex": 11,
+			"chapterIndex": 2,
+			"verseIndex": 2,
+			"scriptureText": "And suddenly there came from the sky a noise like a strong driving wind,* and it filled the entire house in which they were. - Acts 2:2"
+		},
+		{
+			"scriptureID": 173,
+			"bookIndex": 11,
+			"chapterIndex": 2,
+			"verseIndex": 3,
+			"scriptureText": "Then there appeared to them tongues as of fire,* which parted and came to rest on each one of them. - Acts 2:3"
+		},
+		{
+			"scriptureID": 174,
+			"bookIndex": 11,
+			"chapterIndex": 2,
+			"verseIndex": 4,
+			"scriptureText": "And they were all filled with the holy Spirit and began to speak in different tongues,* as the Spirit enabled them to proclaim. / both Jews and converts to Judaism, Cretans and Arabs, yet we hear them speaking in our own tongues of the mighty acts of God.\" - Acts 2:4,11"
+		},
+		{
+			"scriptureID": 175,
+			"bookIndex": 11,
+			"chapterIndex": 2,
+			"verseIndex": 5,
+			"scriptureText": "Now there were devout Jews from every nation under heaven staying in Jerusalem. - Acts 2:5"
+		},
+		{
+			"scriptureID": 176,
+			"bookIndex": 11,
+			"chapterIndex": 2,
+			"verseIndex": 14,
+			"scriptureText": "Then Peter stood up with the Eleven, raised his voice, and proclaimed to them, \"You who are Jews, indeed all of you staying in Jerusalem. Let this be known to you, and listen to my words. - Acts 2:14"
+		},
+		{
+			"scriptureID": 177,
+			"bookIndex": 11,
+			"chapterIndex": 2,
+			"verseIndex": 38,
+			"scriptureText": "Peter [said] to them, \"Repent and be baptized,* every one of you, in the name of Jesus Christ for the forgiveness of your sins; and you will receive the gift of the holy Spirit. - Acts 2:38"
+		},
+		{
+			"scriptureID": 178,
+			"bookIndex": 11,
+			"chapterIndex": 2,
+			"verseIndex": 41,
+			"scriptureText": "Those who accepted his message were baptized, and about three thousand persons were added that day. - Acts 2:41"
+		},
+		{
+			"scriptureID": 179,
+			"bookIndex": 15,
+			"chapterIndex": 0,
+			"verseIndex": 0,
+			"scriptureText": "Send forth your Spirit, and they shall be created;/ and you shall renew the face of the earth. - Pentecost Alleluia"
+		},
+		{
+			"scriptureID": 180,
+			"bookIndex": 15,
+			"chapterIndex": 0,
+			"verseIndex": 0,
+			"scriptureText": "Come, Holy Spirit, fill the hearts of your faithful;/ and kindle in them the fire of your love. - Pentecost Alleluia"
+		},
+		{
+			"scriptureID": 181,
+			"bookIndex": 4,
+			"chapterIndex": 2,
+			"verseIndex": 10,
+			"scriptureText": "My lover speaks and says to me, \"Arise, my friend, my beautiful one, and come! - Songs 2:10"
+		},
+		{
+			"scriptureID": 182,
+			"bookIndex": 4,
+			"chapterIndex": 2,
+			"verseIndex": 11,
+			"scriptureText": "For see, the winter is past, the rains are over and gone. - Songs 2:11"
+		},
+		{
+			"scriptureID": 183,
+			"bookIndex": 4,
+			"chapterIndex": 2,
+			"verseIndex": 14,
+			"scriptureText": "My dove in the clefts of the rock, in the secret recesses of the cliff, Let me see your face, let me hear your voice, For your voice is sweet, and your face is lovely.\" - Songs 2:14"
+		},
+		{
+			"scriptureID": 184,
+			"bookIndex": 13,
+			"chapterIndex": 11,
+			"verseIndex": 19,
+			"scriptureText": "Then God's temple in heaven was opened, and the ark of his covenant could be seen in the temple. There were flashes of lightning, rumblings, and peals of thunder, an earthquake, and a violent hailstorm. - Revelations 11:19"
+		},
+		{
+			"scriptureID": 185,
+			"bookIndex": 13,
+			"chapterIndex": 12,
+			"verseIndex": 1,
+			"scriptureText": "A great sign appeared in the sky, a woman* clothed with the sun, with the moon under her feet, and on her head a crown of twelve stars. - Revelations 12:1"
+		},
+		{
+			"scriptureID": 186,
+			"bookIndex": 13,
+			"chapterIndex": 12,
+			"verseIndex": 1,
+			"scriptureText": "A great sign appeared in the sky, a woman* clothed with the sun, with the moon under her feet, and on her head a crown of twelve stars. 12:1"
+		},
+		{
+			"scriptureID": 187,
+			"bookIndex": 2,
+			"chapterIndex": 45,
+			"verseIndex": 13,
+			"scriptureText": "honor him, daughter of Tyre. Then the richest of the people will seek your favor with gifts. / All glorious is the king's daughter as she enters, her raiment threaded with gold; - Psalm 45:13-14"
+		},
+		{
+			"scriptureID": 188,
+			"bookIndex": 1,
+			"chapterIndex": 13,
+			"verseIndex": 18,
+			"scriptureText": "Then Uzziah said to her, \"Blessed are you, daughter, by the Most High God, above all the women on earth; and blessed be the Lord God, the creator of heaven and earth, who guided your blow at the head of the leader of our enemies. - Judith 13:18"
+		},
+		{
+			"scriptureID": 189,
+			"bookIndex": 1,
+			"chapterIndex": 13,
+			"verseIndex": 19,
+			"scriptureText": "Your deed of hope will never be forgotten by those who recall the might of God. - Judith 13:19"
+		},
+		{
+			"scriptureID": 190,
+			"bookIndex": 1,
+			"chapterIndex": 15,
+			"verseIndex": 9,
+			"scriptureText": "When they came to her, all with one accord blessed her, saying: \"You are the glory of Jerusalem! You are the great pride of Israel! You are the great boast of our nation! - Judith 15:9"
+		},
+		{
+			"scriptureID": 191,
+			"bookIndex": 4,
+			"chapterIndex": 6,
+			"verseIndex": 10,
+			"scriptureText": "Who is this that looks forth like the dawn, / fair as the moon, / bright as the sun?\" - Songs 6:10"
+		},
+		{
+			"scriptureID": 192,
+			"bookIndex": 5,
+			"chapterIndex": 50,
+			"verseIndex": 7,
+			"scriptureText": "Like sun shining upon the temple of the King, like a rainbow appearing in the cloudy sky; / Like blossoms on the branches in springtime, like a lily by running waters; Like a green shoot on Lebanon in summer, - Sirach 50:7-8"
+		},
+		{
+			"scriptureID": 193,
+			"bookIndex": 4,
+			"chapterIndex": 2,
+			"verseIndex": 1,
+			"scriptureText": "I am a flower of Sharon, a lily of the valleys. - Songs 2:1"
+		},
+		{
+			"scriptureID": 194,
+			"bookIndex": 5,
+			"chapterIndex": 24,
+			"verseIndex": 4,
+			"scriptureText": "In the heights of heaven I dwelt, and my throne was in a pillar of cloud. / Before all ages, from the beginning, he created me, and through all ages I shall not cease to be. - Sirach 24:4,9"
+		},
+		{
+			"scriptureID": 195,
+			"bookIndex": 5,
+			"chapterIndex": 24,
+			"verseIndex": 19,
+			"scriptureText": "Come to me, all who desire me, and be filled with my fruits. - Sirach 24:19"
+		},
+		{
+			"scriptureID": 196,
+			"bookIndex": 5,
+			"chapterIndex": 24,
+			"verseIndex": 17,
+			"scriptureText": "I bud forth delights like a vine; my blossoms are glorious and rich fruit. / You will remember me as sweeter than honey, better to have than the honeycomb. - Sirach 24:17,20"
+		},
+		{
+			"scriptureID": 197,
+			"bookIndex": 3,
+			"chapterIndex": 8,
+			"verseIndex": 32,
+			"scriptureText": "Now, children, listen to me; happy are they who keep my ways. / Listen to instruction and grow wise, do not reject it! - Proverbs 8:32-33"
+		},
+		{
+			"scriptureID": 198,
+			"bookIndex": 3,
+			"chapterIndex": 8,
+			"verseIndex": 34,
+			"scriptureText": "Happy the one who listens to me, attending daily at my gates, keeping watch at my doorposts; - Proverbs 8:34"
+		},
+		{
+			"scriptureID": 199,
+			"bookIndex": 3,
+			"chapterIndex": 8,
+			"verseIndex": 35,
+			"scriptureText": "For whoever finds me finds life, and wins favor from the LORD; - Proverbs 8:35"
+		},
+		{
+			"scriptureID": 200,
+			"bookIndex": 14,
+			"chapterIndex": 0,
+			"verseIndex": 0,
+			"scriptureText": "Hail, Queen of mercy, protect us from the enemy,/ and receive us at the hour of death. - Queenship of the B.V.M., Gradual"
+		}
+	]
+}

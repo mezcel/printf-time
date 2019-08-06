@@ -1,0 +1,34 @@
+{
+	"mystery": [
+		{
+			"mysteryID": 0,
+			"mysteryNo": 0,
+			"mysteryName": "rosary preparation"
+		},
+		{
+			"mysteryID": 1,
+			"mysteryNo": 1,
+			"mysteryName": "Joyful Mystery"
+		},
+		{
+			"mysteryID": 2,
+			"mysteryNo": 2,
+			"mysteryName": "Luminous Mystery"
+		},
+		{
+			"mysteryID": 3,
+			"mysteryNo": 3,
+			"mysteryName": "Sorrowful Mystery"
+		},
+		{
+			"mysteryID": 4,
+			"mysteryNo": 4,
+			"mysteryName": "Glorious Mystery"
+		},
+		{
+			"mysteryID": 5,
+			"mysteryNo": 5,
+			"mysteryName": "rosary conclusion"
+		}
+	]
+}

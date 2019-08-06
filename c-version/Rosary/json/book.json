@@ -1,0 +1,70 @@
+{
+	"book": [
+		{
+			"bookID": 0,
+            "bookName": "NAB Bible"
+		},
+		{
+			"bookID": 1,
+			"bookName": "Judith"
+		},
+		{
+			"bookID": 2,
+			"bookName": "Psalms"
+		},
+		{
+			"bookID": 3,
+			"bookName": "Proverbs"
+		},
+		{
+			"bookID": 4,
+			"bookName": "Songs a.ka. Ecclesiastes"
+		},
+		{
+			"bookID": 5,
+			"bookName": "Sirach"
+		},
+		{
+			"bookID": 6,
+			"bookName": "Isiah"
+		},
+		{
+			"bookID": 7,
+			"bookName": "Matthew"
+		},
+		{
+			"bookID": 8,
+			"bookName": "Mark"
+		},
+		{
+			"bookID": 9,
+			"bookName": "Luke"
+		},
+		{
+			"bookID": 10,
+			"bookName": "John"
+		},
+		{
+			"bookID": 11,
+			"bookName": "Acts"
+		},
+		{
+			"bookID": 12,
+			"bookName": "1 Corinthians"
+		},
+		{
+			"bookID": 13,
+			"bookName": "Revelations"
+		},
+		{
+			"bookID": 14,
+			"bookName": "Queenship of the B.V.M., Gradual",
+			"library": "<a href='http://w2.vatican.va/content/pius-xii/en/encyclicals/documents/hf_p-xii_enc_11101954_ad-caeli-reginam.html' target='_blank'>AD CAELI REGINAM - ENCYCLICAL OF POPE PIUS XII, October 11, 1954 </a>"
+		},
+		{
+			"bookID": 15,
+			"bookName": "Oremus",
+			"library": "<a href='http://www.oremus.org/liturgy/ccp/07mon.html' target='_blank'>Pentecost Alleluia</a>"
+		}
+	]
+}
