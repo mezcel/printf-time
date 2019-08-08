@@ -39,11 +39,16 @@ int main() {
         printf("Record %s\n\tField 2: %s\n\tline: %s\n---\n", tmp, getfield(tmp, 2), line); // field starts at 1 not at 0
         free(tmp);
     }*/
+
     printf("\nEnter a number [1-5] and press [enter]. : ");
     int myIndex = 0;
     scanf("%d", &myIndex);
-    printf("you pressed %d\n", myIndex);
+    printf("you pressed: %d", myIndex);
 
-    printf("\nQuery Return: %s\n", getRecord(bead, myIndex));
+    if(myIndex > 6) {
+         printf("\nPick an integer smaller than 7s\n");
+    } else {
+        printf("\nQuery Return: %s\n", getRecord(bead, myIndex));
+    }
 
 }
