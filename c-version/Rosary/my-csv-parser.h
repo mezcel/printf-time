@@ -95,7 +95,7 @@ typedef struct scripture_struct {
  * Prototypes
  * */
 
-char ** strsplit( const char * src, const char * delim );
+/*char ** strsplit( const char * src, const char * delim );
 void strsplitfree( char ** strlist );
 
 rosaryBead_t * parse_rosaryBead_record( char * scvline );
@@ -114,7 +114,7 @@ void csvToStruct_decade(decade_t *record_field, decade_t dbArray[22]);
 void csvToStruct_message(message_t *record_field, message_t dbArray[22]);
 void csvToStruct_mystery(mystery_t *record_field, mystery_t dbArray[7]);
 void csvToStruct_prayer(prayer_t *record_field, prayer_t dbArray[11]);
-void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202]);
+void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202]);*/
 
 /*
  * Functions
@@ -162,6 +162,10 @@ void strsplitfree( char ** strlist ) {
 	free( strlist );
 }
 
+/*
+ * struct functions
+ * */
+
 rosaryBead_t * parse_rosaryBead_record( char * scvline ) {
     char ** pp = NULL;
     rosaryBead_t * record_field = NULL;
@@ -170,15 +174,15 @@ rosaryBead_t * parse_rosaryBead_record( char * scvline ) {
     record_field = (rosaryBead_t*) calloc( 1, sizeof(rosaryBead_t) );
 
     record_field -> rosaryBeadID = atoi(pp[0]);
-    record_field -> beadIndex = atoi(pp[0]);
-    record_field -> decadeIndex = atoi(pp[0]);
-    record_field -> mysteryIndex = atoi(pp[0]);
-    record_field -> prayerIndex = atoi(pp[0]);
-    record_field -> scriptureIndex = atoi(pp[0]);
-    record_field -> messageIndex = atoi(pp[0]);
-    record_field -> loopBody = atoi(pp[0]);
-    record_field -> smallbeadPercent = atoi(pp[0]);
-    record_field -> mysteryPercent = atoi(pp[0]);
+    record_field -> beadIndex = atoi(pp[1]);
+    record_field -> decadeIndex = atoi(pp[2]);
+    record_field -> mysteryIndex = atoi(pp[3]);
+    record_field -> prayerIndex = atoi(pp[4]);
+    record_field -> scriptureIndex = atoi(pp[5]);
+    record_field -> messageIndex = atoi(pp[6]);
+    record_field -> loopBody = atoi(pp[7]);
+    record_field -> smallbeadPercent = atoi(pp[8]);
+    record_field -> mysteryPercent = atoi(pp[9]);
 
     strsplitfree( pp );
     return record_field;
@@ -229,7 +233,6 @@ decade_t * parse_decade_record( char * scvline ) {
     record_field -> infoRefference = strdup(pp[5]);
 
     strsplitfree( pp );
-
     return record_field;
 }
 
@@ -296,15 +299,18 @@ scripture_t * parse_scripture_record( char * scvline ) {
     return record_field;
 }
 
+/*
+ * populate structs functions
+ * */
 
 void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosaryBead_t dbArray[317]) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 500;
+	int LINE_MAX_LEN = 300;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
-	int arrayIndex;
+	int arrayIndex=0;
 	FILE * csvFile = fopen( "csv/rosaryBead.csv", "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -335,10 +341,10 @@ void csvToStruct_bead(bead_t *record_field, bead_t dbArray[8]) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 500;
+	int LINE_MAX_LEN = 50;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
-	int arrayIndex;
+	int arrayIndex=0;
 	FILE * csvFile = fopen( "csv/bead.csv", "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -363,10 +369,10 @@ void csvToStruct_book(book_t *record_field, book_t dbArray[17]) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 500;
+	int LINE_MAX_LEN = 300;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
-	int arrayIndex;
+	int arrayIndex=0;
 	FILE * csvFile = fopen( "csv/book.csv", "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -393,10 +399,10 @@ void csvToStruct_decade(decade_t *record_field, decade_t dbArray[22]) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 500;
+	int LINE_MAX_LEN = 800;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
-	int arrayIndex;
+	int arrayIndex=0;
 	FILE * csvFile = fopen( "csv/decade.csv", "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -426,10 +432,10 @@ void csvToStruct_message(message_t *record_field, message_t dbArray[22]) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 500;
+	int LINE_MAX_LEN = 150;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
-	int arrayIndex;
+	int arrayIndex=0;
 	FILE * csvFile = fopen( "csv/message.csv", "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -453,10 +459,10 @@ void csvToStruct_mystery(mystery_t *record_field, mystery_t dbArray[7]) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 500;
+	int LINE_MAX_LEN = 100;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
-	int arrayIndex;
+	int arrayIndex=0;
 	FILE * csvFile = fopen( "csv/mystery.csv", "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -481,10 +487,10 @@ void csvToStruct_prayer(prayer_t *record_field, prayer_t dbArray[11]) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 500;
+	int LINE_MAX_LEN = 1250;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
-	int arrayIndex;
+	int arrayIndex=0;
 	FILE * csvFile = fopen( "csv/prayer.csv", "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -513,7 +519,7 @@ void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202]) 
 	int LINE_MAX_LEN = 500;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
-	int arrayIndex;
+	int arrayIndex=0;
 	FILE * csvFile = fopen( "csv/scripture.csv", "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -543,6 +549,11 @@ void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202]) 
  * */
 
 /*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "my-csv-parser.h"
+
 int main() {
     rosaryBead_t *rosaryBead_record_field = NULL;
     rosaryBead_t rosaryBead_dbArray[317];
