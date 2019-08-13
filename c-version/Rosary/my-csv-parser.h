@@ -221,8 +221,7 @@ decade_t * parse_decade_record( char * scvline ) {
     char ** pp = NULL;
     decade_t * record_field = NULL;
 
-    pp = strsplit( scvline, ";" );
-
+	pp = strsplit( scvline, ";" );
     record_field = (decade_t*) calloc( 1, sizeof(decade_t) );
 
     record_field -> decadeID = atoi(pp[0]);
@@ -303,15 +302,15 @@ scripture_t * parse_scripture_record( char * scvline ) {
  * populate structs functions
  * */
 
-void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosaryBead_t dbArray[317]) {
+void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosaryBead_t dbArray[317], int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 300;
+	//int LINE_MAX_LEN = 300;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
-	FILE * csvFile = fopen( "csv/rosaryBead.csv", "r" );
+	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
 		if (counter > 0 ) {
@@ -337,15 +336,15 @@ void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosaryBead_t dbArray[317
 	fclose(csvFile);
 }
 
-void csvToStruct_bead(bead_t *record_field, bead_t dbArray[8]) {
+void csvToStruct_bead(bead_t *record_field, bead_t dbArray[8], int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 50;
+	//int LINE_MAX_LEN = 50;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
-	FILE * csvFile = fopen( "csv/bead.csv", "r" );
+	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
 		if (counter > 0 ) {
@@ -365,15 +364,15 @@ void csvToStruct_bead(bead_t *record_field, bead_t dbArray[8]) {
 	fclose(csvFile);
 }
 
-void csvToStruct_book(book_t *record_field, book_t dbArray[17]) {
+void csvToStruct_book(book_t *record_field, book_t dbArray[17], int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 300;
+	//int LINE_MAX_LEN = 300;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
-	FILE * csvFile = fopen( "csv/book.csv", "r" );
+	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
 		if (counter > 0 ) {
@@ -394,16 +393,15 @@ void csvToStruct_book(book_t *record_field, book_t dbArray[17]) {
 	fclose(csvFile);
 }
 
-
-void csvToStruct_decade(decade_t *record_field, decade_t dbArray[22]) {
+void csvToStruct_decade(decade_t *record_field, decade_t dbArray[22], int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 800;
+	//int LINE_MAX_LEN = 800;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
-	FILE * csvFile = fopen( "csv/decade.csv", "r" );
+	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
 		if (counter > 0 ) {
@@ -428,15 +426,15 @@ void csvToStruct_decade(decade_t *record_field, decade_t dbArray[22]) {
 	fclose(csvFile);
 }
 
-void csvToStruct_message(message_t *record_field, message_t dbArray[22]) {
+void csvToStruct_message(message_t *record_field, message_t dbArray[22], int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 150;
+	//int LINE_MAX_LEN = 150;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
-	FILE * csvFile = fopen( "csv/message.csv", "r" );
+	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
 		if (counter > 0 ) {
@@ -455,15 +453,15 @@ void csvToStruct_message(message_t *record_field, message_t dbArray[22]) {
 	fclose(csvFile);
 }
 
-void csvToStruct_mystery(mystery_t *record_field, mystery_t dbArray[7]) {
+void csvToStruct_mystery(mystery_t *record_field, mystery_t dbArray[7], int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 100;
+	//int LINE_MAX_LEN = 100;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
-	FILE * csvFile = fopen( "csv/mystery.csv", "r" );
+	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
 		if (counter > 0 ) {
@@ -483,15 +481,15 @@ void csvToStruct_mystery(mystery_t *record_field, mystery_t dbArray[7]) {
 	fclose(csvFile);
 }
 
-void csvToStruct_prayer(prayer_t *record_field, prayer_t dbArray[11]) {
+void csvToStruct_prayer(prayer_t *record_field, prayer_t dbArray[11], int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 1250;
+	//int LINE_MAX_LEN = 1250;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
-	FILE * csvFile = fopen( "csv/prayer.csv", "r" );
+	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
 		if (counter > 0 ) {
@@ -512,15 +510,15 @@ void csvToStruct_prayer(prayer_t *record_field, prayer_t dbArray[11]) {
 	fclose(csvFile);
 }
 
-void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202]) {
+void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202], int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	int LINE_MAX_LEN = 500;
+	//int LINE_MAX_LEN = 500;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
-	FILE * csvFile = fopen( "csv/scripture.csv", "r" );
+	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
 		if (counter > 0 ) {
