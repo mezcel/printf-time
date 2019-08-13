@@ -26,7 +26,6 @@
  * */
 
 typedef struct rosaryBead_struct {
-	// "scripture.scriptureID";"scripture.bookIndex";"scripture.chapterIndex";"scripture.verseIndex";"scripture.scriptureText"
 	int rosaryBeadID;
 	int beadIndex;
 	int decadeIndex;
@@ -40,20 +39,17 @@ typedef struct rosaryBead_struct {
 } rosaryBead_t;
 
 typedef struct bead_struct {
-	// "scripture.scriptureID";"scripture.bookIndex";"scripture.chapterIndex";"scripture.verseIndex";"scripture.scriptureText"
 	int beadID;
 	char *beadType;
 } bead_t;
 
 typedef struct book_struct {
-	// "scripture.scriptureID";"scripture.bookIndex";"scripture.chapterIndex";"scripture.verseIndex";"scripture.scriptureText"
 	int bookID;
 	char *bookName;
 	char *library;
 } book_t;
 
 typedef struct decade_struct {
-	// "decade.decadeID";"decade.mysteryIndex";"decade.decadeNo";"decade.decadeName";"decade.decadeInfo";"decade.infoRefference"
 	int decadeID;
 	int mysteryIndex;
 	int decadeNo;
@@ -63,27 +59,23 @@ typedef struct decade_struct {
 } decade_t;
 
 typedef struct message_struct {
-	// "message.messageID";"message.mesageText"
 	int messageID;
 	char *mesageText;
 } message_t;
 
 typedef struct mystery_struct {
-	// "mystery.mysteryID";"mystery.mysteryNo";"mystery.mysteryName"
 	int mysteryID;
 	int mysteryNo;
 	char *mysteryName;
 } mystery_t;
 
 typedef struct prayer_struct {
-	// "prayer.prayerID";"prayer.prayerName";"prayer.prayerText"
 	int prayerID;
 	char *prayerName;
 	char *prayerText;
 } prayer_t;
 
 typedef struct scripture_struct {
-	// "scripture.scriptureID";"scripture.bookIndex";"scripture.chapterIndex";"scripture.verseIndex";"scripture.scriptureText"
 	int scriptureID;
 	int bookIndex;
 	int chapterIndex;
@@ -306,7 +298,6 @@ void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosaryBead_t dbArray[317
 	/*
 	* Copy text string value into struct char var
 	* */
-	//int LINE_MAX_LEN = 300;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
@@ -340,7 +331,6 @@ void csvToStruct_bead(bead_t *record_field, bead_t dbArray[8], int LINE_MAX_LEN,
 	/*
 	* Copy text string value into struct char var
 	* */
-	//int LINE_MAX_LEN = 50;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
@@ -368,7 +358,6 @@ void csvToStruct_book(book_t *record_field, book_t dbArray[17], int LINE_MAX_LEN
 	/*
 	* Copy text string value into struct char var
 	* */
-	//int LINE_MAX_LEN = 300;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
@@ -397,7 +386,6 @@ void csvToStruct_decade(decade_t *record_field, decade_t dbArray[22], int LINE_M
 	/*
 	* Copy text string value into struct char var
 	* */
-	//int LINE_MAX_LEN = 800;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
@@ -430,7 +418,6 @@ void csvToStruct_message(message_t *record_field, message_t dbArray[22], int LIN
 	/*
 	* Copy text string value into struct char var
 	* */
-	//int LINE_MAX_LEN = 150;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
@@ -457,7 +444,6 @@ void csvToStruct_mystery(mystery_t *record_field, mystery_t dbArray[7], int LINE
 	/*
 	* Copy text string value into struct char var
 	* */
-	//int LINE_MAX_LEN = 100;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
@@ -485,7 +471,6 @@ void csvToStruct_prayer(prayer_t *record_field, prayer_t dbArray[11], int LINE_M
 	/*
 	* Copy text string value into struct char var
 	* */
-	//int LINE_MAX_LEN = 1250;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
@@ -514,7 +499,6 @@ void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202], 
 	/*
 	* Copy text string value into struct char var
 	* */
-	//int LINE_MAX_LEN = 500;
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
@@ -540,53 +524,3 @@ void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202], 
 	fclose(csvFile);
 }
 
-/*
- * Main
- *
- * Usecase Example
- * */
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "my-csv-parser.h"
-
-int main() {
-    rosaryBead_t *rosaryBead_record_field = NULL;
-    rosaryBead_t rosaryBead_dbArray[317];
-
-    scripture_t *scripture_record_field = NULL;
-    scripture_t scripture_dbArray[202];
-
-	csvToStruct_rosaryBead(rosaryBead_record_field, rosaryBead_dbArray); 	// navigation roadmap FK db
-    csvToStruct_scripture(scripture_record_field, scripture_dbArray);		// the er class I want to read
-
-	int testIdx = rosaryBead_dbArray[111].rosaryBeadID;
-
-    printf( "\n---\n Test: scripture_record_array[%d] \n", testIdx );
-    printf(" scriptureID: %d\n", scripture_dbArray[testIdx].scriptureID );
-    printf( " bookIndex: %d\n", scripture_dbArray[testIdx].bookIndex );
-    printf( " chapterIndex: %d\n", scripture_dbArray[testIdx].chapterIndex );
-    printf( " verseIndex: %d\n", scripture_dbArray[testIdx].verseIndex );
-    printf( " scriptureText: %s\n", scripture_dbArray[testIdx].scriptureText );
-
-	testIdx = 200;
-    printf( "\n---\n Test: scripture_record_array[%d] \n", testIdx );
-    printf(" scriptureID: %d\n", scripture_dbArray[testIdx].scriptureID );
-    printf( " bookIndex: %d\n", scripture_dbArray[testIdx].bookIndex );
-    printf( " chapterIndex: %d\n", scripture_dbArray[testIdx].chapterIndex );
-    printf( " verseIndex: %d\n", scripture_dbArray[testIdx].verseIndex );
-    printf( " scriptureText: %s\n", scripture_dbArray[testIdx].scriptureText );
-
-	testIdx = 1;
-    printf( "\n---\n Test: scripture_record_array[%d] \n", testIdx );
-    printf(" scriptureID: %d\n", scripture_dbArray[testIdx].scriptureID );
-    printf( " bookIndex: %d\n", scripture_dbArray[testIdx].bookIndex );
-    printf( " chapterIndex: %d\n", scripture_dbArray[testIdx].chapterIndex );
-    printf( " verseIndex: %d\n", scripture_dbArray[testIdx].verseIndex );
-    printf( " scriptureText: %s\n", scripture_dbArray[testIdx].scriptureText );
-
-    return 0;
-}
-*/

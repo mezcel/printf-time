@@ -4,6 +4,9 @@ C syntax which calculates Easter day and Paschal Full Moon. (gcc)
 
 version: ```0.1.2``` modified data structures, and extended PFM year range. Improved the readability in ```pfm-tables.h```.
 
+* [app dir](./C_Source/)
+* [bash demo](./BASH/)
+
 #### Description:
 
 A C program which uses C syntax and the GCC compiler to calculate the date of the Paschal Full Moon (PMF) and the date of Easter Day.
