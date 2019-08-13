@@ -8,6 +8,10 @@ Description:
 * Scriptural Rosary
 * Cli Text Display Sideshow (App)
 
+[quick demo recording](https://asciinema.org/a/262232)
+
+[![asciicast](https://asciinema.org/a/262232.svg)](https://asciinema.org/a/262232)
+
 
 Usage Instruction:
 
