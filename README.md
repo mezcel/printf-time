@@ -1,28 +1,17 @@
-# Readme
+## README
 
-2 versions:
+#### About:
 
-* C version (Project In Development)
+Wrote 2 CLI Apps in in C:
 
-    * gcc compiler focused
-    * ~~jsmn json parser~~
-    * manually parse csv files.
-		* copy/paste convert json to csv [online json2csv](https://www.csvjson.com/json2csv) I chose this one because it has a mainstream NPM api version (more standard-like than not)
-		* for "|" delimiters I used [convertcsv.com](http://www.convertcsv.com/json-to-csv.htm)
-		* Wanted to simplfy manual memmory mgnt (no janky workarrounds, faster compiile and run, no non-standard api tools to wrap my head arround)
-			* ex: 5k json lines vs 500 csv lines
-			* ex: multi function json parse vs 1 fget style csv read
-				* either way, I was still going to make my own structs
-    * a standalone PFM calulator (embeleshed/bloated version) (DONE/COMPLETED)
-    * a Rosary App (UNDER CONSTRUCTION)
-
-* C++ version (Project Not Started Yet)
-
-    * g++ compiler focused
-    * jsoncpp json parser (the easiest UI of the json parsers iv come across)
-    * a Rosary App
-
-### Backstory:
-
-Prior to ```version 0.2```, The repo was just a gcc app wich calulated the Pashcal Full Moon (PFM) in order to further calulate past/futre Easter dates. I later decided to make a C and C++ cli rosary app based on what I learned from making the previous PFM app.
-
+1. PFM-Calculator:
+	* Calculate Easter Day and the Paschal Full Moon
+	* a lot of output display related bloat
+	* intended as a standalone or portable app
+	* [asciinema demo video link](https://asciinema.org/a/232779)
+2. Rosary:
+	* A basic CLI Rosary using (CSV to Struct Array) array db.
+	* Intended as a standalone app
+	* Main features are working and complete
+	* Display UI works but ```beautification``` is under construction
+	* [quick demo recording](https://asciinema.org/a/262232)
