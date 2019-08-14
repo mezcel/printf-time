@@ -38,6 +38,7 @@ Dependencies:
 
 * The main app is complete
 * Continued development will be on beautification and display UI.
+* Incorporate PFM and other fiesta/date related flags and events
 
 #### Development Perspective:
 

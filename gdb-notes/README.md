@@ -1,4 +1,6 @@
-### GEB Notes
+### GDB Notes
+
+##### Compile and launch
 
 * compile .c code using -g flag
     * gcc mycode.c -g
@@ -18,3 +20,14 @@
 | ```n``` or ```next``` | step to the next step opver a subroutine/function |
 | ```p``` or ```print``` | print variable value |
 
+## GDB Background
+
+[manual](https://www.gnu.org/software/gdb/documentation/) - gnu.org
+
+If you dont use GDB on the CLI or a traditional IDE, you can uses this Atom.io package, [dbg-gdb](https://atom.io/packages/dbg-gdb)
+
+### The neat thing is ...
+
+The compiler can re-render the code more efficiently than the programmer/user. (every case varies)
+
+Sometime the ASM will illustrate this, but ultimately the optimizations will be in the executable binary.
