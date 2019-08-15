@@ -1,8 +1,8 @@
-## README
+## printf-time
+
+version: ```v0.2.1```
 
 #### About:
-
-```v0.2```
 
 Yet another installment in my rosary app series. This version is a CLI desktop application written in C (gcc).
 
