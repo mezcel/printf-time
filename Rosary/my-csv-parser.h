@@ -87,7 +87,7 @@ typedef struct scripture_struct {
  * Prototypes
  * */
 
-/*char ** strsplit( const char * src, const char * delim );
+char ** strsplit( const char * src, const char * delim );
 void strsplitfree( char ** strlist );
 
 rosaryBead_t * parse_rosaryBead_record( char * scvline );
@@ -99,14 +99,14 @@ mystery_t * parse_mystery_record( char * scvline );
 prayer_t * parse_prayer_record( char * scvline );
 scripture_t * parse_scripture_record( char * scvline );
 
-void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosaryBead_t dbArray[317]);
-void csvToStruct_bead(bead_t *record_field, bead_t dbArray[8]);
-void csvToStruct_book(book_t *record_field, book_t dbArray[17]);
-void csvToStruct_decade(decade_t *record_field, decade_t dbArray[22]);
-void csvToStruct_message(message_t *record_field, message_t dbArray[22]);
-void csvToStruct_mystery(mystery_t *record_field, mystery_t dbArray[7]);
-void csvToStruct_prayer(prayer_t *record_field, prayer_t dbArray[11]);
-void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202]);*/
+void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosaryBead_t dbArray[317], int LINE_MAX_LEN, char *filePath);
+void csvToStruct_bead(bead_t *record_field, bead_t dbArray[9], int LINE_MAX_LEN, char *filePath);
+void csvToStruct_book(book_t *record_field, book_t dbArray[17], int LINE_MAX_LEN, char *filePath);
+void csvToStruct_decade(decade_t *record_field, decade_t dbArray[22], int LINE_MAX_LEN, char *filePath);
+void csvToStruct_message(message_t *record_field, message_t dbArray[22], int LINE_MAX_LEN, char *filePath);
+void csvToStruct_mystery(mystery_t *record_field, mystery_t dbArray[7], int LINE_MAX_LEN, char *filePath);
+void csvToStruct_prayer(prayer_t *record_field, prayer_t dbArray[11], int LINE_MAX_LEN, char *filePath);
+void csvToStruct_scripture(scripture_t *record_field, scripture_t dbArray[202], int LINE_MAX_LEN, char *filePath);
 
 /*
  * Functions
@@ -327,7 +327,7 @@ void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosaryBead_t dbArray[317
 	fclose(csvFile);
 }
 
-void csvToStruct_bead(bead_t *record_field, bead_t dbArray[8], int LINE_MAX_LEN, char *filePath) {
+void csvToStruct_bead(bead_t *record_field, bead_t dbArray[9], int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
@@ -342,7 +342,6 @@ void csvToStruct_bead(bead_t *record_field, bead_t dbArray[8], int LINE_MAX_LEN,
 
 			arrayIndex = counter - 1;
 			dbArray[arrayIndex].beadID = record_field -> beadID;
-			dbArray[arrayIndex].beadType = record_field -> beadType;
 			dbArray[arrayIndex].beadType = record_field -> beadType;
 		}
 		counter++;
