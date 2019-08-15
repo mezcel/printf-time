@@ -1,8 +1,10 @@
-#include <stdio.h>		// standard default C library
-#include <stdlib.h>	// calloc()/realloc()/malloc(), system(), free()
-#include <string.h>	// workhorse header for CLI string manipulation
-#include <time.h>
-#include "my-csv-parser.h"		// my own homebrew CSV parse header
+#include <stdio.h>				// standard default C library
+#include <stdlib.h>			// calloc()/realloc()/malloc(), system(), free()
+#include <string.h>			// workhorse header for CLI string manipulation
+#include <time.h>				// time_t
+#include <sys/ioctl.h>			// ioctl(), TIOCGWINSZ
+#include <unistd.h> 			// STDOUT_FILENO
+#include "my-csv-parser.h"		// my own homebrew CSV parse functions & structs
 
 // Prototypes
 void clearScreen();
@@ -30,18 +32,20 @@ void splashCoverPage(int desiredLineLength, int weekdayNo) {
 
 	char *aboutString ="This is a scriptural rosary, written in C, for the command line interface (CLI). The sideshow sequence is intended to resemble the sequential pattern and order of a traditional rosary bead prayer session. This app reads from CSV text files arranged as ER database. It uses standard .h libraries as well as a library I made to parse CSV text into an array of structs. Scriptural readings are quoted from The New American Bible, while additional included readings were curated from a variety of different rosary prayer guides.";
 
+	char *ttySpecs = "Optimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.";
+
 	clearScreen(); // clear cli
 
 	printf("+++ C/CSV Rosary ++++++++++\n");
-	multiLinePrintF("\n About:\t\t", aboutString, desiredLineLength);
+	multiLinePrintF("\n About:\n\t", aboutString, desiredLineLength);
 
-	printf("\n\n UI:\n\t\tOptimal Terminal Display:\t(+25 rows) x (+100 cols) to Full Screen\n\t\tEach line of text is scaled to wrap at around 80 chars.\n");
-	printf("\n\nUser Controls:\n\n\t\t Press [b] to step 1 back");
-	printf("\n\t\t Press [enter] to step 1 forward");
-	printf("\n\t\t Press [q] to quit the app");
+	printf("\n Display:\n\t%s\n", ttySpecs);
+	printf("\nUser Controls:\n\t Press [b] to step 1 back");
+	printf("\n\t Press [enter] to step 1 forward");
+	printf("\n\t Press [q] to quit the app");
 	printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery.", weekday[weekdayNo], weekdayMystery[weekdayNo]);
-
 	printf("\n press [enter] to continue");
+
 	getchar(); // pause for char input
 	clearScreen(); // clear cli
 }
@@ -165,14 +169,22 @@ int pressKeyContinue(int navigtionPosition) {
 				return 316; //retun an integer greater than 315
 				break;
 
-			case EOF:
-				return 0;
+			/*case EOF:
+				return 0;*/
+
+			default: // no nav change
+				return navigtionPosition - 1;
+
 		}
 	}
 }
 
 // Main
 int main() {
+	// terminal tty info
+	struct winsize w;
+
+
 	// Name my strtuct variables
 	rosaryBead_t *rosaryBead_record_field = NULL;
 	rosaryBead_t rosaryBead_dbArray[317];
@@ -213,13 +225,17 @@ int main() {
 	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
 
 	// App Navigation
-	int desiredDispLen = 80;
+	//int desiredDispLen = 80;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+    int desiredDispLen = w.ws_col / 2;
 	int weekdayNo = returnDayOfWeekFlag();
 	int navigtionPosition = initialMystery(weekdayNo); // starting position
 
 	splashCoverPage(desiredDispLen, weekdayNo);
 
     while (navigtionPosition <= 315) {
+		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+		desiredDispLen = w.ws_col / 2;
 
 		int rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
 

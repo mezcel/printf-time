@@ -34,8 +34,8 @@ gcc main.c -o main
 
 Dependencies:
 
-* gcc
-* text editor (developer)
+* gcc (compiler)
+* text editor (code dev)
 * gdb (developer debug)
 
 #### Development Status:
@@ -62,6 +62,6 @@ Text DB Parse:
 
 Dev Environment (GCC Development):
 
-* Gcc compiler
+* Gcc ```v6.9``` The default on Debian 9
 * Gdb debugger
 * Developed on WLS for convenient migration into MinGw.
