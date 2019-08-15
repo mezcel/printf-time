@@ -23,7 +23,7 @@ Yet another installment in my rosary app series. This version is a CLI desktop a
 	* Intended as a standalone app
 	* Main features are working and complete
 	* Display UI works but ```beautification``` is under construction
-	* [quick demo recording](https://asciinema.org/a/262232)
+	* [quick demo recording](https://asciinema.org/a/262232)  Not the latest version.
 
 ### Future Development:
 

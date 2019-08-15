@@ -1,20 +1,78 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stdio.h>		// standard default C library
+#include <stdlib.h>	// calloc()/realloc()/malloc(), system(), free()
+#include <string.h>	// workhorse header for CLI string manipulation
+#include "my-csv-parser.h"		// my own homebrew CSV parse header
 
-#include "my-csv-parser.h"
+// Prototypes
+void clearScreen();
+void splashCoverPager(int desiredLineLength);
+void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength);
+int pressKeyContinue(int navigtionPosition);
 
+// Functions
 void clearScreen() {
 	//system("@cls||clear");
 	system("clear");
 }
 
+void splashCoverPager(int desiredLineLength) {
+	clearScreen(); // clear cli
+
+	char *aboutString ="This is a scriptural rosary, written in C, for the command line interface (CLI). The sideshow sequence is intended to resemble the sequential pattern and order of a traditional rosary bead prayer session. This app reads from CSV text files arranged as ER database. It uses standard .h libraries as well as a library I made to parse CSV text into an array of structs. Scriptural readings are quoted from The New American Bible, while additional included readings were curated from a variety of different rosary prayer guides.";
+
+	printf("+++ C/CSV Rosary ++++++++++\n");
+	multiLinePrintF("\n About:\t\t", aboutString, desiredLineLength);
+
+	printf("\n\n UI:\n\t\tOptimal Terminal Display:\t(+25 rows) x (+100 cols)\n\t\tEach line of text is scaled to wrap at around 80 chars.\n");
+	printf("\n\nUser Controls:\n\n\t\t Press [b] to step 1 back");
+	printf("\n\t\t Press [enter] to step 1 forward");
+	printf("\n\t\t Press [q] to quit the app");
+	printf("\n\n\n press [enter] to continue, and start the rosary");
+	getchar(); // pause for char input
+	clearScreen(); // clear cli
+}
+
+void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
+	int lineLength = (int)strlen(strIn);
+	printf("%s", labelChars);
+
+	if ( lineLength <= desiredLineLength) {
+		printf("%s\n\t\t", strIn);
+
+	} else {
+		int inputLength = (int)strlen(strIn);
+		char stringInput[inputLength]; // temp copy of string to manipulate
+			strcpy(stringInput, strIn);
+		char *delim = " ";
+		char *parsedStringArray = strtok(stringInput, delim);
+		int desiredLengthCounter = 0;
+		int wordLength = 0;
+
+
+		while (parsedStringArray != NULL) {
+			wordLength = (int)strlen(parsedStringArray);
+			desiredLengthCounter = desiredLengthCounter + wordLength;
+
+			if (desiredLengthCounter < desiredLineLength) {
+				printf("%s ", parsedStringArray);
+			} else {
+				printf("\n\t\t%s ", parsedStringArray);
+				desiredLengthCounter = 0;
+			}
+
+			parsedStringArray = strtok(NULL, delim);
+		}
+
+		// free(parsedStringArray);
+	}
+}
+
 int pressKeyContinue(int navigtionPosition) {
-	int c;
+	//int c;
+	int c = getc(stdin);
 	for (;;) {
-		c = getc(stdin);
 		switch (c) {
-			case '\n': // enter key
+			case '\n': // [enter] navigate 1 step forward
 				clearScreen();
 				if (navigtionPosition < 315) {
 					navigtionPosition++;
@@ -23,31 +81,30 @@ int pressKeyContinue(int navigtionPosition) {
 				}
 				return navigtionPosition;
 				break;
-			case 'b': // enter key
+
+			case 'b': // navigate 1 step back
 				if (navigtionPosition > 1) {
-					navigtionPosition--;
-					navigtionPosition--;
+					navigtionPosition = navigtionPosition - 2;
 				} else {
 					navigtionPosition = 315;
 				}
 				return navigtionPosition;
 				break;
+
 			case 'q':
 				printf("\n Quit App \n");
 				return 316; //retun an integer greater than 315
 				break;
+
 			case EOF:
 				return 0;
 		}
 	}
-
 }
 
+// Main
 int main() {
-	clearScreen(); // clear cli
-
 	// Name my strtuct variables
-
 	rosaryBead_t *rosaryBead_record_field = NULL;
 	rosaryBead_t rosaryBead_dbArray[317];
 
@@ -87,11 +144,12 @@ int main() {
 	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
 
 	// App Navigation
+	int desiredDispLen = 80;
+	splashCoverPager(desiredDispLen);
 
-	int navigtionPosition = 0;
+	int navigtionPosition = 0; // starting position
 
     while (navigtionPosition <= 315) {
-
 
 		int rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
 
@@ -107,45 +165,41 @@ int main() {
 
 		char *beadType = bead_dbArray[beadFK].beadType;
 
-		int decadeNo = decade_dbArray[decadeFK].decadeNo;
 		char *decadeName = decade_dbArray[decadeFK].decadeName;
 		char *decadeInfo = decade_dbArray[decadeFK].decadeInfo;
-
 		char *mesageText = message_dbArray[messageFK].mesageText;
-
-		int mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
 		char *mysteryName = mystery_dbArray[mysteryFK].mysteryName;
-
+		char *scriptureText = scripture_dbArray[scriptureFK].scriptureText;
 		char *prayerText = prayer_dbArray[prayerFK].prayerText;
 
-		char *scriptureText = scripture_dbArray[scriptureFK].scriptureText;
+		int decadeNo = decade_dbArray[decadeFK].decadeNo;
+		int mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
 
 		printf("+++ C/CSV Rosary ++++++++++");
 
-		printf("\n\nMystery:\t%s", mysteryName);
-		printf("\nDecade:\t\t%s", decadeName);
-		printf("\n\t\t%s", mesageText);
-		printf("\nBackground:\t%s", decadeInfo);
-		printf("\n\nScripture:\t%s", scriptureText);
-		printf("\nPrayer:\t\t%s", prayerText);
+		printf("\n\n Mystery:\t%s", mysteryName);
+		printf("\n Decade:\t%s", decadeName);
 
-		printf("\nBead Type:\t%s", beadType);
+		multiLinePrintF("\n\t\t", mesageText, desiredDispLen);
+		multiLinePrintF("\n Background:\t", decadeInfo, desiredDispLen);
+		multiLinePrintF("\n\n Scripture:\t", scriptureText, desiredDispLen);
+		multiLinePrintF("\n Prayer:\t", prayerText, desiredDispLen);
 
+		printf("\n Bead Type:\t%s", beadType);
 		printf("\n+++ Rosary Progress ++++++++++ \n");
-		printf("\nposition: %d / 315", rosaryPositionID);
+		printf("\n position: %d / 315", rosaryPositionID);
 
 		if (loopBody == 1){
-			printf("\nDecade Progress:    %d / 10\t\tDecade:    %d / 5", smallbeadPercent, decadeNo);
+			printf("\n Decade Progress:    %d / 10\t\t Decade:    %d / 5", smallbeadPercent, decadeNo);
 		} else {
-			printf("\nDecade Progress:    %d / introduction", smallbeadPercent);
+			printf("\n Decade Progress:    %d / introduction", smallbeadPercent);
 		}
 
-		printf("\nMystery Progress:   %d / 50\t\tMystery:   %d / 4", mysteryPercent, mysteryNo);
-
+		printf("\n Mystery Progress:   %d / 50\t\t Mystery:   %d / 4", mysteryPercent, mysteryNo);
 		printf("\n:");
 
 		navigtionPosition = pressKeyContinue(navigtionPosition);
-
+		// getchar(); // pause for char input
 	}
 
 	return 0;

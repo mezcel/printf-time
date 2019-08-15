@@ -5,15 +5,18 @@
 
 Description:
 
+* C program syntax
 * Scriptural Rosary
 * Cli Text Display Sideshow (App)
+* CSV db
+* Based off of [python-curses](https://github.com/mezcel/python-curses.git) and [jq-tput-terminal](https://github.com/mezcel/jq-tput-terminal.git)
 
-[quick demo recording](https://asciinema.org/a/262232)
+[quick demo recording](https://asciinema.org/a/262232) Not the latest version.
 
 [![asciicast](https://asciinema.org/a/262232.svg)](https://asciinema.org/a/262232)
 
 
-Usage Instruction:
+Use Instruction:
 
 * Requires gcc or any tool designed to Compile C.
 
@@ -32,7 +35,8 @@ gcc main.c -o main
 Dependencies:
 
 * gcc
-* text editor
+* text editor (developer)
+* gdb (developer debug)
 
 #### Development Status:
 
