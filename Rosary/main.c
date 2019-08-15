@@ -39,7 +39,7 @@ void splashCoverPage(int desiredLineLength, int weekdayNo) {
 	printf("\n\nUser Controls:\n\n\t\t Press [b] to step 1 back");
 	printf("\n\t\t Press [enter] to step 1 forward");
 	printf("\n\t\t Press [q] to quit the app");
-	printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery. %d", weekday[weekdayNo], weekdayMystery[weekdayNo], weekdayNo);
+	printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery.", weekday[weekdayNo], weekdayMystery[weekdayNo]);
 
 	printf("\n press [enter] to continue");
 	getchar(); // pause for char input

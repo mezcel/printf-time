@@ -6,15 +6,22 @@ version: ```v0.2.1```
 
 Yet another installment in my rosary app series. This version is a CLI desktop application written in C (gcc).
 
-* I decided to stick with a CLI display interface.
-* This is the most minimalist of all of my different program language versions.
-* The script is a more bloated than it needs to be, but in doing so, it it acts as a review & reference guide for using structs, char-strings manipulation, and illustrating pointer/memory/addressing use-cases.
+* This app uses a CLI display interface.
+* Text is rendered from pre-formatted char variables passed through printf() statements
+	* it's not pretty, but it has a symetrical and justified layout
+	* i deliberately avoided cuses to encourage easier cross-app portability
+* libraries:
+	* <stdio.h>	// standard default C library
+	* <stdlib.h>	// calloc()/realloc()/malloc(), system(), free()
+	* <string.h>	// workhorse header for CLI string manipulation
+	* <time.h>
+	* "my-csv-parser.h"	// my own homebrew CSV parse header
 
 #### Apps Contained in the Repo:
 
 1. __PFM-Calculator__:
-	* Calculate Easter Day and the Paschal Full Moon
-	* a lot of extra/optional output display related bloat
+	* Calculate Easter Day from the Paschal Full Moon date
+	* a lot of extra/optional output display related bloat (just for jollies)
 	* intended as a standalone or portable app
 	* [asciinema demo video link](https://asciinema.org/a/232779)
 
@@ -23,9 +30,11 @@ Yet another installment in my rosary app series. This version is a CLI desktop a
 	* Intended as a standalone app
 	* Main features are working and complete
 	* Display UI works but ```beautification``` is under construction
-	* [quick demo recording](https://asciinema.org/a/262232)  Not the latest version.
+	* [quick demo recording](https://asciinema.org/a/262232)  **Not the latest version.**
 
 ### Future Development:
 
-* UI display beautification
+* UI display beautification for the Rosary
+	* kinda hard since it is just printf(), but so far the word wrap is functional.
 * Integrate PFM into the Rosary in order to make it more like the rosary apps I made using the other programming languages.
+	* so far, only the weekday flags are up and running
