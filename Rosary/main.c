@@ -8,7 +8,7 @@
 
 // Prototypes
 void clearScreen();
-void splashCoverPager(int desiredLineLength, int weekdayNo);
+void splashCoverPager(int weekdayNo);
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength);
 int returnDayOfWeekFlag();
 int initialMystery(int weekdayNo);
@@ -20,7 +20,7 @@ void clearScreen() {
 	system("clear"); //linux
 }
 
-void splashCoverPage(int desiredLineLength, int weekdayNo) {
+void splashCoverPage(int weekdayNo) {
 
 	char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday",
 							"Thursday", "Friday", "Saturday" };
@@ -28,19 +28,15 @@ void splashCoverPage(int desiredLineLength, int weekdayNo) {
 	char * weekdayMystery[] = { "Glorious", "Joyful", "Sorrowful", "Glorious",
 									"Luminous", "Sorrowful", "Joyful" };
 
-	//int weekdayNo = returnDayOfWeekFlag();
-
-	char *aboutString ="This is a scriptural rosary, written in C, for the command line interface (CLI). The sideshow sequence is intended to resemble the sequential pattern and order of a traditional rosary bead prayer session. This app reads from CSV text files arranged as ER database. It uses standard .h libraries as well as a library I made to parse CSV text into an array of structs. Scriptural readings are quoted from The New American Bible, while additional included readings were curated from a variety of different rosary prayer guides.";
-
-	char *ttySpecs = "Optimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.";
+	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as ER database. It uses .h libraries which are default on most gcc installation. I made an additional library which will parse CSV text into an array of structs for ER db queries. Scriptural readings are quoted from The New American Bible, while additional included readings were curated from a variety of different rosary prayer guides.";
 
 	clearScreen(); // clear cli
 
 	printf("+++ C/CSV Rosary ++++++++++\n");
-	multiLinePrintF("\n About:\n\t", aboutString, desiredLineLength);
+	multiLinePrintF("\n About:\n\n\t", aboutString, 60);
 
-	printf("\n Display:\n\t%s\n", ttySpecs);
-	printf("\nUser Controls:\n\t Press [b] to step 1 back");
+	printf("\n Display:\n\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
+	printf("\n User Controls:\n\n\t Press [b] to step 1 back");
 	printf("\n\t Press [enter] to step 1 forward");
 	printf("\n\t Press [q] to quit the app");
 	printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery.", weekday[weekdayNo], weekdayMystery[weekdayNo]);
@@ -225,17 +221,14 @@ int main() {
 	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
 
 	// App Navigation
-	//int desiredDispLen = 80;
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-    int desiredDispLen = w.ws_col / 2;
 	int weekdayNo = returnDayOfWeekFlag();
 	int navigtionPosition = initialMystery(weekdayNo); // starting position
-
-	splashCoverPage(desiredDispLen, weekdayNo);
+	int desiredDispLen;
+	splashCoverPage(weekdayNo);
 
     while (navigtionPosition <= 315) {
 		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-		desiredDispLen = w.ws_col / 2;
+		desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
 
 		int rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
 

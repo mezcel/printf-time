@@ -1,22 +1,31 @@
-## README
-
+## printf-time /Rosary
 
 #### About:
 
-Description:
+Yet another installment in my rosary app series. This version is a CLI desktop application written in C (gcc).
 
-* C program syntax
-* Scriptural Rosary
-* Cli Text Display Sideshow (App)
-* CSV db
-* Based off of [python-curses](https://github.com/mezcel/python-curses.git) and [jq-tput-terminal](https://github.com/mezcel/jq-tput-terminal.git)
+* This app uses a CLI display interface.
+* Text is rendered from pre-formatted char variables passed through printf() statements
+	* it's not pretty, but it has a symetrical and justified layout
+	* i deliberately avoided cuses to encourage easier cross-app portability
+* libraries:
+	* <stdio.h>	// standard default C library
+	* <stdlib.h>	// calloc()/realloc()/malloc(), system(), free()
+	* <string.h>	// workhorse header for CLI string manipulation
+	* <time.h>
+	* "my-csv-parser.h"	// my own homebrew CSV parse header
+* Main features:
+	* C program syntax
+	* Scriptural Rosary
+	* Cli Text Display Sideshow (App)
+	* CSV db
+	* Based off of [python-curses](https://github.com/mezcel/python-curses.git) and [jq-tput-terminal](https://github.com/mezcel/jq-tput-terminal.git)
 
-[quick demo recording](https://asciinema.org/a/262232) Not the latest version.
+[quick demo recording](https://asciinema.org/a/262232) ***Not the latest version.***
 
 [![asciicast](https://asciinema.org/a/262232.svg)](https://asciinema.org/a/262232)
 
-
-Use Instruction:
+Instructions:
 
 * Requires gcc or any tool designed to Compile C.
 
