@@ -1,10 +1,23 @@
-#include <stdio.h>				// standard default C library
+#ifdef _WIN32
+#include <windows.h>
+#include <stdio.h>
+#include <tchar.h>
+
+#define DIV 1048576
+#define WIDTH 7
+#endif
+
+#ifdef linux
+//#include <unistd.h>
 #include <stdlib.h>			// calloc()/realloc()/malloc(), system(), free()
-#include <string.h>			// workhorse header for CLI string manipulation
+#include <stdio.h>
+#include <string.h>
+#endif
+
 #include <time.h>				// time_t
 #include <sys/ioctl.h>			// ioctl(), TIOCGWINSZ
 #include <unistd.h> 			// STDOUT_FILENO
-#include "my-csv-parser.h"		// my own homebrew CSV parse functions & structs
+#include "my-csv-parser.h"		// my own homebrew CSV parse functions & structs*/
 
 // Prototypes
 void clearScreen();
@@ -32,10 +45,13 @@ void splashCoverPage(int weekdayNo) {
 
 	clearScreen(); // clear cli
 
-	printf("+++ C/CSV Rosary ++++++++++\n");
+	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+	printf("+++ C/CSV Rosary ++++++++++++++++++++++++++++++++++++++\n");
+	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
 	multiLinePrintF("\n About:\n\n\t", aboutString, 60);
 
-	printf("\n Display:\n\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
+	printf("\n\n Display:\n\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
 	printf("\n User Controls:\n\n\t Press [b] to step 1 back");
 	printf("\n\t Press [enter] to step 1 forward");
 	printf("\n\t Press [q] to quit the app");
