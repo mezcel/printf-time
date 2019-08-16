@@ -1,13 +1,16 @@
+/*
+ * main.c
+ */
+ 
 #ifdef _WIN32
+// MinGW
 #include <windows.h>
 #include <stdio.h>
 #include <tchar.h>
-
-#define DIV 1048576
-#define WIDTH 7
 #endif
 
 #ifdef linux
+// Linux GCC v6+
 //#include <unistd.h>
 #include <stdlib.h>			// calloc()/realloc()/malloc(), system(), free()
 #include <stdio.h>
@@ -15,8 +18,8 @@
 #endif
 
 #include <time.h>				// time_t
-#include <sys/ioctl.h>			// ioctl(), TIOCGWINSZ
-#include <unistd.h> 			// STDOUT_FILENO
+//#include <sys/ioctl.h>		// ioctl(), TIOCGWINSZ
+//#include <unistd.h> 			// STDOUT_FILENO
 #include "my-csv-parser.h"		// my own homebrew CSV parse functions & structs*/
 
 // Prototypes
@@ -30,7 +33,13 @@ int pressKeyContinue(int navigtionPosition);
 // Functions
 void clearScreen() {
 	//system("@cls||clear");
+	#ifdef linux
 	system("clear"); //linux
+	#endif
+	
+	#ifdef _WIN32
+	system("@cls");
+	#endif
 }
 
 void splashCoverPage(int weekdayNo) {
@@ -194,7 +203,7 @@ int pressKeyContinue(int navigtionPosition) {
 // Main
 int main() {
 	// terminal tty info
-	struct winsize w;
+	//struct winsize w;
 
 
 	// Name my strtuct variables
@@ -237,14 +246,31 @@ int main() {
 	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
 
 	// App Navigation
+	#ifdef linux
 	int weekdayNo = returnDayOfWeekFlag();
+	#endif
+	#ifdef _WIN32
+	int weekdayNo = 0;
+	#endif
+
 	int navigtionPosition = initialMystery(weekdayNo); // starting position
 	int desiredDispLen;
 	splashCoverPage(weekdayNo);
 
     while (navigtionPosition <= 315) {
+        #ifdef linux
+        // terminal tty info
+        struct winsize w;
+
 		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 		desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
+        #endif
+
+        #ifdef _WIN32
+
+		desiredDispLen = 80; 
+        #endif
+
 
 		int rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
 
