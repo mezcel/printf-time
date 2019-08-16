@@ -1,20 +1,18 @@
 /*
  * main.c
  */
- 
-#ifdef _WIN32
-// MinGW
-#include <windows.h>
-#include <stdio.h>
-#include <tchar.h>
+
+#ifdef _WIN32 // MinGW
+	#include <windows.h>
+	#include <stdio.h>
+	#include <tchar.h>
 #endif
 
-#ifdef linux
-// Linux GCC v6+
-//#include <unistd.h>
-#include <stdlib.h>			// calloc()/realloc()/malloc(), system(), free()
-#include <stdio.h>
-#include <string.h>
+#ifdef linux // Linux GCC v6+
+	//#include <unistd.h>
+	#include <stdlib.h>		// calloc()/realloc()/malloc(), system(), free()
+	#include <stdio.h>
+	#include <string.h>
 #endif
 
 #include <time.h>				// time_t
@@ -34,11 +32,11 @@ int pressKeyContinue(int navigtionPosition);
 void clearScreen() {
 	//system("@cls||clear");
 	#ifdef linux
-	system("clear"); //linux
+		system("clear"); //linux
 	#endif
-	
+
 	#ifdef _WIN32
-	system("@cls");
+		system("@cls");
 	#endif
 }
 
@@ -86,7 +84,6 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 		char *parsedStringArray = strtok(stringInput, delim);
 		int desiredLengthCounter = 0;
 		int wordLength = 0;
-
 
 		while (parsedStringArray != NULL) {
 			wordLength = (int)strlen(parsedStringArray);
@@ -162,7 +159,6 @@ int initialMystery(int weekdayNo) {
 }
 
 int pressKeyContinue(int navigtionPosition) {
-	//int c;
 	int c = getc(stdin);
 	for (;;) {
 		switch (c) {
@@ -190,9 +186,6 @@ int pressKeyContinue(int navigtionPosition) {
 				return 316; //retun an integer greater than 315
 				break;
 
-			/*case EOF:
-				return 0;*/
-
 			default: // no nav change
 				return navigtionPosition - 1;
 
@@ -202,10 +195,6 @@ int pressKeyContinue(int navigtionPosition) {
 
 // Main
 int main() {
-	// terminal tty info
-	//struct winsize w;
-
-
 	// Name my strtuct variables
 	rosaryBead_t *rosaryBead_record_field = NULL;
 	rosaryBead_t rosaryBead_dbArray[317];
@@ -246,11 +235,13 @@ int main() {
 	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
 
 	// App Navigation
+
 	#ifdef linux
-	int weekdayNo = returnDayOfWeekFlag();
+		int weekdayNo = returnDayOfWeekFlag();
 	#endif
+
 	#ifdef _WIN32
-	int weekdayNo = 0;
+		int weekdayNo = 0;
 	#endif
 
 	int navigtionPosition = initialMystery(weekdayNo); // starting position
@@ -258,19 +249,17 @@ int main() {
 	splashCoverPage(weekdayNo);
 
     while (navigtionPosition <= 315) {
-        #ifdef linux
-        // terminal tty info
-        struct winsize w;
 
-		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-		desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
+        #ifdef linux
+			// terminal tty info
+			struct winsize w;
+			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+			desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
         #endif
 
         #ifdef _WIN32
-
-		desiredDispLen = 80; 
+			desiredDispLen = 80;
         #endif
-
 
 		int rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
 
