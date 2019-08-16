@@ -1,6 +1,6 @@
-### GDB Notes
+### Notes
 
-##### Compile and launch
+## GDB Compile and launch
 
 * compile .c code using -g flag
     * gcc mycode.c -g
@@ -9,7 +9,7 @@
 * launch gdb with an optional terminal user interface (TUI)
     * ```gdbtui a.out``` or ```gdb a.out -tui```
 
-### gdb commands
+#### gdb commands
 
 | text command | result |
 | --- | --- |
@@ -20,14 +20,6 @@
 | ```n``` or ```next``` | step to the next step opver a subroutine/function |
 | ```p``` or ```print``` | print variable value |
 
-## GDB Background
+## CSV
 
-[manual](https://www.gnu.org/software/gdb/documentation/) - gnu.org
-
-If you dont use GDB on the CLI or a traditional IDE, you can uses this Atom.io package, [dbg-gdb](https://atom.io/packages/dbg-gdb)
-
-### The neat thing is ...
-
-The compiler can re-render the code more efficiently than the programmer/user. (every case varies)
-
-Sometime the ASM will illustrate this, but ultimately the optimizations will be in the executable binary.
+* example csv file parse ```plain-scv-reading.c```

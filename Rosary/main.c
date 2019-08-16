@@ -9,38 +9,35 @@
 #endif
 
 #ifdef linux // Linux GCC v6+
-	//#include <unistd.h>
 	#include <stdlib.h>		// calloc()/realloc()/malloc(), system(), free()
 	#include <stdio.h>
 	#include <string.h>
+	#include <sys/ioctl.h>		// ioctl(), TIOCGWINSZ
+	#include <unistd.h> 		// STDOUT_FILENO
 #endif
 
 #include <time.h>				// time_t
-//#include <sys/ioctl.h>		// ioctl(), TIOCGWINSZ
-//#include <unistd.h> 			// STDOUT_FILENO
 #include "my-csv-parser.h"		// my own homebrew CSV parse functions & structs*/
 
 // Prototypes
-void clearScreen();
-void splashCoverPager(int weekdayNo);
+void clearScreen(int isLinux);
+void splashCoverPager(int weekdayNo, int isLinux);
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength);
 int returnDayOfWeekFlag();
 int initialMystery(int weekdayNo);
-int pressKeyContinue(int navigtionPosition);
+int pressKeyContinue(int navigtionPosition, int isLinux);
 
 // Functions
-void clearScreen() {
+void clearScreen(int isLinux) {
 	//system("@cls||clear");
-	#ifdef linux
+	if (isLinux == 1) {
 		system("clear"); //linux
-	#endif
-
-	#ifdef _WIN32
+	} else {
 		system("@cls");
-	#endif
+	}
 }
 
-void splashCoverPage(int weekdayNo) {
+void splashCoverPage(int weekdayNo, int isLinux) {
 
 	char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday",
 							"Thursday", "Friday", "Saturday" };
@@ -50,7 +47,7 @@ void splashCoverPage(int weekdayNo) {
 
 	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as ER database. It uses .h libraries which are default on most gcc installation. I made an additional library which will parse CSV text into an array of structs for ER db queries. Scriptural readings are quoted from The New American Bible, while additional included readings were curated from a variety of different rosary prayer guides.";
 
-	clearScreen(); // clear cli
+	clearScreen(isLinux); // clear cli
 
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 	printf("+++ C/CSV Rosary ++++++++++++++++++++++++++++++++++++++\n");
@@ -66,7 +63,7 @@ void splashCoverPage(int weekdayNo) {
 	printf("\n press [enter] to continue");
 
 	getchar(); // pause for char input
-	clearScreen(); // clear cli
+	clearScreen(isLinux); // clear cli
 }
 
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
@@ -98,8 +95,6 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 
 			parsedStringArray = strtok(NULL, delim);
 		}
-
-		// free(parsedStringArray);
 	}
 }
 
@@ -158,12 +153,12 @@ int initialMystery(int weekdayNo) {
 	return navigtionPosition;
 }
 
-int pressKeyContinue(int navigtionPosition) {
+int pressKeyContinue(int navigtionPosition, int isLinux) {
 	int c = getc(stdin);
 	for (;;) {
 		switch (c) {
 			case '\n': // [enter] navigate 1 step forward
-				clearScreen();
+				clearScreen(isLinux);
 				if (navigtionPosition < 315) {
 					navigtionPosition++;
 				} else {
@@ -195,6 +190,27 @@ int pressKeyContinue(int navigtionPosition) {
 
 // Main
 int main() {
+	int isLinux = 1;
+	int rosaryPositionID, beadFK, decadeFK, messageFK, mysteryFK, prayerFK;
+	int scriptureFK, loopBody, smallbeadPercent, mysteryPercent;
+	int decadeNo, mysteryNo;
+	int weekdayNo = 0;
+	int navigtionPosition = 0, desiredDispLen = 80;
+
+	char *beadType, *decadeName, *decadeInfo, *mesageText, *mysteryName;
+	char *scriptureText, *prayerText;
+
+	#ifdef linux
+		isLinux = 1;
+		weekdayNo = returnDayOfWeekFlag(); // 0=sun, 1=mon
+		navigtionPosition = initialMystery(weekdayNo); // starting position
+		struct winsize w; // terminal tty info
+	#endif
+
+	#ifdef _WIN32
+		isLinux = 0;
+	#endif
+
 	// Name my strtuct variables
 	rosaryBead_t *rosaryBead_record_field = NULL;
 	rosaryBead_t rosaryBead_dbArray[317];
@@ -234,67 +250,45 @@ int main() {
 	csvToStruct_prayer(prayer_record_field, prayer_dbArray, 1250, "csv/prayer.csv");
 	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
 
-	// App Navigation
-
-	#ifdef linux
-		int weekdayNo = returnDayOfWeekFlag();
-	#endif
-
-	#ifdef _WIN32
-		int weekdayNo = 0;
-	#endif
-
-	int navigtionPosition = initialMystery(weekdayNo); // starting position
-	int desiredDispLen;
-	splashCoverPage(weekdayNo);
+	splashCoverPage(weekdayNo, isLinux); // intro, coverpage, splash text
 
     while (navigtionPosition <= 315) {
 
-        #ifdef linux
-			// terminal tty info
-			struct winsize w;
-			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+        if(isLinux == 1) {
+			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // tty col/row
 			desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
-        #endif
+        }
 
-        #ifdef _WIN32
-			desiredDispLen = 80;
-        #endif
+		rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
+		beadFK = rosaryBead_dbArray[navigtionPosition].beadIndex;
+		decadeFK = rosaryBead_dbArray[navigtionPosition].decadeIndex;
+		messageFK = rosaryBead_dbArray[navigtionPosition].messageIndex;
+		mysteryFK = rosaryBead_dbArray[navigtionPosition].mysteryIndex;
+		prayerFK = rosaryBead_dbArray[navigtionPosition].prayerIndex;
+		scriptureFK = rosaryBead_dbArray[navigtionPosition].scriptureIndex;
+		loopBody = rosaryBead_dbArray[navigtionPosition].loopBody;
+		smallbeadPercent = rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
+		mysteryPercent = rosaryBead_dbArray[navigtionPosition].mysteryPercent;
 
-		int rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
+		beadType = bead_dbArray[beadFK].beadType;
+		decadeName = decade_dbArray[decadeFK].decadeName;
+		decadeInfo = decade_dbArray[decadeFK].decadeInfo;
+		mesageText = message_dbArray[messageFK].mesageText;
+		mysteryName = mystery_dbArray[mysteryFK].mysteryName;
+		scriptureText = scripture_dbArray[scriptureFK].scriptureText;
+		prayerText = prayer_dbArray[prayerFK].prayerText;
 
-		int beadFK = rosaryBead_dbArray[navigtionPosition].beadIndex;
-		int decadeFK = rosaryBead_dbArray[navigtionPosition].decadeIndex;
-		int messageFK = rosaryBead_dbArray[navigtionPosition].messageIndex;
-		int mysteryFK = rosaryBead_dbArray[navigtionPosition].mysteryIndex;
-		int prayerFK = rosaryBead_dbArray[navigtionPosition].prayerIndex;
-		int scriptureFK = rosaryBead_dbArray[navigtionPosition].scriptureIndex;
-		int loopBody = rosaryBead_dbArray[navigtionPosition].loopBody;
-		int smallbeadPercent = rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
-		int mysteryPercent = rosaryBead_dbArray[navigtionPosition].mysteryPercent;
-
-		char *beadType = bead_dbArray[beadFK].beadType;
-
-		char *decadeName = decade_dbArray[decadeFK].decadeName;
-		char *decadeInfo = decade_dbArray[decadeFK].decadeInfo;
-		char *mesageText = message_dbArray[messageFK].mesageText;
-		char *mysteryName = mystery_dbArray[mysteryFK].mysteryName;
-		char *scriptureText = scripture_dbArray[scriptureFK].scriptureText;
-		char *prayerText = prayer_dbArray[prayerFK].prayerText;
-
-		int decadeNo = decade_dbArray[decadeFK].decadeNo;
-		int mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
+		decadeNo = decade_dbArray[decadeFK].decadeNo;
+		mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
 
 		printf("+++ C/CSV Rosary ++++++++++");
 
 		printf("\n\n Mystery:\t%s", mysteryName);
 		printf("\n Decade:\t%s", decadeName);
-
 		multiLinePrintF("\n\t\t", mesageText, desiredDispLen);
 		multiLinePrintF("\n Background:\t", decadeInfo, desiredDispLen);
 		multiLinePrintF("\n\n Scripture:\t", scriptureText, desiredDispLen);
 		multiLinePrintF("\n Prayer:\t", prayerText, desiredDispLen);
-
 		printf("\n Bead Type:\t%s", beadType);
 		printf("\n+++ Rosary Progress ++++++++++ \n");
 		printf("\n position: %d / 315", rosaryPositionID);
@@ -308,7 +302,7 @@ int main() {
 		printf("\n Mystery Progress:   %d / 50\t\t Mystery:   %d / 4", mysteryPercent, mysteryNo);
 		printf("\n:");
 
-		navigtionPosition = pressKeyContinue(navigtionPosition);
+		navigtionPosition = pressKeyContinue(navigtionPosition, isLinux);
 		// getchar(); // pause for char input
 	}
 

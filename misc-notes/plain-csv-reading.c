@@ -56,8 +56,8 @@ int userNumberInput() {
 
 int main() {
 
-    FILE * rosaryBeadCsv = fopen("csv/rosaryBead.csv", "r");
-    FILE * scriptureCsv = fopen("csv/scripture.csv", "r");
+    FILE * rosaryBeadCsv = fopen("../Rosary/csv/rosaryBead.csv", "r");
+    FILE * scriptureCsv = fopen("../Rosary/csv/scripture.csv", "r");
 
 	int scriptureFKField = 6;
     int scriptureTextField = 5;

@@ -1,8 +1,13 @@
-/*#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>*/
+/*
+ * my-csv-parser.h
+ * */
 
 /*
+ *  Dependancies:
+ *		stdio.h
+ *		stdlib.h
+ *		string.h
+ *
  *	Depends on the following .csv files:
  *		bead.csv
  *		decade.csv
