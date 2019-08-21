@@ -27,6 +27,7 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength);
 int returnDayOfWeekFlag();
 int initialMystery(int weekdayNo);
 int pressKeyContinue(int navigtionPosition, int isLinux);
+void outputDisplay(char *mysteryName, char *decadeName, char *mesageText, char *decadeInfo, char *scriptureText, char *prayerText, char *beadType, int rosaryPositionID, int loopBody, int decadeNo, int smallbeadPercent, int mysteryPercent, int mysteryNo, int desiredDispLen);
 
 // Functions //
 void clearScreen(int isLinux) {
@@ -202,20 +203,55 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 	}
 }
 
+void outputDisplay(char *mysteryName, char *decadeName, char *mesageText, char *decadeInfo, char *scriptureText, char *prayerText, char *beadType, int rosaryPositionID, int loopBody, int decadeNo, int smallbeadPercent, int mysteryPercent, int mysteryNo, int desiredDispLen) {
+
+	// header
+	char *titleLabel = " C/CSV Rosary ";
+	int titleLabelLength = (int)strlen(titleLabel);
+	borderCharPrintF("+", 3);
+	printf(titleLabel);
+	borderCharPrintF("+", desiredDispLen + 30);
+
+	// body
+	printf("\n\n Mystery:\t%s", mysteryName);
+	printf("\n Decade:\t%s", decadeName);
+	multiLinePrintF("\n\t\t", mesageText, desiredDispLen);
+	multiLinePrintF("\n Background:\t", decadeInfo, desiredDispLen);
+	multiLinePrintF("\n\n Scripture:\t", scriptureText, desiredDispLen);
+	multiLinePrintF("\n Prayer:\t", prayerText, desiredDispLen);
+	printf("\n Bead Type:\t%s\n", beadType);
+
+	// footer
+	char *footerLabel = " Rosary Progress ";
+	int footerLabelLength = (int)strlen(footerLabel);
+	int diffLabelLength = desiredDispLen - (footerLabelLength - titleLabelLength);
+	borderCharPrintF("+", 3);
+	printf(footerLabel);
+	borderCharPrintF("+", diffLabelLength + 30);
+	printf("\n\n position:\t   %d / 315", rosaryPositionID);
+
+	if (loopBody == 1) {
+		printf("\n Decade Progress:    %d / 10\t\t Decade:    %d / 5", smallbeadPercent, decadeNo);
+	} else {
+		printf("\n Decade Progress:    %d / introduction", smallbeadPercent);
+	}
+
+	printf("\n Mystery Progress:   %d / 50\t\t Mystery:   %d / 4", mysteryPercent, mysteryNo);
+	printf("\n:");
+}
+
 // Main //
 int main() {
+
 	int isLinux = 1;
-	int rosaryPositionID, beadFK, decadeFK, messageFK, mysteryFK, prayerFK;
-	int scriptureFK, loopBody, smallbeadPercent, mysteryPercent;
-	int decadeNo, mysteryNo;
+	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0, prayerFK = 0;
+	int scriptureFK = 0, loopBody = 0, smallbeadPercent = 0, mysteryPercent = 0;
+	int decadeNo = 0, mysteryNo = 0;
 	int weekdayNo = 0;
 	int navigtionPosition = 0, desiredDispLen = 80;
-	int titleLabelLength, footerLabelLength, diffLabelLength;
 
 	char *beadType, *decadeName, *decadeInfo, *mesageText, *mysteryName;
 	char *scriptureText, *prayerText;
-	char *titleLabel, *footerLabel;
-
 
 	#ifdef linux
 		isLinux = 1;
@@ -271,6 +307,7 @@ int main() {
 
     while (navigtionPosition <= 315) {
 
+		// linux tty/posix display dimentions
         if(isLinux == 1) {
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // tty col/row
 			desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
@@ -298,40 +335,10 @@ int main() {
 		decadeNo = decade_dbArray[decadeFK].decadeNo;
 		mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
 
-		// header
-		titleLabel = " C/CSV Rosary ";
-		titleLabelLength = (int)strlen(titleLabel);
-		borderCharPrintF("+", 3);
-		printf(titleLabel);
-		borderCharPrintF("+", desiredDispLen + 30);
+		// Render output tty display
+		outputDisplay(mysteryName, decadeName, mesageText, decadeInfo, scriptureText, prayerText, beadType, rosaryPositionID, loopBody, decadeNo, smallbeadPercent, mysteryPercent, mysteryNo, desiredDispLen);
 
-		// body
-		printf("\n\n Mystery:\t%s", mysteryName);
-		printf("\n Decade:\t%s", decadeName);
-		multiLinePrintF("\n\t\t", mesageText, desiredDispLen);
-		multiLinePrintF("\n Background:\t", decadeInfo, desiredDispLen);
-		multiLinePrintF("\n\n Scripture:\t", scriptureText, desiredDispLen);
-		multiLinePrintF("\n Prayer:\t", prayerText, desiredDispLen);
-		printf("\n Bead Type:\t%s\n", beadType);
-
-		// footer
-		footerLabel = " Rosary Progress ";
-		footerLabelLength = (int)strlen(footerLabel);
-		diffLabelLength = desiredDispLen - (footerLabelLength - titleLabelLength);
-		borderCharPrintF("+", 3);
-		printf(footerLabel);
-		borderCharPrintF("+", diffLabelLength + 30);
-		printf("\n\n position:\t   %d / 315", rosaryPositionID);
-
-		if (loopBody == 1) {
-			printf("\n Decade Progress:    %d / 10\t\t Decade:    %d / 5", smallbeadPercent, decadeNo);
-		} else {
-			printf("\n Decade Progress:    %d / introduction", smallbeadPercent);
-		}
-
-		printf("\n Mystery Progress:   %d / 50\t\t Mystery:   %d / 4", mysteryPercent, mysteryNo);
-		printf("\n:");
-
+		// Navigation Input
 		navigtionPosition = pressKeyContinue(navigtionPosition, isLinux);
 		// getchar(); // pause for char input
 	}
