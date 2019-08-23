@@ -2,6 +2,8 @@
 
 #### About:
 
+version: ```v0.3``` Under Construction, Making a Gtk UI
+
 Yet another installment in my rosary app series. This version is a CLI desktop application written in C (gcc).
 
 * This app uses a CLI display interface.
