@@ -19,6 +19,31 @@
 #include <time.h>				// time_t
 #include "my-csv-parser.h"		// my own homework CSV parse functions & structs
 
+struct displayVariables_struct {
+	int rosaryPositionID;
+	int beadFK;
+	int decadeFK;
+	int messageFK;
+	int mysteryFK;
+	int prayerFK;
+	int scriptureFK;
+	int loopBody;
+	int smallbeadPercent;
+	int mysteryPercent;
+
+	char beadType[40];
+	char decadeName[800];
+	char decadeInfo[800];
+	char mesageText[150];
+	char mysteryName[100];
+	char scriptureText[500];
+	char prayerText[1250];
+	// remember to free string mem everywhere before exiting app (not required)
+
+	int decadeNo;
+	int mysteryNo;
+};
+
 // Prototypes //
 void clearScreen(int isLinux);
 void borderCharPrintF(char *charSymbol, int borderWidth);
@@ -27,7 +52,8 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength);
 int returnDayOfWeekFlag();
 int initialMystery(int weekdayNo);
 int pressKeyContinue(int navigtionPosition, int isLinux);
-void outputDisplay(char *mysteryName, char *decadeName, char *mesageText, char *decadeInfo, char *scriptureText, char *prayerText, char *beadType, int rosaryPositionID, int loopBody, int decadeNo, int smallbeadPercent, int mysteryPercent, int mysteryNo, int desiredDispLen);
+void outputTtyDisplay( struct displayVariables_struct displayVariables_t, int desiredDispLen );
+
 
 // Functions //
 void clearScreen(int isLinux) {
@@ -203,7 +229,7 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 	}
 }
 
-void outputDisplay(char *mysteryName, char *decadeName, char *mesageText, char *decadeInfo, char *scriptureText, char *prayerText, char *beadType, int rosaryPositionID, int loopBody, int decadeNo, int smallbeadPercent, int mysteryPercent, int mysteryNo, int desiredDispLen) {
+void outputTtyDisplay( struct displayVariables_struct displayVariables_t, int desiredDispLen) {
 
 	// header
 	char *titleLabel = " C/CSV Rosary ";
@@ -213,13 +239,13 @@ void outputDisplay(char *mysteryName, char *decadeName, char *mesageText, char *
 	borderCharPrintF("+", desiredDispLen + 30);
 
 	// body
-	printf("\n\n Mystery:\t%s", mysteryName);
-	printf("\n Decade:\t%s", decadeName);
-	multiLinePrintF("\n\t\t", mesageText, desiredDispLen);
-	multiLinePrintF("\n Background:\t", decadeInfo, desiredDispLen);
-	multiLinePrintF("\n\n Scripture:\t", scriptureText, desiredDispLen);
-	multiLinePrintF("\n Prayer:\t", prayerText, desiredDispLen);
-	printf("\n Bead Type:\t%s\n", beadType);
+	printf("\n\n Mystery:\t%s", displayVariables_t.mysteryName);
+	printf("\n Decade:\t%s", displayVariables_t.decadeName);
+	multiLinePrintF("\n\t\t", displayVariables_t.mesageText, desiredDispLen);
+	multiLinePrintF("\n Background:\t", displayVariables_t.decadeInfo, desiredDispLen);
+	multiLinePrintF("\n\n Scripture:\t", displayVariables_t.scriptureText, desiredDispLen);
+	multiLinePrintF("\n Prayer:\t", displayVariables_t.prayerText, desiredDispLen);
+	printf("\n Bead Type:\t%s\n", displayVariables_t.beadType);
 
 	// footer
 	char *footerLabel = " Rosary Progress ";
@@ -228,20 +254,24 @@ void outputDisplay(char *mysteryName, char *decadeName, char *mesageText, char *
 	borderCharPrintF("+", 3);
 	printf(footerLabel);
 	borderCharPrintF("+", diffLabelLength + 30);
-	printf("\n\n position:\t   %d / 315", rosaryPositionID);
+	printf("\n\n position:\t   %d / 315", displayVariables_t.rosaryPositionID);
 
-	if (loopBody == 1) {
-		printf("\n Decade Progress:    %d / 10\t\t Decade:    %d / 5", smallbeadPercent, decadeNo);
+	if (displayVariables_t.loopBody == 1) {
+		printf("\n Decade Progress:    %d / 10\t\t Decade:    %d / 5", displayVariables_t.smallbeadPercent, displayVariables_t.decadeNo);
 	} else {
-		printf("\n Decade Progress:    %d / introduction", smallbeadPercent);
+		printf("\n Decade Progress:    %d / introduction", displayVariables_t.smallbeadPercent);
 	}
 
-	printf("\n Mystery Progress:   %d / 50\t\t Mystery:   %d / 4", mysteryPercent, mysteryNo);
+	printf("\n Mystery Progress:   %d / 50\t\t Mystery:   %d / 4", displayVariables_t.mysteryPercent, displayVariables_t.mysteryNo);
 	printf("\n:");
+
 }
+
 
 // Main //
 int main() {
+
+
 
 	int isLinux = 1;
 	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0, prayerFK = 0;
@@ -289,6 +319,8 @@ int main() {
 	scripture_t *scripture_record_field = NULL;
 	scripture_t scripture_dbArray[202];
 
+	struct displayVariables_struct displayVariables_t;
+
 	/*
 	 * Populate my struct arrays
 	 * (single_struct, struct_array, max_chars_per_line, csv_file_path)
@@ -335,8 +367,31 @@ int main() {
 		decadeNo = decade_dbArray[decadeFK].decadeNo;
 		mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
 
+		displayVariables_t.rosaryPositionID = rosaryPositionID;
+		displayVariables_t.beadFK = beadFK;
+		displayVariables_t.decadeFK = decadeFK;
+		displayVariables_t.messageFK = messageFK;
+		displayVariables_t.mysteryFK = mysteryFK;
+		displayVariables_t.prayerFK = prayerFK;
+		displayVariables_t.scriptureFK = scriptureFK;
+		displayVariables_t.loopBody = loopBody;
+		displayVariables_t.smallbeadPercent = smallbeadPercent;
+		displayVariables_t.mysteryPercent = mysteryPercent;
+
+		// struct strings
+		strcpy( displayVariables_t.beadType, beadType);
+		strcpy( displayVariables_t.decadeName, decadeName);
+		strcpy( displayVariables_t.decadeInfo, decadeInfo);
+		strcpy( displayVariables_t.mesageText, mesageText);
+		strcpy( displayVariables_t.mysteryName, mysteryName);
+		strcpy( displayVariables_t.scriptureText, scriptureText);
+		strcpy( displayVariables_t.prayerText, prayerText);
+
+		displayVariables_t.decadeNo = decadeNo;
+		displayVariables_t.mysteryNo = mysteryNo;
+
 		// Render output tty display
-		outputDisplay(mysteryName, decadeName, mesageText, decadeInfo, scriptureText, prayerText, beadType, rosaryPositionID, loopBody, decadeNo, smallbeadPercent, mysteryPercent, mysteryNo, desiredDispLen);
+		outputTtyDisplay( displayVariables_t, desiredDispLen );
 
 		// Navigation Input
 		navigtionPosition = pressKeyContinue(navigtionPosition, isLinux);
