@@ -19,7 +19,7 @@
 #include <time.h>				// time_t
 #include "my-csv-parser.h"		// my own homework CSV parse functions & structs
 
-struct displayVariables_struct {
+typedef struct displayVariables_struct {
 	int rosaryPositionID;
 	int beadFK;
 	int decadeFK;
@@ -42,7 +42,7 @@ struct displayVariables_struct {
 
 	int decadeNo;
 	int mysteryNo;
-};
+} displayVariables_t;
 
 // Prototypes //
 void clearScreen(int isLinux);
@@ -52,7 +52,8 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength);
 int returnDayOfWeekFlag();
 int initialMystery(int weekdayNo);
 int pressKeyContinue(int navigtionPosition, int isLinux);
-void outputTtyDisplay( struct displayVariables_struct displayVariables_t, int desiredDispLen );
+void updateDisplayVariablesStruct(rosaryBead_t rosaryBead_dbArray[317], bead_t bead_dbArray[9], book_t book_dbArray[17], decade_t decade_dbArray[22], message_t message_dbArray[22], mystery_t mystery_dbArray[7], prayer_t prayer_dbArray[11], scripture_t scripture_dbArray[202], displayVariables_t *queryViewStruct, int navigtionPosition);
+void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen);
 
 
 // Functions //
@@ -229,7 +230,63 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 	}
 }
 
-void outputTtyDisplay( struct displayVariables_struct displayVariables_t, int desiredDispLen) {
+void updateDisplayVariablesStruct(rosaryBead_t rosaryBead_dbArray[317], bead_t bead_dbArray[9], book_t book_dbArray[17], decade_t decade_dbArray[22], message_t message_dbArray[22], mystery_t mystery_dbArray[7], prayer_t prayer_dbArray[11], scripture_t scripture_dbArray[202], displayVariables_t *queryViewStruct, int navigtionPosition) {
+
+	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0, prayerFK = 0;
+	int scriptureFK = 0, loopBody = 0, smallbeadPercent = 0, mysteryPercent = 0;
+	int decadeNo = 0, mysteryNo = 0;
+
+	char *beadType, *decadeName, *decadeInfo, *mesageText, *mysteryName;
+	char *scriptureText, *prayerText;
+
+	rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
+	beadFK = rosaryBead_dbArray[navigtionPosition].beadIndex;
+	decadeFK = rosaryBead_dbArray[navigtionPosition].decadeIndex;
+	messageFK = rosaryBead_dbArray[navigtionPosition].messageIndex;
+	mysteryFK = rosaryBead_dbArray[navigtionPosition].mysteryIndex;
+	prayerFK = rosaryBead_dbArray[navigtionPosition].prayerIndex;
+	scriptureFK = rosaryBead_dbArray[navigtionPosition].scriptureIndex;
+	loopBody = rosaryBead_dbArray[navigtionPosition].loopBody;
+	smallbeadPercent = rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
+	mysteryPercent = rosaryBead_dbArray[navigtionPosition].mysteryPercent;
+
+	beadType = bead_dbArray[beadFK].beadType;
+	decadeName = decade_dbArray[decadeFK].decadeName;
+	decadeInfo = decade_dbArray[decadeFK].decadeInfo;
+	mesageText = message_dbArray[messageFK].mesageText;
+	mysteryName = mystery_dbArray[mysteryFK].mysteryName;
+	scriptureText = scripture_dbArray[scriptureFK].scriptureText;
+	prayerText = prayer_dbArray[prayerFK].prayerText;
+
+	decadeNo = decade_dbArray[decadeFK].decadeNo;
+	mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
+
+	queryViewStruct -> rosaryPositionID = rosaryPositionID;
+	queryViewStruct -> beadFK = beadFK;
+	queryViewStruct -> decadeFK = decadeFK;
+	queryViewStruct -> messageFK = messageFK;
+	queryViewStruct -> mysteryFK = mysteryFK;
+	queryViewStruct -> prayerFK = prayerFK;
+	queryViewStruct -> scriptureFK = scriptureFK;
+	queryViewStruct -> loopBody = loopBody;
+	queryViewStruct -> smallbeadPercent = smallbeadPercent;
+	queryViewStruct -> mysteryPercent = mysteryPercent;
+
+	// struct strings
+	strcpy( queryViewStruct -> beadType, beadType);
+	strcpy( queryViewStruct -> decadeName, decadeName);
+	strcpy( queryViewStruct -> decadeInfo, decadeInfo);
+	strcpy( queryViewStruct -> mesageText, mesageText);
+	strcpy( queryViewStruct -> mysteryName, mysteryName);
+	strcpy( queryViewStruct -> scriptureText, scriptureText);
+	strcpy( queryViewStruct -> prayerText, prayerText);
+
+	queryViewStruct -> decadeNo = decadeNo;
+	queryViewStruct -> mysteryNo = mysteryNo;
+
+}
+
+void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen) {
 
 	// header
 	char *titleLabel = " C/CSV Rosary ";
@@ -239,13 +296,13 @@ void outputTtyDisplay( struct displayVariables_struct displayVariables_t, int de
 	borderCharPrintF("+", desiredDispLen + 30);
 
 	// body
-	printf("\n\n Mystery:\t%s", displayVariables_t.mysteryName);
-	printf("\n Decade:\t%s", displayVariables_t.decadeName);
-	multiLinePrintF("\n\t\t", displayVariables_t.mesageText, desiredDispLen);
-	multiLinePrintF("\n Background:\t", displayVariables_t.decadeInfo, desiredDispLen);
-	multiLinePrintF("\n\n Scripture:\t", displayVariables_t.scriptureText, desiredDispLen);
-	multiLinePrintF("\n Prayer:\t", displayVariables_t.prayerText, desiredDispLen);
-	printf("\n Bead Type:\t%s\n", displayVariables_t.beadType);
+	printf("\n\n Mystery:\t%s", queryViewStruct.mysteryName);
+	printf("\n Decade:\t%s", queryViewStruct.decadeName);
+	multiLinePrintF("\n\t\t", queryViewStruct.mesageText, desiredDispLen);
+	multiLinePrintF("\n Background:\t", queryViewStruct.decadeInfo, desiredDispLen);
+	multiLinePrintF("\n\n Scripture:\t", queryViewStruct.scriptureText, desiredDispLen);
+	multiLinePrintF("\n Prayer:\t", queryViewStruct.prayerText, desiredDispLen);
+	printf("\n Bead Type:\t%s\n", queryViewStruct.beadType);
 
 	// footer
 	char *footerLabel = " Rosary Progress ";
@@ -254,15 +311,15 @@ void outputTtyDisplay( struct displayVariables_struct displayVariables_t, int de
 	borderCharPrintF("+", 3);
 	printf(footerLabel);
 	borderCharPrintF("+", diffLabelLength + 30);
-	printf("\n\n position:\t   %d / 315", displayVariables_t.rosaryPositionID);
+	printf("\n\n position:\t   %d / 315", queryViewStruct.rosaryPositionID);
 
-	if (displayVariables_t.loopBody == 1) {
-		printf("\n Decade Progress:    %d / 10\t\t Decade:    %d / 5", displayVariables_t.smallbeadPercent, displayVariables_t.decadeNo);
+	if (queryViewStruct.loopBody == 1) {
+		printf("\n Decade Progress:    %d / 10\t\t Decade:    %d / 5", queryViewStruct.smallbeadPercent, queryViewStruct.decadeNo);
 	} else {
-		printf("\n Decade Progress:    %d / introduction", displayVariables_t.smallbeadPercent);
+		printf("\n Decade Progress:    %d / introduction", queryViewStruct.smallbeadPercent);
 	}
 
-	printf("\n Mystery Progress:   %d / 50\t\t Mystery:   %d / 4", displayVariables_t.mysteryPercent, displayVariables_t.mysteryNo);
+	printf("\n Mystery Progress:   %d / 50\t\t Mystery:   %d / 4", queryViewStruct.mysteryPercent, queryViewStruct.mysteryNo);
 	printf("\n:");
 
 }
@@ -271,17 +328,9 @@ void outputTtyDisplay( struct displayVariables_struct displayVariables_t, int de
 // Main //
 int main() {
 
-
-
 	int isLinux = 1;
-	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0, prayerFK = 0;
-	int scriptureFK = 0, loopBody = 0, smallbeadPercent = 0, mysteryPercent = 0;
-	int decadeNo = 0, mysteryNo = 0;
 	int weekdayNo = 0;
 	int navigtionPosition = 0, desiredDispLen = 80;
-
-	char *beadType, *decadeName, *decadeInfo, *mesageText, *mysteryName;
-	char *scriptureText, *prayerText;
 
 	#ifdef linux
 		isLinux = 1;
@@ -319,7 +368,9 @@ int main() {
 	scripture_t *scripture_record_field = NULL;
 	scripture_t scripture_dbArray[202];
 
-	struct displayVariables_struct displayVariables_t;
+
+	//struct displayVariables_struct displayVariables_t;
+	displayVariables_t queryViewStruct;
 
 	/*
 	 * Populate my struct arrays
@@ -345,53 +396,11 @@ int main() {
 			desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
         }
 
-		rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
-		beadFK = rosaryBead_dbArray[navigtionPosition].beadIndex;
-		decadeFK = rosaryBead_dbArray[navigtionPosition].decadeIndex;
-		messageFK = rosaryBead_dbArray[navigtionPosition].messageIndex;
-		mysteryFK = rosaryBead_dbArray[navigtionPosition].mysteryIndex;
-		prayerFK = rosaryBead_dbArray[navigtionPosition].prayerIndex;
-		scriptureFK = rosaryBead_dbArray[navigtionPosition].scriptureIndex;
-		loopBody = rosaryBead_dbArray[navigtionPosition].loopBody;
-		smallbeadPercent = rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
-		mysteryPercent = rosaryBead_dbArray[navigtionPosition].mysteryPercent;
-
-		beadType = bead_dbArray[beadFK].beadType;
-		decadeName = decade_dbArray[decadeFK].decadeName;
-		decadeInfo = decade_dbArray[decadeFK].decadeInfo;
-		mesageText = message_dbArray[messageFK].mesageText;
-		mysteryName = mystery_dbArray[mysteryFK].mysteryName;
-		scriptureText = scripture_dbArray[scriptureFK].scriptureText;
-		prayerText = prayer_dbArray[prayerFK].prayerText;
-
-		decadeNo = decade_dbArray[decadeFK].decadeNo;
-		mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
-
-		displayVariables_t.rosaryPositionID = rosaryPositionID;
-		displayVariables_t.beadFK = beadFK;
-		displayVariables_t.decadeFK = decadeFK;
-		displayVariables_t.messageFK = messageFK;
-		displayVariables_t.mysteryFK = mysteryFK;
-		displayVariables_t.prayerFK = prayerFK;
-		displayVariables_t.scriptureFK = scriptureFK;
-		displayVariables_t.loopBody = loopBody;
-		displayVariables_t.smallbeadPercent = smallbeadPercent;
-		displayVariables_t.mysteryPercent = mysteryPercent;
-
-		// struct strings
-		strcpy( displayVariables_t.beadType, beadType);
-		strcpy( displayVariables_t.decadeName, decadeName);
-		strcpy( displayVariables_t.decadeInfo, decadeInfo);
-		strcpy( displayVariables_t.mesageText, mesageText);
-		strcpy( displayVariables_t.mysteryName, mysteryName);
-		strcpy( displayVariables_t.scriptureText, scriptureText);
-		strcpy( displayVariables_t.prayerText, prayerText);
-
-		displayVariables_t.decadeNo = decadeNo;
-		displayVariables_t.mysteryNo = mysteryNo;
+		// update display content struct
+		updateDisplayVariablesStruct(rosaryBead_dbArray, bead_dbArray, book_dbArray, decade_dbArray, message_dbArray, mystery_dbArray, prayer_dbArray, scripture_dbArray, &queryViewStruct, navigtionPosition);
 
 		// Render output tty display
-		outputTtyDisplay( displayVariables_t, desiredDispLen );
+		outputTtyDisplay( queryViewStruct, desiredDispLen );
 
 		// Navigation Input
 		navigtionPosition = pressKeyContinue(navigtionPosition, isLinux);
