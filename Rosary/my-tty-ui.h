@@ -24,10 +24,22 @@ typedef struct displayVariables_struct {
 	char mysteryName[100];
 	char scriptureText[500];
 	char prayerText[1250];
-	// remember to free string mem everywhere before exiting app (not required)
 
 	int decadeNo;
 	int mysteryNo;
+
+	// Needed for my-gtk-ui.h loaded by mainGtk.c
+	GtkWidget *lblTextMystery;
+	GtkWidget *lblTextDecade;
+	GtkWidget *lblTextDecadeMessage;
+	GtkWidget *lblTextBackground;
+	GtkWidget *lblTextScripture;
+	GtkWidget *lblTextPrayer;
+	GtkWidget *lblTextBeadType;
+	GtkWidget *lblTextBeadNo;
+	GtkWidget *lblTextDecadeProgress;
+	GtkWidget *lblTextMysteryProgress;
+
 } displayVariables_t;
 
 

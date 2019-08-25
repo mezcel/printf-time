@@ -23,7 +23,7 @@ Yet another installment in my rosary app series. This version is a CLI desktop a
 	* CSV db
 	* Based off of [python-curses](https://github.com/mezcel/python-curses.git) and [jq-tput-terminal](https://github.com/mezcel/jq-tput-terminal.git)
 
-[quick demo recording](https://asciinema.org/a/262232) ***Not the latest version.***
+[quick demo recording](https://asciinema.org/a/262232) *** An earlier stop point version.***
 
 [![asciicast](https://asciinema.org/a/262232.svg)](https://asciinema.org/a/262232)
 
@@ -44,16 +44,18 @@ gcc main.c -o main
 ```
 
 Dependencies:
-
-* gcc (compiler)
-* text editor (code dev)
-* gdb (developer debug)
+* Development Environment:
+	* gcc (compiler) v6+
+	* text editor (code dev)
+	* gdb (developer debug)
+	* Linux/MinGW/WLS
 
 #### Development Status:
 
-* The main app is complete
-* Continued development will be on beautification and display UI.
-* Incorporate PFM and other fiesta/date related flags and events
+* The main TTY app is complete. (beautification will be continued)
+* Working on a integrating the C script into a GTK desktop GUI
+* Revisit and embellish the CSV parsing
+	* Perhaps embellish my  ```;``` to ```<semicolon>``` workaround
 
 #### Development Perspective:
 
@@ -71,8 +73,9 @@ Text DB Parse:
 
 * Temporary Workaround: I converter the ```;``` char to ```<semicolon>``` string within each Token attribute string in order to simplify regex parsing.
 
-Dev Environment (GCC Development):
 
-* Gcc ```v6.9``` The default on Debian 9
-* Gdb debugger
-* Developed on WLS for convenient migration into MinGw.
+Disclaimer (Using Procedural in an Object Oriented style app):
+
+* Gtk is unapologetically an object oriented API.
+* C is a procedural language. I ended up making stucts which mimic the object usecases used in OOP languages like: Javascript, Python, ect...
+* An OOP syntax interface is good at object inheritance, the stucts use in my code have to be manually passed into and through all instances it values are called.

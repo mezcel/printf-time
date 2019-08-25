@@ -15,7 +15,11 @@ version: ```v0.2.1```
 	* Intended as a standalone app
 	* Main features are working and complete
 	* Display UI works but ```beautification``` is under construction
-	* [quick demo recording](https://asciinema.org/a/262232)  ** Older version: ```v0.2.?``` **
+	* [outdated TYT demo recording](https://asciinema.org/a/262232)  ** Older stop point version: ```v0.2.?``` **
+	* GTK Option (under construction)
+		* Desktop GUI
+		* Integrating my procedural script into an OOP API
+		* Written and compiled in C/Gcc
 
 ### Future Development:
 
