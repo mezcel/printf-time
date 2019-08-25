@@ -2,7 +2,7 @@
 
 #### About:
 
-version: ```v0.3``` Under Construction, Making a Gtk UI
+version: ```v0.3``` Under Construction, Making a Gtk UI (stuck on passing structs/multi-vars using button callbacks)
 
 Yet another installment in my rosary app series. This version is a CLI desktop application written in C (gcc).
 
@@ -11,7 +11,7 @@ Yet another installment in my rosary app series. This version is a CLI desktop a
 	* it's not pretty, but it has a symetrical and justified layout
 	* i deliberately avoided cuses to encourage easier cross-app portability
 * libraries:
-	* <stdio.h>	// standard default C library
+	* <stdio.h>		// standard default C library
 	* <stdlib.h>	// calloc()/realloc()/malloc(), system(), free()
 	* <string.h>	// workhorse header for CLI string manipulation
 	* <time.h>
