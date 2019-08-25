@@ -15,7 +15,7 @@ version: ```v0.2.1```
 	* Intended as a standalone app
 	* Main features are working and complete
 	* Display UI works but ```beautification``` is under construction
-	* [quick demo recording](https://asciinema.org/a/262232)  **Not the latest version.**
+	* [quick demo recording](https://asciinema.org/a/262232)  ** Older version: ```v0.2.?``` **
 
 ### Future Development:
 
