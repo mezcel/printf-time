@@ -9,7 +9,7 @@
 static int count = 0;
 
 void closeApp(GtkWidget *button, gpointer data);
-void changeLabel(GtkWidget *button, gpointer data[10]);
+void changeLabel(GtkWidget *button, displayVariables_t *queryViewStruct);
 void initGtkWindow(displayVariables_t queryViewStruct);
 
 // Gtk Functions
@@ -18,50 +18,7 @@ void closeApp(GtkWidget *button, gpointer data) {
 	gtk_main_quit();
 }
 
-void changeLabel(GtkWidget *button, gpointer data[10]) {
-	count = count + 1;
-
-	char countChar[sizeof(count)]; // x86/c64: 4 bytes
-	sprintf(countChar, "%d", count); // int to string
-
-	gtk_label_set_text(data[0], "Changed Label Text 0");
-	gtk_label_set_text(data[1], "Changed Label Text 1");
-	gtk_label_set_text(data[2], "Changed Label Text 2");
-	gtk_label_set_text(data[3], "Changed Label Text 3");
-	gtk_label_set_text(data[4], "Changed Label Text 4");
-	gtk_label_set_text(data[5], "Changed Label Text 5");
-	gtk_label_set_text(data[6], "Changed Label Text 6");
-	gtk_label_set_text(data[7], countChar );
-	gtk_label_set_text(data[8], "Changed Label Text 8");
-	gtk_label_set_text(data[9], "Changed Label Text 9");
-
-	printf("\n button pressed %lu \n", sizeof(count)); // terminal update
-}
-
-void changeLabel2(GtkWidget *button, displayVariables_t *queryViewStruct) {
-	/*int tmpCounter = queryViewStruct->rosaryPositionID;
-	queryViewStruct->rosaryPositionID = tmpCounter + 1;
-
-	printf("\n%s, %d\n",queryViewStruct->beadType, queryViewStruct->rosaryPositionID);*/
-
-	/*int rosaryPositionID;
-	int beadFK;
-	int decadeFK;
-	int messageFK;
-	int mysteryFK;
-	int prayerFK;
-	int scriptureFK;
-	int loopBody;
-	int smallbeadPercent;
-	int mysteryPercent;
-
-	char beadType[40];
-	char decadeName[800];
-	char decadeInfo[800];
-	char mesageText[150];
-	char mysteryName[100];
-	char scriptureText[500];
-	char prayerText[1250];*/
+void changeLabel(GtkWidget *button, displayVariables_t *queryViewStruct) {
 
 	int rosaryPositionID = queryViewStruct->rosaryPositionID;
 	int smallbeadPercent = queryViewStruct->smallbeadPercent;
@@ -136,29 +93,6 @@ void initGtkWindow(displayVariables_t queryViewStruct) {
 	gtk_misc_set_alignment(GTK_MISC(lblNamePrayer), 0.0f, 0.0f);
 	gtk_misc_set_alignment(GTK_MISC(lblNameBeadType), 0.0f, 0.0f);
 
-	/*GtkWidget *lblTextMystery = gtk_label_new("");
-	GtkWidget *lblTextDecade = gtk_label_new("");
-	GtkWidget *lblTextDecadeMessage = gtk_label_new("");
-	GtkWidget *lblTextBackground = gtk_label_new("");
-	GtkWidget *lblTextScripture = gtk_label_new("");
-	GtkWidget *lblTextPrayer = gtk_label_new("");
-	GtkWidget *lblTextBeadType = gtk_label_new("");
-	GtkWidget *lblTextBeadNo = gtk_label_new("0");
-	GtkWidget *lblTextDecadeProgress = gtk_label_new("0/10");
-	GtkWidget *lblTextMysteryProgress = gtk_label_new("0/50");
-	GtkWidget *labelTextArray[10] = {lblTextMystery, lblTextDecade, lblTextDecadeMessage, lblTextBackground, lblTextScripture, lblTextPrayer, lblTextBeadType, lblTextBeadNo, lblTextDecadeProgress, lblTextMysteryProgress};
-	queryViewStruct.labelTextArray[0] = lblTextMystery;
-	queryViewStruct.labelTextArray[1] = lblTextDecade;
-	queryViewStruct.labelTextArray[2] = lblTextDecadeMessage;
-	queryViewStruct.labelTextArray[3] = lblTextBackground;
-	queryViewStruct.labelTextArray[4] = lblTextScripture;
-	queryViewStruct.labelTextArray[5] = lblTextPrayer;
-	queryViewStruct.labelTextArray[6] = lblTextBeadType;
-	queryViewStruct.labelTextArray[7] = lblTextBeadNo;
-	queryViewStruct.labelTextArray[8] = lblTextDecadeProgress;
-	queryViewStruct.labelTextArray[9] = lblTextMysteryProgress;
-	queryViewStruct.lblTextBeadType = gtk_label_new("btype");*/
-
 	queryViewStruct.lblTextMystery = gtk_label_new(" ");
 	queryViewStruct.lblTextDecade = gtk_label_new(" ");
 	queryViewStruct.lblTextDecadeMessage = gtk_label_new(" ");
@@ -185,14 +119,6 @@ void initGtkWindow(displayVariables_t queryViewStruct) {
 	gtk_box_pack_start( GTK_BOX(vboxLabelColumn), lblNameBeadType, FALSE, FALSE, 2 );
 
 	// Text Col
-	/*gtk_box_pack_start( GTK_BOX(hboxReadingRow), vboxTextColumn, FALSE, FALSE, 10 );
-	gtk_box_pack_start( GTK_BOX(vboxTextColumn), lblTextMystery, FALSE, FALSE, 2 );
-	gtk_box_pack_start( GTK_BOX(vboxTextColumn), lblTextDecade, FALSE, FALSE, 2 );
-	gtk_box_pack_start( GTK_BOX(vboxTextColumn), lblTextDecadeMessage, FALSE, FALSE, 2 );
-	gtk_box_pack_start( GTK_BOX(vboxTextColumn), lblTextBackground, FALSE, FALSE, 2 );
-	gtk_box_pack_start( GTK_BOX(vboxTextColumn), lblTextScripture, FALSE, FALSE, 2 );
-	gtk_box_pack_start( GTK_BOX(vboxTextColumn), lblTextPrayer, FALSE, FALSE, 2 );
-	gtk_box_pack_start( GTK_BOX(vboxTextColumn), lblTextBeadType, FALSE, FALSE, 2 );*/
 
 	gtk_box_pack_start( GTK_BOX(hboxReadingRow), vboxTextColumn, FALSE, FALSE, 10 );
 	gtk_box_pack_start( GTK_BOX(vboxTextColumn), queryViewStruct.lblTextMystery, FALSE, FALSE, 2 );
@@ -205,26 +131,21 @@ void initGtkWindow(displayVariables_t queryViewStruct) {
 
 	// Progress Row
 	gtk_box_pack_start( GTK_BOX(hboxProgressRow), vboxDecadeProgressColumn, TRUE, TRUE, 10 );
-		//gtk_box_pack_start( GTK_BOX(vboxDecadeProgressColumn), lblTextDecadeProgress, TRUE, TRUE, 2 );
 		gtk_box_pack_start( GTK_BOX(vboxDecadeProgressColumn), queryViewStruct.lblTextDecadeProgress, TRUE, TRUE, 2 );
 	gtk_box_pack_start( GTK_BOX(hboxProgressRow), vboxMysteryProgressColumn, TRUE, TRUE, 10 );
-		//gtk_box_pack_start( GTK_BOX(vboxMysteryProgressColumn), lblTextMysteryProgress, TRUE, TRUE, 2 );
 		gtk_box_pack_start( GTK_BOX(vboxMysteryProgressColumn), queryViewStruct.lblTextMysteryProgress, TRUE, TRUE, 2 );
 
 	// Button Row
 	gtk_box_pack_start( GTK_BOX(hboxButtonRow), vboxLeftButtonColumn, FALSE, FALSE, 10 );
 		gtk_box_pack_start( GTK_BOX(vboxLeftButtonColumn), backButton, FALSE, FALSE, 2 );
 	gtk_box_pack_start( GTK_BOX(hboxButtonRow), vboxBeadCounterColumn, TRUE, TRUE, 10 );
-		/*gtk_box_pack_start( GTK_BOX(vboxBeadCounterColumn), lblTextBeadNo, TRUE, TRUE, 2 );
-		gtk_box_pack_start( GTK_BOX(vboxBeadCounterColumn), lblTextBeadType, TRUE, TRUE, 2 );*/
 		gtk_box_pack_start( GTK_BOX(vboxBeadCounterColumn), queryViewStruct.lblTextBeadNo, TRUE, TRUE, 2 );
 		gtk_box_pack_start( GTK_BOX(vboxBeadCounterColumn), queryViewStruct.lblTextBeadType, TRUE, TRUE, 2 );
 	gtk_box_pack_start( GTK_BOX(hboxButtonRow), vboxRightButtonColumn, FALSE, FALSE, 10 );
 		gtk_box_pack_start( GTK_BOX(vboxRightButtonColumn), nextButton, FALSE, FALSE, 2 );
 
-	//g_signal_connect( GTK_OBJECT(backButton), "clicked", GTK_SIGNAL_FUNC(closeApp), NULL);
-	//g_signal_connect( GTK_OBJECT(nextButton), "clicked", GTK_SIGNAL_FUNC(changeLabel), labelTextArray );
-	g_signal_connect( GTK_OBJECT(backButton), "clicked", GTK_SIGNAL_FUNC(changeLabel2), (gpointer*)&queryViewStruct );
+	g_signal_connect( GTK_OBJECT(backButton), "clicked", GTK_SIGNAL_FUNC(closeApp), NULL);
+	g_signal_connect( GTK_OBJECT(nextButton), "clicked", GTK_SIGNAL_FUNC(changeLabel), (gpointer*)&queryViewStruct );
 
 	// Package objects in a col
 	gtk_box_pack_start( GTK_BOX(hboxTopContainerColumn), hboxReadingRow, FALSE, FALSE, 10 );
