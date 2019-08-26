@@ -1,8 +1,8 @@
-## printf-time /Rosary
+## printf-time ./Rosary/
 
 #### About:
 
-version: ```v0.3``` Under Construction, Making a Gtk UI (stuck on passing structs/multi-vars using button callbacks)
+version: ```v0.3``` Under Construction, Making a Gtk UI (stuck on dynamic resizing)
 
 Yet another installment in my rosary app series. This version is a CLI desktop application written in C (gcc).
 
@@ -45,12 +45,13 @@ gcc main.c -o main
 ```
 
 #### Desktop GUI window version, Gtk
+```./gtk-wip/```
 ```bash
 ## Complile:
 gcc -Wall -o "mainGtk" "mainGtk.c" `pkg-config --cflags --libs gtk+-2.0`
 
 ## RUN:
-./main
+./mainGtk
 ```
 
 Dependencies:
@@ -86,6 +87,6 @@ Text DB Parse:
 
 Disclaimer (Using Procedural in an Object Oriented style app):
 
-* Gtk is unapologetically an object oriented API.
+* Gtk is an object oriented API.
 * C is a procedural language. I ended up making stucts which mimic the object usecases used in OOP languages like: Javascript, Python, ect...
 * An OOP syntax interface is good at object inheritance, the stucts use in my code have to be manually passed into and through all instances it values are called.

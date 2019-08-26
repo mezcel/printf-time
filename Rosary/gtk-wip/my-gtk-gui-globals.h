@@ -1,8 +1,7 @@
 /*
- * my-gtk-gui.h
- * dependancies: my-csv-parser.h
- * called by: main.c
- * compile: gcc -Wall -o "mainGtk" "mainGtk.c" `pkg-config --cflags --libs gtk+-2.0`
+ * my-gtk-gui-globals.h (UI trial ane error testing)
+ * dependancies: ../my-csv-parser.h
+ * called by: mainGtk-globals.c
  * */
 
 typedef struct displayVariables_struct {
@@ -40,12 +39,45 @@ typedef struct displayVariables_struct {
 	GtkWidget *lblTextDecadeProgress;
 	GtkWidget *lblTextMysteryProgress;
 
+
+
 } displayVariables_t;
+
+	int weekdayNo = 0;
+	int navigtionPosition = 0;
+
+	// Name my strtuct variables
+	rosaryBead_t *rosaryBead_record_field = NULL;
+	rosaryBead_t rosaryBead_dbArray[317];
+
+	bead_t *bead_record_field = NULL;
+	bead_t bead_dbArray[9];
+
+	book_t *book_record_field = NULL;
+	book_t book_dbArray[17];
+
+	decade_t *decade_record_field = NULL;
+	decade_t decade_dbArray[22];
+
+	message_t *message_record_field = NULL;
+	message_t message_dbArray[22];
+
+	mystery_t *mystery_record_field = NULL;
+	mystery_t mystery_dbArray[7];
+
+	prayer_t *prayer_record_field = NULL;
+	prayer_t prayer_dbArray[11];
+
+	scripture_t *scripture_record_field = NULL;
+	scripture_t scripture_dbArray[202];
+
+	//struct displayVariables_struct displayVariables_t;
+	displayVariables_t queryViewStruct;
 
 // Gtk prototypes
 int returnDayOfWeekFlag();
 int initialMystery(int weekdayNo);
-void updateDisplayVariablesStruct(rosaryBead_t rosaryBead_dbArray[317], bead_t bead_dbArray[9], book_t book_dbArray[17], decade_t decade_dbArray[22], message_t message_dbArray[22], mystery_t mystery_dbArray[7], prayer_t prayer_dbArray[11], scripture_t scripture_dbArray[202], displayVariables_t *queryViewStruct, int navigtionPosition);
+void updateDisplayVariablesStruct( displayVariables_t *queryViewStruct, int navigtionPosition);
 
 // Callbacks
 void closeApp(GtkWidget *button, gpointer data);
@@ -109,7 +141,7 @@ int initialMystery(int weekdayNo) {
 	return navigtionPosition;
 }
 
-void updateDisplayVariablesStruct(rosaryBead_t rosaryBead_dbArray[317], bead_t bead_dbArray[9], book_t book_dbArray[17], decade_t decade_dbArray[22], message_t message_dbArray[22], mystery_t mystery_dbArray[7], prayer_t prayer_dbArray[11], scripture_t scripture_dbArray[202], displayVariables_t *queryViewStruct, int navigtionPosition) {
+void updateDisplayVariablesStruct(displayVariables_t *queryViewStruct, int navigtionPosition) {
 
 	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0, prayerFK = 0;
 	int scriptureFK = 0, loopBody = 0, smallbeadPercent = 0, mysteryPercent = 0;
@@ -172,6 +204,8 @@ void closeApp(GtkWidget *button, gpointer data) {
 }
 
 void changeLabel(GtkWidget *button, displayVariables_t *queryViewStruct) {
+	navigtionPosition++;
+	updateDisplayVariablesStruct(queryViewStruct, navigtionPosition);
 
 	int rosaryPositionID = queryViewStruct->rosaryPositionID;
 	int smallbeadPercent = queryViewStruct->smallbeadPercent;
@@ -195,6 +229,8 @@ void changeLabel(GtkWidget *button, displayVariables_t *queryViewStruct) {
 	gtk_label_set_text(GTK_LABEL(queryViewStruct->lblTextBeadNo), rosaryPositionIDChar);
 	gtk_label_set_text(GTK_LABEL(queryViewStruct->lblTextDecadeProgress), smallbeadPercentChar);
 	gtk_label_set_text(GTK_LABEL(queryViewStruct->lblTextMysteryProgress), mysteryPercentChar);
+
+
 
 }
 
@@ -223,7 +259,12 @@ void initGtkWindow(displayVariables_t queryViewStruct) {
 	// window
 	gtk_window_set_title(GTK_WINDOW(window), "C/CSV Rosary");
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-	gtk_window_set_default_size(GTK_WINDOW(window), 1000,800);
+	//gtk_window_set_default_size(GTK_WINDOW(window), 1000,800);
+
+	GdkGeometry gdkGeometry;
+    gdkGeometry.min_width = 60;
+    gdkGeometry.min_height = 60;
+    gtk_window_set_geometry_hints (GTK_WINDOW (window), window, &gdkGeometry, GDK_HINT_MIN_SIZE);
 
 	// Define Labels
 	GtkWidget *lblNameMystery = gtk_label_new("Mystery:");
@@ -246,12 +287,18 @@ void initGtkWindow(displayVariables_t queryViewStruct) {
 	gtk_misc_set_alignment(GTK_MISC(lblNamePrayer), 0.0f, 0.0f);
 	gtk_misc_set_alignment(GTK_MISC(lblNameBeadType), 0.0f, 0.0f);
 
-	queryViewStruct.lblTextMystery = gtk_label_new(" ");
-	queryViewStruct.lblTextDecade = gtk_label_new(" ");
-	queryViewStruct.lblTextDecadeMessage = gtk_label_new(" ");
-	queryViewStruct.lblTextBackground = gtk_label_new(" ");
-	queryViewStruct.lblTextScripture = gtk_label_new(" ");
-	queryViewStruct.lblTextPrayer = gtk_label_new(" ");
+	queryViewStruct.lblTextMystery = gtk_label_new(" "); //gtk_label_set_line_wrap(GTK_LABEL(queryViewStruct.lblTextMystery), TRUE);
+	queryViewStruct.lblTextDecade = gtk_label_new(" "); //gtk_label_set_line_wrap(GTK_LABEL(queryViewStruct.lblTextDecade), TRUE);
+	queryViewStruct.lblTextDecadeMessage = gtk_label_new(" "); //gtk_label_set_line_wrap(GTK_LABEL(queryViewStruct.lblTextDecadeMessage), TRUE);
+	queryViewStruct.lblTextBackground = gtk_label_new(" "); //gtk_label_set_line_wrap(GTK_LABEL(queryViewStruct.lblTextBackground), TRUE);
+	queryViewStruct.lblTextScripture = gtk_label_new(" "); //gtk_label_set_line_wrap(GTK_LABEL(queryViewStruct.lblTextScripture), TRUE);
+	queryViewStruct.lblTextPrayer = gtk_label_new(" "); //gtk_label_set_line_wrap(GTK_LABEL(queryViewStruct.lblTextPrayer), TRUE);
+
+		gtk_misc_set_alignment (GTK_MISC (queryViewStruct.lblTextPrayer), 0, 0);
+		gtk_label_set_line_wrap (GTK_LABEL (queryViewStruct.lblTextPrayer), TRUE);
+		gtk_label_set_use_markup (GTK_LABEL (queryViewStruct.lblTextPrayer), TRUE);
+		gtk_container_set_border_width (GTK_CONTAINER (queryViewStruct.lblTextPrayer), 100);
+
 	queryViewStruct.lblTextBeadType = gtk_label_new(" ");
 	queryViewStruct.lblTextBeadNo = gtk_label_new(" ");
 	queryViewStruct.lblTextDecadeProgress = gtk_label_new("0/10");
