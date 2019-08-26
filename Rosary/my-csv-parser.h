@@ -3,31 +3,12 @@
  * */
 
 /*
- *  Dependancies:
- *		stdio.h
- *		stdlib.h
- *		string.h
- *
- *	Depends on the following .csv files:
- *		bead.csv
- *		decade.csv
- *		message.csv
- *		mystery.csv
- *		prayer.csv
- *		rosaryBead.csv
- * 		scripture.csv
- *
- * 		One .csv mega-file option:
- * 			rosaryJSON-nab.json
- * 			note: I did not make a struct for this (yet), but it follows
- * 				the	same algorithm
- *
+ *  Dependencies: stdio.h, stdlib.h, string.h
+ *	Database .csv files: bead.csv, decade.csv, message.csv, mystery.csv,
+ *		prayer.csv, rosaryBead.csv, scripture.csv
  * 	Background:
- * 		I first made my NoSql DB in a JSON format.
  * 		I used npm's json2csv, https://www.csvjson.com/json2csv to
  * 			to convert json to csv
- * 		I chose to use csv instead of json because CSV is easier to
- * 			parse, and since C is legacy software, csv is too
  * */
 
 typedef struct rosaryBead_struct {
