@@ -31,6 +31,7 @@ Instructions:
 
 * Requires gcc or any tool designed to Compile C.
 
+#### Command line tty version
 ```bash
 ## Compile:
 gcc main.c -o main
@@ -41,6 +42,15 @@ gcc main.c -o main
 ## Use Navigate:
 #  [Enter] to navigate forward 1 step
 #  "b" and then [Enter] in sequence to navigate backwards
+```
+
+#### Desktop GUI window version, Gtk
+```bash
+## Complile:
+gcc -Wall -o "mainGtk" "mainGtk.c" `pkg-config --cflags --libs gtk+-2.0`
+
+## RUN:
+./main
 ```
 
 Dependencies:
