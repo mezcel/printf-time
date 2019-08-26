@@ -5,14 +5,167 @@
  * compile: gcc -Wall -o "mainGtk" "mainGtk.c" `pkg-config --cflags --libs gtk+-2.0`
  * */
 
-// Gtk prototypes
-static int count = 0;
+typedef struct displayVariables_struct {
+	int rosaryPositionID;
+	int beadFK;
+	int decadeFK;
+	int messageFK;
+	int mysteryFK;
+	int prayerFK;
+	int scriptureFK;
+	int loopBody;
+	int smallbeadPercent;
+	int mysteryPercent;
 
+	char beadType[40];
+	char decadeName[800];
+	char decadeInfo[800];
+	char mesageText[150];
+	char mysteryName[100];
+	char scriptureText[500];
+	char prayerText[1250];
+
+	int decadeNo;
+	int mysteryNo;
+
+	// gtk objects
+	GtkWidget *lblTextMystery;
+	GtkWidget *lblTextDecade;
+	GtkWidget *lblTextDecadeMessage;
+	GtkWidget *lblTextBackground;
+	GtkWidget *lblTextScripture;
+	GtkWidget *lblTextPrayer;
+	GtkWidget *lblTextBeadType;
+	GtkWidget *lblTextBeadNo;
+	GtkWidget *lblTextDecadeProgress;
+	GtkWidget *lblTextMysteryProgress;
+
+} displayVariables_t;
+
+// Gtk prototypes
+int returnDayOfWeekFlag();
+int initialMystery(int weekdayNo);
+void updateDisplayVariablesStruct(rosaryBead_t rosaryBead_dbArray[317], bead_t bead_dbArray[9], book_t book_dbArray[17], decade_t decade_dbArray[22], message_t message_dbArray[22], mystery_t mystery_dbArray[7], prayer_t prayer_dbArray[11], scripture_t scripture_dbArray[202], displayVariables_t *queryViewStruct, int navigtionPosition);
+
+// Callbacks
 void closeApp(GtkWidget *button, gpointer data);
 void changeLabel(GtkWidget *button, displayVariables_t *queryViewStruct);
 void initGtkWindow(displayVariables_t queryViewStruct);
 
-// Gtk Functions
+//
+
+int returnDayOfWeekFlag() {
+	time_t rawtime;
+	struct tm *timeinfo;
+
+	int year = 2019;
+	time ( &rawtime );
+	timeinfo = localtime ( &rawtime );
+	timeinfo->tm_year = year - 1900;
+
+	/* call mktime: timeinfo->tm_wday will be set */
+	mktime ( timeinfo );
+
+	return timeinfo->tm_wday;
+}
+
+int initialMystery(int weekdayNo) {
+
+	int navigtionPosition = 0;
+
+	switch (weekdayNo) {
+		case 1: // mon joyful
+			navigtionPosition = 0;
+			break;
+
+		case 2: // tues sorrowful
+			navigtionPosition = 158;
+			break;
+
+		case 3: // wed glorious
+			navigtionPosition = 237;
+			break;
+
+		case 4: // thurs Luminous
+			navigtionPosition = 79;
+			break;
+
+		case 5: // fri sorrowful
+			navigtionPosition = 158;
+			break;
+
+		case 6: // sat joyful
+			navigtionPosition = 0;
+			break;
+
+		case 0: // sun glorious
+			navigtionPosition = 237;
+			break;
+
+		default:
+			navigtionPosition = 0;
+	}
+
+	return navigtionPosition;
+}
+
+void updateDisplayVariablesStruct(rosaryBead_t rosaryBead_dbArray[317], bead_t bead_dbArray[9], book_t book_dbArray[17], decade_t decade_dbArray[22], message_t message_dbArray[22], mystery_t mystery_dbArray[7], prayer_t prayer_dbArray[11], scripture_t scripture_dbArray[202], displayVariables_t *queryViewStruct, int navigtionPosition) {
+
+	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0, prayerFK = 0;
+	int scriptureFK = 0, loopBody = 0, smallbeadPercent = 0, mysteryPercent = 0;
+	int decadeNo = 0, mysteryNo = 0;
+
+	char *beadType, *decadeName, *decadeInfo, *mesageText, *mysteryName;
+	char *scriptureText, *prayerText;
+
+	rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
+	beadFK = rosaryBead_dbArray[navigtionPosition].beadIndex;
+	decadeFK = rosaryBead_dbArray[navigtionPosition].decadeIndex;
+	messageFK = rosaryBead_dbArray[navigtionPosition].messageIndex;
+	mysteryFK = rosaryBead_dbArray[navigtionPosition].mysteryIndex;
+	prayerFK = rosaryBead_dbArray[navigtionPosition].prayerIndex;
+	scriptureFK = rosaryBead_dbArray[navigtionPosition].scriptureIndex;
+	loopBody = rosaryBead_dbArray[navigtionPosition].loopBody;
+	smallbeadPercent = rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
+	mysteryPercent = rosaryBead_dbArray[navigtionPosition].mysteryPercent;
+
+	beadType = bead_dbArray[beadFK].beadType;
+	decadeName = decade_dbArray[decadeFK].decadeName;
+	decadeInfo = decade_dbArray[decadeFK].decadeInfo;
+	mesageText = message_dbArray[messageFK].mesageText;
+	mysteryName = mystery_dbArray[mysteryFK].mysteryName;
+	scriptureText = scripture_dbArray[scriptureFK].scriptureText;
+	prayerText = prayer_dbArray[prayerFK].prayerText;
+
+	decadeNo = decade_dbArray[decadeFK].decadeNo;
+	mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
+
+	queryViewStruct -> rosaryPositionID = rosaryPositionID;
+	queryViewStruct -> beadFK = beadFK;
+	queryViewStruct -> decadeFK = decadeFK;
+	queryViewStruct -> messageFK = messageFK;
+	queryViewStruct -> mysteryFK = mysteryFK;
+	queryViewStruct -> prayerFK = prayerFK;
+	queryViewStruct -> scriptureFK = scriptureFK;
+	queryViewStruct -> loopBody = loopBody;
+	queryViewStruct -> smallbeadPercent = smallbeadPercent;
+	queryViewStruct -> mysteryPercent = mysteryPercent;
+
+	// struct strings
+	strcpy( queryViewStruct -> beadType, beadType);
+	strcpy( queryViewStruct -> decadeName, decadeName);
+	strcpy( queryViewStruct -> decadeInfo, decadeInfo);
+	strcpy( queryViewStruct -> mesageText, mesageText);
+	strcpy( queryViewStruct -> mysteryName, mysteryName);
+	strcpy( queryViewStruct -> scriptureText, scriptureText);
+	strcpy( queryViewStruct -> prayerText, prayerText);
+
+	queryViewStruct -> decadeNo = decadeNo;
+	queryViewStruct -> mysteryNo = mysteryNo;
+
+}
+
+// Gtk Callbacks
 
 void closeApp(GtkWidget *button, gpointer data) {
 	gtk_main_quit();
@@ -24,9 +177,9 @@ void changeLabel(GtkWidget *button, displayVariables_t *queryViewStruct) {
 	int smallbeadPercent = queryViewStruct->smallbeadPercent;
 	int mysteryPercent = queryViewStruct->mysteryPercent;
 
-	char rosaryPositionIDChar[sizeof(count)];
-	char smallbeadPercentChar[sizeof(count)];
-	char mysteryPercentChar[sizeof(count)];
+	char rosaryPositionIDChar[sizeof(rosaryPositionID)];
+	char smallbeadPercentChar[sizeof(smallbeadPercent)];
+	char mysteryPercentChar[sizeof(mysteryPercent)];
 
 	sprintf(rosaryPositionIDChar, "%d", rosaryPositionID);
 	sprintf(smallbeadPercentChar, "%d", smallbeadPercent);

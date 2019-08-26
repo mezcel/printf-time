@@ -2,44 +2,25 @@
  * mainGtk.c
  */
 
-#ifdef _WIN32 // MinGW
-	#include <windows.h>
-	#include <stdio.h>
-	#include <tchar.h>
-#endif
-
-#ifdef linux // Linux GCC v6+
-	#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
-	#include <stdio.h>
-	#include <string.h>
-	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
-	#include <unistd.h> 	// STDOUT_FILENO
-	#include "gtk/gtk.h"
-#endif
+#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
+#include <stdio.h>
+#include <string.h>
+#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
+#include <unistd.h> 	// STDOUT_FILENO
+#include "gtk/gtk.h"
 
 #include <time.h>				// time_t
 #include "my-csv-parser.h"		// my own homework CSV parse functions & structs
-#include "my-tty-ui.h"			// UI for the tty display
 #include "my-gtk-gui.h"			// UI for the gtk display
-
 
 // Main //
 int main(int argc, char **argv) {
 
-	int isLinux = 1;
 	int weekdayNo = 0;
-	int navigtionPosition = 0, desiredDispLen = 80;
+	int navigtionPosition = 0;
 
-	#ifdef linux
-		isLinux = 1;
-		weekdayNo = returnDayOfWeekFlag(); // 0=sun, 1=mon
-		navigtionPosition = initialMystery(weekdayNo); // starting position
-		struct winsize w; // terminal tty info
-	#endif
-
-	#ifdef _WIN32
-		isLinux = 0;
-	#endif
+	weekdayNo = returnDayOfWeekFlag(); // 0=sun, 1=mon
+	navigtionPosition = initialMystery(weekdayNo); // starting progress position
 
 	// Name my strtuct variables
 	rosaryBead_t *rosaryBead_record_field = NULL;
@@ -66,7 +47,6 @@ int main(int argc, char **argv) {
 	scripture_t *scripture_record_field = NULL;
 	scripture_t scripture_dbArray[202];
 
-
 	//struct displayVariables_struct displayVariables_t;
 	displayVariables_t queryViewStruct;
 
@@ -84,36 +64,10 @@ int main(int argc, char **argv) {
 	csvToStruct_prayer(prayer_record_field, prayer_dbArray, 1250, "csv/prayer.csv");
 	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
 
-	splashCoverPage(weekdayNo, isLinux); // intro, coverpage, splash text
-
 	// Gtk GUI
-	#ifdef linux // Linux GCC v6+
-
-		gtk_init(&argc, &argv);
-		clearScreen(1);
-		updateDisplayVariablesStruct(rosaryBead_dbArray, bead_dbArray, book_dbArray, decade_dbArray, message_dbArray, mystery_dbArray, prayer_dbArray, scripture_dbArray, &queryViewStruct, navigtionPosition);
-		initGtkWindow(queryViewStruct);
-	#endif
-
-	clearScreen(1);
-    while (navigtionPosition <= 315) {
-
-		// linux tty/posix display dimentions
-        if(isLinux == 1) {
-			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // tty col/row
-			desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
-        }
-
-		// update display content struct
-		updateDisplayVariablesStruct(rosaryBead_dbArray, bead_dbArray, book_dbArray, decade_dbArray, message_dbArray, mystery_dbArray, prayer_dbArray, scripture_dbArray, &queryViewStruct, navigtionPosition);
-
-		// Render output tty display
-		outputTtyDisplay( queryViewStruct, desiredDispLen );
-
-		// Navigation Input
-		navigtionPosition = pressKeyContinue(navigtionPosition, isLinux);
-		// getchar(); // pause for char input
-	}
+	gtk_init(&argc, &argv);
+	updateDisplayVariablesStruct(rosaryBead_dbArray, bead_dbArray, book_dbArray, decade_dbArray, message_dbArray, mystery_dbArray, prayer_dbArray, scripture_dbArray, &queryViewStruct, navigtionPosition);
+	initGtkWindow(queryViewStruct);
 
 	return 0;
 }

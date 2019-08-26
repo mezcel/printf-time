@@ -20,7 +20,6 @@
 #include "my-csv-parser.h"		// my own homework CSV parse functions & structs
 #include "my-tty-ui.h"			// UI for the tty display
 
-
 // Main //
 int main() {
 

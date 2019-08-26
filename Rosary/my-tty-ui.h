@@ -28,18 +28,6 @@ typedef struct displayVariables_struct {
 	int decadeNo;
 	int mysteryNo;
 
-	// Needed for my-gtk-ui.h loaded by mainGtk.c
-	GtkWidget *lblTextMystery;
-	GtkWidget *lblTextDecade;
-	GtkWidget *lblTextDecadeMessage;
-	GtkWidget *lblTextBackground;
-	GtkWidget *lblTextScripture;
-	GtkWidget *lblTextPrayer;
-	GtkWidget *lblTextBeadType;
-	GtkWidget *lblTextBeadNo;
-	GtkWidget *lblTextDecadeProgress;
-	GtkWidget *lblTextMysteryProgress;
-
 } displayVariables_t;
 
 
