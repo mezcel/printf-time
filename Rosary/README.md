@@ -35,7 +35,9 @@ Database Query: complete
 User Interface:
 
     * inputs: complete
-    * outputs: complete/pending (display beautification will perpetually be updated)
+    * outputs: 
+        * Linux: complete/pending (display beautification will perpetually be updated)
+        * MinGW: I have not completed the "detect OS" logic yet
 
 Documentation: incomplete (under construction)
 

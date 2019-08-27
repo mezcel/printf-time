@@ -4,7 +4,9 @@ version: ```v0.3```
 
 #### Two Independent Apps Contained in this Repo:
 
-Future plans to combine the 2 and remove a lot of the independent bloat features. This app is an exercise in portability and extensibility.
+The plan is to integrate PFM-Calculator as a feature functionality of Rosary.
+
+This app is an exercise in portability and extensibility.
 
 1. __PFM-Calculator__:
 
