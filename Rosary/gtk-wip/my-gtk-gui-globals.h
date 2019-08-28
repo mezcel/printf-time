@@ -39,40 +39,38 @@ typedef struct displayVariables_struct {
 	GtkWidget *lblTextDecadeProgress;
 	GtkWidget *lblTextMysteryProgress;
 
-
-
 } displayVariables_t;
 
-	int weekdayNo = 0;
-	int navigtionPosition = 0;
+int weekdayNo = 0;
+int navigtionPosition = 0;
 
-	// Name my strtuct variables
-	rosaryBead_t *rosaryBead_record_field = NULL;
-	rosaryBead_t rosaryBead_dbArray[317];
+// Name my strtuct variables
+rosaryBead_t *rosaryBead_record_field = NULL;
+rosaryBead_t rosaryBead_dbArray[317];
 
-	bead_t *bead_record_field = NULL;
-	bead_t bead_dbArray[9];
+bead_t *bead_record_field = NULL;
+bead_t bead_dbArray[9];
 
-	book_t *book_record_field = NULL;
-	book_t book_dbArray[17];
+book_t *book_record_field = NULL;
+book_t book_dbArray[17];
 
-	decade_t *decade_record_field = NULL;
-	decade_t decade_dbArray[22];
+decade_t *decade_record_field = NULL;
+decade_t decade_dbArray[22];
 
-	message_t *message_record_field = NULL;
-	message_t message_dbArray[22];
+message_t *message_record_field = NULL;
+message_t message_dbArray[22];
 
-	mystery_t *mystery_record_field = NULL;
-	mystery_t mystery_dbArray[7];
+mystery_t *mystery_record_field = NULL;
+mystery_t mystery_dbArray[7];
 
-	prayer_t *prayer_record_field = NULL;
-	prayer_t prayer_dbArray[11];
+prayer_t *prayer_record_field = NULL;
+prayer_t prayer_dbArray[11];
 
-	scripture_t *scripture_record_field = NULL;
-	scripture_t scripture_dbArray[202];
+scripture_t *scripture_record_field = NULL;
+scripture_t scripture_dbArray[202];
 
-	//struct displayVariables_struct displayVariables_t;
-	displayVariables_t queryViewStruct;
+//struct displayVariables_struct displayVariables_t;
+displayVariables_t queryViewStruct;
 
 // Gtk prototypes
 int returnDayOfWeekFlag();
