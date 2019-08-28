@@ -12,11 +12,11 @@
 #include <string.h>
 #include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
 #include <unistd.h> 	// STDOUT_FILENO
-#include <time.h>				// time_t
+#include <time.h>		// time_t
 
 #include "gtk/gtk.h"
 #include "../my-csv-parser.h"		// my own homework CSV parse functions & structs
-#include "my-glade-functions.h"			// UI for the gtk display (For testing only)
+#include "my-glade-functions.h"		// UI for the gtk display (For testing only)
 
 int main(int argc, char *argv[]) {
     GtkBuilder *builder;

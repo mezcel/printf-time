@@ -22,20 +22,19 @@ This app functionally resembles a Rosary Python app I made prior to this project
     * [![asciicast](https://asciinema.org/a/262232.svg)](https://asciinema.org/a/262232)
 
 ---
+
 ## Development
 
 #### v0.3 (current development)
 
-Database: complete
-
-Import Database: complete
-
-Database Query: complete
+- Database: complete
+- Import Database: complete
+- Database Query: complete
 
 User Interface:
 
     * inputs: complete
-    * outputs: 
+    * outputs:
         * Linux: complete/pending (display beautification will perpetually be updated)
         * MinGW: I have not completed the "detect OS" logic yet
 
@@ -64,9 +63,11 @@ gcc main.c -o main
 
 #### Desktop GUI window version, Gtk
 ```./gtk-wip/```
+
 ```bash
 ## Complile:
-gcc -Wall -o "mainGtk" "mainGtk.c" `pkg-config --cflags --libs gtk+-2.0`
+## gcc -Wall -o "mainGtk" "mainGtk.c" `pkg-config --cflags --libs gtk+-2.0`
+gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
 ## RUN:
 ./mainGtk
@@ -76,11 +77,13 @@ gcc -Wall -o "mainGtk" "mainGtk.c" `pkg-config --cflags --libs gtk+-2.0`
 
 * MinGW or Linux
 * Command line interface (CLI) / Shell Terminal
+* Xorg or Xlaunch
 
 #### Developer Environment (debug/mod)
 
-* MinGW or Linux
+* MinGW or Linux (x86 or x64)
 * GCC v6+
 * GDB debugger
 * git (version control)
+* Glade (a gui drawing tool)
 * a text editor

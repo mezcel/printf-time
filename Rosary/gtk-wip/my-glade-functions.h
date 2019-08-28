@@ -1,3 +1,8 @@
+/*
+ * my-glade-functions.h
+ * dependaency: ../my-csv-parser.h
+ * */
+
 int weekdayNo = 0;
 int navigtionPosition = 0;
 int beadNo = 0; // position accumulator
@@ -39,7 +44,6 @@ typedef struct {
 	GtkWidget *lblTextFeast;
 } app_widgets;
 
-// void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets *widgets);
 void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets *widgets) {
 
 	widgets -> lblTextMystery = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMystery"));
@@ -114,7 +118,9 @@ int initialMystery(int weekdayNo) {
 void update_widgets_labels(app_widgets *widgets) {
 	int navigtionPosition = widgets->navigtionPosition;
 
-	// ER Query
+	/*
+	 * ER Query
+	 * */
 
 	int rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
 	int beadFK = rosaryBead_dbArray[navigtionPosition].beadIndex;
@@ -123,7 +129,7 @@ void update_widgets_labels(app_widgets *widgets) {
 	int mysteryFK = rosaryBead_dbArray[navigtionPosition].mysteryIndex;
 	int prayerFK = rosaryBead_dbArray[navigtionPosition].prayerIndex;
 	int scriptureFK = rosaryBead_dbArray[navigtionPosition].scriptureIndex;
-	int loopBody = rosaryBead_dbArray[navigtionPosition].loopBody;
+	//int loopBody = rosaryBead_dbArray[navigtionPosition].loopBody;
 	int smallbeadPercent = rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
 	int mysteryPercent = rosaryBead_dbArray[navigtionPosition].mysteryPercent;
 
@@ -134,10 +140,12 @@ void update_widgets_labels(app_widgets *widgets) {
 	char *mysteryName = mystery_dbArray[mysteryFK].mysteryName;
 	char *scriptureText = scripture_dbArray[scriptureFK].scriptureText;
 	char *prayerText = prayer_dbArray[prayerFK].prayerText;
-	int decadeNo = decade_dbArray[decadeFK].decadeNo;
-	int mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
+	/*int decadeNo = decade_dbArray[decadeFK].decadeNo;
+	int mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;*/
 
-	// Update Label Strings
+	/*
+	 * Update Label Strings
+	 * */
 
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextMystery), mysteryName);
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextDecade), decadeName);
