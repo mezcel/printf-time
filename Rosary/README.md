@@ -10,7 +10,7 @@ The subject is a scripture Rosary. Scriptures are quoted from the New American B
 
 ## Inspiration:
 
-This app functionally resembles a Rosary Python app I made prior to this project. This the 5th programming platform in my Rosary App series. Previous languages were: [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version), [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version), [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (for Arch & Debian), [Python/Json](https://github.com/mezcel/python-curses), and now the [C/CSV](https://github.com/mezcel/printf-time) version. It aims to be the lightest and most cross compatible with minimal dependencies. It also ams to be portable and extensible.
+This is the 5th programming platform version in my Rosary App series. Previous language versions were: [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version), [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version), [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (for Arch & Debian), [Python/Json](https://github.com/mezcel/python-curses), and now the [C/CSV](https://github.com/mezcel/printf-time) version. It aims to be the lightest and most cross compatible with minimal dependencies. It also ams to be portable and extensible.
 
 ## Project Status:
 
@@ -63,6 +63,9 @@ gcc main.c -o main
 ```./gtk-wip/```
 
 ```bash
+## Install the gtk dependency (Debian)
+sudo apt install libgtk-3-dev
+
 ## Complile:
 ## gcc -Wall -o "mainGtk" "mainGtk.c" `pkg-config --cflags --libs gtk+-2.0`
 gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic

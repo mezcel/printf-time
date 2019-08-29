@@ -1,10 +1,10 @@
 ## printf-time
 
-version: ```v0.3```
+development branch: ```v0.3.1```
 
 #### Two Independent Apps Contained in this Repo:
 
-The plan is to integrate PFM-Calculator as a feature functionality of Rosary.
+The plan is to integrate ```./PFM-Calculator``` as a feature functionality of ```./Rosary```.
 
 This app is an exercise in portability and extensibility.
 
@@ -19,7 +19,7 @@ This app is an exercise in portability and extensibility.
 
 	* [./Rosary/](./Rosary)
 	* A basic CLI Rosary using (CSV to Struct Array) array db.
-	* ```beautification``` is still slowly under construction
+	* ```beautification``` is still under construction
 	* [outdated demo preview](https://asciinema.org/a/262232)
 	* GTK Option (under construction)
 		* Desktop GUI

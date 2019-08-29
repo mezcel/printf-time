@@ -19,7 +19,3 @@
 | ```s``` or ```step``` | step to the next line in the code sequence |
 | ```n``` or ```next``` | step to the next step opver a subroutine/function |
 | ```p``` or ```print``` | print variable value |
-
-## CSV
-
-* example csv file parse ```plain-scv-reading.c```
