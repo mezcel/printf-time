@@ -10,6 +10,7 @@
 #include "my_glade_api.c"
 
 int main(int argc, char *argv[]) {
+
     GtkBuilder *builder;
     GtkWidget *window;
     app_widgets *widgets = g_slice_new(app_widgets);
@@ -30,7 +31,7 @@ int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
 
     builder = gtk_builder_new();
-    gtk_builder_add_from_file (builder, "gladeProject.glade", NULL);
+    gtk_builder_add_from_file (builder, "myGladeXml.glade", NULL);
     window = GTK_WIDGET(gtk_builder_get_object(builder, "gtkRosary"));
     initializeLabelPointers(builder, window, widgets); // get pointers to label widgets
     widgets->navigtionPosition = navigtionPosition; // starting progress position;

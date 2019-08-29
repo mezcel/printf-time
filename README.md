@@ -19,7 +19,7 @@ This app is an exercise in portability and extensibility.
 
 	* [./Rosary/](./Rosary)
 	* A basic CLI Rosary using (CSV to Struct Array) array db.
-	* ```beautification``` is under construction
+	* ```beautification``` is still slowly under construction
 	* [outdated demo preview](https://asciinema.org/a/262232)
 	* GTK Option (under construction)
 		* Desktop GUI

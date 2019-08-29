@@ -14,6 +14,9 @@
 typedef struct {
 	int navigtionPosition; // accumulator
 
+	// labels
+	GtkWidget *lblTextDate;
+
 	GtkWidget *lblTextMystery;
 	GtkWidget *lblTextDecade;
 	GtkWidget *lblTextDecadeMessage;
@@ -21,11 +24,18 @@ typedef struct {
 	GtkWidget *lblTextScripture;
 	GtkWidget *lblTextPrayer;
 	GtkWidget *lblTextBeadType;
-	GtkWidget *lblTextDecadeProgress;
-	GtkWidget *lblTextMysteryProgress;
 	GtkWidget *lblTextBeadNo;
 	GtkWidget *lblTextLiturgicalCalendar;
 	GtkWidget *lblTextFeast;
+
+	GtkWidget *lblTextDecadePercent;
+	GtkWidget *lblTextDecadeProgress;
+	GtkWidget *lblTextMysteryPercent;
+	GtkWidget *lblTextMysteryProgress;
+
+	// level bars
+	GtkWidget *levelBar_decade;
+	GtkWidget *levelBar_mystery;
 } app_widgets;
 
 /*
@@ -33,7 +43,6 @@ typedef struct {
  * */
 
 void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets *widgets);
-int returnDayOfWeekFlag();
 int initialMystery(int weekdayNo);
 void update_widgets_labels(app_widgets *widgets);
 

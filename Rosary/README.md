@@ -10,15 +10,15 @@ The subject is a scripture Rosary. Scriptures are quoted from the New American B
 
 ## Inspiration:
 
-This app functionally resembles a Rosary Python app I made prior to this project. This the 5th programming platform in my Rosary App series. Previous languages were: [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version), [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version), [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (for Arch & Debian), [Python/Json](https://github.com/mezcel/python-curses), and now [C/CSV](https://github.com/mezcel/printf-time). It aims to be the lightest and most cross compatible with minimal dependencies. It also ams to be portable and extensible.
+This app functionally resembles a Rosary Python app I made prior to this project. This the 5th programming platform in my Rosary App series. Previous languages were: [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version), [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version), [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (for Arch & Debian), [Python/Json](https://github.com/mezcel/python-curses), and now the [C/CSV](https://github.com/mezcel/printf-time) version. It aims to be the lightest and most cross compatible with minimal dependencies. It also ams to be portable and extensible.
 
 ## Project Status:
 
-#### v0.2.? (Demo Preview)
+#### v0.2.? (Outdated Demo Preview)
 
 * [outdated demo](https://asciinema.org/a/262232) Working stop point.
     * quick preview
-    * the ui is outdated but the mechanics are the same.
+    * the demo ui is outdated but the mechanics are the same.
     * [![asciicast](https://asciinema.org/a/262232.svg)](https://asciinema.org/a/262232)
 
 ---
@@ -42,9 +42,7 @@ Documentation: incomplete (under construction)
 
 #### future version considerations
 
-Desktop GUI: Windowed Gtk App
-
-Additional Functional Feature: Feast day calendar
+* Add a Feast day calendar
 
 ## Install/Compile Dependencies:
 
@@ -77,26 +75,29 @@ gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export
 
 * [MinGW](http://www.mingw.org/) or Linux
 * Command line interface (CLI) / Shell Terminal
-* Xorg or Xlaunch
+* Xorg (linux) or Xlaunch (Win10/WLS)
 
 #### Developer Environment (debug/mod)
 
 * [MinGW](http://www.mingw.org/) or Linux (x86 or x64)
 * GCC v6+
-* GDB debugger
+* GDB debugger (optional yet recommended)
 * git (version control)
 * Glade (a gui drawing tool)
-* a text editor
+* a text editor (I use Geany for everything)
+	* Geany macros
+	* compile:	gcc -Wall -c "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
+	* build:	gcc -Wall -o "%e" "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
 ---
 
 ## Compile
 
 ```sh
-## Compile in Debian and use it on Win
+## Compile in Debian and make it usable on a Win10
 sudo apt install mingw-w64
 i686-w64-mingw32-gcc -o my-executable-file.exe main.c
 
-## Install mingw for Win and compile/run in Win
+## Compile in Win10 with MinGW installed
 gcc -o my-executable-file.exe main.c
 ```

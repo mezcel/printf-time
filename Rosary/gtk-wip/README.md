@@ -2,18 +2,15 @@
 
 #### Gtk version (Under Construction)
 
-I am using my ```my-csv-parser.h``` in a Gtk 3 desktop GUI desktop app.
+I resorted to using the Glade app to design my GUI layout. Glade is a tool for creating Gtk GUIs. Glade generates an XML file, ```.glade```. Gtk's ```libgtk-3-dev``` will translate the XML file into a GUI layout.
 
-The back-end is procedural programming and the front end is OOP. I resorted to using a Glade to design my GUI layout. Glade is a tool for creating Gtk GUIs.
-
-Glade generates an XML file. Gtk's ```libgtk-3-dev``` will translate the XML file into a GUI layout.
+* It is a point and click UI for ```libgtk-3-dev```
+* It prepares my callback function prototype for use in main()
 
 #### Todo:
 
 * clean up script
-* go back and re-factor the tty version
 * start integrating calendar feast day flags
-* use system to clock to derive the current year
 
 ---
 

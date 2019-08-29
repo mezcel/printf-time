@@ -3,12 +3,13 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkApplicationWindow" id="gtkRosary">
+    <property name="name">Gtk_Rosary</property>
     <property name="width_request">800</property>
-    <property name="height_request">800</property>
+    <property name="height_request">850</property>
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
     <property name="default_width">820</property>
-    <property name="default_height">820</property>
+    <property name="default_height">850</property>
     <signal name="destroy" handler="on_gtkRosary_destroy" swapped="no"/>
     <child>
       <object class="GtkBox" id="boxContainer">
@@ -38,9 +39,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="lblTitleSubHeader">
+              <object class="GtkLabel" id="lblTextDate">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="label" translatable="yes">date</property>
+                <attributes>
+                  <attribute name="font-desc" value="Monospace 10"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -347,71 +352,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkGrid" id="progressContainer">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="column_homogeneous">True</property>
-                <child>
-                  <object class="GtkLabel" id="lblTitleDecadeProgress">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Decade Progress:</property>
-                    <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="lblTitleMysteryProgress">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Mystery Progress:</property>
-                    <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="lblTextDecadeProgress">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">0 / 10</property>
-                    <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="lblTextMysteryProgress">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">0 / 50</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">1</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
+              <placeholder/>
             </child>
             <child>
               <object class="GtkBox" id="navigationContainer">
@@ -475,6 +416,180 @@
                 <property name="fill">True</property>
                 <property name="pack_type">end</property>
                 <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkGrid">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <child>
+                  <object class="GtkLabel" id="lblTitleDecadeProgress">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="hexpand">False</property>
+                    <property name="xpad">10</property>
+                    <property name="label" translatable="yes">Decade:</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lblTextDecadePercent">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xpad">10</property>
+                    <property name="label" translatable="yes">0 %</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 10"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lblTitleMysteryProgress">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="hexpand">False</property>
+                    <property name="xpad">10</property>
+                    <property name="label" translatable="yes">Mystery:</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lblTextMysteryPercent">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xpad">10</property>
+                    <property name="label" translatable="yes">0 %</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 10"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLevelBar" id="levelBar_mystery">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLevelBar" id="levelBar_decade">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lblTextDecadeProgress">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xpad">10</property>
+                    <property name="label" translatable="yes">0 / 10</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lblTextMysteryProgress">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xpad">10</property>
+                    <property name="label" translatable="yes">0 / 50</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lblTitlePosition">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xpad">10</property>
+                    <property name="label" translatable="yes">position</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 10"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lblTitlePercent">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xpad">10</property>
+                    <property name="label" translatable="yes">percent</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 10"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lblTitleProgress">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">progress</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 10"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="padding">10</property>
+                <property name="position">4</property>
               </packing>
             </child>
           </object>

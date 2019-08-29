@@ -17,6 +17,7 @@
 #endif
 
 #include "my_csv_structs.h" // contains struct typedef name declarations
+#include "my_calendar.c" // just return the year
 #include "my_tty_ui.h"
 
 /*
@@ -148,21 +149,6 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 			parsedStringArray = strtok(NULL, delim);
 		}
 	}
-}
-
-int returnDayOfWeekFlag() {
-	time_t rawtime;
-	struct tm *timeinfo;
-
-	int year = 2019;
-	time ( &rawtime );
-	timeinfo = localtime ( &rawtime );
-	timeinfo->tm_year = year - 1900;
-
-	/* call mktime: timeinfo->tm_wday will be set */
-	mktime ( timeinfo );
-
-	return timeinfo->tm_wday;
 }
 
 int pressKeyContinue(int navigtionPosition, int isLinux) {

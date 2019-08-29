@@ -2,13 +2,8 @@
  * my_glade_api.c
  * */
 
-// #include "gtk/gtk.h"
-#include <time.h>	// time_t
 #include "my_glade_api.h"
-
-int weekdayNo = 0;
-int navigtionPosition = 0;
-int beadNo = 0; // position accumulator
+#include "../my_calendar.c"
 
 /*
  * Local Scope
@@ -42,6 +37,9 @@ scripture_t scripture_dbArray[202];
 
 void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets *widgets) {
 
+	// labels
+	widgets -> lblTextDate = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDate"));
+
 	widgets -> lblTextMystery = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMystery"));
 	widgets -> lblTextDecade = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecade"));
 	widgets -> lblTextDecadeMessage = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecadeMessage"));
@@ -49,26 +47,26 @@ void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets
 	widgets -> lblTextScripture = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextScripture"));
 	widgets -> lblTextPrayer = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextPrayer"));
 	widgets -> lblTextBeadType = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextBeadType"));
-	widgets -> lblTextDecadeProgress = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecadeProgress"));
-	widgets -> lblTextMysteryProgress = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMysteryProgress"));
 	widgets -> lblTextBeadNo = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextBeadNo"));
 	widgets -> lblTextLiturgicalCalendar = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextLiturgicalCalendar"));
 	widgets -> lblTextFeast = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
-}
 
-int returnDayOfWeekFlag() {
-	time_t rawtime;
-	struct tm *timeinfo;
+	widgets -> lblTextDecadeProgress = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecadeProgress"));
+	widgets -> lblTextDecadePercent = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecadePercent"));
+	widgets -> lblTextMysteryProgress = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMysteryProgress"));
+	widgets -> lblTextMysteryPercent = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMysteryPercent"));
 
-	int year = 2019; // i need to come back to this, use system clock instead
-	time ( &rawtime );
-	timeinfo = localtime ( &rawtime );
-	timeinfo->tm_year = year - 1900;
+	widgets -> lblTextLiturgicalCalendar = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextLiturgicalCalendar"));
+	widgets -> lblTextFeast = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
+	widgets -> lblTextLiturgicalCalendar = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextLiturgicalCalendar"));
+	widgets -> lblTextFeast = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
 
-	/* call mktime: timeinfo->tm_wday will be set */
-	mktime ( timeinfo );
+	// progressbars / levelbar
+	widgets -> levelBar_decade = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_decade"));
+	widgets -> levelBar_mystery = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_mystery"));
 
-	return timeinfo->tm_wday;
+	int weekdayNo = returnDayOfWeekFlag();
+    gtk_label_set_text(GTK_LABEL(widgets->lblTextDate), returnDayName(weekdayNo));
 }
 
 int initialMystery(int weekdayNo) {
@@ -140,9 +138,20 @@ void update_widgets_labels(app_widgets *widgets) {
 	int mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;*/
 
 	/*
+	 * Calculate percentages
+	 * */
+
+	double smallbeadDouble = (double)smallbeadPercent / 10.0;
+	double smallbeadPercentDouble = smallbeadDouble * 100.0;
+
+	double mysteryDouble = (double)mysteryPercent / 50.0;
+	double mysteryPercentDouble = mysteryDouble * 100.0;
+
+	/*
 	 * Update Label Strings
 	 * */
 
+	// Readings
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextMystery), mysteryName);
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextDecade), decadeName);
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextDecadeMessage), mesageText);
@@ -151,19 +160,47 @@ void update_widgets_labels(app_widgets *widgets) {
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextPrayer), prayerText);
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextBeadType), beadType);
 
+	// Decade
+	gchar *str_smallbeadPercentDouble = g_strdup_printf("%.1f %%", smallbeadPercentDouble); // 1 decimal place
+	gtk_label_set_text(GTK_LABEL(widgets->lblTextDecadePercent), str_smallbeadPercentDouble);
+
 	gchar *str_smallbeadPercent = g_strdup_printf("%d / 10", smallbeadPercent);
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextDecadeProgress), str_smallbeadPercent);
+
+	// Mystery
+	gchar *str_mysteryPercentDouble = g_strdup_printf("%.1f %%", mysteryPercentDouble); // 1 decimal place
+	gtk_label_set_text(GTK_LABEL(widgets->lblTextMysteryPercent), str_mysteryPercentDouble);
 
 	gchar *str_mysteryPercent = g_strdup_printf("%d / 50", mysteryPercent);
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextMysteryProgress), str_mysteryPercent);
 
+	// Position
 	gchar *str_rosaryPositionID = g_strdup_printf("%d / 315", rosaryPositionID);
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextBeadNo), str_rosaryPositionID);
 
+	// Calendar
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextLiturgicalCalendar), "u/c");
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextFeast), "u/c");
 
+	// clear tmp char allocations
+	g_free(str_smallbeadPercentDouble);
 	g_free(str_smallbeadPercent);
+	g_free(str_mysteryPercentDouble);
 	g_free(str_mysteryPercent);
 	g_free(str_rosaryPositionID);
+
+	/*
+	 * Update Level Bar
+	 * */
+
+	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets->levelBar_decade), smallbeadDouble);
+	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets->levelBar_mystery), mysteryDouble);
+
+	/*
+	 * Update Day Of Week
+	 * */
+
+    /*int weekdayNo = returnDayOfWeekFlag();
+    gtk_label_set_text(GTK_LABEL(widgets->lblTextDate), returnDayName(weekdayNo));*/
+
 }
