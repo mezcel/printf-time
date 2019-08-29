@@ -26,3 +26,8 @@ gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export
 ## RUN:
 ./mainGtk
 ```
+---
+
+#### Screenshot (stop point)
+
+![screenshot.gif](screenshot.gif)
