@@ -1,11 +1,17 @@
 /*
- * my-glade-functions.h
- * dependaency: ../my-csv-parser.h
+ * my_glade_api.c
  * */
+
+#include <time.h>		// time_t
+#include "my_glade_api.h"
 
 int weekdayNo = 0;
 int navigtionPosition = 0;
 int beadNo = 0; // position accumulator
+
+/*
+ * Local Scope
+ * */
 
 // ER Database Structs
 rosaryBead_t *rosaryBead_record_field = NULL;
@@ -26,23 +32,9 @@ mystery_t mystery_dbArray[7];
 prayer_t prayer_dbArray[11];
 scripture_t scripture_dbArray[202];
 
-// Widget Pointer Struct
-typedef struct {
-	int navigtionPosition; // accumulator
-
-	GtkWidget *lblTextMystery;
-	GtkWidget *lblTextDecade;
-	GtkWidget *lblTextDecadeMessage;
-	GtkWidget *lblTextBackground;
-	GtkWidget *lblTextScripture;
-	GtkWidget *lblTextPrayer;
-	GtkWidget *lblTextBeadType;
-	GtkWidget *lblTextDecadeProgress;
-	GtkWidget *lblTextMysteryProgress;
-	GtkWidget *lblTextBeadNo;
-	GtkWidget *lblTextLiturgicalCalendar;
-	GtkWidget *lblTextFeast;
-} app_widgets;
+ /*
+ * Header API Scope Functions
+ * */
 
 void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets *widgets) {
 
@@ -161,7 +153,7 @@ void update_widgets_labels(app_widgets *widgets) {
 	gchar *str_mysteryPercent = g_strdup_printf("%d / 50", mysteryPercent);
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextMysteryProgress), str_mysteryPercent);
 
-	gchar *str_rosaryPositionID = g_strdup_printf("%d", rosaryPositionID);
+	gchar *str_rosaryPositionID = g_strdup_printf("%d / 315", rosaryPositionID);
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextBeadNo), str_rosaryPositionID);
 
 	gtk_label_set_text(GTK_LABEL(widgets->lblTextLiturgicalCalendar), "u/c");
@@ -171,4 +163,3 @@ void update_widgets_labels(app_widgets *widgets) {
 	g_free(str_mysteryPercent);
 	g_free(str_rosaryPositionID);
 }
-

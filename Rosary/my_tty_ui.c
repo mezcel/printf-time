@@ -1,49 +1,14 @@
 /*
- * my-tty-ui.h
- *
- * dependency:	my-csv-parser.h
- * used by:		main.c
- */
+ * my_tty_ui.c
+ * */
 
-typedef struct displayVariables_struct {
-	int rosaryPositionID;
-	int beadFK;
-	int decadeFK;
-	int messageFK;
-	int mysteryFK;
-	int prayerFK;
-	int scriptureFK;
-	int loopBody;
-	int smallbeadPercent;
-	int mysteryPercent;
+#include "my_csv_structs.h" // contains struct typedef name declarations
+#include "my_tty_ui.h"
 
-	char beadType[40];
-	char decadeName[800];
-	char decadeInfo[800];
-	char mesageText[150];
-	char mysteryName[100];
-	char scriptureText[500];
-	char prayerText[1250];
+/*
+ * Local Scope Functions
+ * */
 
-	int decadeNo;
-	int mysteryNo;
-
-} displayVariables_t;
-
-
-// Prototypes //
-void clearScreen(int isLinux);
-void borderCharPrintF(char *charSymbol, int borderWidth);
-void splashCoverPager(int weekdayNo, int isLinux);
-void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength);
-int returnDayOfWeekFlag();
-int initialMystery(int weekdayNo);
-int pressKeyContinue(int navigtionPosition, int isLinux);
-void updateDisplayVariablesStruct(rosaryBead_t rosaryBead_dbArray[317], bead_t bead_dbArray[9], book_t book_dbArray[17], decade_t decade_dbArray[22], message_t message_dbArray[22], mystery_t mystery_dbArray[7], prayer_t prayer_dbArray[11], scripture_t scripture_dbArray[202], displayVariables_t *queryViewStruct, int navigtionPosition);
-void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen);
-
-
-// Functions //
 void clearScreen(int isLinux) {
 	//system("@cls||clear");
 	if (isLinux == 1) {
@@ -58,6 +23,50 @@ void borderCharPrintF(char *charSymbol, int borderWidth) {
 		printf("%s", charSymbol);
 	}
 }
+
+int initialMystery(int weekdayNo) {
+
+	int navigtionPosition = 0;
+
+	switch (weekdayNo) {
+		case 1: // mon joyful
+			navigtionPosition = 0;
+			break;
+
+		case 2: // tues sorrowful
+			navigtionPosition = 158;
+			break;
+
+		case 3: // wed glorious
+			navigtionPosition = 237;
+			break;
+
+		case 4: // thurs Luminous
+			navigtionPosition = 79;
+			break;
+
+		case 5: // fri sorrowful
+			navigtionPosition = 158;
+			break;
+
+		case 6: // sat joyful
+			navigtionPosition = 0;
+			break;
+
+		case 0: // sun glorious
+			navigtionPosition = 237;
+			break;
+
+		default:
+			navigtionPosition = 0;
+	}
+
+	return navigtionPosition;
+}
+
+/*
+ * Header API Scope Functions
+ * */
 
 void splashCoverPage(int weekdayNo, int isLinux) {
 
@@ -140,46 +149,6 @@ int returnDayOfWeekFlag() {
 	mktime ( timeinfo );
 
 	return timeinfo->tm_wday;
-}
-
-int initialMystery(int weekdayNo) {
-
-	int navigtionPosition = 0;
-
-	switch (weekdayNo) {
-		case 1: // mon joyful
-			navigtionPosition = 0;
-			break;
-
-		case 2: // tues sorrowful
-			navigtionPosition = 158;
-			break;
-
-		case 3: // wed glorious
-			navigtionPosition = 237;
-			break;
-
-		case 4: // thurs Luminous
-			navigtionPosition = 79;
-			break;
-
-		case 5: // fri sorrowful
-			navigtionPosition = 158;
-			break;
-
-		case 6: // sat joyful
-			navigtionPosition = 0;
-			break;
-
-		case 0: // sun glorious
-			navigtionPosition = 237;
-			break;
-
-		default:
-			navigtionPosition = 0;
-	}
-
-	return navigtionPosition;
 }
 
 int pressKeyContinue(int navigtionPosition, int isLinux) {

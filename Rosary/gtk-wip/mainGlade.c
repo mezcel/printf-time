@@ -1,22 +1,14 @@
 /*
  * mainGlade.c
- * dependency:
- *	libgtk-3-dev
- * 	./gladeProject.glade
+ * dependency: libgtk-3-dev, ./gladeProject.glade
  * compile:
  * 	gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
  * */
 
-#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
-#include <stdio.h>
-#include <string.h>
-#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
-#include <unistd.h> 	// STDOUT_FILENO
-#include <time.h>		// time_t
-
 #include "gtk/gtk.h"
-#include "../my-csv-parser.h"		// my own homework CSV parse functions & structs
-#include "my-glade-functions.h"		// UI for the gtk display (For testing only)
+#include "../my_csv_structs.c"		// my own homework CSV parse functions & structs
+// #include "my_glade_api.h"
+#include "my_glade_api.c"
 
 int main(int argc, char *argv[]) {
     GtkBuilder *builder;
@@ -53,7 +45,10 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-// Glade Functions
+/*
+ * Define functions prototyped by the Glade XML
+ * */
+
 void on_gtkRosary_destroy() {
     gtk_main_quit();
 }

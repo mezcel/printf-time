@@ -75,15 +75,28 @@ gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export
 
 #### Runtime Environment
 
-* MinGW or Linux
+* [MinGW](http://www.mingw.org/) or Linux
 * Command line interface (CLI) / Shell Terminal
 * Xorg or Xlaunch
 
 #### Developer Environment (debug/mod)
 
-* MinGW or Linux (x86 or x64)
+* [MinGW](http://www.mingw.org/) or Linux (x86 or x64)
 * GCC v6+
 * GDB debugger
 * git (version control)
 * Glade (a gui drawing tool)
 * a text editor
+
+---
+
+## Compile
+
+```sh
+## Compile in Debian and use it on Win
+sudo apt install mingw-w64
+i686-w64-mingw32-gcc -o my-executable-file.exe main.c
+
+## Install mingw for Win and compile/run in Win
+gcc -o my-executable-file.exe main.c
+```

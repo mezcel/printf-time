@@ -2,23 +2,8 @@
  * main.c
  */
 
-#ifdef _WIN32 // MinGW
-	#include <windows.h>
-	#include <stdio.h>
-	#include <tchar.h>
-#endif
-
-#ifdef linux // Linux GCC v6+
-	#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
-	#include <stdio.h>
-	#include <string.h>
-	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
-	#include <unistd.h> 	// STDOUT_FILENO
-#endif
-
-#include <time.h>				// time_t
-#include "my-csv-parser.h"		// my own homework CSV parse functions & structs
-#include "my-tty-ui.h"			// UI for the tty display
+#include "my_csv_structs.c"
+#include "my_tty_ui.c"
 
 // Main //
 int main() {
@@ -63,8 +48,6 @@ int main() {
 	scripture_t *scripture_record_field = NULL;
 	scripture_t scripture_dbArray[202];
 
-
-	//struct displayVariables_struct displayVariables_t;
 	displayVariables_t queryViewStruct;
 
 	/*
@@ -81,11 +64,11 @@ int main() {
 	csvToStruct_prayer(prayer_record_field, prayer_dbArray, 1250, "csv/prayer.csv");
 	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
 
-	splashCoverPage(weekdayNo, isLinux); // intro, coverpage, splash text
+	splashCoverPage(weekdayNo, isLinux); // intro, cover page, splash text
 
     while (navigtionPosition <= 315) {
 
-		// linux tty/posix display dimentions
+		// linux tty/posix display dimensions
         if(isLinux == 1) {
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // tty col/row
 			desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
@@ -97,9 +80,8 @@ int main() {
 		// Render output tty display
 		outputTtyDisplay( queryViewStruct, desiredDispLen );
 
-		// Navigation Input
+		// Navigation Input & Accumulator
 		navigtionPosition = pressKeyContinue(navigtionPosition, isLinux);
-		// getchar(); // pause for char input
 	}
 
 	return 0;
