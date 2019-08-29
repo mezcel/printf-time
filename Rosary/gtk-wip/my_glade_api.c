@@ -2,7 +2,8 @@
  * my_glade_api.c
  * */
 
-#include <time.h>		// time_t
+// #include "gtk/gtk.h"
+#include <time.h>	// time_t
 #include "my_glade_api.h"
 
 int weekdayNo = 0;
@@ -14,6 +15,9 @@ int beadNo = 0; // position accumulator
  * */
 
 // ER Database Structs
+// I made them global for easy access between OOP Gtk, and Procedural main.c
+// since its source data is from an external CSV file, its security is good enough
+
 rosaryBead_t *rosaryBead_record_field = NULL;
 bead_t *bead_record_field = NULL;
 book_t *book_record_field = NULL;

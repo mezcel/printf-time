@@ -1,13 +1,12 @@
 /*
  * mainGlade.c
- * dependency: libgtk-3-dev, ./gladeProject.glade
+ * dependency: made for linux, libgtk-3-dev, ./gladeProject.glade
  * compile:
  * 	gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
  * */
 
 #include "gtk/gtk.h"
-#include "../my_csv_structs.c"		// my own homework CSV parse functions & structs
-// #include "my_glade_api.h"
+#include "../my_csv_structs.c" // ER Db structs
 #include "my_glade_api.c"
 
 int main(int argc, char *argv[]) {

@@ -2,6 +2,20 @@
  * my_tty_ui.c
  * */
 
+#ifdef _WIN32 // MinGW
+	#include <windows.h>
+	#include <stdio.h>
+	#include <tchar.h>
+#endif
+
+#ifdef linux // Linux GCC v6+
+	#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
+	#include <stdio.h>
+	#include <string.h>
+	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
+	#include <unistd.h> 	// STDOUT_FILENO
+#endif
+
 #include "my_csv_structs.h" // contains struct typedef name declarations
 #include "my_tty_ui.h"
 

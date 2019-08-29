@@ -5,12 +5,12 @@
 #include "my_csv_structs.c"
 #include "my_tty_ui.c"
 
-// Main //
 int main() {
 
-	int isLinux = 1;
-	int weekdayNo = 0;
-	int navigtionPosition = 0, desiredDispLen = 80;
+	int isLinux = 1;		// OS flag
+	int weekdayNo = 0;		// day of the week
+	int navigtionPosition = 0;	// navigation position
+	int desiredDispLen = 80;	// display row length chars
 
 	#ifdef linux
 		isLinux = 1;
