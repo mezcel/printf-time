@@ -1,88 +1,56 @@
-# project-design-plan
+# printf-time
 
-```v0.3.?```
+### About:
 
-## About:
+branch: ```v0.3.2.?```
+
+The theme of this app is an embellished scripture Rosary slideshow. Scriptures are quoted from the New American Bible (NAB). The Rosary's starting point is set to 1 of 4 mysteries, depending on which day of the week it is.
+
+This project is an exercise in using the C structured programming language. The TTY component of this project is intended to be __portable__, ___extensible___, and ___cross platform___. One usecase is porting its functionality features into an OOP Gtk API.
+
+This app is still under construction, but many of its features are functional and demo-able.
+
+### Inspiration:
+
+This is the 5th programming platform version in my Rosary App series. Previous language versions were: [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version), [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version), [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (for Arch & Debian), [Python/Json](https://github.com/mezcel/python-curses), and now the [C/CSV](https://github.com/mezcel/printf-time) version.
+
+### Deliverables:
+
+##### 1. A TTY version
 
 A C program that displays queried text from a CSV database in a CLI/TTY screen interface. Data from the CSV files are parsed into type defined structs using GCC standard libraries. The app reads as a  booklet loop or a slideshow loop. The user navigates forwards and backwards using the [enter] key and the key sequence ["b" + enter].
 
-The subject is a scripture Rosary. Scriptures are quoted from the New American Bible (NAB). The Rosary's starting point is set to 1 of 4 mysteries, depending on which day of the week it is.
+* Terminal screen app ( printf and key inputs )
+* C as a structured program
+* [outdated animated demo](https://asciinema.org/a/262232.svg) ```v0.2.?```
 
-## Inspiration:
+##### 2. A GTK/GUI version
 
-This is the 5th programming platform version in my Rosary App series. Previous language versions were: [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version), [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version), [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (for Arch & Debian), [Python/Json](https://github.com/mezcel/python-curses), and now the [C/CSV](https://github.com/mezcel/printf-time) version. It aims to be the lightest and most cross compatible with minimal dependencies. It also ams to be portable and extensible.
-
-## Project Status:
-
-#### v0.2.? (Outdated Demo Preview)
-
-* [outdated demo](https://asciinema.org/a/262232) Working stop point.
-    * quick preview
-    * the demo ui is outdated but the mechanics are the same.
-    * [![asciicast](https://asciinema.org/a/262232.svg)](https://asciinema.org/a/262232)
+* Desktop window app ( buttons, labels, progressbars, and other misc. widgets )
+* C interfacing with an OOP
+* [outdated screenshot](img/screenshot.gif) ```v0.3```
 
 ---
 
-## Development
+### Project Status:
 
-#### v0.3 (current development)
+#### v0.3.2.? (current development)
 
-- Database: complete
-- Import Database: complete
-- Database Query: complete
+At the moment I am meddling with the Gtk version. I am making the feature that will display the current liturgical calendar state.
 
-User Interface:
+I will go back to the TTY version and re-factor it so it can simply be just linked into the Gtk main.
 
-    * inputs: complete
-    * outputs:
-        * Linux: complete/pending (display beautification will perpetually be updated)
-        * MinGW: I have not completed the "detect OS" logic yet
 
-Documentation: incomplete (under construction)
-
-#### future version considerations
-
-* Add a Feast day calendar
-
-## Install/Compile Dependencies:
-
-#### Command line tty version
-```bash
-## Compile:
-gcc main.c -o main
-
-## RUN:
-./main
-
-## Use Navigate:
-#  [Enter] to navigate forward 1 step
-#  "b" and then [Enter] in sequence to navigate backwards
-```
-
-#### Desktop GUI window version, Gtk
-```./gtk-wip/```
-
-```bash
-## Install the gtk dependency (Debian)
-sudo apt install libgtk-3-dev
-
-## Complile:
-## gcc -Wall -o "mainGtk" "mainGtk.c" `pkg-config --cflags --libs gtk+-2.0`
-gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
-
-## RUN:
-./mainGtk
-```
-
-#### Runtime Environment
+##### Runtime Environment
 
 * [MinGW](http://www.mingw.org/) or Linux
 * Command line interface (CLI) / Shell Terminal
 * Xorg (linux) or Xlaunch (Win10/WLS)
 
-#### Developer Environment (debug/mod)
+##### Developer Environment (debug/mod)
 
 * [MinGW](http://www.mingw.org/) or Linux (x86 or x64)
+	* this app was developed on Debian WLS and tested on a real Linux
 * GCC v6+
 * GDB debugger (optional yet recommended)
 * git (version control)
@@ -94,42 +62,20 @@ gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export
 
 ---
 
-## Compile
+### Compile
+
+Debian
+```sh
+make
+```
+
+Win10
 
 ```sh
 ## Compile in Debian and make it usable on a Win10
 sudo apt install mingw-w64
-i686-w64-mingw32-gcc -o my-executable-file.exe main.c
+i686-w64-mingw32-gcc "main.c" -o "my-executable-file.exe"
 
 ## Compile in Win10 with MinGW installed
-gcc -o my-executable-file.exe main.c
+gcc "main.c" -o "my-executable-file.exe "
 ```
-
----
-
-## printf-time
-
-development branch: ```v0.3.1```
-
-#### Two Independent Apps Contained in this Repo:
-
-The plan is to integrate ```./PFM-Calculator``` as a feature functionality of ```./Rosary```.
-
-This app is an exercise in portability and extensibility.
-
-1. __PFM-Calculator__:
-
-	* [./PFM-Calculator/](./PFM-Calculator/)
-	* Calculate Easter Day from the Paschal Full Moon date
-	* a lot of extra/optional output display related bloat (just for jollies)
-	* [outdated demo preview](https://asciinema.org/a/232779)
-
-2. __Rosary__:  [ ** New ** ](./Rosary)
-
-	* [./Rosary/](./Rosary)
-	* A basic CLI Rosary using (CSV to Struct Array) array db.
-	* ```beautification``` is still under construction
-	* [outdated demo preview](https://asciinema.org/a/262232)
-	* GTK Option (under construction)
-		* Desktop GUI
-
