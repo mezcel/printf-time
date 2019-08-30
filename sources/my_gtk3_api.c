@@ -2,8 +2,8 @@
  * my_glade_api.c
  * */
 
-#include "../headers/my_glade_api.h"
 #include "../sources/my_calendar.c"
+#include "../headers/my_gtk3_api.h"
 
 /*
  * Local Scope
@@ -73,43 +73,13 @@ void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets
 }
 
 int initialMystery(int weekdayNo) {
+	int navigtionPosition[] = {237, 0, 158, 237, 79, 158, 0};
 
-	int navigtionPosition = 0;
-
-	switch (weekdayNo) {
-		case 1: // mon joyful
-			navigtionPosition = 0;
-			break;
-
-		case 2: // tues sorrowful
-			navigtionPosition = 158;
-			break;
-
-		case 3: // wed glorious
-			navigtionPosition = 237;
-			break;
-
-		case 4: // thurs Luminous
-			navigtionPosition = 79;
-			break;
-
-		case 5: // fri sorrowful
-			navigtionPosition = 158;
-			break;
-
-		case 6: // sat joyful
-			navigtionPosition = 0;
-			break;
-
-		case 0: // sun glorious
-			navigtionPosition = 237;
-			break;
-
-		default:
-			navigtionPosition = 0;
+	if ( (weekdayNo > 6) || (weekdayNo < 0) ) {
+		weekdayNo = 0;
 	}
 
-	return navigtionPosition;
+	return navigtionPosition[weekdayNo];
 }
 
 void update_widgets_labels(app_widgets *widgets) {
@@ -198,12 +168,5 @@ void update_widgets_labels(app_widgets *widgets) {
 
 	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets->levelBar_decade), smallbeadDouble);
 	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets->levelBar_mystery), mysteryDouble);
-
-	/*
-	 * Update Day Of Week
-	 * */
-
-    /*int weekdayNo = returnDayOfWeekFlag();
-    gtk_label_set_text(GTK_LABEL(widgets->lblTextDate), returnDayName(weekdayNo));*/
 
 }

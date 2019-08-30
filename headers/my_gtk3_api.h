@@ -1,6 +1,5 @@
 /*
  * my_glade_api.h
- * dependaency: ../my-csv-parser.h
  * */
 
 #ifndef MY_GLADE_API

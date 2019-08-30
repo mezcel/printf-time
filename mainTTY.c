@@ -20,6 +20,10 @@ int main() {
 		struct winsize w; // terminal tty info
 	#endif
 
+	#ifndef linux
+		isLinux = 0;
+	#endif
+
 	#ifdef _WIN32
 		isLinux = 0;
 	#endif

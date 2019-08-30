@@ -1,14 +1,13 @@
 # Makefile
 
-# declare vars
+## declare vars
 CC=gcc
-CFLAGS=-c -Wall
+CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: cRosary
+all: ttyRosary gtkRosary
 
-cRosary: main.o
-	#gcc "main.c" -o "mainTTY"
-	$(CC) main.o -o cRosary
+ttyRosary:
+	$(CC) "mainTTY.c" -o "ttyRosary"
 
-clean:
-	rm -rf *o cRosary
+gtkRosary:
+	$(CC) "mainGtk3.c" -o "gtkRosary" $(CFLAGS)

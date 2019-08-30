@@ -2,15 +2,6 @@
  * my_csv_structs.h
  * */
 
-/*
- *  Dependencies: stdio.h, stdlib.h, string.h
- *	Database .csv files: bead.csv, decade.csv, message.csv, mystery.csv,
- *		prayer.csv, rosaryBead.csv, scripture.csv
- * 	Background:
- * 		I used npm's json2csv, https://www.csvjson.com/json2csv to
- * 			to convert json to csv
- * */
-
 // fileguard
 #ifndef MY_CSV_STRUCTS
 #define MY_CSV_STRUCTS

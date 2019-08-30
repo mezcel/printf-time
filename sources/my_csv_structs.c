@@ -29,7 +29,6 @@
 	#include <unistd.h> 	// STDOUT_FILENO
 #endif
 
-#include <time.h>				// time_t
 #include "../headers/my_csv_structs.h"
 
 /*

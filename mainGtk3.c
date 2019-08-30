@@ -7,7 +7,7 @@
 
 #include "gtk/gtk.h"
 #include "sources/my_csv_structs.c" // ER Db structs
-#include "sources/my_glade_api.c"
+#include "sources/my_gtk3_api.c"
 
 int main(int argc, char *argv[]) {
 
