@@ -36,6 +36,7 @@ scripture_t scripture_dbArray[202];
  * */
 
 void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets *widgets) {
+	struct MyDateStruct todaysDate = setTodaysDateStruct();
 
 	// labels
 	widgets -> lblTextDate = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDate"));
@@ -61,12 +62,14 @@ void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets
 	widgets -> lblTextLiturgicalCalendar = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextLiturgicalCalendar"));
 	widgets -> lblTextFeast = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
 
+	widgets -> lblTextLiturgicalCalendar = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextLiturgicalCalendar"));
+	widgets -> lblTextFeast = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
+
 	// progressbars / levelbar
 	widgets -> levelBar_decade = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_decade"));
 	widgets -> levelBar_mystery = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_mystery"));
 
-	int weekdayNo = returnDayOfWeekFlag();
-    gtk_label_set_text(GTK_LABEL(widgets->lblTextDate), returnDayName(weekdayNo));
+    gtk_label_set_text(GTK_LABEL(widgets->lblTextDate), todaysDate.weekdayName);
 }
 
 int initialMystery(int weekdayNo) {

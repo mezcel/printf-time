@@ -12,12 +12,12 @@
 	#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
 	#include <stdio.h>
 	#include <string.h>
-	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
+	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
 	#include <unistd.h> 	// STDOUT_FILENO
 #endif
 
-#include "my_csv_structs.h" // contains struct typedef name declarations
-#include "my_calendar.c" // just return the year
+#include "my_csv_structs.h"
+#include "my_calendar.c"
 #include "my_tty_ui.h"
 
 /*
@@ -40,43 +40,13 @@ void borderCharPrintF(char *charSymbol, int borderWidth) {
 }
 
 int initialMystery(int weekdayNo) {
+	int navigtionPosition[] = {237, 0, 158, 237, 79, 158, 0};
 
-	int navigtionPosition = 0;
-
-	switch (weekdayNo) {
-		case 1: // mon joyful
-			navigtionPosition = 0;
-			break;
-
-		case 2: // tues sorrowful
-			navigtionPosition = 158;
-			break;
-
-		case 3: // wed glorious
-			navigtionPosition = 237;
-			break;
-
-		case 4: // thurs Luminous
-			navigtionPosition = 79;
-			break;
-
-		case 5: // fri sorrowful
-			navigtionPosition = 158;
-			break;
-
-		case 6: // sat joyful
-			navigtionPosition = 0;
-			break;
-
-		case 0: // sun glorious
-			navigtionPosition = 237;
-			break;
-
-		default:
-			navigtionPosition = 0;
+	if ( (weekdayNo > 6) || (weekdayNo < 0) ) {
+		weekdayNo = 0;
 	}
 
-	return navigtionPosition;
+	return navigtionPosition[weekdayNo];
 }
 
 /*
@@ -85,11 +55,8 @@ int initialMystery(int weekdayNo) {
 
 void splashCoverPage(int weekdayNo, int isLinux) {
 
-	char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday",
-							"Thursday", "Friday", "Saturday" };
-
-	char * weekdayMystery[] = { "Glorious", "Joyful", "Sorrowful", "Glorious",
-									"Luminous", "Sorrowful", "Joyful" };
+	char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+	char * weekdayMystery[] = { "Glorious", "Joyful", "Sorrowful", "Glorious", "Luminous", "Sorrowful", "Joyful" };
 
 	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as ER database. It uses .h libraries which are default on most gcc installation. I made an additional library which will parse CSV text into an array of structs for ER db queries. Scriptural readings are quoted from The New American Bible, while additional included readings were curated from a variety of different rosary prayer guides.";
 
@@ -115,8 +82,8 @@ void splashCoverPage(int weekdayNo, int isLinux) {
 	printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery.", weekday[weekdayNo], weekdayMystery[weekdayNo]);
 	printf("\n press [enter] to continue");
 
-	getchar(); // pause for char input
-	clearScreen(isLinux); // clear cli
+	getchar();	// pause for char input
+	clearScreen(isLinux);	// clear cli
 }
 
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {

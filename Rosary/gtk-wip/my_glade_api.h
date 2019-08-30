@@ -25,13 +25,14 @@ typedef struct {
 	GtkWidget *lblTextPrayer;
 	GtkWidget *lblTextBeadType;
 	GtkWidget *lblTextBeadNo;
-	GtkWidget *lblTextLiturgicalCalendar;
-	GtkWidget *lblTextFeast;
 
 	GtkWidget *lblTextDecadePercent;
 	GtkWidget *lblTextDecadeProgress;
 	GtkWidget *lblTextMysteryPercent;
 	GtkWidget *lblTextMysteryProgress;
+
+	GtkWidget *lblTextLiturgicalCalendar;
+	GtkWidget *lblTextFeast;
 
 	// level bars
 	GtkWidget *levelBar_decade;

@@ -13,9 +13,10 @@ int main() {
 	int desiredDispLen = 80;	// display row length chars
 
 	#ifdef linux
+		struct MyDateStruct todaysDate = setTodaysDateStruct();
 		isLinux = 1;
-		weekdayNo = returnDayOfWeekFlag(); // 0=sun, 1=mon
-		navigtionPosition = initialMystery(weekdayNo); // starting position
+		weekdayNo = todaysDate.weekdayInt;
+		navigtionPosition = initialMystery(todaysDate.weekdayInt); // starting progress position
 		struct winsize w; // terminal tty info
 	#endif
 
