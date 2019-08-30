@@ -5,7 +5,7 @@
   <object class="GtkApplicationWindow" id="gtkRosary">
     <property name="name">Gtk_Rosary</property>
     <property name="width_request">1000</property>
-    <property name="height_request">710</property>
+    <property name="height_request">725</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Gtk Rosary</property>
     <property name="window_position">center</property>
@@ -366,16 +366,17 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextMystery">
-                    <property name="height_request">31</property>
+                    <property name="height_request">30</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
 _</property>
-                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
+                    <property name="yalign">0</property>
                     <attributes>
                       <attribute name="font-desc" value="Monospace 10"/>
                     </attributes>
@@ -387,16 +388,17 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextDecade">
-                    <property name="height_request">31</property>
+                    <property name="height_request">30</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
 _</property>
-                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
+                    <property name="yalign">0</property>
                     <attributes>
                       <attribute name="font-desc" value="Monospace 10"/>
                     </attributes>
@@ -408,17 +410,18 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextDecadeMessage">
-                    <property name="height_request">46</property>
+                    <property name="height_request">45</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
 _
 _</property>
-                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
+                    <property name="yalign">0</property>
                     <attributes>
                       <attribute name="font-desc" value="Monospace 10"/>
                     </attributes>
@@ -430,18 +433,19 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextBackground">
-                    <property name="height_request">61</property>
+                    <property name="height_request">60</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
 _
 _
 _</property>
-                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
+                    <property name="yalign">0</property>
                     <attributes>
                       <attribute name="font-desc" value="Monospace 10"/>
                     </attributes>
@@ -453,17 +457,19 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextScripture">
-                    <property name="height_request">46</property>
+                    <property name="height_request">60</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
 _
+_
 _</property>
-                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
+                    <property name="yalign">0</property>
                     <attributes>
                       <attribute name="font-desc" value="Monospace 10"/>
                     </attributes>
@@ -475,11 +481,12 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextPrayer">
-                    <property name="height_request">106</property>
+                    <property name="height_request">120</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
 _
@@ -487,9 +494,10 @@ _
 _
 _
 _
+_
 _</property>
-                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
+                    <property name="yalign">0</property>
                     <attributes>
                       <attribute name="font-desc" value="Monospace 10"/>
                     </attributes>
@@ -501,15 +509,16 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextBeadType">
-                    <property name="height_request">20</property>
+                    <property name="height_request">15</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
-                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
+                    <property name="yalign">0</property>
                     <attributes>
                       <attribute name="font-desc" value="Monospace 10"/>
                     </attributes>
@@ -525,18 +534,6 @@ _</property>
                 <property name="fill">True</property>
                 <property name="padding">10</property>
                 <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="padding">10</property>
-                <property name="position">1</property>
               </packing>
             </child>
             <child>
@@ -779,6 +776,19 @@ _</property>
                 <property name="padding">10</property>
                 <property name="pack_type">end</property>
                 <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="padding">10</property>
+                <property name="pack_type">end</property>
+                <property name="position">5</property>
               </packing>
             </child>
           </object>
