@@ -365,7 +365,7 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextMystery">
-                    <property name="height_request">30</property>
+                    <property name="height_request">32</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -387,7 +387,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextDecade">
-                    <property name="height_request">30</property>
+                    <property name="height_request">32</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -409,7 +409,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextDecadeMessage">
-                    <property name="height_request">45</property>
+                    <property name="height_request">47</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -432,7 +432,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextBackground">
-                    <property name="height_request">76</property>
+                    <property name="height_request">77</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -457,7 +457,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextScripture">
-                    <property name="height_request">61</property>
+                    <property name="height_request">62</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -481,7 +481,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextPrayer">
-                    <property name="height_request">121</property>
+                    <property name="height_request">122</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
