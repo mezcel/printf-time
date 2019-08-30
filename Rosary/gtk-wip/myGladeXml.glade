@@ -457,7 +457,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextScripture">
-                    <property name="height_request">62</property>
+                    <property name="height_request">64</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -481,7 +481,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextPrayer">
-                    <property name="height_request">122</property>
+                    <property name="height_request">124</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
