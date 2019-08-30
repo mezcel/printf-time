@@ -16,9 +16,9 @@
 	#include <unistd.h> 	// STDOUT_FILENO
 #endif
 
-#include "my_csv_structs.h"
-#include "my_calendar.c"
-#include "my_tty_ui.h"
+#include "../headers/my_csv_structs.h"
+#include "../sources/my_calendar.c"
+#include "../headers/my_tty_ui.h"
 
 /*
  * Local Scope Functions

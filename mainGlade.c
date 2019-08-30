@@ -6,8 +6,8 @@
  * */
 
 #include "gtk/gtk.h"
-#include "../my_csv_structs.c" // ER Db structs
-#include "my_glade_api.c"
+#include "sources/my_csv_structs.c" // ER Db structs
+#include "sources/my_glade_api.c"
 
 int main(int argc, char *argv[]) {
 
@@ -19,19 +19,19 @@ int main(int argc, char *argv[]) {
 	int navigtionPosition = initialMystery(todaysDate.weekdayInt); // starting progress position
 
 	// Populate ER database structs
-	csvToStruct_rosaryBead(rosaryBead_record_field, rosaryBead_dbArray, 300, "../csv/rosaryBead.csv");
-	csvToStruct_bead(bead_record_field, bead_dbArray, 40, "../csv/bead.csv");
-	csvToStruct_book(book_record_field, book_dbArray, 300, "../csv/book.csv");
-	csvToStruct_decade(decade_record_field, decade_dbArray, 800, "../csv/decade.csv");
-	csvToStruct_message(message_record_field, message_dbArray, 150, "../csv/message.csv");
-	csvToStruct_mystery(mystery_record_field, mystery_dbArray, 100, "../csv/mystery.csv");
-	csvToStruct_prayer(prayer_record_field, prayer_dbArray, 1250, "../csv/prayer.csv");
-	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "../csv/scripture.csv");
+	csvToStruct_rosaryBead(rosaryBead_record_field, rosaryBead_dbArray, 300, "csv/rosaryBead.csv");
+	csvToStruct_bead(bead_record_field, bead_dbArray, 40, "csv/bead.csv");
+	csvToStruct_book(book_record_field, book_dbArray, 300, "csv/book.csv");
+	csvToStruct_decade(decade_record_field, decade_dbArray, 800, "csv/decade.csv");
+	csvToStruct_message(message_record_field, message_dbArray, 150, "csv/message.csv");
+	csvToStruct_mystery(mystery_record_field, mystery_dbArray, 100, "csv/mystery.csv");
+	csvToStruct_prayer(prayer_record_field, prayer_dbArray, 1250, "csv/prayer.csv");
+	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
 
     gtk_init(&argc, &argv);
 
     builder = gtk_builder_new();
-    gtk_builder_add_from_file (builder, "myGladeXml.glade", NULL);
+    gtk_builder_add_from_file (builder, "xml/myGladeXml.glade", NULL);
     window = GTK_WIDGET(gtk_builder_get_object(builder, "gtkRosary"));
     initializeLabelPointers(builder, window, widgets); // get pointers to label widgets
     widgets->navigtionPosition = navigtionPosition; // starting progress position;

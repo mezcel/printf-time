@@ -2,8 +2,8 @@
  * main.c
  */
 
-#include "my_csv_structs.c"
-#include "my_tty_ui.c"
+#include "sources/my_csv_structs.c"
+#include "sources/my_tty_ui.c"
 
 int main() {
 

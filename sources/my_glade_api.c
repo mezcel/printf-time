@@ -2,8 +2,8 @@
  * my_glade_api.c
  * */
 
-#include "my_glade_api.h"
-#include "../my_calendar.c"
+#include "../headers/my_glade_api.h"
+#include "../sources/my_calendar.c"
 
 /*
  * Local Scope

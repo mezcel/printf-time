@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <time.h> // After year 2038, only use an x64 computer
 
-#include "my_calendar.h"
+#include "../headers/my_calendar.h"
 
 struct MyDateStruct setTodaysDateStruct() {
 	struct MyDateStruct todaysDate;

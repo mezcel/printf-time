@@ -30,7 +30,7 @@
 #endif
 
 #include <time.h>				// time_t
-#include "my_csv_structs.h"
+#include "../headers/my_csv_structs.h"
 
 /*
  * Header API Scope Functions
