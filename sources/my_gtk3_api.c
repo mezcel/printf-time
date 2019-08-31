@@ -36,7 +36,7 @@ scripture_t scripture_dbArray[202];
  * */
 
 void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets *widgets) {
-	struct MyDateStruct todaysDate = setTodaysDateStruct();
+	struct MyDateStruct todaysDate = returnTodaysDateStruct();
 
 	// labels
 	widgets -> lblTextDate = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDate"));

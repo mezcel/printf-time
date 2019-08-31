@@ -20,9 +20,13 @@ struct MyDateStruct {
 	char * weekdayName;
 };
 
-struct MyDateStruct setTodaysDateStruct();
-struct MyDateStruct setEasterSundayStruct(int yearInt);
+char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+
 double secondsDifference(struct MyDateStruct startDateStruct, struct MyDateStruct endDateStruct);
 int daysBetweenSeconds(double secondsInput);
+struct MyDateStruct returnTodaysDateStruct();
+struct MyDateStruct returnEasterSundayStruct(int yearInt);
+struct MyDateStruct returnFixedFeastDay(int monthInt, int dayInt, struct MyDateStruct todaysDate);
 
 #endif

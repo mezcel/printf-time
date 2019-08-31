@@ -1,5 +1,7 @@
 # printf-time
 
+This repo used to be just C syntax which calculates Easter day and the Paschal Full Moon date. It has taken a new direction.
+
 ### About:
 
 branch: ```v0.3.2.?```

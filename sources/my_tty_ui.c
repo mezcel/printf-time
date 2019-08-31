@@ -55,7 +55,7 @@ int initialMystery(int weekdayNo) {
 
 void splashCoverPage(int weekdayNo, int isLinux) {
 
-	char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+	//char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 	char * weekdayMystery[] = { "Glorious", "Joyful", "Sorrowful", "Glorious", "Luminous", "Sorrowful", "Joyful" };
 
 	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as ER database. It uses .h libraries which are default on most gcc installation. I made an additional library which will parse CSV text into an array of structs for ER db queries. Scriptural readings are quoted from The New American Bible, while additional included readings were curated from a variety of different rosary prayer guides.";
@@ -79,7 +79,9 @@ void splashCoverPage(int weekdayNo, int isLinux) {
 	printf("\n User Controls:\n\n\t Press [b] to step 1 back");
 	printf("\n\t Press [enter] to step 1 forward");
 	printf("\n\t Press [q] to quit the app");
-	printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery.", weekday[weekdayNo], weekdayMystery[weekdayNo]);
+	//printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery.", weekday[weekdayNo], weekdayMystery[weekdayNo]);
+
+	printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery.", WEEKDAY_NAME_ARRAY[weekdayNo], weekdayMystery[weekdayNo]);
 	printf("\n press [enter] to continue");
 
 	getchar();	// pause for char input

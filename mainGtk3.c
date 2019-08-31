@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     GtkWidget *window;
     app_widgets *widgets = g_slice_new(app_widgets);
 
-    struct MyDateStruct todaysDate = setTodaysDateStruct();
+    struct MyDateStruct todaysDate = returnTodaysDateStruct();
 	int navigtionPosition = initialMystery(todaysDate.weekdayInt); // starting progress position
 
 	// Populate ER database structs

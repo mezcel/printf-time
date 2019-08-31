@@ -13,7 +13,7 @@ int main() {
 	int desiredDispLen = 80;	// display row length chars
 
 	#ifdef linux
-		struct MyDateStruct todaysDate = setTodaysDateStruct();
+		struct MyDateStruct todaysDate = returnTodaysDateStruct();
 		isLinux = 1;
 		weekdayNo = todaysDate.weekdayInt;
 		navigtionPosition = initialMystery(todaysDate.weekdayInt); // starting progress position
