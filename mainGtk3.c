@@ -49,6 +49,7 @@ int main(int argc, char *argv[]) {
  * Define functions prototyped by the Glade XML
  * */
 
+// Close App Button Click
 void on_gtkRosary_destroy() {
     gtk_main_quit();
 }
@@ -57,6 +58,7 @@ void on_btnClose_clicked() {
     gtk_main_quit();
 }
 
+// Navigate Forward Button Click
 void on_btnForward_clicked(GtkButton *button, app_widgets *widgets) {
 	int navigtionPosition = widgets->navigtionPosition;
 
@@ -68,6 +70,7 @@ void on_btnForward_clicked(GtkButton *button, app_widgets *widgets) {
 	update_widgets_labels(widgets);
 }
 
+// Navigate Backward Button Click
 void on_btnBack_clicked(GtkButton *button, app_widgets *widgets) {
 	int navigtionPosition = widgets->navigtionPosition;
 

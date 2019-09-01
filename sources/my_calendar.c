@@ -123,7 +123,7 @@ struct MyDateStruct returnEasterBasedFeastDay(struct MyDateStruct easterDate, st
 
 	// under construction
 
-	struct MyDateStruct outputStruct;
+	/*struct MyDateStruct outputStruct;
 
 	double diffSeconds = secondsDifference(todaysDate, easterDate);
 	int days = daysBetweenSeconds(diffSeconds) ;
@@ -135,7 +135,8 @@ struct MyDateStruct returnEasterBasedFeastDay(struct MyDateStruct easterDate, st
 		days = days - timeShift;
 	}
 
-	return outputStruct;
+	return outputStruct;*/
+	return todaysDate;
 }
 
 /*

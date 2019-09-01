@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkApplicationWindow" id="gtkRosary">
@@ -12,6 +12,9 @@
     <property name="default_width">1000</property>
     <property name="default_height">710</property>
     <signal name="destroy" handler="on_gtkRosary_destroy" swapped="no"/>
+    <child>
+      <placeholder/>
+    </child>
     <child>
       <object class="GtkBox" id="boxContainer">
         <property name="visible">True</property>
@@ -212,6 +215,8 @@
                 <property name="use_stock">True</property>
                 <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_btnClose_clicked" swapped="no"/>
+                <accelerator key="q" signal="clicked"/>
+                <accelerator key="x" signal="clicked"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -555,6 +560,10 @@ _</property>
                     <property name="use_stock">True</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="on_btnBack_clicked" swapped="no"/>
+                    <accelerator key="space" signal="clicked"/>
+                    <accelerator key="h" signal="clicked"/>
+                    <accelerator key="space" signal="clicked"/>
+                    <accelerator key="a" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -580,7 +589,6 @@ _</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="has_focus">True</property>
-                    <property name="is_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="margin_left">10</property>
                     <property name="margin_right">10</property>
@@ -588,6 +596,10 @@ _</property>
                     <property name="image_position">right</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="on_btnForward_clicked" swapped="no"/>
+                    <accelerator key="Return" signal="clicked"/>
+                    <accelerator key="l" signal="clicked"/>
+                    <accelerator key="n" signal="clicked"/>
+                    <accelerator key="d" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
