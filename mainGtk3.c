@@ -14,9 +14,9 @@ int main(int argc, char *argv[]) {
     GtkBuilder *builder;
     GtkWidget *window;
     app_widgets *widgets = g_slice_new(app_widgets);
-
-    struct MyDateStruct todaysDate = returnTodaysDateStruct();
-	int navigtionPosition = initialMystery(todaysDate.weekdayInt); // starting progress position
+    
+	struct tm todaysDate = returnTodaysDate();
+	int navigtionPosition = initialMystery(todaysDate.tm_wday); // starting progress position
 
 	// Populate ER database structs
 	csvToStruct_rosaryBead(rosaryBead_record_field, rosaryBead_dbArray, 300, "csv/rosaryBead.csv");
