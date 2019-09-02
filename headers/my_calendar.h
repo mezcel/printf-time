@@ -23,8 +23,8 @@ int    tm_isdst daylight savings flag
 
 struct tm returnTodaysDate();
 struct tm setSpecificDate(int year, int month, int day);
-void addDays(struct tm *startDate, const int days);
-void subtractDays(struct tm *startDate, const int days);
+struct tm addDays(struct tm startDate, int days);
+struct tm subtractDays(struct tm startDate, int days);
 int isFeastDay(struct tm time1, struct tm time2);
 
 #endif
