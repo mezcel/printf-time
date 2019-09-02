@@ -5,8 +5,9 @@
 #ifndef MY_CALENDAR_TMP
 #define MY_CALENDAR_TMP
 
-char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+char * MONTH_NAME_ARRAY[] = { " ", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+//char * WEEKDAY_NAME_ARRAY[] = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
 /*
  * time.h struct
@@ -26,5 +27,6 @@ struct tm setSpecificDate(int year, int month, int day);
 struct tm addDays(struct tm startDate, int days);
 struct tm subtractDays(struct tm startDate, int days);
 int isFeastDay(struct tm time1, struct tm time2);
+int lastDayOfMonth(int month, int year);
 
 #endif

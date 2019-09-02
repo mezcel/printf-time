@@ -10,11 +10,20 @@ struct tm returnTodaysDate() {
 }
 
 struct tm setSpecificDate(int year, int month, int day) {
-    struct tm newTime = { .tm_year = year - 1900, .tm_mon = month, .tm_mday = day };
+    struct tm newTime = { 
+		.tm_year = year - 1900, 
+		.tm_mon = month, 
+		.tm_mday = day 
+	};
 	return newTime;
 }
 
 struct tm setEasterDate(int year) {
+	/* 
+	 * algorithm is taken from:
+	 * 	https://en.wikipedia.org/wiki/Computus
+	 * */
+	 
 	int a, b, c, d, e, f, g, h, i, k, l, m, month, day;
 	
 	a = year % 19;
@@ -32,7 +41,12 @@ struct tm setEasterDate(int year) {
 	month = ( h + l - (7 * m) + 114 ) / 31;
 	day = ( (h + l - (7 * m) + 114) % 31 ) + 1;
 	
-	struct tm newTime = { .tm_year = year, .tm_mon = month, .tm_mday = day };
+	struct tm newTime = { 
+		.tm_year = year,
+		.tm_mon = month, 
+		.tm_mday = day
+	};
+	
     return newTime;
 }
 
@@ -41,8 +55,30 @@ struct tm addDays(struct tm startDate, int days) {
 	return startDate;
 }
 
+int updateWeekday(int weekdayNo) {
+	if (weekdayNo > 6) {
+		weekdayNo = 0;
+	}
+	
+	if (weekdayNo < 0) {
+		weekdayNo = 6;
+	}
+	
+	return weekdayNo;
+}
+
 struct tm subtractDays(struct tm startDate, int days) {
-	startDate.tm_mday -= days;
+	
+	if (startDate.tm_mday > 1) {
+		startDate.tm_mday -= days;
+	} else {
+		int previousMonth = startDate.tm_mon - 1;
+		int lastDay = lastDayOfMonth(previousMonth, startDate.tm_year);
+		
+		startDate.tm_mon = previousMonth;
+		startDate.tm_mday = lastDay;
+	}
+	startDate.tm_wday = updateWeekday( startDate.tm_wday - 1);
 	return startDate;
 }
 
@@ -60,6 +96,29 @@ int isFeastDay(struct tm time1, struct tm time2) {
 	return intFlag;
 }
 
+int lastDayOfMonth(int month, int year) {
+	int lastDayNo;
+	
+	switch (month) {
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			lastDayNo = 30;
+			break;
+	case 2:
+		if ( ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 != 0)) {
+			lastDayNo = 28;
+		} else {
+			lastDayNo = 29;
+		}
+			break;
+	default:
+		lastDayNo = 31;
+	}
+	
+	return lastDayNo;
+}
 // example usecase
 int main() {
 	/*struct tm mytime1 = returnTodaysDate();
@@ -77,7 +136,7 @@ int main() {
     printf("\n isFeast = %d\n", isFeast);*/
     
     struct tm easterDate = setEasterDate(2019);
-    printf("\nEaster Day: %d, %d, %d\n", easterDate.tm_mday, easterDate.tm_mon, easterDate.tm_year);
+    printf("\nEaster Day: %d %d, %d, %d\n", easterDate.tm_wday, easterDate.tm_mday, easterDate.tm_mon, easterDate.tm_year);
     
     struct tm goodSaturday = subtractDays(easterDate,1);
     struct tm goodFriday = subtractDays(easterDate,2);
@@ -88,7 +147,12 @@ int main() {
     printf("\n holyThursday Day: %d, %d, %d\n", holyThursday.tm_mday, holyThursday.tm_mon, holyThursday.tm_year);
     
     
-    
+    struct tm loopDate = setEasterDate(2019);
+		printf("\n -- \n loopDate Day: %s %d, %s, %d \n --- \n", WEEKDAY_NAME_ARRAY[loopDate.tm_wday], loopDate.tm_mday, MONTH_NAME_ARRAY[loopDate.tm_mon], loopDate.tm_year);
+    for (int i=0; i < 46; i++) {
+		loopDate = subtractDays(loopDate,1);
+		printf("\n loopDate Day: %s %d, %s, %d\n", WEEKDAY_NAME_ARRAY[loopDate.tm_wday], loopDate.tm_mday, MONTH_NAME_ARRAY[loopDate.tm_mon], loopDate.tm_year);
+	}
 	
     return 0;
 }
