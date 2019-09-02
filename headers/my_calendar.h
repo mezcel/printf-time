@@ -7,7 +7,6 @@
 
 char * MONTH_NAME_ARRAY[] = { " ", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-//char * WEEKDAY_NAME_ARRAY[] = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
 /*
  * time.h struct
@@ -22,11 +21,15 @@ int    tm_yday  day of year [0,365]
 int    tm_isdst daylight savings flag
 */
 
-struct tm returnTodaysDate();
-struct tm setSpecificDate(int year, int month, int day);
-struct tm addDays(struct tm startDate, int days);
-struct tm subtractDays(struct tm startDate, int days);
 int isFeastDay(struct tm time1, struct tm time2);
 int lastDayOfMonth(int month, int year);
+
+struct tm returnTodaysDate();
+struct tm setSpecificDate(int year, int month, int day);
+struct tm addDay(struct tm referenceDate);
+struct tm addDays(struct tm referenceDate, int days);
+struct tm subtractDay(struct tm referenceDate);
+struct tm subtractDays(struct tm referenceDate, int days);
+
 
 #endif
