@@ -1,6 +1,6 @@
 # printf-time
 
-This repo used to be a bare-bone C syntax exercise, ```with: math.h / without: time.h, or string.h```, which only calculated Easter day and the Paschal Full Moon (PFM) date. It now utilizes a variety of libs and uses PFM to perform tasks.
+_Side note_: This repo, ```printf-time```, used to be a bare-bone C syntax exercise, which only calculated the Paschal Full Moon (PFM) date and derived the Easter Sunday date. It only used math.h and it did not use time.h, or string.h. It now utilizes a variety of libs and uses PFM to perform tasks.
 
 ### About:
 
@@ -16,7 +16,7 @@ This app is still under construction, but many of its features are functional an
 
 This is the 5th programming platform version in my Rosary App series. Previous language versions were: [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version), [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version), [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (for Arch & Debian), [Python/Json](https://github.com/mezcel/python-curses), and now the [C/CSV](https://github.com/mezcel/printf-time) version.
 
-### Deliverables:
+### Deliverable:
 
 ##### 1. A TTY version
 
@@ -38,9 +38,14 @@ A C program that displays queried text from a CSV database in a CLI/TTY screen i
 
 #### v0.3.2.? (current development)
 
-At the moment I am meddling with the Gtk version. I am making the feature that will display the current liturgical calendar state.
+Everything works, but the gui still needs some cleaning up.
 
-I will go back to the TTY version and re-factor it so it can simply be just linked into the Gtk main.
+	* the Gtk level bar math needs to be revisited.
+		* the math calculation in the traditions is sending an out of range value to the widget.
+		* the issue is only visible when I watch the app's performance via command line terminal view.
+		
+	* The TTY version is still "not tasteful"
+		* I will continue to experiment with tasteful ASCII visualizations. 
 
 
 ##### Runtime Environment
