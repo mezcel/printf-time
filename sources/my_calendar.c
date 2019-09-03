@@ -25,20 +25,40 @@ int lastDayOfMonth(int month, int year) {
 		case 11:
 			lastDayNo = 30;
 			break;
-	case 2:
-		if ( ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 != 0)) {
-			lastDayNo = 28;
-		} else {
-			lastDayNo = 29;
-		}
+		case 2:
+			if ( ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 != 0)) {
+				lastDayNo = 28;
+			} else {
+				lastDayNo = 29;
+			}
 			break;
-	default:
-		lastDayNo = 31;
+		case 0:
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+			lastDayNo = 31;
+			break;
+		default:
+			lastDayNo = 31;
 	}
 	
 	return lastDayNo;
 }
 
+void print_date(struct tm tmDate, char *labelString) {
+	int monthIndex = tmDate.tm_mon;
+	int weekIndex = tmDate.tm_wday;
+	printf("\n%s: %s, %d, %s, %d\n",
+		labelString,
+		WEEKDAY_NAME_ARRAY[weekIndex], 
+		tmDate.tm_mday, 
+		MONTH_NAME_ARRAY[monthIndex], 
+		tmDate.tm_year + 1900
+	);
+}
 
 struct tm returnTodaysDate() {
 	time_t currentDate = time(NULL);
@@ -47,11 +67,19 @@ struct tm returnTodaysDate() {
 }
 
 struct tm setSpecificDate(int year, int month, int day) {
-    struct tm newTime = { 
+	//month = month + 1;
+	struct tm newTime = { 
 		.tm_year = year - 1900, 
 		.tm_mon = month, 
-		.tm_mday = day 
+		.tm_mday = day,
+		.tm_hour = 0,
+		.tm_min = 0,
+		.tm_sec = 1
 	};
+	
+	time_t t = mktime(&newTime);
+	newTime.tm_wday = localtime(&t)->tm_wday;
+	
 	return newTime;
 }
 
@@ -78,34 +106,15 @@ struct tm setEasterDate(int year) {
 	month = ( h + l - (7 * m) + 114 ) / 31;
 	day = ( (h + l - (7 * m) + 114) % 31 ) + 1;
 	
-	struct tm newTime = { 
-		.tm_year = year,
-		.tm_mon = month,
-		.tm_mday = day,
-		.tm_wday = 0
-	};
+	struct tm easterDay = setSpecificDate(year, month, day);
 	
-    return newTime;
+    return easterDay;
 }
 
 struct tm addDay(struct tm referenceDate) {
-	int lastDay = lastDayOfMonth(referenceDate.tm_mon, referenceDate.tm_year);
-	
-	if (referenceDate.tm_mday < lastDay) {
-		referenceDate.tm_mday += 1;
-	} else {
-		
-		if (referenceDate.tm_mon == 11) {
-			referenceDate.tm_mon = 0;
-			referenceDate.tm_year += 1;
-		} else {
-			referenceDate.tm_mon += 1;
-		}
-		
-		referenceDate.tm_mday = lastDay;
-	}
-	
-	referenceDate.tm_wday = updateWeekday(referenceDate.tm_wday + 1);
+	referenceDate.tm_mday += 1;
+	time_t t = mktime(&referenceDate);
+	referenceDate.tm_wday = localtime(&t)->tm_wday;
 	
 	return referenceDate;
 }
@@ -118,21 +127,9 @@ struct tm addDays(struct tm referenceDate, int days) {
 }
 
 struct tm subtractDay(struct tm referenceDate) {
-	if (referenceDate.tm_mday > 1) {
-		referenceDate.tm_mday -= 1;
-	} else {
-		
-		if (referenceDate.tm_mon == 0) {
-			referenceDate.tm_mon = 11;
-			referenceDate.tm_year -= 1;
-		} else {
-			referenceDate.tm_mon -= 1;
-		}
-		
-		referenceDate.tm_mday = lastDayOfMonth(referenceDate.tm_mon, referenceDate.tm_year);;
-	}
-	
-	referenceDate.tm_wday = updateWeekday( referenceDate.tm_wday - 1);
+	referenceDate.tm_mday -= 1;
+	time_t t = mktime(&referenceDate);
+	referenceDate.tm_wday = localtime(&t)->tm_wday;
 	
 	return referenceDate;
 }
@@ -158,29 +155,32 @@ int isFeastDay(struct tm tmNow, struct tm tmThen) {
 	return intFlag;
 }
 
-
 // example usecase
 int main() {
 	    
     struct tm tmToday = returnTodaysDate();
-    struct tm easterDate = setEasterDate(tmToday.tm_year + 1900);   
+    struct tm easter_sunday = setEasterDate(2019); // sun, apr 21
      
-    struct tm goodSaturday = subtractDays(easterDate,1);
-    struct tm goodFriday = subtractDays(easterDate,2);
-    struct tm holyThursday = subtractDays(easterDate,3);
-    struct tm ashWednesday = subtractDays(easterDate,46);
+    struct tm good_saturday = subtractDays(easter_sunday,1); // sat, apr 20
+    struct tm good_friday = subtractDays(easter_sunday,2); // fri, apr 19
+    struct tm holy_thursday = subtractDays(easter_sunday,3); // thur, apr 18
+    struct tm ash_wednesday = subtractDays(easter_sunday,46); // wed, mar 6
+    struct tm assension_of_jesus = addDays(easter_sunday,40); // thurs, may 30
+    struct tm immaculate_conception_mary = setSpecificDate(2019, 11, 8); // Dec 8
     
-    printf("\n easterDate Day: %s, %d, %s, %d\n", WEEKDAY_NAME_ARRAY[easterDate.tm_wday], easterDate.tm_mday, MONTH_NAME_ARRAY[easterDate.tm_mon], easterDate.tm_year);
-    printf("\n goodSaturday Day: %s, %d, %s, %d\n", WEEKDAY_NAME_ARRAY[goodSaturday.tm_wday], goodSaturday.tm_mday, MONTH_NAME_ARRAY[goodSaturday.tm_mon], goodSaturday.tm_year);
-    printf("\n goodFriday Day: %s, %d, %s, %d\n", WEEKDAY_NAME_ARRAY[goodFriday.tm_wday], goodFriday.tm_mday, MONTH_NAME_ARRAY[goodFriday.tm_mon], goodFriday.tm_year);
-    printf("\n holyThursday Day: %s, %d, %s, %d\n", WEEKDAY_NAME_ARRAY[holyThursday.tm_wday], holyThursday.tm_mday, MONTH_NAME_ARRAY[holyThursday.tm_mon], holyThursday.tm_year);
-    printf("\n ashWednesday Day: %s, %d, %s, %d\n", WEEKDAY_NAME_ARRAY[ashWednesday.tm_wday], ashWednesday.tm_mday, MONTH_NAME_ARRAY[ashWednesday.tm_mon], ashWednesday.tm_year);
+    print_date(easter_sunday, "easter_sunday");
+    print_date(good_saturday, "good_saturday");
+    print_date(good_friday, "good_friday");
+    print_date(holy_thursday, "holy_thursday");
+    print_date(ash_wednesday, "ash_wednesday");
+    print_date(assension_of_jesus, "assension_of_jesus");
+    print_date(immaculate_conception_mary, "immaculate_conception_mary");
     
-    double returnSeconds = difftime(mktime(&easterDate), mktime(&goodFriday));
+    double returnSeconds = difftime(mktime(&easter_sunday), mktime(&good_friday));
     double days = returnSeconds / (24 * 3600);
     printf("\n | easterDate - goodFriday | = %d days\n", (int)days);
     
-    int isFeast = isFeastDay(tmToday, easterDate);
+    int isFeast = isFeastDay(tmToday, easter_sunday);
     printf("\n is today easterDate = %d\n", isFeast);
     
     return 0;

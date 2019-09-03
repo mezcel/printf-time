@@ -5,7 +5,7 @@
 #ifndef MY_CALENDAR_TMP
 #define MY_CALENDAR_TMP
 
-char * MONTH_NAME_ARRAY[] = { " ", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
 /*
