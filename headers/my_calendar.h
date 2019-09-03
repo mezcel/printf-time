@@ -5,17 +5,10 @@
 #ifndef MY_CALENDAR_TMP
 #define MY_CALENDAR_TMP
 
-char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", 
-		"May", "June", "July", "August", "September", "October", 
-		"November", "December" };
-char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday",
-		"Thursday", "Friday", "Saturday" };
-char * LITURGICAL_SEASON_ARRAY[] = { "Advent Season", "Christmas Season", 
-		"Lent Season", "Easter Season", "Ordinary Time"};
-char * FEAST_DAY_ARRAY[] = { "advent_start", "immaculate_conception_mary", 
-		"christmas_day", "solemnity_of_mary", "epiphany", "jesus_baptism",
-		"ash_wednesday", "holy_thursday", "good_friday", "good_saturday", 
-		"easter_sunday", "pentacost", "assension_of_jesus", "all_saints_day"};
+char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+char * LITURGICAL_SEASON_ARRAY[] = { "Advent Season", "Christmas Season", "Lent Season", "Easter Season", "Ordinary Time"};
+char * FEAST_DAY_ARRAY[] = { "advent_start", "immaculate_conception_mary", "christmas_day", "solemnity_of_mary", "epiphany", "jesus_baptism", "ash_wednesday", "holy_thursday", "good_friday", "good_saturday", "easter_sunday", "pentacost", "assension_of_jesus", "all_saints_day", "ordinary_day"};
 
 /*
 // time.h tm struct

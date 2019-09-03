@@ -1,6 +1,6 @@
 # printf-time
 
-This repo used to be just C syntax which calculates Easter day and the Paschal Full Moon date. It has taken a new direction.
+This repo used to be a bare-bone C syntax exercise, ```with: math.h / without: time.h, or string.h```, which only calculated Easter day and the Paschal Full Moon (PFM) date. It now utilizes a variety of libs and uses PFM to perform tasks.
 
 ### About:
 
