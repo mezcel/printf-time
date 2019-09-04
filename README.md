@@ -2,7 +2,7 @@
 
 ### About:
 
-This is a slideshow scriptural rosary. The text database is CSV, the program syntax is C, and the GUI is a Gtk built with from xml.
+This is a scriptural rosary slideshow. The text database is CSV, the program is C, and the UI is Gtk built with from an Xml.
 
 ### Inspiration:
 
@@ -17,7 +17,7 @@ Previous versions were:
 
 ### 2 Gui options:
 
-##### 1. A TTY version
+##### 1. A TTY/CLI version
 
 The user navigates with with typed instructions. Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards.
 
@@ -39,12 +39,8 @@ The user navigates with widget objects.
 
 Everything works, but the gui still needs some cleaning up.
 
-	* the Gtk level-bar math needs to be revisited.
-		* the math calculation in the traditions is sending an out of range value to the widget.
-		* the issue is only visible when I watch the app's performance via command line terminal view.
-		
+	* Gtk label resizing can be improved
 	* The TTY version looks tacky.
-		* I will continue to experiment with tasteful ASCII visualizations. 
 
 ##### Runtime Environment
 

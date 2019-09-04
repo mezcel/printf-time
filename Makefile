@@ -8,14 +8,16 @@ CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 all: packages ttyRosary gtkRosary
 
 packages:
-	# Debian Library dependencies
+	## Debian Library dependencies
 	sudo apt update
 	sudo apt install libgtk-3-dev
+	#sudo apt install mingw-w64
 
 ttyRosary:
-	# Terminal App
+	## Terminal App
 	$(CC) "mainTTY.c" -o "ttyRosary"
+	#i686-w64-mingw32-gcc "mainTTY.c" -o "ttyRosary_Win.exe"
 
 gtkRosary:
-	# Desktop Gui
+	## Desktop Gui
 	$(CC) "mainGtk3.c" -o "gtkRosary" $(CFLAGS)

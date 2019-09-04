@@ -46,7 +46,7 @@ void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
 		shiftTowardSunday(&epiphany); // epiphany sunday
 	struct tm jesus_baptism = addDays(christmas_day,12);
 		shiftJesusBaptism(&jesus_baptism); // avoid epiphany overlap
-		
+
 	struct tm easter_sunday = setEasterDate(todaysDate.tm_year + 1900); // pfm
     struct tm good_saturday = subtractDays(easter_sunday,1);
     struct tm good_friday = subtractDays(easter_sunday,2);
@@ -55,12 +55,12 @@ void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
     struct tm pentacost = addDays(easter_sunday,21);
 		shiftTowardSunday(&pentacost);  // sun june 9, 7 sundays after easter
     struct tm assension_of_jesus = addDays(easter_sunday,40);
-		
+
     struct tm all_saints_day = setSpecificDate(todaysDate.tm_year + 1900, 10, 1); // Nov 1
-    
-    *seasonFlag = returnLiturgicalSeason(&todaysDate, &advent_start, 
+
+    *seasonFlag = returnLiturgicalSeason(&todaysDate, &advent_start,
 		&christmas_day, &epiphany, &ash_wednesday, &easter_sunday, &pentacost);
-	
+
 	int isFeast;
 	switch (*seasonFlag) {
 		case 0:
@@ -118,9 +118,9 @@ void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets
 	struct tm todaysDate = returnTodaysDate();
 	int seasonFlag = 4; // ordinary time
 	int feastFlag = 14; // ordinary day
-	
+
 	intializeCalendar(todaysDate, &seasonFlag, &feastFlag);
-	
+
 	// labels
 	widgets -> lblTextDate = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDate"));
 
@@ -200,9 +200,21 @@ void update_widgets_labels(app_widgets *widgets) {
 	 * */
 
 	double smallbeadDouble = (double)smallbeadPercent / 10.0;
+	if (smallbeadDouble < 0.01) {
+		smallbeadDouble = 0.00;
+	}
+	if (smallbeadDouble > 1.00) {
+		smallbeadDouble = 1.00;
+	}
 	double smallbeadPercentDouble = smallbeadDouble * 100.0;
 
 	double mysteryDouble = (double)mysteryPercent / 50.0;
+	if (mysteryDouble < 0.01) {
+		mysteryDouble = 0.00;
+	}
+	if (mysteryDouble > 1.00) {
+		mysteryDouble = 1.00;
+	}
 	double mysteryPercentDouble = mysteryDouble * 100.0;
 
 	/*
@@ -253,5 +265,4 @@ void update_widgets_labels(app_widgets *widgets) {
 
 	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets->levelBar_decade), smallbeadDouble);
 	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets->levelBar_mystery), mysteryDouble);
-
 }

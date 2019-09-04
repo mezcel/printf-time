@@ -5,12 +5,13 @@
   <object class="GtkApplicationWindow" id="gtkRosary">
     <property name="name">Gtk_Rosary</property>
     <property name="width_request">1000</property>
-    <property name="height_request">725</property>
+    <property name="height_request">750</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Gtk Rosary</property>
     <property name="window_position">center</property>
     <property name="default_width">1000</property>
-    <property name="default_height">710</property>
+    <property name="default_height">750</property>
+    <property name="icon_name">accessories-dictionary</property>
     <signal name="destroy" handler="on_gtkRosary_destroy" swapped="no"/>
     <child>
       <placeholder/>
@@ -84,6 +85,7 @@
                       <object class="GtkLabel" id="lblTextLiturgicalCalendar">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="tooltip_markup" translatable="yes">&lt;i&gt;Liturgical Calendar Season&lt;/i&gt;</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
                         <property name="label" translatable="yes">Ordinary Time</property>
@@ -100,6 +102,7 @@
                       <object class="GtkLabel" id="lblTextFeast">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="tooltip_markup" translatable="yes">&lt;i&gt;Obligatory Feast Days&lt;/i&gt;</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
                         <property name="label" translatable="yes">n/a</property>
@@ -147,10 +150,9 @@
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
-                        <property name="label" translatable="yes">https://github.com/mezcel/printf-time.git </property>
-                        <attributes>
-                          <attribute name="font-desc" value="Monospace 10"/>
-                        </attributes>
+                        <property name="label" translatable="yes">&lt;a href="https://github.com/mezcel/printf-time.git"&gt;https://github.com/mezcel/printf-time.git&lt;/a&gt;</property>
+                        <property name="use_markup">True</property>
+                        <property name="selectable">True</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -212,6 +214,10 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes"># Terminate app
+accelerators:
+* [esc]
+* q or x</property>
                 <property name="use_stock">True</property>
                 <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_btnClose_clicked" swapped="no"/>
@@ -370,7 +376,7 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextMystery">
-                    <property name="height_request">32</property>
+                    <property name="height_request">35</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -392,7 +398,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextDecade">
-                    <property name="height_request">32</property>
+                    <property name="height_request">35</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -417,6 +423,7 @@ _</property>
                     <property name="height_request">47</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">meditation guide</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
@@ -437,9 +444,10 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextBackground">
-                    <property name="height_request">77</property>
+                    <property name="height_request">80</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">background information pretaining to the decade</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
@@ -449,6 +457,7 @@ _
 _
 _
 _</property>
+                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
                     <property name="yalign">0</property>
                     <attributes>
@@ -462,9 +471,10 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextScripture">
-                    <property name="height_request">64</property>
+                    <property name="height_request">80</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">quotes from the NAB</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
@@ -473,7 +483,9 @@ _</property>
 _
 _
 _</property>
+                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
+                    <property name="selectable">True</property>
                     <property name="yalign">0</property>
                     <attributes>
                       <attribute name="font-desc" value="Monospace 10"/>
@@ -486,7 +498,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextPrayer">
-                    <property name="height_request">124</property>
+                    <property name="height_request">95</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -501,6 +513,7 @@ _
 _
 _
 _</property>
+                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
                     <property name="yalign">0</property>
                     <attributes>
@@ -517,6 +530,7 @@ _</property>
                     <property name="height_request">16</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">the bead shape used on a physical rosary chain</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
@@ -555,15 +569,20 @@ _</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes"># Navigate Backward
+accelerators:
+* [space]
+* a or h or b
+&lt;/ul&gt;</property>
                     <property name="margin_left">10</property>
                     <property name="margin_right">10</property>
                     <property name="use_stock">True</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="on_btnBack_clicked" swapped="no"/>
-                    <accelerator key="space" signal="clicked"/>
+                    <accelerator key="a" signal="clicked"/>
                     <accelerator key="h" signal="clicked"/>
                     <accelerator key="space" signal="clicked"/>
-                    <accelerator key="a" signal="clicked"/>
+                    <accelerator key="b" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -590,6 +609,10 @@ _</property>
                     <property name="can_focus">True</property>
                     <property name="has_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes"># Navigate Forward
+accelerators:
+* [enter]
+* n or l or d</property>
                     <property name="margin_left">10</property>
                     <property name="margin_right">10</property>
                     <property name="use_stock">True</property>
@@ -693,6 +716,7 @@ _</property>
                   <object class="GtkLevelBar" id="levelBar_mystery">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">total mystery hail mary progress</property>
                     <property name="hexpand">True</property>
                   </object>
                   <packing>
@@ -704,6 +728,7 @@ _</property>
                   <object class="GtkLevelBar" id="levelBar_decade">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">hail mary decade progress</property>
                     <property name="hexpand">True</property>
                   </object>
                   <packing>
@@ -836,6 +861,7 @@ _</property>
               <object class="GtkLabel" id="lblTextDate">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">each weekday has its own mystery focus</property>
                 <property name="label" translatable="yes">date</property>
                 <attributes>
                   <attribute name="font-desc" value="Monospace 10"/>
