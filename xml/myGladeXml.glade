@@ -5,12 +5,12 @@
   <object class="GtkApplicationWindow" id="gtkRosary">
     <property name="name">Gtk_Rosary</property>
     <property name="width_request">1000</property>
-    <property name="height_request">750</property>
+    <property name="height_request">740</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Gtk Rosary</property>
     <property name="window_position">center</property>
     <property name="default_width">1000</property>
-    <property name="default_height">750</property>
+    <property name="default_height">740</property>
     <property name="icon_name">accessories-dictionary</property>
     <signal name="destroy" handler="on_gtkRosary_destroy" swapped="no"/>
     <child>
@@ -216,7 +216,6 @@
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes"># Terminate app
 accelerators:
-* [esc]
 * q or x</property>
                 <property name="use_stock">True</property>
                 <property name="always_show_image">True</property>
@@ -572,8 +571,7 @@ _</property>
                     <property name="tooltip_text" translatable="yes"># Navigate Backward
 accelerators:
 * [space]
-* a or h or b
-&lt;/ul&gt;</property>
+* a or h or b</property>
                     <property name="margin_left">10</property>
                     <property name="margin_right">10</property>
                     <property name="use_stock">True</property>
