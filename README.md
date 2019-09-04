@@ -1,35 +1,34 @@
 # printf-time
 
-_Side note_: This repo, ```printf-time```, used to be a bare-bone C syntax exercise, which only calculated the Paschal Full Moon (PFM) date and derived the Easter Sunday date. It only used math.h and it did not use time.h, or string.h. It now utilizes a variety of libs and uses PFM to perform tasks.
-
 ### About:
 
-branch: ```v0.3.2.?```
-
-The theme of this app is an embellished scripture Rosary slideshow. Scriptures are quoted from the New American Bible (NAB). The Rosary's starting point is set to 1 of 4 mysteries, depending on which day of the week it is.
-
-This project is an exercise in using the C structured programming language. The TTY component of this project is intended to be __portable__, ___extensible___, and ___cross platform___. One usecase is porting its functionality features into an OOP Gtk API.
-
-This app is still under construction, but many of its features are functional and demo-able.
+This is a slideshow scriptural rosary. The text database is CSV, the program syntax is C, and the GUI is a Gtk built with from xml.
 
 ### Inspiration:
 
-This is the 5th programming platform version in my Rosary App series. Previous language versions were: [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version), [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version), [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (for Arch & Debian), [Python/Json](https://github.com/mezcel/python-curses), and now the [C/CSV](https://github.com/mezcel/printf-time) version.
+This is the 5th program language version in my Rosary App series. Features used in this app are based on previous other versions of the app.
 
-### Deliverable:
+Previous versions were:
+* [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version),
+* [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version),
+* [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (shell on Arch & Debian),
+* [Python/Json](https://github.com/mezcel/python-curses),
+* and now the [C/CSV](https://github.com/mezcel/printf-time) version.
+
+### 2 Gui options:
 
 ##### 1. A TTY version
 
-A C program that displays queried text from a CSV database in a CLI/TTY screen interface. Data from the CSV files are parsed into type defined structs using GCC standard libraries. The app reads as a  booklet loop or a slideshow loop. The user navigates forwards and backwards using the [enter] key and the key sequence ["b" + enter].
+The user navigates with with typed instructions. Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards.
 
 * Terminal screen app ( printf and key inputs )
-* C as a structured program
 * [outdated animated demo](https://asciinema.org/a/262232.svg) ```v0.2.?```
 
 ##### 2. A GTK/GUI version
 
+The user navigates with widget objects.
+
 * Desktop window app ( buttons, labels, progressbars, and other misc. widgets )
-* C interfacing with an OOP
 * [outdated screenshot](img/screenshot.gif) ```v0.3```
 
 ---
@@ -40,19 +39,19 @@ A C program that displays queried text from a CSV database in a CLI/TTY screen i
 
 Everything works, but the gui still needs some cleaning up.
 
-	* the Gtk level bar math needs to be revisited.
+	* the Gtk level-bar math needs to be revisited.
 		* the math calculation in the traditions is sending an out of range value to the widget.
 		* the issue is only visible when I watch the app's performance via command line terminal view.
 		
-	* The TTY version is still "not tasteful"
+	* The TTY version looks tacky.
 		* I will continue to experiment with tasteful ASCII visualizations. 
-
 
 ##### Runtime Environment
 
 * [MinGW](http://www.mingw.org/) or Linux
 * Command line interface (CLI) / Shell Terminal
-* Xorg (linux) or Xlaunch (Win10/WLS)
+* Xorg (Debian linux) or Xlaunch (Win10/WLS)
+* GTK3+
 
 ##### Developer Environment (debug/mod)
 
