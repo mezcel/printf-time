@@ -24,6 +24,18 @@
  * Local Scope Functions
  * */
 
+int returnScreenWidth(int isLinux) {
+	int cols = 85;
+
+	if(isLinux == 1) {
+		struct winsize w; // terminal tty info
+		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // tty col/row
+		cols =  w.ws_col;
+	}
+
+	return cols;
+}
+
 void clearScreen(int isLinux) {
 	//system("@cls||clear");
 	if (isLinux == 1) {
@@ -53,7 +65,7 @@ int initialMystery(int weekdayNo) {
  * Header API Scope Functions
  * */
 
-void splashCoverPage(int weekdayNo, int isLinux) {
+void splashCoverPage(int weekdayNo, int isLinux, int desiredDispLen) {
 
 	//char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 	char * weekdayMystery[] = { "Glorious", "Joyful", "Sorrowful", "Glorious", "Luminous", "Sorrowful", "Joyful" };
@@ -64,16 +76,17 @@ void splashCoverPage(int weekdayNo, int isLinux) {
 
 	char *titleLabel = " C/CSV Rosary ";
 	int titleLabelLength = (int)strlen(titleLabel);
-	borderCharPrintF("+", 100);
+	borderCharPrintF("+", desiredDispLen);
 	printf("\n");
 	borderCharPrintF("+", 3);
 	printf(titleLabel);
-	borderCharPrintF("+", (100 - (titleLabelLength + 3 )) );
+	borderCharPrintF("+", (desiredDispLen - (titleLabelLength + 3 )) );
 	printf("\n");
-	borderCharPrintF("+", 100);
+	borderCharPrintF("+", desiredDispLen);
 	printf("\n");
 
-	multiLinePrintF("\n About:\n\n\t", aboutString, 60);
+	// multiLinePrintF("\n About:\n\n\t", aboutString, 60);
+	multiLinePrintF("\n About:\n\n\t", aboutString, desiredDispLen );
 
 	printf("\n\n Display:\n\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
 	printf("\n User Controls:\n\n\t Press [b] to step 1 back");
@@ -89,6 +102,8 @@ void splashCoverPage(int weekdayNo, int isLinux) {
 }
 
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
+	desiredLineLength = (desiredLineLength / 2) + (desiredLineLength / 5) - 5;
+
 	int lineLength = (int)strlen(strIn);
 	printf("%s", labelChars);
 
@@ -96,6 +111,7 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 		printf("%s\n\t\t", strIn);
 
 	} else {
+
 		int inputLength = (int)strlen(strIn);
 		char stringInput[inputLength]; // temp copy of string to manipulate
 			strcpy(stringInput, strIn);
@@ -108,7 +124,7 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 			wordLength = (int)strlen(parsedStringArray);
 			desiredLengthCounter = desiredLengthCounter + wordLength;
 
-			if (desiredLengthCounter < desiredLineLength) {
+			if (desiredLengthCounter < (desiredLineLength)) {
 				printf("%s ", parsedStringArray);
 			} else {
 				printf("\n\t\t%s ", parsedStringArray);
@@ -125,7 +141,6 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 	for (;;) {
 		switch (c) {
 			case '\n': // [enter] navigate 1 step forward
-				clearScreen(isLinux);
 				if (navigtionPosition < 315) {
 					navigtionPosition++;
 				} else {
@@ -214,10 +229,19 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen) {
 	// disp header
 	char *titleLabel = " C/CSV Rosary ";
-	int titleLabelLength = (int)strlen(titleLabel);
+	//int titleLabelLength = (int)strlen(titleLabel);
 	borderCharPrintF("+", 3);
 	printf(titleLabel);
-	borderCharPrintF("+", desiredDispLen + 30);
+	borderCharPrintF("+", desiredDispLen - 17);
+
+			/*desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
+			desiredDispLen = desiredDispLen - (desiredDispLen/4);*/
+	//int strLen = ( (desiredDispLen / 2) + (desiredDispLen / 5) ) - 13;
+
+/*
+ * desiredDispLen - (20/desiredDispLen)*100 */
+	//double percent = (30.0/(double)desiredDispLen);
+	//double offset = (double)desiredDispLen * percent;
 
 	// disp body
 	printf("\n\n Mystery:\t%s", queryViewStruct.mysteryName);
@@ -230,11 +254,12 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen) {
 
 	// disp footer
 	char *footerLabel = " Rosary Progress ";
-	int footerLabelLength = (int)strlen(footerLabel);
-	int diffLabelLength = desiredDispLen - (footerLabelLength - titleLabelLength);
+	//int footerLabelLength = (int)strlen(footerLabel);
+	//int diffLabelLength = desiredDispLen - (footerLabelLength - titleLabelLength);
 	borderCharPrintF("+", 3);
 	printf(footerLabel);
-	borderCharPrintF("+", diffLabelLength + 30);
+	//borderCharPrintF("+", diffLabelLength + 30);
+	borderCharPrintF("+", desiredDispLen - 20);
 	printf("\n\n position:\t   %d / 315", queryViewStruct.rosaryPositionID);
 
 	if (queryViewStruct.loopBody == 1) {

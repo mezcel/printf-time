@@ -13,7 +13,7 @@ int main() {
 	int isLinux = 1;			// OS flag
 	int weekdayNo = 0;			// day of the week
 	int navigtionPosition = 0;	// navigation position
-	int desiredDispLen = 80;	// display row length chars
+	int desiredDispLen = 85;	// display row length chars
 
 	// path to csv db files
 	char *rosaryBead_path = "csv/rosaryBead.csv";
@@ -31,31 +31,25 @@ int main() {
 		struct tm todaysDate = returnTodaysDate();
 		weekdayNo = todaysDate.tm_wday;
 		navigtionPosition = initialMystery(weekdayNo); // starting progress position
-		struct winsize w; // terminal tty info
 	#endif
 
 	#ifndef linux
 		isLinux = 0;
 	#endif
 
-	#ifdef _WIN32
-		isLinux = 0;
-	#endif
-
 	// make a full struct db
 	make_struct_db(&rosary_db_struct, csv_path_array);
 
+	// linux tty/posix display dimensions
+	desiredDispLen = returnScreenWidth(isLinux);
+
 	// intro, cover page, splash text
-	splashCoverPage(weekdayNo, isLinux);
+	splashCoverPage(weekdayNo, isLinux, desiredDispLen );
 
 	// UI Loop
     while (navigtionPosition <= 315) {
-
-		// linux tty/posix display dimensions
-        if(isLinux == 1) {
-			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // tty col/row
-			desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
-        }
+		clearScreen(isLinux);
+        desiredDispLen = returnScreenWidth(isLinux);
 
 		// update query view struct
 		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct, navigtionPosition);

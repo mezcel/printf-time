@@ -38,7 +38,8 @@ typedef struct displayVariables_struct {
  * Prototypes
  * */
 
-void splashCoverPager(int weekdayNo, int isLinux);
+int returnScreenWidth(int isLinux);
+void splashCoverPager(int weekdayNo, int isLinux, int desiredDispLen);
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength);
 int pressKeyContinue(int navigtionPosition, int isLinux);
 void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct, int navigtionPosition);

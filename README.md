@@ -43,7 +43,7 @@ Everything works, but the gui still needs some cleaning up.
 
 	* The focus is on linux, I will re-integrate it for Win10 compatibility later.
 	* Gtk label resizing can be improved
-	* The TTY version looks tacky... still experimenting with ideas
+	* The TTY version's word wrap could use some improvement
 	* Consolidated the maze of database struct pointer/address
 
 ##### Runtime Environment
