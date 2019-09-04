@@ -155,7 +155,7 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 	}
 }
 
-void updateDisplayVariablesStruct(rosaryBead_t rosaryBead_dbArray[317], bead_t bead_dbArray[9], book_t book_dbArray[17], decade_t decade_dbArray[22], message_t message_dbArray[22], mystery_t mystery_dbArray[7], prayer_t prayer_dbArray[11], scripture_t scripture_dbArray[202], displayVariables_t *queryViewStruct, int navigtionPosition) {
+void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct, int navigtionPosition) {
 
 	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0, prayerFK = 0;
 	int scriptureFK = 0, loopBody = 0, smallbeadPercent = 0, mysteryPercent = 0;
@@ -164,27 +164,27 @@ void updateDisplayVariablesStruct(rosaryBead_t rosaryBead_dbArray[317], bead_t b
 	char *beadType, *decadeName, *decadeInfo, *mesageText, *mysteryName;
 	char *scriptureText, *prayerText;
 
-	rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
-	beadFK = rosaryBead_dbArray[navigtionPosition].beadIndex;
-	decadeFK = rosaryBead_dbArray[navigtionPosition].decadeIndex;
-	messageFK = rosaryBead_dbArray[navigtionPosition].messageIndex;
-	mysteryFK = rosaryBead_dbArray[navigtionPosition].mysteryIndex;
-	prayerFK = rosaryBead_dbArray[navigtionPosition].prayerIndex;
-	scriptureFK = rosaryBead_dbArray[navigtionPosition].scriptureIndex;
-	loopBody = rosaryBead_dbArray[navigtionPosition].loopBody;
-	smallbeadPercent = rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
-	mysteryPercent = rosaryBead_dbArray[navigtionPosition].mysteryPercent;
+	rosaryPositionID = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
+	beadFK = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].beadIndex;
+	decadeFK = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].decadeIndex;
+	messageFK = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].messageIndex;
+	mysteryFK = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].mysteryIndex;
+	prayerFK = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].prayerIndex;
+	scriptureFK = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].scriptureIndex;
+	loopBody = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].loopBody;
+	smallbeadPercent = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
+	mysteryPercent = rosary_db_struct->rosaryBead_dbArray[navigtionPosition].mysteryPercent;
 
-	beadType = bead_dbArray[beadFK].beadType;
-	decadeName = decade_dbArray[decadeFK].decadeName;
-	decadeInfo = decade_dbArray[decadeFK].decadeInfo;
-	mesageText = message_dbArray[messageFK].mesageText;
-	mysteryName = mystery_dbArray[mysteryFK].mysteryName;
-	scriptureText = scripture_dbArray[scriptureFK].scriptureText;
-	prayerText = prayer_dbArray[prayerFK].prayerText;
+	beadType = rosary_db_struct->bead_dbArray[beadFK].beadType;
+	decadeName = rosary_db_struct->decade_dbArray[decadeFK].decadeName;
+	decadeInfo = rosary_db_struct->decade_dbArray[decadeFK].decadeInfo;
+	mesageText = rosary_db_struct->message_dbArray[messageFK].mesageText;
+	mysteryName = rosary_db_struct->mystery_dbArray[mysteryFK].mysteryName;
+	scriptureText = rosary_db_struct->scripture_dbArray[scriptureFK].scriptureText;
+	prayerText = rosary_db_struct->prayer_dbArray[prayerFK].prayerText;
 
-	decadeNo = decade_dbArray[decadeFK].decadeNo;
-	mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;
+	decadeNo = rosary_db_struct->decade_dbArray[decadeFK].decadeNo;
+	mysteryNo = rosary_db_struct->mystery_dbArray[mysteryFK].mysteryNo;
 
 	queryViewStruct -> rosaryPositionID = rosaryPositionID;
 	queryViewStruct -> beadFK = beadFK;

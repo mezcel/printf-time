@@ -2,6 +2,8 @@
 
 ### About:
 
+development branch: ```v0.3.3```
+
 This is a scriptural rosary slideshow. The text database is CSV, the program is C, and the UI is Gtk built with from an Xml.
 
 ### Inspiration:
@@ -35,12 +37,14 @@ The user navigates with widget objects.
 
 ### Project Status:
 
-#### v0.3.2.? (current development)
+#### v0.3.3.? (current development)
 
 Everything works, but the gui still needs some cleaning up.
 
+	* The focus is on linux, I will re-integrate it for Win10 compatibility later.
 	* Gtk label resizing can be improved
-	* The TTY version looks tacky.
+	* The TTY version looks tacky... still experimenting with ideas
+	* Consolidated the maze of database struct pointer/address
 
 ##### Runtime Environment
 

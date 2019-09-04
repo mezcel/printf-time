@@ -7,15 +7,28 @@
 
 int main() {
 
-	int isLinux = 1;		// OS flag
-	int weekdayNo = 0;		// day of the week
+	rosary_db_t rosary_db_struct; 		// app's db
+	displayVariables_t queryViewStruct;	// db query view
+
+	int isLinux = 1;			// OS flag
+	int weekdayNo = 0;			// day of the week
 	int navigtionPosition = 0;	// navigation position
 	int desiredDispLen = 80;	// display row length chars
 
+	// path to csv db files
+	char *rosaryBead_path = "csv/rosaryBead.csv";
+	char *bead_path = "csv/bead.csv";
+	char *book_path = "csv/book.csv";
+	char *decade_path = "csv/decade.csv";
+	char *message_path = "csv/message.csv";
+	char *mystery_path = "csv/mystery.csv";
+	char *prayer_path = "csv/prayer.csv";
+	char *scripture_path = "csv/scripture.csv";
+	char *csv_path_array[8] = {rosaryBead_path, bead_path, book_path, decade_path, message_path, mystery_path, prayer_path, scripture_path};
+
 	#ifdef linux
-		//struct MyDateStruct todaysDate = returnTodaysDateStruct();
-		struct tm todaysDate = returnTodaysDate();
 		isLinux = 1;
+		struct tm todaysDate = returnTodaysDate();
 		weekdayNo = todaysDate.tm_wday;
 		navigtionPosition = initialMystery(weekdayNo); // starting progress position
 		struct winsize w; // terminal tty info
@@ -29,49 +42,13 @@ int main() {
 		isLinux = 0;
 	#endif
 
-	// Name my strtuct variables
-	rosaryBead_t *rosaryBead_record_field = NULL;
-	rosaryBead_t rosaryBead_dbArray[317];
+	// make a full struct db
+	make_struct_db(&rosary_db_struct, csv_path_array);
 
-	bead_t *bead_record_field = NULL;
-	bead_t bead_dbArray[9];
+	// intro, cover page, splash text
+	splashCoverPage(weekdayNo, isLinux);
 
-	book_t *book_record_field = NULL;
-	book_t book_dbArray[17];
-
-	decade_t *decade_record_field = NULL;
-	decade_t decade_dbArray[22];
-
-	message_t *message_record_field = NULL;
-	message_t message_dbArray[22];
-
-	mystery_t *mystery_record_field = NULL;
-	mystery_t mystery_dbArray[7];
-
-	prayer_t *prayer_record_field = NULL;
-	prayer_t prayer_dbArray[11];
-
-	scripture_t *scripture_record_field = NULL;
-	scripture_t scripture_dbArray[202];
-
-	displayVariables_t queryViewStruct;
-
-	/*
-	 * Populate my struct arrays
-	 * (single_struct, struct_array, max_chars_per_line, csv_file_path)
-	 * */
-
-	csvToStruct_rosaryBead(rosaryBead_record_field, rosaryBead_dbArray, 300, "csv/rosaryBead.csv");
-	csvToStruct_bead(bead_record_field, bead_dbArray, 40, "csv/bead.csv");
-	csvToStruct_book(book_record_field, book_dbArray, 300, "csv/book.csv");
-	csvToStruct_decade(decade_record_field, decade_dbArray, 800, "csv/decade.csv");
-	csvToStruct_message(message_record_field, message_dbArray, 150, "csv/message.csv");
-	csvToStruct_mystery(mystery_record_field, mystery_dbArray, 100, "csv/mystery.csv");
-	csvToStruct_prayer(prayer_record_field, prayer_dbArray, 1250, "csv/prayer.csv");
-	csvToStruct_scripture(scripture_record_field, scripture_dbArray, 500, "csv/scripture.csv");
-
-	splashCoverPage(weekdayNo, isLinux); // intro, cover page, splash text
-
+	// UI Loop
     while (navigtionPosition <= 315) {
 
 		// linux tty/posix display dimensions
@@ -80,10 +57,10 @@ int main() {
 			desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
         }
 
-		// update display content struct
-		updateDisplayVariablesStruct(rosaryBead_dbArray, bead_dbArray, book_dbArray, decade_dbArray, message_dbArray, mystery_dbArray, prayer_dbArray, scripture_dbArray, &queryViewStruct, navigtionPosition);
+		// update query view struct
+		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct, navigtionPosition);
 
-		// Render output tty display
+		// Render output display
 		outputTtyDisplay( queryViewStruct, desiredDispLen );
 
 		// Navigation Input & Accumulator

@@ -10,27 +10,8 @@
  * Local Scope
  * */
 
-// ER Database Structs
-// I made them global for easy access between OOP Gtk, and Procedural main.c
-// since its source data is from an external CSV file, its security is good enough
-
-rosaryBead_t *rosaryBead_record_field = NULL;
-bead_t *bead_record_field = NULL;
-book_t *book_record_field = NULL;
-decade_t *decade_record_field = NULL;
-message_t *message_record_field = NULL;
-mystery_t *mystery_record_field = NULL;
-prayer_t *prayer_record_field = NULL;
-scripture_t *scripture_record_field = NULL;
-
-rosaryBead_t rosaryBead_dbArray[317];
-bead_t bead_dbArray[9];
-book_t book_dbArray[17];
-decade_t decade_dbArray[22];
-message_t message_dbArray[22];
-mystery_t mystery_dbArray[7];
-prayer_t prayer_dbArray[11];
-scripture_t scripture_dbArray[202];
+// gtk app's global db
+rosary_db_t rosary_db_struct;
 
  /*
  * Header API Scope Functions
@@ -174,26 +155,26 @@ void update_widgets_labels(app_widgets *widgets) {
 	 * ER Query
 	 * */
 
-	int rosaryPositionID = rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
-	int beadFK = rosaryBead_dbArray[navigtionPosition].beadIndex;
-	int decadeFK = rosaryBead_dbArray[navigtionPosition].decadeIndex;
-	int messageFK = rosaryBead_dbArray[navigtionPosition].messageIndex;
-	int mysteryFK = rosaryBead_dbArray[navigtionPosition].mysteryIndex;
-	int prayerFK = rosaryBead_dbArray[navigtionPosition].prayerIndex;
-	int scriptureFK = rosaryBead_dbArray[navigtionPosition].scriptureIndex;
-	//int loopBody = rosaryBead_dbArray[navigtionPosition].loopBody;
-	int smallbeadPercent = rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
-	int mysteryPercent = rosaryBead_dbArray[navigtionPosition].mysteryPercent;
+	int rosaryPositionID = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
+	int beadFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].beadIndex;
+	int decadeFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].decadeIndex;
+	int messageFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].messageIndex;
+	int mysteryFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].mysteryIndex;
+	int prayerFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].prayerIndex;
+	int scriptureFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].scriptureIndex;
+	//int loopBody = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].loopBody;
+	int smallbeadPercent = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
+	int mysteryPercent = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].mysteryPercent;
 
-	char *beadType = bead_dbArray[beadFK].beadType;
-	char *decadeName = decade_dbArray[decadeFK].decadeName;
-	char *decadeInfo = decade_dbArray[decadeFK].decadeInfo;
-	char *mesageText = message_dbArray[messageFK].mesageText;
-	char *mysteryName = mystery_dbArray[mysteryFK].mysteryName;
-	char *scriptureText = scripture_dbArray[scriptureFK].scriptureText;
-	char *prayerText = prayer_dbArray[prayerFK].prayerText;
-	/*int decadeNo = decade_dbArray[decadeFK].decadeNo;
-	int mysteryNo = mystery_dbArray[mysteryFK].mysteryNo;*/
+	char *beadType = rosary_db_struct.bead_dbArray[beadFK].beadType;
+	char *decadeName = rosary_db_struct.decade_dbArray[decadeFK].decadeName;
+	char *decadeInfo = rosary_db_struct.decade_dbArray[decadeFK].decadeInfo;
+	char *mesageText = rosary_db_struct.message_dbArray[messageFK].mesageText;
+	char *mysteryName = rosary_db_struct.mystery_dbArray[mysteryFK].mysteryName;
+	char *scriptureText = rosary_db_struct.scripture_dbArray[scriptureFK].scriptureText;
+	char *prayerText = rosary_db_struct.prayer_dbArray[prayerFK].prayerText;
+	/*int decadeNo = rosary_db_struct.decade_dbArray[decadeFK].decadeNo;
+	int mysteryNo = rosary_db_struct.mystery_dbArray[mysteryFK].mysteryNo;*/
 
 	/*
 	 * Calculate percentages
