@@ -14,7 +14,7 @@
 /*
  * Functions
  * */
-/*
+
 #ifdef _WIN32 // MinGW
 	#include <windows.h>
 	#include <stdio.h>
@@ -27,12 +27,7 @@
 	#include <string.h>
 	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
 	#include <unistd.h> 	// STDOUT_FILENO
-#endif*/
-#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
-#include <stdio.h>
-#include <string.h>
-#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
-#include <unistd.h> 	// STDOUT_FILENO
+#endif
 
 #include "../headers/my_csv_structs.h"
 

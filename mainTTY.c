@@ -1,5 +1,7 @@
 /*
- * main.c
+ * mainTTY.c
+ * compile:
+ * 	gcc mainTTY.c -o mainTTY
  */
 
 #include "sources/my_csv_structs.c"
@@ -7,8 +9,8 @@
 
 int main() {
 
-	rosary_db_t rosary_db_struct; 		// app's db
-	displayVariables_t queryViewStruct;	// db query view
+	rosary_db_t rosary_db_struct; 		// declare app's db var
+	displayVariables_t queryViewStruct;	// declare db query view var
 
 	int isLinux = 1;			// OS flag
 	int weekdayNo = 0;			// day of the week
@@ -24,7 +26,8 @@ int main() {
 	char *mystery_path = "csv/mystery.csv";
 	char *prayer_path = "csv/prayer.csv";
 	char *scripture_path = "csv/scripture.csv";
-	char *csv_path_array[8] = {rosaryBead_path, bead_path, book_path, decade_path, message_path, mystery_path, prayer_path, scripture_path};
+	char *csv_path_array[8] = {rosaryBead_path, bead_path, book_path,
+		decade_path, message_path, mystery_path, prayer_path, scripture_path};
 
 	#ifdef linux
 		isLinux = 1;
@@ -37,25 +40,18 @@ int main() {
 		isLinux = 0;
 	#endif
 
-	// make a full struct db
-	make_struct_db(&rosary_db_struct, csv_path_array);
-
-	// linux tty/posix display dimensions
-	desiredDispLen = returnScreenWidth(isLinux);
-
-	// intro, cover page, splash text
-	splashCoverPage(weekdayNo, isLinux, desiredDispLen );
+	make_struct_db(&rosary_db_struct, csv_path_array); // make db struct
+	desiredDispLen = returnScreenWidth(isLinux); // linux terminal width
+	splashCoverPage(weekdayNo, isLinux, desiredDispLen ); // display splash
 
 	// UI Loop
     while (navigtionPosition <= 315) {
-		clearScreen(isLinux);
-        desiredDispLen = returnScreenWidth(isLinux);
+		clearScreen(isLinux); // clear screen
+        desiredDispLen = returnScreenWidth(isLinux); // screen width
 
-		// update query view struct
+		// update query
 		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct, navigtionPosition);
-
-		// Render output display
-		outputTtyDisplay( queryViewStruct, desiredDispLen );
+		outputTtyDisplay( queryViewStruct, desiredDispLen ); // display
 
 		// Navigation Input & Accumulator
 		navigtionPosition = pressKeyContinue(navigtionPosition, isLinux);

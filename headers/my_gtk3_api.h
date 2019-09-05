@@ -1,5 +1,5 @@
 /*
- * my_glade_api.h
+ * my_gtk3_api.h
  * */
 
 #ifndef MY_GLADE_API
@@ -9,9 +9,9 @@
  * Data Structures
  * */
 
-// Widget Pointer Struct
 typedef struct {
-	int navigtionPosition; // accumulator
+	// accumulator var
+	int navigtionPosition;
 
 	// labels
 	GtkWidget *lblTextDate;

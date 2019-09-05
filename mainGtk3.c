@@ -1,6 +1,7 @@
 /*
- * mainGlade.c
- * dependency: made for linux, libgtk-3-dev, ./gladeProject.glade
+ * mainGtk3.c
+ * dependency:
+ * 	libgtk-3-dev
  * compile:
  * 	gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
  * */
@@ -27,16 +28,17 @@ int main(int argc, char *argv[]) {
 	char *mystery_path = "csv/mystery.csv";
 	char *prayer_path = "csv/prayer.csv";
 	char *scripture_path = "csv/scripture.csv";
-	char *csv_path_array[8]={rosaryBead_path, bead_path, book_path, decade_path, message_path, mystery_path, prayer_path, scripture_path};
+	char *csv_path_array[8]={rosaryBead_path, bead_path, book_path,
+		decade_path, message_path, mystery_path, prayer_path, scripture_path};
 
-	// populate rosary_db_struct, a globally declared struct db var in my_gtk3_api.c
-	make_struct_db(&rosary_db_struct, csv_path_array);
+	make_struct_db(&rosary_db_struct, csv_path_array); // make db struct
 
     gtk_init(&argc, &argv);
 
     builder = gtk_builder_new();
     gtk_builder_add_from_file (builder, "xml/myGladeXml.glade", NULL);
     window = GTK_WIDGET(gtk_builder_get_object(builder, "gtkRosary"));
+
     initializeLabelPointers(builder, window, widgets); // get pointers to label widgets
     widgets->navigtionPosition = navigtionPosition; // starting progress position;
 
@@ -50,7 +52,7 @@ int main(int argc, char *argv[]) {
 }
 
 /*
- * Define functions prototyped by the Glade XML
+ * functions prototyped by the Glade XML
  * */
 
 // Close App Button Click

@@ -1,6 +1,7 @@
 /*
  * my_glade_api.c
- * gcc -o my_glade_api my_glade_api.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
+ * compile:
+ * 	gcc -o my_glade_api my_glade_api.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
  * */
 
 #include "../sources/my_calendar.c"
