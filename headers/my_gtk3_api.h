@@ -2,8 +2,8 @@
  * my_gtk3_api.h
  * */
 
-#ifndef MY_GLADE_API
-#define MY_GLADE_API
+#ifndef MY_GTK3_API
+#define MY_GTK3_API
 
 /*
  * Data Structures

@@ -6,6 +6,8 @@
 	#include <windows.h>
 	#include <stdio.h>
 	#include <tchar.h>
+
+	#define IS_LINUX 0
 #endif
 
 #ifdef linux // Linux GCC v6+
@@ -14,6 +16,12 @@
 	#include <string.h>
 	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
 	#include <unistd.h> 	// STDOUT_FILENO
+
+	#define IS_LINUX 1
+#endif
+
+#ifndef linux
+	#define IS_LINUX 0
 #endif
 
 #include "../headers/my_csv_structs.h"
@@ -27,7 +35,7 @@
 int returnScreenWidth(int isLinux) {
 	int cols = 85;
 
-	if(isLinux == 1) {
+	if(IS_LINUX) {
 		struct winsize w; // terminal tty info
 		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // tty col/row
 		cols =  w.ws_col;
@@ -65,14 +73,14 @@ int initialMystery(int weekdayNo) {
  * Header API Scope Functions
  * */
 
-void splashCoverPage(int weekdayNo, int isLinux, int desiredDispLen) {
+void splashCoverPage(int weekdayNo, int desiredDispLen) {
 
-	//char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-	char * weekdayMystery[] = { "Glorious", "Joyful", "Sorrowful", "Glorious", "Luminous", "Sorrowful", "Joyful" };
+	char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday",
+		"Thursday", "Friday", "Saturday" };
+	char * weekdayMystery[] = { "Glorious", "Joyful", "Sorrowful",
+		"Glorious", "Luminous", "Sorrowful", "Joyful" };
 
 	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as ER database. It uses .h libraries which are default on most gcc installation. I made an additional library which will parse CSV text into an array of structs for ER db queries. Scriptural readings are quoted from The New American Bible, while additional included readings were curated from a variety of different rosary prayer guides.";
-
-	clearScreen(isLinux); // clear cli
 
 	char *titleLabel = " C/CSV Rosary ";
 	int titleLabelLength = (int)strlen(titleLabel);
@@ -85,20 +93,19 @@ void splashCoverPage(int weekdayNo, int isLinux, int desiredDispLen) {
 	borderCharPrintF("+", desiredDispLen);
 	printf("\n");
 
-	// multiLinePrintF("\n About:\n\n\t", aboutString, 60);
 	multiLinePrintF("\n About:\n\n\t", aboutString, desiredDispLen );
 
 	printf("\n\n Display:\n\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
-	printf("\n User Controls:\n\n\t Press [b] to step 1 back");
-	printf("\n\t Press [enter] to step 1 forward");
-	printf("\n\t Press [q] to quit the app");
-	//printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery.", weekday[weekdayNo], weekdayMystery[weekdayNo]);
+	printf("\n User Controls:\n\n\t Press [b] and then [enter] to navigate 1 bead back");
+	printf("\n\t Press [enter] to navigate 1 bead forward");
+	printf("\n\t Press [q] and then [enter] to quit the app");
 
-	printf("\n\n\n Today is a %s, therefore today's mystery is the %s Mystery.", WEEKDAY_NAME_ARRAY[weekdayNo], weekdayMystery[weekdayNo]);
+	printf("\n\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", weekday[weekdayNo], weekdayMystery[weekdayNo]);
+
+	borderCharPrintF("+", desiredDispLen);
 	printf("\n press [enter] to continue");
 
 	getchar();	// pause for char input
-	clearScreen(isLinux);	// clear cli
 }
 
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
@@ -165,7 +172,6 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 
 			default: // no nav change
 				return navigtionPosition - 1;
-
 		}
 	}
 }
@@ -229,19 +235,9 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen) {
 	// disp header
 	char *titleLabel = " C/CSV Rosary ";
-	//int titleLabelLength = (int)strlen(titleLabel);
 	borderCharPrintF("+", 3);
 	printf(titleLabel);
 	borderCharPrintF("+", desiredDispLen - 17);
-
-			/*desiredDispLen = (w.ws_col / 2) + (w.ws_col / 5);
-			desiredDispLen = desiredDispLen - (desiredDispLen/4);*/
-	//int strLen = ( (desiredDispLen / 2) + (desiredDispLen / 5) ) - 13;
-
-/*
- * desiredDispLen - (20/desiredDispLen)*100 */
-	//double percent = (30.0/(double)desiredDispLen);
-	//double offset = (double)desiredDispLen * percent;
 
 	// disp body
 	printf("\n\n Mystery:\t%s", queryViewStruct.mysteryName);
@@ -254,11 +250,8 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen) {
 
 	// disp footer
 	char *footerLabel = " Rosary Progress ";
-	//int footerLabelLength = (int)strlen(footerLabel);
-	//int diffLabelLength = desiredDispLen - (footerLabelLength - titleLabelLength);
 	borderCharPrintF("+", 3);
 	printf(footerLabel);
-	//borderCharPrintF("+", diffLabelLength + 30);
 	borderCharPrintF("+", desiredDispLen - 20);
 	printf("\n\n position:\t   %d / 315", queryViewStruct.rosaryPositionID);
 

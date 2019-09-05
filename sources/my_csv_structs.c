@@ -2,19 +2,6 @@
  * my_csv_structs.c
  * */
 
-/*
- *  Dependencies: stdio.h, stdlib.h, string.h
- *	Database .csv files: bead.csv, decade.csv, message.csv, mystery.csv,
- *		prayer.csv, rosaryBead.csv, scripture.csv
- * 	Background:
- * 		I used npm's json2csv, https://www.csvjson.com/json2csv to
- * 			to convert json to csv
- * */
-
-/*
- * Functions
- * */
-
 #ifdef _WIN32 // MinGW
 	#include <windows.h>
 	#include <stdio.h>
@@ -32,7 +19,7 @@
 #include "../headers/my_csv_structs.h"
 
 /*
- * Header API Scope Functions
+ * Functions
  * */
 
 char ** strsplit( const char * src, const char * delim ) {

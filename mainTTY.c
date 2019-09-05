@@ -12,7 +12,6 @@ int main() {
 	rosary_db_t rosary_db_struct; 		// declare app's db var
 	displayVariables_t queryViewStruct;	// declare db query view var
 
-	int isLinux = 1;			// OS flag
 	int weekdayNo = 0;			// day of the week
 	int navigtionPosition = 0;	// navigation position
 	int desiredDispLen = 85;	// display row length chars
@@ -29,32 +28,32 @@ int main() {
 	char *csv_path_array[8] = {rosaryBead_path, bead_path, book_path,
 		decade_path, message_path, mystery_path, prayer_path, scripture_path};
 
-	#ifdef linux
-		isLinux = 1;
+	if (IS_LINUX) {
 		struct tm todaysDate = returnTodaysDate();
 		weekdayNo = todaysDate.tm_wday;
-		navigtionPosition = initialMystery(weekdayNo); // starting progress position
-	#endif
+		navigtionPosition = initialMystery(weekdayNo);	// starting progress position
+	}
 
-	#ifndef linux
-		isLinux = 0;
-	#endif
+	make_struct_db(&rosary_db_struct, csv_path_array);	// make db struct
 
-	make_struct_db(&rosary_db_struct, csv_path_array); // make db struct
-	desiredDispLen = returnScreenWidth(isLinux); // linux terminal width
-	splashCoverPage(weekdayNo, isLinux, desiredDispLen ); // display splash
+	// display
+	desiredDispLen = returnScreenWidth(IS_LINUX);	// linux terminal width
+	clearScreen(IS_LINUX); // clear screen
+	splashCoverPage(weekdayNo, desiredDispLen);		// display splash
 
 	// UI Loop
     while (navigtionPosition <= 315) {
-		clearScreen(isLinux); // clear screen
-        desiredDispLen = returnScreenWidth(isLinux); // screen width
 
 		// update query
 		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct, navigtionPosition);
-		outputTtyDisplay( queryViewStruct, desiredDispLen ); // display
+
+		// display
+        desiredDispLen = returnScreenWidth(IS_LINUX); // screen width
+		clearScreen(IS_LINUX); // clear screen
+		outputTtyDisplay( queryViewStruct, desiredDispLen );
 
 		// Navigation Input & Accumulator
-		navigtionPosition = pressKeyContinue(navigtionPosition, isLinux);
+		navigtionPosition = pressKeyContinue(navigtionPosition, IS_LINUX);
 	}
 
 	return 0;
