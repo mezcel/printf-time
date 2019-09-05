@@ -7,7 +7,6 @@ functional libraries
 * user interfaces
 
 | calendar | database | tty ui | Gtk ui |
-
 | --- | --- | --- | --- |
 | dependency: my_calendar.h | dependency: my_calendar.h | dependency: my_calendar.h |
 | - | - | dependency: my_csv_structs.h | dependency: my_csv_structs.h |
