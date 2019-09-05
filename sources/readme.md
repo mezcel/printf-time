@@ -2,7 +2,11 @@
 
 functional libraries
 
-| calendar | database | tty | Gtk |
+* convert csv files into an er database
+* calculate feast day calendar dates
+* user interfaces
+
+| calendar | database | tty ui | Gtk ui |
 
 | --- | --- | --- | --- |
 | dependency: my_calendar.h | dependency: my_calendar.h | dependency: my_calendar.h |
