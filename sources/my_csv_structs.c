@@ -204,13 +204,15 @@ scripture_t * parse_scripture_record( char * scvline ) {
  * populate structs functions
  * */
 
-void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
+void csvToStruct_rosaryBead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
+	rosaryBead_t *record_field;
+
 	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -237,13 +239,15 @@ void csvToStruct_rosaryBead(rosaryBead_t *record_field, rosary_db_t *rosary_db_s
 	fclose(csvFile);
 }
 
-void csvToStruct_bead(bead_t *record_field, rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
+void csvToStruct_bead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
+	bead_t *record_field;
+
 	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -258,18 +262,20 @@ void csvToStruct_bead(bead_t *record_field, rosary_db_t *rosary_db_struct, int L
 	}
 
 	// destroy temp string memory
-	free(record_field -> beadType);
+	//free(record_field -> beadType);//
 	free(record_field);
 	fclose(csvFile);
 }
 
-void csvToStruct_book(book_t *record_field, rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
+void csvToStruct_book(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
+	book_t *record_field;
+
 	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -285,19 +291,21 @@ void csvToStruct_book(book_t *record_field, rosary_db_t *rosary_db_struct, int L
 	}
 
 	// destroy temp string memory
-	free(record_field -> bookName);
-	free(record_field -> library);
-	free(record_field);
+	//free(record_field -> bookName);//
+	//free(record_field -> library);//
+	//free(record_field);//
 	fclose(csvFile);
 }
 
-void csvToStruct_decade(decade_t *record_field, rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
+void csvToStruct_decade(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
+	decade_t *record_field;
+
 	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -316,20 +324,22 @@ void csvToStruct_decade(decade_t *record_field, rosary_db_t *rosary_db_struct, i
 	}
 
 	// destroy temp string memory
-	free(record_field -> decadeName);
-	free(record_field -> decadeInfo);
-	free(record_field -> infoRefference);
+	//free(record_field -> decadeName);//
+	//free(record_field -> decadeInfo);//
+	//free(record_field -> infoRefference);//
 	free(record_field);
 	fclose(csvFile);
 }
 
-void csvToStruct_message(message_t *record_field, rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
+void csvToStruct_message(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
+	message_t *record_field;
+
 	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -344,18 +354,20 @@ void csvToStruct_message(message_t *record_field, rosary_db_t *rosary_db_struct,
 	}
 
 	// destroy temp string memory
-	free(record_field -> mesageText);
+	//free(record_field -> mesageText);//
 	free(record_field);
 	fclose(csvFile);
 }
 
-void csvToStruct_mystery(mystery_t *record_field, rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
+void csvToStruct_mystery(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
+	mystery_t *record_field;
+
 	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -371,18 +383,20 @@ void csvToStruct_mystery(mystery_t *record_field, rosary_db_t *rosary_db_struct,
 	}
 
 	// destroy temp string memory
-	free(record_field -> mysteryName);
+	//free(record_field -> mysteryName);//
 	free(record_field);
 	fclose(csvFile);
 }
 
-void csvToStruct_prayer(prayer_t *record_field, rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
+void csvToStruct_prayer(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
+	prayer_t *record_field;
+
 	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -398,19 +412,21 @@ void csvToStruct_prayer(prayer_t *record_field, rosary_db_t *rosary_db_struct, i
 	}
 
 	// destroy temp string memory
-	free(record_field -> prayerName);
-	free(record_field -> prayerText);
+	//free(record_field -> prayerName);//
+	//free(record_field -> prayerText);//
 	free(record_field);
 	fclose(csvFile);
 }
 
-void csvToStruct_scripture(scripture_t *record_field, rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
+void csvToStruct_scripture(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
     char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
+	scripture_t *record_field;
+
 	FILE * csvFile = fopen( filePath, "r" );
 
 	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
@@ -428,40 +444,44 @@ void csvToStruct_scripture(scripture_t *record_field, rosary_db_t *rosary_db_str
 	}
 
 	// destroy temp string memory
-	free(record_field -> scriptureText);
+	//free(record_field -> scriptureText);//
 	free(record_field);
 	fclose(csvFile);
 }
 
-void make_struct_db(rosary_db_t *rosary_db_struct,char *csv_path_array[8]) {
+void make_struct_db(rosary_db_t *rosary_db_struct, char *csv_path_array[8]) {
 
-	rosaryBead_t *rosaryBead_record_field = NULL;
-	bead_t *bead_record_field = NULL;
-	book_t *book_record_field = NULL;
-	decade_t *decade_record_field = NULL;
-	message_t *message_record_field = NULL;
-	mystery_t *mystery_record_field = NULL;
-	prayer_t *prayer_record_field = NULL;
-	scripture_t *scripture_record_field = NULL;
-
-	csvToStruct_rosaryBead(rosaryBead_record_field, rosary_db_struct, 300, csv_path_array[0]);
-	csvToStruct_bead(bead_record_field, rosary_db_struct, 40, csv_path_array[1]);
-	csvToStruct_book(book_record_field, rosary_db_struct, 300, csv_path_array[2]);
-	csvToStruct_decade(decade_record_field, rosary_db_struct, 800, csv_path_array[3]);
-	csvToStruct_message(message_record_field, rosary_db_struct, 150, csv_path_array[4]);
-	csvToStruct_mystery(mystery_record_field, rosary_db_struct, 100, csv_path_array[5]);
-	csvToStruct_prayer(prayer_record_field, rosary_db_struct, 1250, csv_path_array[6]);
-	csvToStruct_scripture(scripture_record_field, rosary_db_struct, 500, csv_path_array[7]);
+	csvToStruct_rosaryBead( rosary_db_struct, 300, csv_path_array[0]);
+	csvToStruct_bead( rosary_db_struct, 40, csv_path_array[1]);
+	csvToStruct_book( rosary_db_struct, 300, csv_path_array[2]);
+	csvToStruct_decade( rosary_db_struct, 800, csv_path_array[3]);
+	csvToStruct_message( rosary_db_struct, 150, csv_path_array[4]);
+	csvToStruct_mystery( rosary_db_struct, 100, csv_path_array[5]);
+	csvToStruct_prayer( rosary_db_struct, 1250, csv_path_array[6]);
+	csvToStruct_scripture( rosary_db_struct, 1250, csv_path_array[7]);
 
 }
+
 /// demo
 /*
 int main() {
 
-	rosary_db_t rosary_db_struct;
+	// path to csv db files
+	char *rosaryBead_path = "../csv/rosaryBead.csv";
+	char *bead_path = "../csv/bead.csv";
+	char *book_path = "../csv/book.csv";
+	char *decade_path = "../csv/decade.csv";
+	char *message_path = "../csv/message.csv";
+	char *mystery_path = "../csv/mystery.csv";
+	char *prayer_path = "../csv/prayer.csv";
+	char *scripture_path = "../csv/scripture.csv";
+	char *csv_path_array[8]={rosaryBead_path, bead_path, book_path,
+		decade_path, message_path, mystery_path, prayer_path, scripture_path};
 
-	make_struct_db(&rosary_db_struct);
-	printf("\n %d \n", rosary_db_struct.rosaryBead_dbArray[50].beadIndex);
+	rosary_db_t rosary_db_struct;
+	make_struct_db(&rosary_db_struct, csv_path_array); // make db struct
+
+	//printf("\n %d \n", rosary_db_struct.rosaryBead_dbArray[50].beadIndex);
 
 	return 0;
 

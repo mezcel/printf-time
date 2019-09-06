@@ -95,6 +95,6 @@ mystery_t * parse_mystery_record( char * scvline );
 prayer_t * parse_prayer_record( char * scvline );
 scripture_t * parse_scripture_record( char * scvline );
 
-void make_struct_db(rosary_db_t *rosary_db_struct,char *csv_path_array[8]);
+void make_struct_db(rosary_db_t *rosary_db_struct, char *csv_path_array[8]);
 
 #endif

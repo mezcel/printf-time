@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {
 
 	struct tm todaysDate = returnTodaysDate();
 	int navigtionPosition = initialMystery(todaysDate.tm_wday); // starting progress position
+	navigtionPosition = 298; //debug
 
 	// path to csv db files
 	char *rosaryBead_path = "csv/rosaryBead.csv";
