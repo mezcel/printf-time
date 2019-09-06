@@ -4,14 +4,14 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkApplicationWindow" id="gtkRosary">
     <property name="name">Gtk_Rosary</property>
-    <property name="width_request">1000</property>
-    <property name="height_request">740</property>
+    <property name="width_request">1100</property>
+    <property name="height_request">730</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Gtk Rosary</property>
     <property name="window_position">center</property>
-    <property name="default_width">1000</property>
-    <property name="default_height">740</property>
-    <property name="icon_name">accessories-dictionary</property>
+    <property name="default_width">1100</property>
+    <property name="default_height">730</property>
+    <property name="icon">../img/favicon.ico</property>
     <signal name="destroy" handler="on_gtkRosary_destroy" swapped="no"/>
     <child>
       <placeholder/>
@@ -220,8 +220,8 @@ accelerators:
                 <property name="use_stock">True</property>
                 <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_btnClose_clicked" swapped="no"/>
-                <accelerator key="q" signal="clicked"/>
                 <accelerator key="x" signal="clicked"/>
+                <accelerator key="q" signal="clicked"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -577,10 +577,10 @@ accelerators:
                     <property name="use_stock">True</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="on_btnBack_clicked" swapped="no"/>
-                    <accelerator key="a" signal="clicked"/>
-                    <accelerator key="h" signal="clicked"/>
-                    <accelerator key="space" signal="clicked"/>
                     <accelerator key="b" signal="clicked"/>
+                    <accelerator key="space" signal="clicked"/>
+                    <accelerator key="h" signal="clicked"/>
+                    <accelerator key="a" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -617,10 +617,10 @@ accelerators:
                     <property name="image_position">right</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="on_btnForward_clicked" swapped="no"/>
-                    <accelerator key="Return" signal="clicked"/>
-                    <accelerator key="l" signal="clicked"/>
-                    <accelerator key="n" signal="clicked"/>
                     <accelerator key="d" signal="clicked"/>
+                    <accelerator key="n" signal="clicked"/>
+                    <accelerator key="l" signal="clicked"/>
+                    <accelerator key="Return" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -789,7 +789,7 @@ accelerators:
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="lblTitleProgress">
+                  <object class="GtkLabel" id="lblTextProgressTitle">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">progress</property>

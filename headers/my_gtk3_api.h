@@ -34,6 +34,7 @@ typedef struct {
 	GtkWidget *lblTextFeast;
 
 	// level bars
+	GtkWidget *lblTextProgressTitle;
 	GtkWidget *levelBar_decade;
 	GtkWidget *levelBar_mystery;
 } app_widgets;

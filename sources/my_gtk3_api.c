@@ -21,24 +21,24 @@ rosary_db_t rosary_db_struct;
 void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
 	struct tm advent_start = setSpecificDate(todaysDate.tm_year + 1900, 11, 1); // Dec 1
 		shiftTowardSunday(&advent_start); // first sun of advent
-    struct tm immaculate_conception_mary = setSpecificDate(todaysDate.tm_year + 1900, 11, 8); // Dec 8
-    struct tm christmas_day = setSpecificDate(todaysDate.tm_year + 1900, 11, 25); // wed dec 25
-    struct tm solemnity_of_mary = setSpecificDate(todaysDate.tm_year + 1900, 0, 1); // Jan 1
+	struct tm immaculate_conception_mary = setSpecificDate(todaysDate.tm_year + 1900, 11, 8); // Dec 8
+	struct tm christmas_day = setSpecificDate(todaysDate.tm_year + 1900, 11, 25); // wed dec 25
+	struct tm solemnity_of_mary = setSpecificDate(todaysDate.tm_year + 1900, 0, 1); // Jan 1
 	struct tm epiphany = addDays(christmas_day,12); // 12 days after christmas
 		shiftTowardSunday(&epiphany); // epiphany sunday
 	struct tm jesus_baptism = addDays(christmas_day,12);
 		shiftJesusBaptism(&jesus_baptism); // avoid epiphany overlap
 
 	struct tm easter_sunday = setEasterDate(todaysDate.tm_year + 1900); // pfm
-    struct tm good_saturday = subtractDays(easter_sunday,1);
-    struct tm good_friday = subtractDays(easter_sunday,2);
-    struct tm holy_thursday = subtractDays(easter_sunday,3);
-    struct tm ash_wednesday = subtractDays(easter_sunday,46);
-    struct tm pentacost = addDays(easter_sunday,21);
+	struct tm good_saturday = subtractDays(easter_sunday,1);
+	struct tm good_friday = subtractDays(easter_sunday,2);
+	struct tm holy_thursday = subtractDays(easter_sunday,3);
+	struct tm ash_wednesday = subtractDays(easter_sunday,46);
+	struct tm pentacost = addDays(easter_sunday,21);
 		shiftTowardSunday(&pentacost);  // sun june 9, 7 sundays after easter
-    struct tm assension_of_jesus = addDays(easter_sunday,40);
+	struct tm assension_of_jesus = addDays(easter_sunday,40);
 
-    struct tm all_saints_day = setSpecificDate(todaysDate.tm_year + 1900, 10, 1); // Nov 1
+	struct tm all_saints_day = setSpecificDate(todaysDate.tm_year + 1900, 10, 1); // Nov 1
 
     *seasonFlag = returnLiturgicalSeason(&todaysDate, &advent_start,
 		&christmas_day, &epiphany, &ash_wednesday, &easter_sunday, &pentacost);
@@ -122,21 +122,15 @@ void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets
 	widgets -> lblTextMysteryProgress = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMysteryProgress"));
 	widgets -> lblTextMysteryPercent = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMysteryPercent"));
 
-	widgets -> lblTextLiturgicalCalendar = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextLiturgicalCalendar"));
-	widgets -> lblTextFeast = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
-	widgets -> lblTextLiturgicalCalendar = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextLiturgicalCalendar"));
-	widgets -> lblTextFeast = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
-
-	widgets -> lblTextLiturgicalCalendar = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextLiturgicalCalendar"));
-	widgets -> lblTextFeast = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
-
 	// progressbars / levelbar
+	widgets -> lblTextProgressTitle = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextProgressTitle"));
+
 	widgets -> levelBar_decade = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_decade"));
 	widgets -> levelBar_mystery = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_mystery"));
 
-    gtk_label_set_text(GTK_LABEL(widgets->lblTextDate), WEEKDAY_NAME_ARRAY[todaysDate.tm_wday]);
-    gtk_label_set_text(GTK_LABEL(widgets->lblTextLiturgicalCalendar), LITURGICAL_SEASON_ARRAY[seasonFlag]);
-    gtk_label_set_text(GTK_LABEL(widgets->lblTextFeast), FEAST_DAY_ARRAY[feastFlag]);
+    gtk_label_set_text(GTK_LABEL(widgets -> lblTextDate), WEEKDAY_NAME_ARRAY[todaysDate.tm_wday]);
+    gtk_label_set_text(GTK_LABEL(widgets -> lblTextLiturgicalCalendar), LITURGICAL_SEASON_ARRAY[seasonFlag]);
+    gtk_label_set_text(GTK_LABEL(widgets -> lblTextFeast), FEAST_DAY_ARRAY[feastFlag]);
 }
 
 int initialMystery(int weekdayNo) {
@@ -163,7 +157,7 @@ void update_widgets_labels(app_widgets *widgets) {
 	int mysteryFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].mysteryIndex;
 	int prayerFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].prayerIndex;
 	int scriptureFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].scriptureIndex;
-	//int loopBody = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].loopBody;
+	int loopBody = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].loopBody;
 	int smallbeadPercent = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
 	int mysteryPercent = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].mysteryPercent;
 
@@ -174,14 +168,31 @@ void update_widgets_labels(app_widgets *widgets) {
 	char *mysteryName = rosary_db_struct.mystery_dbArray[mysteryFK].mysteryName;
 	char *scriptureText = rosary_db_struct.scripture_dbArray[scriptureFK].scriptureText;
 	char *prayerText = rosary_db_struct.prayer_dbArray[prayerFK].prayerText;
-	/*int decadeNo = rosary_db_struct.decade_dbArray[decadeFK].decadeNo;
-	int mysteryNo = rosary_db_struct.mystery_dbArray[mysteryFK].mysteryNo;*/
 
 	/*
 	 * Calculate percentages
 	 * */
+	double smallbeadDouble;
+	int sectionWhole;
+	char *progressLabel;
 
-	double smallbeadDouble = (double)smallbeadPercent / 10.0;
+	if (loopBody == 1) {
+		sectionWhole = 10;
+		smallbeadDouble = (double)smallbeadPercent / (double)sectionWhole;
+		progressLabel = "rosary body";
+
+	} else {
+		if( (prayerFK == 7) || (prayerFK == 8) ) {
+			sectionWhole = 10; // not really, it is a placeholder
+			smallbeadDouble = (double)smallbeadPercent / (double)sectionWhole;
+			progressLabel = "conclusion prayers";
+		} else {
+			sectionWhole = 7;
+			smallbeadDouble = (double)smallbeadPercent / (double)sectionWhole;
+			progressLabel = "introduction prayers";
+		}
+	}
+
 	if (smallbeadDouble < 0.01) {
 		smallbeadDouble = 0.00;
 	}
@@ -204,35 +215,31 @@ void update_widgets_labels(app_widgets *widgets) {
 	 * */
 
 	// Readings
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextMystery), mysteryName);
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextDecade), decadeName);
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextDecadeMessage), mesageText);
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextBackground), decadeInfo);
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextScripture), scriptureText);
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextPrayer), prayerText);
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextBeadType), beadType);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextMystery), mysteryName);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDecade), decadeName);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDecadeMessage), mesageText);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextBackground), decadeInfo);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextScripture), scriptureText);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextPrayer), prayerText);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextBeadType), beadType);
 
 	// Decade
 	gchar *str_smallbeadPercentDouble = g_strdup_printf("%.1f %%", smallbeadPercentDouble); // 1 decimal place
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextDecadePercent), str_smallbeadPercentDouble);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDecadePercent), str_smallbeadPercentDouble);
 
-	gchar *str_smallbeadPercent = g_strdup_printf("%d / 10", smallbeadPercent);
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextDecadeProgress), str_smallbeadPercent);
+	gchar *str_smallbeadPercent = g_strdup_printf("%d / %d", smallbeadPercent, sectionWhole);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDecadeProgress), str_smallbeadPercent);
 
 	// Mystery
 	gchar *str_mysteryPercentDouble = g_strdup_printf("%.1f %%", mysteryPercentDouble); // 1 decimal place
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextMysteryPercent), str_mysteryPercentDouble);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextMysteryPercent), str_mysteryPercentDouble);
 
 	gchar *str_mysteryPercent = g_strdup_printf("%d / 50", mysteryPercent);
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextMysteryProgress), str_mysteryPercent);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextMysteryProgress), str_mysteryPercent);
 
 	// Position
 	gchar *str_rosaryPositionID = g_strdup_printf("%d / 315", rosaryPositionID);
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextBeadNo), str_rosaryPositionID);
-
-	// Calendar
-	/*gtk_label_set_text(GTK_LABEL(widgets->lblTextLiturgicalCalendar), "n/a");
-	gtk_label_set_text(GTK_LABEL(widgets->lblTextFeast), "n/a");*/
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextBeadNo), str_rosaryPositionID);
 
 	// clear tmp char allocations
 	g_free(str_smallbeadPercentDouble);
@@ -245,6 +252,7 @@ void update_widgets_labels(app_widgets *widgets) {
 	 * Update Level Bar
 	 * */
 
-	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets->levelBar_decade), smallbeadDouble);
-	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets->levelBar_mystery), mysteryDouble);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextProgressTitle), progressLabel);
+	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets -> levelBar_decade), smallbeadDouble);
+	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets -> levelBar_mystery), mysteryDouble);
 }
