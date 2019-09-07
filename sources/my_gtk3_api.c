@@ -40,8 +40,8 @@ void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
 
 	struct tm all_saints_day = setSpecificDate(todaysDate.tm_year + 1900, 10, 1); // Nov 1
 
-    *seasonFlag = returnLiturgicalSeason(&todaysDate, &advent_start,
-		&christmas_day, &epiphany, &ash_wednesday, &easter_sunday, &pentacost);
+	*seasonFlag = returnLiturgicalSeason(&todaysDate, &advent_start,
+			&christmas_day, &epiphany, &ash_wednesday, &easter_sunday, &pentacost);
 
 	int isFeast;
 	switch (*seasonFlag) {
@@ -128,9 +128,9 @@ void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets
 	widgets -> levelBar_decade = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_decade"));
 	widgets -> levelBar_mystery = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_mystery"));
 
-    gtk_label_set_text(GTK_LABEL(widgets -> lblTextDate), WEEKDAY_NAME_ARRAY[todaysDate.tm_wday]);
-    gtk_label_set_text(GTK_LABEL(widgets -> lblTextLiturgicalCalendar), LITURGICAL_SEASON_ARRAY[seasonFlag]);
-    gtk_label_set_text(GTK_LABEL(widgets -> lblTextFeast), FEAST_DAY_ARRAY[feastFlag]);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDate), WEEKDAY_NAME_ARRAY[todaysDate.tm_wday]);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextLiturgicalCalendar), LITURGICAL_SEASON_ARRAY[seasonFlag]);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextFeast), FEAST_DAY_ARRAY[feastFlag]);
 }
 
 int initialMystery(int weekdayNo) {
@@ -147,8 +147,8 @@ void update_widgets_labels(app_widgets *widgets) {
 	int navigtionPosition = widgets->navigtionPosition;
 
 	/*
-	 * ER Query
-	 * */
+	* ER Query
+	* */
 
 	int rosaryPositionID = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
 	int beadFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].beadIndex;
@@ -170,8 +170,8 @@ void update_widgets_labels(app_widgets *widgets) {
 	char *prayerText = rosary_db_struct.prayer_dbArray[prayerFK].prayerText;
 
 	/*
-	 * Calculate percentages
-	 * */
+	* Calculate percentages
+	* */
 	double smallbeadDouble;
 	int sectionWhole;
 	char *progressLabel;
@@ -180,17 +180,16 @@ void update_widgets_labels(app_widgets *widgets) {
 		sectionWhole = 10;
 		smallbeadDouble = (double)smallbeadPercent / (double)sectionWhole;
 		progressLabel = "rosary body";
-
 	} else {
 		if( (prayerFK == 7) || (prayerFK == 8) ) {
-			sectionWhole = 10; // not really, it is a placeholder
-			smallbeadDouble = (double)smallbeadPercent / (double)sectionWhole;
-			progressLabel = "conclusion prayers";
-		} else {
-			sectionWhole = 7;
-			smallbeadDouble = (double)smallbeadPercent / (double)sectionWhole;
-			progressLabel = "introduction prayers";
-		}
+		sectionWhole = 10; // not really, it is a placeholder
+		smallbeadDouble = (double)smallbeadPercent / (double)sectionWhole;
+		progressLabel = "conclusion prayers";
+	} else {
+		sectionWhole = 7;
+		smallbeadDouble = (double)smallbeadPercent / (double)sectionWhole;
+		progressLabel = "introduction prayers";
+	}
 	}
 
 	if (smallbeadDouble < 0.01) {
@@ -211,8 +210,8 @@ void update_widgets_labels(app_widgets *widgets) {
 	double mysteryPercentDouble = mysteryDouble * 100.0;
 
 	/*
-	 * Update Label Strings
-	 * */
+	* Update Label Strings
+	* */
 
 	// Readings
 	gtk_label_set_text(GTK_LABEL(widgets -> lblTextMystery), mysteryName);
@@ -249,8 +248,8 @@ void update_widgets_labels(app_widgets *widgets) {
 	g_free(str_rosaryPositionID);
 
 	/*
-	 * Update Level Bar
-	 * */
+	* Update Level Bar
+	* */
 
 	gtk_label_set_text(GTK_LABEL(widgets -> lblTextProgressTitle), progressLabel);
 	gtk_level_bar_set_value(GTK_LEVEL_BAR(widgets -> levelBar_decade), smallbeadDouble);

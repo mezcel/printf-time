@@ -9,6 +9,8 @@ all: packages ttyRosary gtkRosary
 
 packages:
 	## Debian Library dependencies
+	echo "downloading dependencies for gcc and gtk ..."
+	echo ""
 	sudo apt update
 	sudo apt install -y build-essential libgtk-3-dev
 	#sudo apt install mingw-w64

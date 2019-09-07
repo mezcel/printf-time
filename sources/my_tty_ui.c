@@ -271,7 +271,6 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen) {
 
 	char *rosaray_region_string;
 	int segment_whole, segment_part;
-	printf("\n%d\n",queryViewStruct.loopBody );
 
 	if (queryViewStruct.loopBody == 1) {
 		rosaray_region_string = "rosary body";

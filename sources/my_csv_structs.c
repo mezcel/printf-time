@@ -23,35 +23,35 @@
  * */
 
 char ** strsplit( const char * src, const char * delim ) {
-    char * pbuf = NULL;
-    char * ptok = NULL;
-    int count = 0;
-    int srclen = 0;
-    char ** pparr = NULL;
+	char * pbuf = NULL;
+	char * ptok = NULL;
+	int count = 0;
+	int srclen = 0;
+	char ** pparr = NULL;
 
-    srclen = strlen( src );
-    pbuf = (char*) malloc( srclen + 1 );
+	srclen = strlen( src );
+	pbuf = (char*) malloc( srclen + 1 );
 
-    if( !pbuf ) {
-        return NULL;
+	if( !pbuf ) {
+		return NULL;
 	}
 
-    strcpy( pbuf, src );
-    ptok = strtok( pbuf, delim );
+	strcpy( pbuf, src );
+	ptok = strtok( pbuf, delim );
 
-    while( ptok ) {
-        pparr = (char**) realloc( pparr, (count+1) * sizeof(char*) );
-        *(pparr + count) = strdup(ptok);
+	while( ptok ) {
+		pparr = (char**) realloc( pparr, (count+1) * sizeof(char*) );
+		*(pparr + count) = strdup(ptok);
 
-        count++;
-        ptok = strtok( NULL, delim );
-    }
+		count++;
+		ptok = strtok( NULL, delim );
+	}
 
-    pparr = (char**) realloc( pparr, (count+1) * sizeof(char*) );
-    *(pparr + count) = NULL;
+	pparr = (char**) realloc( pparr, (count+1) * sizeof(char*) );
+	*(pparr + count) = NULL;
 
-    free(pbuf);
-    return pparr;
+	free(pbuf);
+	return pparr;
 }
 
 void strsplitfree( char ** strlist ) {
@@ -69,135 +69,135 @@ void strsplitfree( char ** strlist ) {
  * */
 
 rosaryBead_t * parse_rosaryBead_record( char * scvline ) {
-    char ** pp = NULL;
-    rosaryBead_t * record_field = NULL;
+	char ** pp = NULL;
+	rosaryBead_t * record_field = NULL;
 
-    pp = strsplit( scvline, ";" );
-    record_field = (rosaryBead_t*) calloc( 1, sizeof(rosaryBead_t) );
+	pp = strsplit( scvline, ";" );
+	record_field = (rosaryBead_t*) calloc( 1, sizeof(rosaryBead_t) );
 
-    record_field -> rosaryBeadID = atoi(pp[0]);
-    record_field -> beadIndex = atoi(pp[1]);
-    record_field -> decadeIndex = atoi(pp[2]);
-    record_field -> mysteryIndex = atoi(pp[3]);
-    record_field -> prayerIndex = atoi(pp[4]);
-    record_field -> scriptureIndex = atoi(pp[5]);
-    record_field -> messageIndex = atoi(pp[6]);
-    record_field -> loopBody = atoi(pp[7]);
-    record_field -> smallbeadPercent = atoi(pp[8]);
-    record_field -> mysteryPercent = atoi(pp[9]);
+	record_field -> rosaryBeadID = atoi(pp[0]);
+	record_field -> beadIndex = atoi(pp[1]);
+	record_field -> decadeIndex = atoi(pp[2]);
+	record_field -> mysteryIndex = atoi(pp[3]);
+	record_field -> prayerIndex = atoi(pp[4]);
+	record_field -> scriptureIndex = atoi(pp[5]);
+	record_field -> messageIndex = atoi(pp[6]);
+	record_field -> loopBody = atoi(pp[7]);
+	record_field -> smallbeadPercent = atoi(pp[8]);
+	record_field -> mysteryPercent = atoi(pp[9]);
 
-    strsplitfree( pp );
-    return record_field;
+	strsplitfree( pp );
+	return record_field;
 }
 
 bead_t * parse_bead_record( char * scvline ) {
-    char ** pp = NULL;
-    bead_t * record_field = NULL;
+	char ** pp = NULL;
+	bead_t * record_field = NULL;
 
-    pp = strsplit( scvline, ";" );
-    record_field = (bead_t*) calloc( 1, sizeof(bead_t) );
+	pp = strsplit( scvline, ";" );
+	record_field = (bead_t*) calloc( 1, sizeof(bead_t) );
 
-    record_field -> beadID = atoi(pp[0]);
-    record_field -> beadType = strdup(pp[1]);
+	record_field -> beadID = atoi(pp[0]);
+	record_field -> beadType = strdup(pp[1]);
 
-    strsplitfree( pp );
-    return record_field;
+	strsplitfree( pp );
+	return record_field;
 }
 
 book_t * parse_book_record( char * scvline ) {
-    char ** pp = NULL;
-    book_t * record_field = NULL;
+	char ** pp = NULL;
+	book_t * record_field = NULL;
 
-    pp = strsplit( scvline, ";" );
-    record_field = (book_t*) calloc( 1, sizeof(book_t) );
+	pp = strsplit( scvline, ";" );
+	record_field = (book_t*) calloc( 1, sizeof(book_t) );
 
-    record_field -> bookID = atoi(pp[0]);
-    record_field -> bookName = strdup(pp[1]);
-    record_field -> library = strdup(pp[2]);
+	record_field -> bookID = atoi(pp[0]);
+	record_field -> bookName = strdup(pp[1]);
+	record_field -> library = strdup(pp[2]);
 
-    strsplitfree( pp );
-    return record_field;
+	strsplitfree( pp );
+	return record_field;
 }
 
 decade_t * parse_decade_record( char * scvline ) {
-    char ** pp = NULL;
-    decade_t * record_field = NULL;
+	char ** pp = NULL;
+	decade_t * record_field = NULL;
 
 	pp = strsplit( scvline, ";" );
-    record_field = (decade_t*) calloc( 1, sizeof(decade_t) );
+	record_field = (decade_t*) calloc( 1, sizeof(decade_t) );
 
-    record_field -> decadeID = atoi(pp[0]);
-    record_field -> mysteryIndex = atoi(pp[1]);
-    record_field -> decadeNo = atoi(pp[2]);
-    record_field -> decadeName = strdup(pp[3]);
-    record_field -> decadeInfo = strdup(pp[4]);
-    record_field -> infoRefference = strdup(pp[5]);
+	record_field -> decadeID = atoi(pp[0]);
+	record_field -> mysteryIndex = atoi(pp[1]);
+	record_field -> decadeNo = atoi(pp[2]);
+	record_field -> decadeName = strdup(pp[3]);
+	record_field -> decadeInfo = strdup(pp[4]);
+	record_field -> infoRefference = strdup(pp[5]);
 
-    strsplitfree( pp );
-    return record_field;
+	strsplitfree( pp );
+	return record_field;
 }
 
 message_t * parse_message_record( char * scvline ) {
-    char ** pp = NULL;
-    message_t * record_field = NULL;
+	char ** pp = NULL;
+	message_t * record_field = NULL;
 
-    pp = strsplit( scvline, ";" );
-    record_field = (message_t*) calloc( 1, sizeof(message_t) );
+	pp = strsplit( scvline, ";" );
+	record_field = (message_t*) calloc( 1, sizeof(message_t) );
 
-    record_field -> messageID = atoi(pp[0]);
-    record_field -> mesageText = strdup(pp[1]);
+	record_field -> messageID = atoi(pp[0]);
+	record_field -> mesageText = strdup(pp[1]);
 
-    strsplitfree( pp );
-    return record_field;
+	strsplitfree( pp );
+	return record_field;
 }
 
 mystery_t * parse_mystery_record( char * scvline ) {
-    char ** pp = NULL;
-    mystery_t * record_field = NULL;
+	char ** pp = NULL;
+	mystery_t * record_field = NULL;
 
-    pp = strsplit( scvline, ";" );
-    record_field = (mystery_t*) calloc( 1, sizeof(mystery_t) );
+	pp = strsplit( scvline, ";" );
+	record_field = (mystery_t*) calloc( 1, sizeof(mystery_t) );
 
-    record_field -> mysteryID = atoi(pp[0]);
-    record_field -> mysteryNo = atoi(pp[1]);
-    record_field -> mysteryName = strdup(pp[2]);
+	record_field -> mysteryID = atoi(pp[0]);
+	record_field -> mysteryNo = atoi(pp[1]);
+	record_field -> mysteryName = strdup(pp[2]);
 
-    strsplitfree( pp );
-    return record_field;
+	strsplitfree( pp );
+	return record_field;
 }
 
 prayer_t * parse_prayer_record( char * scvline ) {
-    char ** pp = NULL;
-    prayer_t * record_field = NULL;
+	char ** pp = NULL;
+	prayer_t * record_field = NULL;
 
-    pp = strsplit( scvline, ";" );
-    record_field = (prayer_t*) calloc( 1, sizeof(prayer_t) );
+	pp = strsplit( scvline, ";" );
+	record_field = (prayer_t*) calloc( 1, sizeof(prayer_t) );
 
-    record_field -> prayerID = atoi(pp[0]);
-    record_field -> prayerName = strdup(pp[1]);
-    record_field -> prayerText = strdup(pp[2]);
+	record_field -> prayerID = atoi(pp[0]);
+	record_field -> prayerName = strdup(pp[1]);
+	record_field -> prayerText = strdup(pp[2]);
 
-    strsplitfree( pp );
-    return record_field;
+	strsplitfree( pp );
+	return record_field;
 }
 
 scripture_t * parse_scripture_record( char * scvline ) {
-    char ** pp = NULL;
-    scripture_t * record_field = NULL;
+	char ** pp = NULL;
+	scripture_t * record_field = NULL;
 
-    pp = strsplit( scvline, ";" );
+	pp = strsplit( scvline, ";" );
 
-    record_field = (scripture_t*) calloc( 1, sizeof(scripture_t) );
+	record_field = (scripture_t*) calloc( 1, sizeof(scripture_t) );
 
-    record_field -> scriptureID = atoi(pp[0]);
-    record_field -> bookIndex = atoi(pp[1]);
-    record_field -> chapterIndex = atoi(pp[2]);
-    record_field -> verseIndex = atoi(pp[3]);
-    record_field -> scriptureText = strdup(pp[4]);
+	record_field -> scriptureID = atoi(pp[0]);
+	record_field -> bookIndex = atoi(pp[1]);
+	record_field -> chapterIndex = atoi(pp[2]);
+	record_field -> verseIndex = atoi(pp[3]);
+	record_field -> scriptureText = strdup(pp[4]);
 
-    strsplitfree( pp );
+	strsplitfree( pp );
 
-    return record_field;
+	return record_field;
 }
 
 /*
@@ -208,7 +208,7 @@ void csvToStruct_rosaryBead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
 	/*
 	* Copy text string value into struct char var
 	* */
-    char scvline[ LINE_MAX_LEN + 1 ];
+	char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
 	rosaryBead_t *record_field;
@@ -243,7 +243,7 @@ void csvToStruct_bead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fil
 	/*
 	* Copy text string value into struct char var
 	* */
-    char scvline[ LINE_MAX_LEN + 1 ];
+	char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
 	bead_t *record_field;
@@ -271,7 +271,7 @@ void csvToStruct_book(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fil
 	/*
 	* Copy text string value into struct char var
 	* */
-    char scvline[ LINE_MAX_LEN + 1 ];
+	char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
 	book_t *record_field;
@@ -301,7 +301,7 @@ void csvToStruct_decade(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *f
 	/*
 	* Copy text string value into struct char var
 	* */
-    char scvline[ LINE_MAX_LEN + 1 ];
+	char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
 	decade_t *record_field;
@@ -335,7 +335,7 @@ void csvToStruct_message(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	/*
 	* Copy text string value into struct char var
 	* */
-    char scvline[ LINE_MAX_LEN + 1 ];
+	char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
 	message_t *record_field;
@@ -363,7 +363,7 @@ void csvToStruct_mystery(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	/*
 	* Copy text string value into struct char var
 	* */
-    char scvline[ LINE_MAX_LEN + 1 ];
+	char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
 	mystery_t *record_field;
@@ -392,7 +392,7 @@ void csvToStruct_prayer(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *f
 	/*
 	* Copy text string value into struct char var
 	* */
-    char scvline[ LINE_MAX_LEN + 1 ];
+	char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
 	prayer_t *record_field;
@@ -422,7 +422,7 @@ void csvToStruct_scripture(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char
 	/*
 	* Copy text string value into struct char var
 	* */
-    char scvline[ LINE_MAX_LEN + 1 ];
+	char scvline[ LINE_MAX_LEN + 1 ];
 	int counter=0;
 	int arrayIndex=0;
 	scripture_t *record_field;
@@ -450,6 +450,7 @@ void csvToStruct_scripture(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char
 }
 
 void make_struct_db(rosary_db_t *rosary_db_struct, char *csv_path_array[8]) {
+	// make an ER db struct from csv files
 
 	csvToStruct_rosaryBead( rosary_db_struct, 300, csv_path_array[0]);
 	csvToStruct_bead( rosary_db_struct, 40, csv_path_array[1]);
@@ -459,11 +460,10 @@ void make_struct_db(rosary_db_t *rosary_db_struct, char *csv_path_array[8]) {
 	csvToStruct_mystery( rosary_db_struct, 100, csv_path_array[5]);
 	csvToStruct_prayer( rosary_db_struct, 1250, csv_path_array[6]);
 	csvToStruct_scripture( rosary_db_struct, 1250, csv_path_array[7]);
-
 }
 
-/// demo
 /*
+// example usecase
 int main() {
 
 	// path to csv db files
@@ -484,6 +484,5 @@ int main() {
 	//printf("\n %d \n", rosary_db_struct.rosaryBead_dbArray[50].beadIndex);
 
 	return 0;
-
 }
 */

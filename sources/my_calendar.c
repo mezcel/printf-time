@@ -36,15 +36,15 @@ struct tm setSpecificDate(int year, int month, int day) {
 	};
 
 	time_t t = mktime(&newTime);
-	newTime.tm_wday = localtime(&t)->tm_wday;
+	newTime.tm_wday = localtime(&t) -> tm_wday;
 
 	return newTime;
 }
 
 struct tm setEasterDate(int year) {
 	/*
-	 * algorithm source: https://en.wikipedia.org/wiki/Computus
-	 * */
+	* algorithm source: https://en.wikipedia.org/wiki/Computus
+	* */
 
 	int a, b, c, d, e, f, g, h, i, k, l, m, month, day;
 
@@ -65,19 +65,19 @@ struct tm setEasterDate(int year) {
 
 	struct tm easterDay = setSpecificDate(year, month - 1, day);
 
-    return easterDay;
+	return easterDay;
 }
 
 struct tm addDay(struct tm referenceDate) {
 	referenceDate.tm_mday += 1;
 	time_t t = mktime(&referenceDate);
-	referenceDate.tm_wday = localtime(&t)->tm_wday;
+	referenceDate.tm_wday = localtime(&t) -> tm_wday;
 
 	return referenceDate;
 }
 
 struct tm addDays(struct tm referenceDate, int days) {
-    for (int i=0; i < days; i++) {
+	for (int i=0; i < days; i++) {
 		referenceDate = addDay(referenceDate);
 	}
 	return referenceDate;
@@ -86,61 +86,59 @@ struct tm addDays(struct tm referenceDate, int days) {
 struct tm subtractDay(struct tm referenceDate) {
 	referenceDate.tm_mday -= 1;
 	time_t t = mktime(&referenceDate);
-	referenceDate.tm_wday = localtime(&t)->tm_wday;
+	referenceDate.tm_wday = localtime(&t) -> tm_wday;
 
 	return referenceDate;
 }
 
 struct tm subtractDays(struct tm startDate, int days) {
-    for (int i=0; i < days; i++) {
+	for (int i=0; i < days; i++) {
 		startDate = subtractDay(startDate);
 	}
 	return startDate;
 }
 
 void shiftTowardSunday(struct tm *tmDate) {
-	int intial_wday = tmDate->tm_wday;
+	int intial_wday = tmDate -> tm_wday;
 
 	if (intial_wday != 0) {
 
-		if (intial_wday <= 4) {
-			tmDate->tm_mday -= intial_wday;
-		} else if (intial_wday == 6) {
-			tmDate->tm_mday += 1;
-
-		} else {
-			tmDate->tm_mday += (6 - intial_wday);
-		}
-
-		time_t t = mktime(tmDate);
-		tmDate->tm_mday = localtime(&t)->tm_mday;
+	if (intial_wday <= 4) {
+		tmDate -> tm_mday -= intial_wday;
+	} else if (intial_wday == 6) {
+		tmDate -> tm_mday += 1;
+	} else {
+		tmDate -> tm_mday += (6 - intial_wday);
 	}
 
+	time_t t = mktime(tmDate);
+		tmDate -> tm_mday = localtime(&t) -> tm_mday;
+	}
 }
 
 void shiftJesusBaptism(struct tm *tmDate) {
 	/*
-	 * Aprox Jan 13
-	 * sunday after the Mass which celbrates the Epiphany
-	 * Monday if Epiphany Sunday shared the same day
-	 * */
-	int intial_wday = tmDate->tm_wday;
+	* Aprox Jan 13
+	* sunday after the Mass which celbrates the Epiphany
+	* Monday if Epiphany Sunday shared the same day
+	* */
+	int intial_wday = tmDate -> tm_wday;
 
 	if (intial_wday == 0) {
-		tmDate->tm_mday += 1;
+		tmDate -> tm_mday += 1;
 
 		time_t t = mktime(tmDate);
-		tmDate->tm_mday = localtime(&t)->tm_mday;
+		tmDate -> tm_mday = localtime(&t) -> tm_mday;
 	}
 
 }
 
 int isFeastDay(struct tm tmNow, struct tm tmThen) {
 	int intFlag;
-    double returnSeconds = difftime(mktime(&tmNow), mktime(&tmThen));
-    double days = returnSeconds / (24 * 3600);
+	double returnSeconds = difftime(mktime(&tmNow), mktime(&tmThen));
+	double days = returnSeconds / (24 * 3600);
 
-    if (days != 0) {
+	if (days != 0) {
 		intFlag = 0;
 	} else {
 		intFlag = 1;
@@ -149,15 +147,14 @@ int isFeastDay(struct tm tmNow, struct tm tmThen) {
 	return intFlag;
 }
 
-int isLiturgicalSeason(struct tm tmNow, struct tm season_start,
-	struct tm season_end) {
+int isLiturgicalSeason(struct tm tmNow, struct tm season_start, struct tm season_end) {
 	/*
-	 * Easter season is 50 days starting at Pentacost
-	 * Lent season is 46 days between Ash Wed and Easter
-	 * Advent season lasts through Christmas Day
-	 * Christmas season lasts through the epiphany
-	 * Ordinary is the time outside of the main seasons
-	 * */
+	* Easter season is 50 days starting at Pentacost
+	* Lent season is 46 days between Ash Wed and Easter
+	* Advent season lasts through Christmas Day
+	* Christmas season lasts through the epiphany
+	* Ordinary is the time outside of the main seasons
+	* */
 
 	int returnFlag = 0;
 
@@ -168,15 +165,15 @@ int isLiturgicalSeason(struct tm tmNow, struct tm season_start,
 	double countdownDays = countdownSeconds / (24 * 3600);
 
 	if ((countdownDays >= 0) && (countdownDays <= durationDays)) {
-		returnFlag = 1;
+	returnFlag = 1;
 	}
 
 	return returnFlag;
 }
 
 int returnLiturgicalSeason(struct tm *tmNow, struct tm *advent_start,
-	struct tm *christmas_day, struct tm *epiphany, struct tm *ash_wednesday,
-	struct tm *easter_sunday, struct tm *pentacost) {
+struct tm *christmas_day, struct tm *epiphany, struct tm *ash_wednesday,
+struct tm *easter_sunday, struct tm *pentacost) {
 
 	int isAdvent = isLiturgicalSeason(*tmNow, *advent_start, *christmas_day);
 	int isChristmas = isLiturgicalSeason(*tmNow, *christmas_day, *epiphany);
@@ -195,9 +192,7 @@ int returnLiturgicalSeason(struct tm *tmNow, struct tm *advent_start,
 		returnFlag = 3;
 	} else {
 		returnFlag = 4;
-	}
-
-	// { "Advent Season", "Christmas Season", "Lent Season", "Easter Season", "Ordinary Time"}
+	} // [ "Advent Season", "Christmas Season", "Lent Season", "Easter Season", "Ordinary Time"]
 
 	return returnFlag;
 }

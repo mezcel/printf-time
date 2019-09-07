@@ -26,7 +26,7 @@ int main() {
 	char *prayer_path 		= "csv/prayer.csv";
 	char *scripture_path 	= "csv/scripture.csv";
 	char *csv_path_array[8]	= {rosaryBead_path, bead_path, book_path,
-		decade_path, message_path, mystery_path, prayer_path, scripture_path};
+	decade_path, message_path, mystery_path, prayer_path, scripture_path};
 
 	make_struct_db(&rosary_db_struct, csv_path_array);	// make db struct
 
@@ -36,12 +36,12 @@ int main() {
 	splashCoverPage(weekdayNo, desiredDispLen);			// display splash
 
 	// UI Loop
-    while (navigtionPosition <= 315) {
+	while (navigtionPosition <= 315) {
 		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct,
-			navigtionPosition); 						// update query
+		navigtionPosition); 						// update query
 
 		// display
-        desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
+		desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
 		clearScreen(IS_LINUX); 							// clear screen
 		outputTtyDisplay( queryViewStruct, desiredDispLen );
 
