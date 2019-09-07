@@ -224,14 +224,14 @@ void update_widgets_labels(app_widgets *widgets) {
 	gtk_label_set_text(GTK_LABEL(widgets -> lblTextBeadType), beadType);
 
 	// Decade
-	gchar *str_smallbeadPercentDouble = g_strdup_printf("%.1f %%", smallbeadPercentDouble); // 1 decimal place
+	gchar *str_smallbeadPercentDouble = g_strdup_printf("%.0f %%", smallbeadPercentDouble); // 0 decimal places
 	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDecadePercent), str_smallbeadPercentDouble);
 
 	gchar *str_smallbeadPercent = g_strdup_printf("%d / %d", smallbeadPercent, sectionWhole);
 	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDecadeProgress), str_smallbeadPercent);
 
 	// Mystery
-	gchar *str_mysteryPercentDouble = g_strdup_printf("%.1f %%", mysteryPercentDouble); // 1 decimal place
+	gchar *str_mysteryPercentDouble = g_strdup_printf("%.0f %%", mysteryPercentDouble); // 0 decimal places
 	gtk_label_set_text(GTK_LABEL(widgets -> lblTextMysteryPercent), str_mysteryPercentDouble);
 
 	gchar *str_mysteryPercent = g_strdup_printf("%d / 50", mysteryPercent);

@@ -15,7 +15,6 @@ int main() {
 	struct tm todaysDate = returnTodaysDate();	// define today struct
 	int weekdayNo = todaysDate.tm_wday;			// day of the week
 	int navigtionPosition = initialMystery(weekdayNo); // starting progress position
-	navigtionPosition = 298; //debug
 
 	// path to csv db files
 	char *rosaryBead_path	= "csv/rosaryBead.csv";

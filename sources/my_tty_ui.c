@@ -104,8 +104,7 @@ void splashCoverPage(int weekdayNo, int desiredDispLen) {
 	printf("\n\t      or just press [enter] to navigate (1) bead forward.");
 	printf("\n\t Press [q] and then [enter] to quit the app.");
 
-	printf("\n\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n",
-		weekday[weekdayNo], weekdayMystery[weekdayNo]);
+	printf("\n\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", weekday[weekdayNo], weekdayMystery[weekdayNo]);
 
 	borderCharPrintF("+", desiredDispLen);
 	printf("\n press [enter] to continue");
@@ -269,17 +268,28 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen) {
 	borderCharPrintF("+", 3);
 	printf(footerLabel);
 	borderCharPrintF("+", desiredDispLen - 20);
-	printf("\n\n position:\t   %d / 315", queryViewStruct.rosaryPositionID);
+
+	char *rosaray_region_string;
+	int segment_whole, segment_part;
+	printf("\n%d\n",queryViewStruct.loopBody );
 
 	if (queryViewStruct.loopBody == 1) {
-		printf("\n Decade Progress:    %d / 10\t\t Decade:    %d / 5",
-			queryViewStruct.smallbeadPercent, queryViewStruct.decadeNo);
+		rosaray_region_string = "rosary body";
+		segment_whole = 10;
+		segment_part = queryViewStruct.smallbeadPercent;
 	} else {
-		printf("\n Decade Progress:    %d / introduction",
-			queryViewStruct.smallbeadPercent);
+		if ( (queryViewStruct.prayerFK == 7) || (queryViewStruct.prayerFK == 8) ) {
+			rosaray_region_string = "conclusion prayers";
+			segment_whole = 2;
+			segment_part = queryViewStruct.smallbeadPercent / 5;
+		} else {
+			rosaray_region_string = "introduction prayers";
+			segment_whole = 7;
+			segment_part = queryViewStruct.smallbeadPercent;
+		}
 	}
-
-	printf("\n Mystery Progress:   %d / 50\t\t Mystery:   %d / 4",
-		queryViewStruct.mysteryPercent, queryViewStruct.mysteryNo);
+	printf("\n\n position:\t\t%d / %d", queryViewStruct.rosaryPositionID, 315);
+	printf("\n Decade Progress:\t%d / %d\t\t%s", segment_part, segment_whole, rosaray_region_string);
+	printf("\n Mystery Progress:\t%d / 50\t\tMystery:   %d / 4", queryViewStruct.mysteryPercent, queryViewStruct.mysteryNo);
 	printf("\n:");
 }
