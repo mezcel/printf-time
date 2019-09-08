@@ -24,7 +24,8 @@ Previous versions were:
 The user navigates with with typed instructions. Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards.
 
 * Terminal screen app ( printf and key inputs )
-* [outdated animated demo](https://asciinema.org/a/262232.svg) ```v0.2.?```
+* [stop point, animated demo](https://asciinema.org/a/266585.svg) ```v0.3.3.?```
+	* install, compile, start, run, exit
 
 ##### 2. A GTK/GUI version
 
