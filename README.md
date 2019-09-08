@@ -25,15 +25,15 @@ The user navigates with with typed instructions. Press [enter] key or the key se
 
 * Terminal screen app ( printf and key inputs )
 * [stop point, animated demo](https://asciinema.org/a/266585) ```v0.3.3.?```
-	* install, compile, start, run, exit
-	* the 1st half is just showing the before/after file size changes
+	* __shows__: install, compile, start, run, exit
+	* the 1st half is slow, I wanted to show the before/after file size changes
 
 ##### 2. A GTK/GUI version
 
 The user navigates with widget objects.
 
 * Desktop window app ( buttons, labels, progressbars, and other misc. widgets )
-* [outdated screenshot](img/screenshot.gif) ```v0.3```
+* [stop point, screenshot](img/screenshot.gif) ```v0.3.3.?```
 
 ---
 

@@ -19,3 +19,6 @@ With the exception of the UI's, the calendar and db were designed arround standa
 | __dependency:__ | n/a | my_csv_structs.h | my_csv_structs.h | my_csv_structs.h |
 | __dependency:__ | n/a | n/a | my_tty_ui.h | my_gtk3_api.h |
 
+---
+
+[![asciicast](https://asciinema.org/a/266585.svg)](https://asciinema.org/a/266585)
