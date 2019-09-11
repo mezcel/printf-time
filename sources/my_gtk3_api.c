@@ -99,12 +99,6 @@ void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets
 	int seasonFlag = 4; // ordinary time
 	int feastFlag = 14; // ordinary day
 
-	//char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-	char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-	char * LITURGICAL_SEASON_ARRAY[] = { "Advent Season", "Christmas Season", "Lent Season", "Easter Season", "Ordinary Time" };
-	char * FEAST_DAY_ARRAY[] = { "advent_start", "immaculate_conception_mary", "christmas_day", "solemnity_of_mary", "epiphany",
-			"jesus_baptism", "ash_wednesday", "holy_thursday", "good_friday", "good_saturday", "easter_sunday", "pentacost", "assension_of_jesus", "all_saints_day", "ordinary_day" };
-
 	intializeCalendar(todaysDate, &seasonFlag, &feastFlag);
 
 	// labels
@@ -132,9 +126,9 @@ void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets
 	widgets -> levelBar_decade	= GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_decade"));
 	widgets -> levelBar_mystery	= GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_mystery"));
 
-	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDate), WEEKDAY_NAME_ARRAY[todaysDate.tm_wday]);
-	gtk_label_set_text(GTK_LABEL(widgets -> lblTextLiturgicalCalendar), LITURGICAL_SEASON_ARRAY[seasonFlag]);
-	gtk_label_set_text(GTK_LABEL(widgets -> lblTextFeast), FEAST_DAY_ARRAY[feastFlag]);
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDate), retrunWeekdayName(todaysDate.tm_wday));
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextLiturgicalCalendar), retrunLiturgicalName(seasonFlag));
+	gtk_label_set_text(GTK_LABEL(widgets -> lblTextFeast), retrunFeastDayName(feastFlag));
 }
 
 int initialMystery(int weekdayNo) {

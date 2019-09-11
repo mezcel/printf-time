@@ -76,12 +76,6 @@ int initialMystery(int weekdayNo) {
 
 void splashCoverPage(int weekdayNo, int desiredDispLen) {
 	// display intro and instructions
-
-	char * weekday[] = { "Sunday", "Monday", "Tuesday", "Wednesday",
-		"Thursday", "Friday", "Saturday" };
-	char * weekdayMystery[] = { "Glorious", "Joyful", "Sorrowful",
-		"Glorious", "Luminous", "Sorrowful", "Joyful" };
-
 	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as an ER database schema. Scriptural readings are quoted from The New American Bible. Additional readings were curated from a variety of different Rosary prayer guides.";
 
 	char *titleLabel = " C/CSV Rosary ";
@@ -104,7 +98,7 @@ void splashCoverPage(int weekdayNo, int desiredDispLen) {
 	printf("\n\t      or just press [enter] to navigate (1) bead forward.");
 	printf("\n\t Press [q] and then [enter] to quit the app.");
 
-	printf("\n\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", weekday[weekdayNo], weekdayMystery[weekdayNo]);
+	printf("\n\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
 
 	borderCharPrintF("+", desiredDispLen);
 	printf("\n press [enter] to continue");

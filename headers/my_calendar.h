@@ -5,12 +5,12 @@
 #ifndef MY_CALENDAR
 #define MY_CALENDAR
 
-/*char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-char * LITURGICAL_SEASON_ARRAY[] = { "Advent Season", "Christmas Season", "Lent Season", "Easter Season", "Ordinary Time" };
-char * FEAST_DAY_ARRAY[] = { "advent_start", "immaculate_conception_mary", "christmas_day", "solemnity_of_mary", "epiphany", "jesus_baptism", "ash_wednesday", "holy_thursday", "good_friday", "good_saturday", "easter_sunday", "pentacost", "assension_of_jesus", "all_saints_day", "ordinary_day" };*/
-
 // void print_date(struct tm tmDate, char *labelString);
+char *retrunWeekdayName(int indexNo);
+char *retrunMonthName(int indexNo);
+char *retrunFeastDayName(int indexNo);
+char *retrunLiturgicalName(int indexNo);
+char *returnWeekdayMystery(int indexNo);
 struct tm returnTodaysDate();
 struct tm setSpecificDate(int year, int month, int day);
 struct tm setEasterDate(int year);
