@@ -25,7 +25,8 @@
 #endif
 
 #include "../headers/my_csv_structs.h"
-#include "../sources/my_calendar.c"
+#include "../headers/my_calendar.h"
+//#include "../sources/my_calendar.c"
 #include "../headers/my_tty_ui.h"
 
 /*
@@ -197,47 +198,47 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct,
 
 	// Get values from DB Struct
 	rosaryPositionID = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
-	beadFK = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].beadIndex;
-	decadeFK = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].decadeIndex;
-	messageFK = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].messageIndex;
-	mysteryFK = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].mysteryIndex;
-	prayerFK = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].prayerIndex;
+	beadFK 	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].beadIndex;
+	decadeFK 	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].decadeIndex;
+	messageFK 	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].messageIndex;
+	mysteryFK 	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].mysteryIndex;
+	prayerFK 	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].prayerIndex;
 	scriptureFK = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].scriptureIndex;
-	loopBody = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].loopBody;
+	loopBody 	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].loopBody;
 	smallbeadPercent = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
-	mysteryPercent = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].mysteryPercent;
+	mysteryPercent 	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].mysteryPercent;
 
-	beadType = rosary_db_struct -> bead_dbArray[beadFK].beadType;
-	decadeName = rosary_db_struct -> decade_dbArray[decadeFK].decadeName;
-	decadeInfo = rosary_db_struct -> decade_dbArray[decadeFK].decadeInfo;
-	mesageText = rosary_db_struct -> message_dbArray[messageFK].mesageText;
+	beadType 	= rosary_db_struct -> bead_dbArray[beadFK].beadType;
+	decadeName 	= rosary_db_struct -> decade_dbArray[decadeFK].decadeName;
+	decadeInfo 	= rosary_db_struct -> decade_dbArray[decadeFK].decadeInfo;
+	mesageText 	= rosary_db_struct -> message_dbArray[messageFK].mesageText;
 	mysteryName = rosary_db_struct -> mystery_dbArray[mysteryFK].mysteryName;
 	scriptureText = rosary_db_struct -> scripture_dbArray[scriptureFK].scriptureText;
-	prayerText = rosary_db_struct -> prayer_dbArray[prayerFK].prayerText;
+	prayerText 	= rosary_db_struct -> prayer_dbArray[prayerFK].prayerText;
 
-	decadeNo = rosary_db_struct -> decade_dbArray[decadeFK].decadeNo;
-	mysteryNo = rosary_db_struct -> mystery_dbArray[mysteryFK].mysteryNo;
+	decadeNo 	= rosary_db_struct -> decade_dbArray[decadeFK].decadeNo;
+	mysteryNo 	= rosary_db_struct -> mystery_dbArray[mysteryFK].mysteryNo;
 
 	// Populate/Update Query View Struct
 	queryViewStruct -> rosaryPositionID = rosaryPositionID;
-	queryViewStruct -> beadFK = beadFK;
-	queryViewStruct -> decadeFK = decadeFK;
-	queryViewStruct -> messageFK = messageFK;
-	queryViewStruct -> mysteryFK = mysteryFK;
-	queryViewStruct -> prayerFK = prayerFK;
-	queryViewStruct -> scriptureFK = scriptureFK;
-	queryViewStruct -> loopBody = loopBody;
+	queryViewStruct -> beadFK 		= beadFK;
+	queryViewStruct -> decadeFK 	= decadeFK;
+	queryViewStruct -> messageFK 	= messageFK;
+	queryViewStruct -> mysteryFK 	= mysteryFK;
+	queryViewStruct -> prayerFK 	= prayerFK;
+	queryViewStruct -> scriptureFK 	= scriptureFK;
+	queryViewStruct -> loopBody 	= loopBody;
 	queryViewStruct -> smallbeadPercent = smallbeadPercent;
 	queryViewStruct -> mysteryPercent = mysteryPercent;
 
 	// strings
-	strcpy( queryViewStruct -> beadType, beadType);
-	strcpy( queryViewStruct -> decadeName, decadeName);
-	strcpy( queryViewStruct -> decadeInfo, decadeInfo);
-	strcpy( queryViewStruct -> mesageText, mesageText);
-	strcpy( queryViewStruct -> mysteryName, mysteryName);
-	strcpy( queryViewStruct -> scriptureText, scriptureText);
-	strcpy( queryViewStruct -> prayerText, prayerText);
+	strcpy(queryViewStruct -> beadType, beadType);
+	strcpy(queryViewStruct -> decadeName, decadeName);
+	strcpy(queryViewStruct -> decadeInfo, decadeInfo);
+	strcpy(queryViewStruct -> mesageText, mesageText);
+	strcpy(queryViewStruct -> mysteryName, mysteryName);
+	strcpy(queryViewStruct -> scriptureText, scriptureText);
+	strcpy(queryViewStruct -> prayerText, prayerText);
 
 	// progress info
 	queryViewStruct -> decadeNo = decadeNo;

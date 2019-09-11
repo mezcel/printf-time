@@ -209,8 +209,8 @@ void csvToStruct_rosaryBead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
 	* Copy text string value into struct char var
 	* */
 	char scvline[ LINE_MAX_LEN + 1 ];
-	int counter=0;
-	int arrayIndex=0;
+	int counter = 0;
+	int arrayIndex = 0;
 	rosaryBead_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -220,16 +220,16 @@ void csvToStruct_rosaryBead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
 			record_field = parse_rosaryBead_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].rosaryBeadID = record_field -> rosaryBeadID;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].beadIndex = record_field -> beadIndex;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].decadeIndex = record_field -> decadeIndex;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].mysteryIndex = record_field -> mysteryIndex;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].prayerIndex = record_field -> prayerIndex;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].scriptureIndex = record_field -> scriptureIndex;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].messageIndex = record_field -> messageIndex;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].loopBody = record_field -> loopBody;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].smallbeadPercent = record_field -> smallbeadPercent;
-			rosary_db_struct->rosaryBead_dbArray[arrayIndex].mysteryPercent = record_field -> mysteryPercent;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].rosaryBeadID = record_field -> rosaryBeadID;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].beadIndex = record_field -> beadIndex;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].decadeIndex = record_field -> decadeIndex;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].mysteryIndex = record_field -> mysteryIndex;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].prayerIndex = record_field -> prayerIndex;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].scriptureIndex = record_field -> scriptureIndex;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].messageIndex = record_field -> messageIndex;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].loopBody = record_field -> loopBody;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].smallbeadPercent = record_field -> smallbeadPercent;
+			rosary_db_struct -> rosaryBead_dbArray[arrayIndex].mysteryPercent = record_field -> mysteryPercent;
 		}
 		counter++;
 	}
@@ -244,8 +244,8 @@ void csvToStruct_bead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fil
 	* Copy text string value into struct char var
 	* */
 	char scvline[ LINE_MAX_LEN + 1 ];
-	int counter=0;
-	int arrayIndex=0;
+	int counter = 0;
+	int arrayIndex = 0;
 	bead_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -255,8 +255,8 @@ void csvToStruct_bead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fil
 			record_field = parse_bead_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct->bead_dbArray[arrayIndex].beadID = record_field -> beadID;
-			rosary_db_struct->bead_dbArray[arrayIndex].beadType = record_field -> beadType;
+			rosary_db_struct -> bead_dbArray[arrayIndex].beadID = record_field -> beadID;
+			rosary_db_struct -> bead_dbArray[arrayIndex].beadType = record_field -> beadType;
 		}
 		counter++;
 	}
@@ -272,8 +272,8 @@ void csvToStruct_book(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fil
 	* Copy text string value into struct char var
 	* */
 	char scvline[ LINE_MAX_LEN + 1 ];
-	int counter=0;
-	int arrayIndex=0;
+	int counter = 0;
+	int arrayIndex = 0;
 	book_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -283,9 +283,9 @@ void csvToStruct_book(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fil
 			record_field = parse_book_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct->book_dbArray[arrayIndex].bookID = record_field -> bookID;
-			rosary_db_struct->book_dbArray[arrayIndex].bookName = record_field -> bookName;
-			rosary_db_struct->book_dbArray[arrayIndex].library = record_field -> library;
+			rosary_db_struct -> book_dbArray[arrayIndex].bookID = record_field -> bookID;
+			rosary_db_struct -> book_dbArray[arrayIndex].bookName = record_field -> bookName;
+			rosary_db_struct -> book_dbArray[arrayIndex].library = record_field -> library;
 		}
 		counter++;
 	}
@@ -302,8 +302,8 @@ void csvToStruct_decade(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *f
 	* Copy text string value into struct char var
 	* */
 	char scvline[ LINE_MAX_LEN + 1 ];
-	int counter=0;
-	int arrayIndex=0;
+	int counter = 0;
+	int arrayIndex = 0;
 	decade_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -313,12 +313,12 @@ void csvToStruct_decade(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *f
 			record_field = parse_decade_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct->decade_dbArray[arrayIndex].decadeID = record_field -> decadeID;
-			rosary_db_struct->decade_dbArray[arrayIndex].mysteryIndex = record_field -> mysteryIndex;
-			rosary_db_struct->decade_dbArray[arrayIndex].decadeNo = record_field -> decadeNo;
-			rosary_db_struct->decade_dbArray[arrayIndex].decadeName = record_field -> decadeName;
-			rosary_db_struct->decade_dbArray[arrayIndex].decadeInfo = record_field -> decadeInfo;
-			rosary_db_struct->decade_dbArray[arrayIndex].infoRefference = record_field -> infoRefference;
+			rosary_db_struct -> decade_dbArray[arrayIndex].decadeID = record_field -> decadeID;
+			rosary_db_struct -> decade_dbArray[arrayIndex].mysteryIndex = record_field -> mysteryIndex;
+			rosary_db_struct -> decade_dbArray[arrayIndex].decadeNo = record_field -> decadeNo;
+			rosary_db_struct -> decade_dbArray[arrayIndex].decadeName = record_field -> decadeName;
+			rosary_db_struct -> decade_dbArray[arrayIndex].decadeInfo = record_field -> decadeInfo;
+			rosary_db_struct -> decade_dbArray[arrayIndex].infoRefference = record_field -> infoRefference;
 		}
 		counter++;
 	}
@@ -336,8 +336,8 @@ void csvToStruct_message(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	* Copy text string value into struct char var
 	* */
 	char scvline[ LINE_MAX_LEN + 1 ];
-	int counter=0;
-	int arrayIndex=0;
+	int counter = 0;
+	int arrayIndex = 0;
 	message_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -347,8 +347,8 @@ void csvToStruct_message(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 			record_field = parse_message_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct->message_dbArray[arrayIndex].messageID = record_field -> messageID;
-			rosary_db_struct->message_dbArray[arrayIndex].mesageText = record_field -> mesageText;
+			rosary_db_struct -> message_dbArray[arrayIndex].messageID = record_field -> messageID;
+			rosary_db_struct -> message_dbArray[arrayIndex].mesageText = record_field -> mesageText;
 		}
 		counter++;
 	}
@@ -364,8 +364,8 @@ void csvToStruct_mystery(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	* Copy text string value into struct char var
 	* */
 	char scvline[ LINE_MAX_LEN + 1 ];
-	int counter=0;
-	int arrayIndex=0;
+	int counter = 0;
+	int arrayIndex = 0;
 	mystery_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -375,9 +375,9 @@ void csvToStruct_mystery(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 			record_field = parse_mystery_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct->mystery_dbArray[arrayIndex].mysteryID = record_field -> mysteryID;
-			rosary_db_struct->mystery_dbArray[arrayIndex].mysteryNo = record_field -> mysteryNo;
-			rosary_db_struct->mystery_dbArray[arrayIndex].mysteryName = record_field -> mysteryName;
+			rosary_db_struct -> mystery_dbArray[arrayIndex].mysteryID = record_field -> mysteryID;
+			rosary_db_struct -> mystery_dbArray[arrayIndex].mysteryNo = record_field -> mysteryNo;
+			rosary_db_struct -> mystery_dbArray[arrayIndex].mysteryName = record_field -> mysteryName;
 		}
 		counter++;
 	}
@@ -393,8 +393,8 @@ void csvToStruct_prayer(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *f
 	* Copy text string value into struct char var
 	* */
 	char scvline[ LINE_MAX_LEN + 1 ];
-	int counter=0;
-	int arrayIndex=0;
+	int counter = 0;
+	int arrayIndex = 0;
 	prayer_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -404,9 +404,9 @@ void csvToStruct_prayer(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *f
 			record_field = parse_prayer_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct->prayer_dbArray[arrayIndex].prayerID = record_field -> prayerID;
-			rosary_db_struct->prayer_dbArray[arrayIndex].prayerName = record_field -> prayerName;
-			rosary_db_struct->prayer_dbArray[arrayIndex].prayerText = record_field -> prayerText;
+			rosary_db_struct -> prayer_dbArray[arrayIndex].prayerID = record_field -> prayerID;
+			rosary_db_struct -> prayer_dbArray[arrayIndex].prayerName = record_field -> prayerName;
+			rosary_db_struct -> prayer_dbArray[arrayIndex].prayerText = record_field -> prayerText;
 		}
 		counter++;
 	}
@@ -423,8 +423,8 @@ void csvToStruct_scripture(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char
 	* Copy text string value into struct char var
 	* */
 	char scvline[ LINE_MAX_LEN + 1 ];
-	int counter=0;
-	int arrayIndex=0;
+	int counter = 0;
+	int arrayIndex = 0;
 	scripture_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -434,11 +434,11 @@ void csvToStruct_scripture(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char
 			record_field = parse_scripture_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct->scripture_dbArray[arrayIndex].scriptureID = record_field -> scriptureID;
-			rosary_db_struct->scripture_dbArray[arrayIndex].bookIndex = record_field -> bookIndex;
-			rosary_db_struct->scripture_dbArray[arrayIndex].chapterIndex = record_field -> chapterIndex;
-			rosary_db_struct->scripture_dbArray[arrayIndex].verseIndex = record_field -> verseIndex;
-			rosary_db_struct->scripture_dbArray[arrayIndex].scriptureText = record_field -> scriptureText;
+			rosary_db_struct -> scripture_dbArray[arrayIndex].scriptureID = record_field -> scriptureID;
+			rosary_db_struct -> scripture_dbArray[arrayIndex].bookIndex = record_field -> bookIndex;
+			rosary_db_struct -> scripture_dbArray[arrayIndex].chapterIndex = record_field -> chapterIndex;
+			rosary_db_struct -> scripture_dbArray[arrayIndex].verseIndex = record_field -> verseIndex;
+			rosary_db_struct -> scripture_dbArray[arrayIndex].scriptureText = record_field -> scriptureText;
 		}
 		counter++;
 	}

@@ -10,6 +10,9 @@
 void print_date(struct tm tmDate, char *labelString) {
 	int monthIndex = tmDate.tm_mon;
 	int weekIndex = tmDate.tm_wday;
+	char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+	char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+
 	printf("\n%s: %s, %d, %s, %d\n",
 		labelString,
 		WEEKDAY_NAME_ARRAY[weekIndex],
@@ -172,8 +175,8 @@ int isLiturgicalSeason(struct tm tmNow, struct tm season_start, struct tm season
 }
 
 int returnLiturgicalSeason(struct tm *tmNow, struct tm *advent_start,
-struct tm *christmas_day, struct tm *epiphany, struct tm *ash_wednesday,
-struct tm *easter_sunday, struct tm *pentacost) {
+		struct tm *christmas_day, struct tm *epiphany, struct tm *ash_wednesday,
+		struct tm *easter_sunday, struct tm *pentacost) {
 
 	int isAdvent = isLiturgicalSeason(*tmNow, *advent_start, *christmas_day);
 	int isChristmas = isLiturgicalSeason(*tmNow, *christmas_day, *epiphany);

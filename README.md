@@ -2,7 +2,7 @@
 
 ### About:
 
-development branch: ```v0.3.3```
+development branch: ```v0.3.4```
 
 This is a scriptural rosary slideshow. The text database is CSV, the program is C, and the UI is Gtk built with from an Xml.
 
@@ -39,10 +39,10 @@ The user navigates with widget objects.
 
 ### Project Status:
 
-#### v0.3.3.? (current development)
+#### v0.3.4.? (current development)
 
 * Works on Linux and WLS, though the latest version is not yet tested on MinGW
-* Consolidated the maze of pointer/address and consolidated them into a commonly accessed data structure.
+* Refactoring module libraries
 
 ##### Runtime Environment
 

@@ -4,8 +4,20 @@
  * 	gcc mainTTY.c -o mainTTY
  */
 
-#include "sources/my_csv_structs.c"
-#include "sources/my_tty_ui.c"
+#include <stdio.h>
+#include <time.h>	// After year 2038, only use an x64 compiler
+#include "headers/my_calendar.h"
+#include "headers/my_csv_structs.h"
+#include "headers/my_tty_ui.h"
+
+// #include "sources/my_csv_structs.c"
+// #include "sources/my_tty_ui.c"
+int IS_LINUX = 1;
+/*char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+char * LITURGICAL_SEASON_ARRAY[] = { "Advent Season", "Christmas Season", "Lent Season", "Easter Season", "Ordinary Time" };
+char * FEAST_DAY_ARRAY[] = { "advent_start", "immaculate_conception_mary", "christmas_day", "solemnity_of_mary", "epiphany", "jesus_baptism", "ash_wednesday", "holy_thursday", "good_friday", "good_saturday", "easter_sunday", "pentacost", "assension_of_jesus", "all_saints_day", "ordinary_day" };*/
+
 
 int main() {
 
@@ -26,7 +38,7 @@ int main() {
 	char *prayer_path 		= "csv/prayer.csv";
 	char *scripture_path 	= "csv/scripture.csv";
 	char *csv_path_array[8]	= {rosaryBead_path, bead_path, book_path,
-	decade_path, message_path, mystery_path, prayer_path, scripture_path};
+			decade_path, message_path, mystery_path, prayer_path, scripture_path};
 
 	make_struct_db(&rosary_db_struct, csv_path_array);	// make db struct
 
