@@ -9,6 +9,8 @@
  * Data Structures
  * */
 
+#include "../headers/my_csv_structs.h"
+
 typedef struct {
 	// accumulator var
 	int navigtionPosition;
@@ -45,6 +47,6 @@ typedef struct {
 
 void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets *widgets);
 int initialMystery(int weekdayNo);
-void update_widgets_labels(app_widgets *widgets);
+void update_widgets_labels(rosary_db_t *rosary_db_struct, app_widgets *widgets);
 
 #endif

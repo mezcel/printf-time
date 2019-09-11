@@ -4,15 +4,10 @@
  * 	gcc -o my_glade_api my_glade_api.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
  * */
 
-#include "../sources/my_calendar.c"
+#include "gtk/gtk.h"
+#include "../headers/my_csv_structs.h"
+#include "../headers/my_calendar.h"
 #include "../headers/my_gtk3_api.h"
-
-/*
- * Local Scope
- * */
-
-// gtk app's global db
-rosary_db_t rosary_db_struct;
 
  /*
  * Header API Scope Functions
@@ -20,14 +15,16 @@ rosary_db_t rosary_db_struct;
 
 void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
 	struct tm advent_start = setSpecificDate(todaysDate.tm_year + 1900, 11, 1); // Dec 1
-		shiftTowardSunday(&advent_start); // first sun of advent
+	shiftTowardSunday(&advent_start); // first sun of advent
+
 	struct tm immaculate_conception_mary = setSpecificDate(todaysDate.tm_year + 1900, 11, 8); // Dec 8
 	struct tm christmas_day = setSpecificDate(todaysDate.tm_year + 1900, 11, 25); // wed dec 25
 	struct tm solemnity_of_mary = setSpecificDate(todaysDate.tm_year + 1900, 0, 1); // Jan 1
 	struct tm epiphany = addDays(christmas_day,12); // 12 days after christmas
-		shiftTowardSunday(&epiphany); // epiphany sunday
+	shiftTowardSunday(&epiphany); // epiphany sunday
+
 	struct tm jesus_baptism = addDays(christmas_day,12);
-		shiftJesusBaptism(&jesus_baptism); // avoid epiphany overlap
+	shiftJesusBaptism(&jesus_baptism); // avoid epiphany overlap
 
 	struct tm easter_sunday = setEasterDate(todaysDate.tm_year + 1900); // pfm
 	struct tm good_saturday = subtractDays(easter_sunday,1);
@@ -35,13 +32,14 @@ void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
 	struct tm holy_thursday = subtractDays(easter_sunday,3);
 	struct tm ash_wednesday = subtractDays(easter_sunday,46);
 	struct tm pentacost = addDays(easter_sunday,21);
-		shiftTowardSunday(&pentacost);  // sun june 9, 7 sundays after easter
+	shiftTowardSunday(&pentacost);  // sun june 9, 7 sundays after easter
+
 	struct tm assension_of_jesus = addDays(easter_sunday,40);
 
 	struct tm all_saints_day = setSpecificDate(todaysDate.tm_year + 1900, 10, 1); // Nov 1
 
-	*seasonFlag = returnLiturgicalSeason(&todaysDate, &advent_start,
-			&christmas_day, &epiphany, &ash_wednesday, &easter_sunday, &pentacost);
+	*seasonFlag = returnLiturgicalSeason(&todaysDate, &advent_start, &christmas_day,
+			&epiphany, &ash_wednesday, &easter_sunday, &pentacost);
 
 	int isFeast;
 	switch (*seasonFlag) {
@@ -101,32 +99,38 @@ void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets
 	int seasonFlag = 4; // ordinary time
 	int feastFlag = 14; // ordinary day
 
+	//char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+	char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+	char * LITURGICAL_SEASON_ARRAY[] = { "Advent Season", "Christmas Season", "Lent Season", "Easter Season", "Ordinary Time" };
+	char * FEAST_DAY_ARRAY[] = { "advent_start", "immaculate_conception_mary", "christmas_day", "solemnity_of_mary", "epiphany",
+			"jesus_baptism", "ash_wednesday", "holy_thursday", "good_friday", "good_saturday", "easter_sunday", "pentacost", "assension_of_jesus", "all_saints_day", "ordinary_day" };
+
 	intializeCalendar(todaysDate, &seasonFlag, &feastFlag);
 
 	// labels
 	widgets -> lblTextDate = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDate"));
 
-	widgets -> lblTextMystery = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMystery"));
-	widgets -> lblTextDecade = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecade"));
+	widgets -> lblTextMystery	= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMystery"));
+	widgets -> lblTextDecade	= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecade"));
 	widgets -> lblTextDecadeMessage = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecadeMessage"));
 	widgets -> lblTextBackground = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextBackground"));
 	widgets -> lblTextScripture = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextScripture"));
-	widgets -> lblTextPrayer = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextPrayer"));
-	widgets -> lblTextBeadType = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextBeadType"));
-	widgets -> lblTextBeadNo = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextBeadNo"));
+	widgets -> lblTextPrayer	= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextPrayer"));
+	widgets -> lblTextBeadType	= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextBeadType"));
+	widgets -> lblTextBeadNo	= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextBeadNo"));
 	widgets -> lblTextLiturgicalCalendar = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextLiturgicalCalendar"));
-	widgets -> lblTextFeast = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
+	widgets -> lblTextFeast		= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextFeast"));
 
-	widgets -> lblTextDecadeProgress = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecadeProgress"));
-	widgets -> lblTextDecadePercent = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecadePercent"));
-	widgets -> lblTextMysteryProgress = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMysteryProgress"));
-	widgets -> lblTextMysteryPercent = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMysteryPercent"));
+	widgets -> lblTextDecadeProgress	= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecadeProgress"));
+	widgets -> lblTextDecadePercent		= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextDecadePercent"));
+	widgets -> lblTextMysteryProgress	= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMysteryProgress"));
+	widgets -> lblTextMysteryPercent	= GTK_WIDGET(gtk_builder_get_object(builder, "lblTextMysteryPercent"));
 
 	// progressbars / levelbar
 	widgets -> lblTextProgressTitle = GTK_WIDGET(gtk_builder_get_object(builder, "lblTextProgressTitle"));
 
-	widgets -> levelBar_decade = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_decade"));
-	widgets -> levelBar_mystery = GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_mystery"));
+	widgets -> levelBar_decade	= GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_decade"));
+	widgets -> levelBar_mystery	= GTK_WIDGET(gtk_builder_get_object(builder, "levelBar_mystery"));
 
 	gtk_label_set_text(GTK_LABEL(widgets -> lblTextDate), WEEKDAY_NAME_ARRAY[todaysDate.tm_wday]);
 	gtk_label_set_text(GTK_LABEL(widgets -> lblTextLiturgicalCalendar), LITURGICAL_SEASON_ARRAY[seasonFlag]);
@@ -143,31 +147,31 @@ int initialMystery(int weekdayNo) {
 	return navigtionPosition[weekdayNo];
 }
 
-void update_widgets_labels(app_widgets *widgets) {
+void update_widgets_labels(rosary_db_t *rosary_db_struct, app_widgets *widgets) {
 	int navigtionPosition = widgets->navigtionPosition;
 
 	/*
 	* ER Query
 	* */
 
-	int rosaryPositionID = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
-	int beadFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].beadIndex;
-	int decadeFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].decadeIndex;
-	int messageFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].messageIndex;
-	int mysteryFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].mysteryIndex;
-	int prayerFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].prayerIndex;
-	int scriptureFK = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].scriptureIndex;
-	int loopBody = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].loopBody;
-	int smallbeadPercent = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
-	int mysteryPercent = rosary_db_struct.rosaryBead_dbArray[navigtionPosition].mysteryPercent;
+	int rosaryPositionID = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].rosaryBeadID;
+	int beadFK		= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].beadIndex;
+	int decadeFK	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].decadeIndex;
+	int messageFK	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].messageIndex;
+	int mysteryFK	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].mysteryIndex;
+	int prayerFK	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].prayerIndex;
+	int scriptureFK	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].scriptureIndex;
+	int loopBody	= rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].loopBody;
+	int smallbeadPercent = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].smallbeadPercent;
+	int mysteryPercent = rosary_db_struct -> rosaryBead_dbArray[navigtionPosition].mysteryPercent;
 
-	char *beadType = rosary_db_struct.bead_dbArray[beadFK].beadType;
-	char *decadeName = rosary_db_struct.decade_dbArray[decadeFK].decadeName;
-	char *decadeInfo = rosary_db_struct.decade_dbArray[decadeFK].decadeInfo;
-	char *mesageText = rosary_db_struct.message_dbArray[messageFK].mesageText;
-	char *mysteryName = rosary_db_struct.mystery_dbArray[mysteryFK].mysteryName;
-	char *scriptureText = rosary_db_struct.scripture_dbArray[scriptureFK].scriptureText;
-	char *prayerText = rosary_db_struct.prayer_dbArray[prayerFK].prayerText;
+	char *beadType	= rosary_db_struct -> bead_dbArray[beadFK].beadType;
+	char *decadeName = rosary_db_struct -> decade_dbArray[decadeFK].decadeName;
+	char *decadeInfo = rosary_db_struct -> decade_dbArray[decadeFK].decadeInfo;
+	char *mesageText = rosary_db_struct -> message_dbArray[messageFK].mesageText;
+	char *mysteryName = rosary_db_struct -> mystery_dbArray[mysteryFK].mysteryName;
+	char *scriptureText = rosary_db_struct -> scripture_dbArray[scriptureFK].scriptureText;
+	char *prayerText = rosary_db_struct -> prayer_dbArray[prayerFK].prayerText;
 
 	/*
 	* Calculate percentages

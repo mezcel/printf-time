@@ -26,7 +26,6 @@
 
 #include "../headers/my_csv_structs.h"
 #include "../headers/my_calendar.h"
-//#include "../sources/my_calendar.c"
 #include "../headers/my_tty_ui.h"
 
 /*

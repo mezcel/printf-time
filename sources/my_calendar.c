@@ -10,8 +10,10 @@
 void print_date(struct tm tmDate, char *labelString) {
 	int monthIndex = tmDate.tm_mon;
 	int weekIndex = tmDate.tm_wday;
-	char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-	char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+	char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May",
+				"June", "July", "August", "September", "October", "November", "December" };
+	char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday",
+				"Thursday", "Friday", "Saturday" };
 
 	printf("\n%s: %s, %d, %s, %d\n",
 		labelString,
@@ -199,107 +201,3 @@ int returnLiturgicalSeason(struct tm *tmNow, struct tm *advent_start,
 
 	return returnFlag;
 }
-
-/*
-// example usecase demo
-int main() {
-
-    struct tm tmToday = returnTodaysDate();
-
-	struct tm advent_start = setSpecificDate(tmToday.tm_year + 1900, 11, 1); // Dec 1
-		shiftTowardSunday(&advent_start); // first sun of advent
-    struct tm immaculate_conception_mary = setSpecificDate(tmToday.tm_year + 1900, 11, 8); // Dec 8
-    struct tm christmas_day = setSpecificDate(tmToday.tm_year + 1900, 11, 25); // wed dec 25
-    struct tm solemnity_of_mary = setSpecificDate(tmToday.tm_year + 1900, 0, 1); // Jan 1
-	struct tm epiphany = addDays(christmas_day,12); // 12 days after christmas
-		shiftTowardSunday(&epiphany); // epiphany sunday
-	struct tm jesus_baptism = addDays(christmas_day,12);
-		shiftJesusBaptism(&jesus_baptism); // avoid epiphany overlap
-
-	struct tm easter_sunday = setEasterDate(tmToday.tm_year + 1900); // pfm
-    struct tm good_saturday = subtractDays(easter_sunday,1);
-    struct tm good_friday = subtractDays(easter_sunday,2);
-    struct tm holy_thursday = subtractDays(easter_sunday,3);
-    struct tm ash_wednesday = subtractDays(easter_sunday,46);
-    struct tm pentacost = addDays(easter_sunday,21);
-		shiftTowardSunday(&pentacost);  // sun june 9, 7 sundays after easter
-    struct tm assension_of_jesus = addDays(easter_sunday,40);
-
-    struct tm all_saints_day = setSpecificDate(tmToday.tm_year + 1900, 10, 1); // Nov 1
-
-    print_date(advent_start, "advent_start");
-    print_date(immaculate_conception_mary, "immaculate_conception_mary");
-    print_date(christmas_day, "christmas_day");
-    print_date(solemnity_of_mary, "solemnity_of_mary");
-    print_date(epiphany, "epiphany");
-    print_date(jesus_baptism, "jesus_baptism");
-    print_date(ash_wednesday, "ash_wednesday");
-    print_date(holy_thursday, "holy_thursday");
-    print_date(good_friday, "good_friday");
-    print_date(good_saturday, "good_saturday");
-    print_date(easter_sunday, "easter_sunday");
-    print_date(pentacost, "pentacost");
-    print_date(assension_of_jesus, "assension_of_jesus");
-    print_date(all_saints_day, "all_saints_day");
-
-    printf("\n ---------- \n");
-
-    int seasonFlag = returnLiturgicalSeason(&tmToday, &advent_start,
-		&christmas_day, &epiphany, &ash_wednesday, &easter_sunday, &pentacost);
-
-    printf("\n %s \n", LITURGICAL_SEASON_ARRAY[seasonFlag]);
-
-	int isFeast;
-    switch (seasonFlag) {
-		case 0:
-			isFeast = isFeastDay(tmToday, advent_start);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[0]); }
-
-			isFeast = isFeastDay(tmToday, immaculate_conception_mary);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[1]); }
-			break;
-		case 1:
-			isFeast = isFeastDay(tmToday, christmas_day);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[2]); }
-
-			isFeast = isFeastDay(tmToday, solemnity_of_mary);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[3]); }
-
-			isFeast = isFeastDay(tmToday, epiphany);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[4]); }
-
-			isFeast = isFeastDay(tmToday, jesus_baptism);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[5]); }
-			break;
-		case 2:
-			isFeast = isFeastDay(tmToday, ash_wednesday);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[6]); }
-
-			isFeast = isFeastDay(tmToday, holy_thursday);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[7]); }
-
-			isFeast = isFeastDay(tmToday, good_friday);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[8]); }
-
-			isFeast = isFeastDay(tmToday, good_saturday);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[9]); }
-
-			isFeast = isFeastDay(tmToday, easter_sunday);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[10]); }
-			break;
-		case 3:
-			isFeast = isFeastDay(tmToday, pentacost);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[11]); }
-
-			isFeast = isFeastDay(tmToday, assension_of_jesus);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[12]); }
-			break;
-		default:
-			isFeast = isFeastDay(tmToday, all_saints_day);
-			if(isFeast) { printf("\n %s \n", FEAST_DAY_ARRAY[12]); }
-			break;
-	}
-
-    return 0;
-}
-*/

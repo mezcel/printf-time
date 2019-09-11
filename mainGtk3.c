@@ -7,8 +7,12 @@
  * */
 
 #include "gtk/gtk.h"
-#include "sources/my_csv_structs.c" // ER Db structs
-#include "sources/my_gtk3_api.c"
+#include <time.h>	// After year 2038, only use an x64 compiler
+#include "headers/my_calendar.h"
+#include "headers/my_csv_structs.h"
+#include "headers/my_gtk3_api.h"
+
+rosary_db_t rosary_db_struct; // gtk app's global db
 
 int main( int argc, char *argv[] ) {
 
@@ -73,7 +77,7 @@ void on_btnForward_clicked(GtkButton *button, app_widgets *widgets) {
 	} else {
 		widgets -> navigtionPosition = 0;
 	}
-	update_widgets_labels(widgets);
+	update_widgets_labels(&rosary_db_struct, widgets);
 }
 
 // Navigate Backward Button Click
@@ -85,5 +89,5 @@ void on_btnBack_clicked(GtkButton *button, app_widgets *widgets) {
 	} else {
 		widgets -> navigtionPosition = 315;
 	}
-	update_widgets_labels(widgets);
+	update_widgets_labels(&rosary_db_struct, widgets);
 }

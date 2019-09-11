@@ -461,28 +461,3 @@ void make_struct_db(rosary_db_t *rosary_db_struct, char *csv_path_array[8]) {
 	csvToStruct_prayer( rosary_db_struct, 1250, csv_path_array[6]);
 	csvToStruct_scripture( rosary_db_struct, 1250, csv_path_array[7]);
 }
-
-/*
-// example usecase
-int main() {
-
-	// path to csv db files
-	char *rosaryBead_path = "../csv/rosaryBead.csv";
-	char *bead_path = "../csv/bead.csv";
-	char *book_path = "../csv/book.csv";
-	char *decade_path = "../csv/decade.csv";
-	char *message_path = "../csv/message.csv";
-	char *mystery_path = "../csv/mystery.csv";
-	char *prayer_path = "../csv/prayer.csv";
-	char *scripture_path = "../csv/scripture.csv";
-	char *csv_path_array[8]={rosaryBead_path, bead_path, book_path,
-		decade_path, message_path, mystery_path, prayer_path, scripture_path};
-
-	rosary_db_t rosary_db_struct;
-	make_struct_db(&rosary_db_struct, csv_path_array); // make db struct
-
-	//printf("\n %d \n", rosary_db_struct.rosaryBead_dbArray[50].beadIndex);
-
-	return 0;
-}
-*/
