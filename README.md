@@ -16,7 +16,7 @@ Previous versions were:
 | --- | --- | --- | --- |
 |[repo](https://github.com/mezcel/rosary.net)|[repo](https://github.com/mezcel/electron-container)|[repo](https://github.com/mezcel/jq-tput-terminal)|[repo](https://github.com/mezcel/python-curses)|
 |a WinForm and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
-| Used a MySql Database for both a WPF/WCF version and a WinForm version. The .Net version incorporates multi user synchronization and multiple group sessions | Uses Jquery Mobile for a standard web browser and as a packaged Electron app. Has variable color themes, web scraped mass readings, audio option, and chat room server synchronized with rosary bead positions, liturgical calendar and feast day calculations. Uses a JSON database | It has web scraped mass reading, event triggered audio, variable tty colors, PFM Calculator, windows sizing. Uses a JSON database|Uses a JSON database |
+| Used a MySql Database for both a WPF/WCF version and a WinForm version. The .Net version incorporates multi user synchronization and multiple group sessions. English and Latin translation options. | Uses Jquery Mobile and/or Electron. Has variable color themes, web scraped mass readings, audio options, multi-user chat room server synchronized with rosary bead positions, liturgical calendar and feast day calculations. Uses a JSON database. English and Latin translation options. | It has web scraped mass reading, event triggered audio, variable tty colors, liturgical calendar calculations, windows sizing. Uses a JSON database. English and Latin translation options. | Uses a JSON database. English only.|
 
 ### 2 Gui options:
 
