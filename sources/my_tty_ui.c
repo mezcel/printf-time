@@ -119,7 +119,7 @@ void clearScreen(int isLinux) {
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 	int screenWidth = desiredLineLength;	// max chars per screen line width
 	int inputLength = (int)strlen(strIn);	// number of chars contained in input string
-	int labelColChars = 16;					// chars used in the label col
+	int labelColChars = 17;					// chars used in the label col
 	int max_line_chars = screenWidth - labelColChars;
 
 	printf("%s", labelChars); // print the content label, initial printf
