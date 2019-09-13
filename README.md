@@ -1,14 +1,10 @@
 # printf-time
 
-A scripture rosary for Gtk and TTY witten in C for Gcc.
-
-### About:
-
 dev branch: ```v0.3.4```
 
-The text database is CSV, the program is C, and the UI is either a Gtk built with from an Xml or a CLI/TTY.
+A scripture rosary for Gtk and TTY witten in C for Gcc. Uses a CSV Database
 
-### 2 Gui options:
+### GUI Options:
 
 | CLI Version | GTK3 Version |
 |---|---|
@@ -17,6 +13,8 @@ The text database is CSV, the program is C, and the UI is either a Gtk built wit
 | ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
 | [outdated animated cli demo](https://asciinema.org/a/266585) ``` from v0.3.3.?``` | - |
 
+---
+
 ### Compile
 
 Debian
@@ -24,18 +22,17 @@ Debian
 ## Makefile Compile ##################
 
 # build everything
-
 make
 
-# or just compile one version or the other
-
+# build the TTY version
 make ttyRosary
+
+# build the GTK3 version
 make gtkRosary
 ```
 
 ```sh
 ## Manual Shell Compile ##############
-
 # alternately one can just compile it the basic shell way
 
 ./manual_compile.sh
