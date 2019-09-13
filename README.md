@@ -12,7 +12,7 @@ This is the 5th program language version in my Rosary App series. A GCC CLI appl
 
 Previous versions were:
 
-| .NET/Windows OS | W3C/Electron | BASH/GNU | Python |
+| .NET/Windows OS | W3C/Electron | BASH/GNU | Python (Win/Linux) |
 | --- | --- | --- | --- |
 |[repo](https://github.com/mezcel/rosary.net)|[repo](https://github.com/mezcel/electron-container)|[repo](https://github.com/mezcel/jq-tput-terminal)|[repo](https://github.com/mezcel/python-curses)|
 |a WinForm and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
