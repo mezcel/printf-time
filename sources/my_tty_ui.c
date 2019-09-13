@@ -32,6 +32,23 @@
  * Local Scope Functions
  * */
 
+void remove_newline_ch(char *line) {
+    int new_line = strlen(line) -1;
+    if (line[new_line] == '\n')
+        line[new_line] = '\0';
+}
+
+void borderCharPrintF(char *charSymbol, int borderWidth) {
+	// print a sequence of chars which act as a visual border/divider
+	for (int i = 0; i < borderWidth; i++) {
+		printf("%s", charSymbol);
+	}
+}
+
+/*
+ * prototyped in header
+ * */
+
 int returnScreenWidth(int isLinux) {
 	// return a number which represents how long/wide the screen text should be
 	int col_length = 85;	// 85 chars wide
@@ -44,22 +61,6 @@ int returnScreenWidth(int isLinux) {
 	return col_length;
 }
 
-void clearScreen(int isLinux) {
-	// system("@cls||clear");
-	if (isLinux == 1) {
-		system("clear");	// linux
-	} else {
-		system("@cls");		// win
-	}
-}
-
-void borderCharPrintF(char *charSymbol, int borderWidth) {
-	// print a sequence of chars which act as a visual border/divider
-	for (int i = 0; i < borderWidth; i++) {
-		printf("%s", charSymbol);
-	}
-}
-
 int initialMystery(int weekdayNo) {
 	// return the start of a mystery sequence depending on which day of the week it is
 	int navigtionPosition[] = {237, 0, 158, 237, 79, 158, 0};
@@ -68,78 +69,6 @@ int initialMystery(int weekdayNo) {
 		weekdayNo = 0;
 	}
 	return navigtionPosition[weekdayNo];
-}
-
-/*
- * Header API Scope Functions
- * */
-
-void splashCoverPage(int weekdayNo, int desiredDispLen) {
-	// display intro and instructions
-	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as an ER database schema. Scriptural readings are quoted from The New American Bible. Additional readings were curated from a variety of different Rosary prayer guides.";
-
-	char *titleLabel = " C/CSV Rosary ";
-	int titleLabelLength = (int)strlen(titleLabel);
-	borderCharPrintF("+", desiredDispLen);
-	printf("\n");
-	borderCharPrintF("+", 3);
-	printf(titleLabel);
-	borderCharPrintF("+", (desiredDispLen - (titleLabelLength + 3 )) );
-	printf("\n");
-	borderCharPrintF("+", desiredDispLen);
-	printf("\n");
-
-	multiLinePrintF("\n About:\n\n\t", aboutString, desiredDispLen );
-
-	printf("\n\n Display:\n\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
-	printf("\tFull screen is the optimal dimension.\n");
-	printf("\n User Controls:\n\n\t Press [b] and then [enter] to navigate (1) bead back.");
-	printf("\n\t Press [n] and then [enter] to navigate (1) bead forward.");
-	printf("\n\t      or just press [enter] to navigate (1) bead forward.");
-	printf("\n\t Press [q] and then [enter] to quit the app.");
-
-	printf("\n\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
-
-	borderCharPrintF("+", desiredDispLen);
-	printf("\n press [enter] to continue");
-	getchar();	// pause for char input
-}
-
-void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
-	// Wrap and tab lines of text which are longer than a set char count.
-
-	desiredLineLength = (desiredLineLength / 2) + (desiredLineLength / 5) - 5;
-
-	int lineLength = (int)strlen(strIn);
-	printf("%s", labelChars);
-
-	if ( lineLength <= desiredLineLength) {
-		printf("%s\n\t\t", strIn);
-
-	} else {
-
-		int inputLength = (int)strlen(strIn);
-		char stringInput[inputLength]; // temp copy of string to manipulate
-			strcpy(stringInput, strIn);
-		char *delim = " ";
-		char *parsedStringArray = strtok(stringInput, delim);
-		int desiredLengthCounter = 0;
-		int wordLength = 0;
-
-		while (parsedStringArray != NULL) {
-			wordLength = (int)strlen(parsedStringArray);
-			desiredLengthCounter = desiredLengthCounter + wordLength;
-
-			if (desiredLengthCounter < (desiredLineLength)) {
-				printf("%s ", parsedStringArray);
-			} else {
-				printf("\n\t\t%s ", parsedStringArray);
-				desiredLengthCounter = 0;
-			}
-
-			parsedStringArray = strtok(NULL, delim);
-		}
-	}
 }
 
 int pressKeyContinue(int navigtionPosition, int isLinux) {
@@ -176,6 +105,87 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 	}
 
 	return navigtionPosition;
+}
+
+void clearScreen(int isLinux) {
+	// system("@cls||clear");
+	if (isLinux == 1) {
+		system("clear");	// linux
+	} else {
+		system("@cls");		// win
+	}
+}
+
+void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
+	int screenWidth = desiredLineLength;	// max chars per screen line width
+	int inputLength = (int)strlen(strIn);	// number of chars contained in input string
+	int labelColChars = 16;					// chars used in the label col
+	int max_line_chars = screenWidth - labelColChars;
+
+	printf("%s", labelChars); // print the content label, initial printf
+
+	if ( inputLength < max_line_chars ) { // short enough to be 1 line
+		printf("%s\n\t\t", strIn);
+	} else { // longer than one line
+
+		// input string to an array of words
+		char tmpStringArray[inputLength];
+		strcpy(tmpStringArray, strIn);
+		char *delimiter = " ";
+		char *token = strtok(tmpStringArray, delimiter); // array of words
+
+		// init counters
+		int chars_in_a_word = 0;
+		int potential_line_length = 0;
+		int charCounter = 0;
+
+		// parse each word in the long sentence
+		while (token != NULL) {
+			chars_in_a_word = (int)strlen(token);
+			potential_line_length = chars_in_a_word + charCounter;
+
+			if(potential_line_length < max_line_chars) {
+				charCounter += chars_in_a_word + 1;
+				printf("%s ", token);
+			} else {
+				charCounter = chars_in_a_word;
+				printf("\n\t\t%s ", token); // start new line indent
+			}
+
+			token = strtok(NULL, delimiter); // get the next word
+		}
+	}
+}
+
+void splashCoverPage(int weekdayNo, int desiredDispLen) {
+	// display intro and instructions
+	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as an ER database schema. Scriptural readings are quoted from The New American Bible. Additional readings were curated from a variety of different Rosary prayer guides.";
+
+	char *titleLabel = " C/CSV Rosary ";
+	int titleLabelLength = (int)strlen(titleLabel);
+	borderCharPrintF("+", desiredDispLen);
+	printf("\n");
+	borderCharPrintF("+", 3);
+	printf(titleLabel);
+	borderCharPrintF("+", (desiredDispLen - (titleLabelLength + 3 )) );
+	printf("\n");
+	borderCharPrintF("+", desiredDispLen);
+	printf("\n");
+
+	multiLinePrintF("\n About:\n\n\t", aboutString, desiredDispLen );
+
+	printf("\n\n Display:\n\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
+	printf("\tFull screen is the optimal dimension.\n");
+	printf("\n User Controls:\n\n\t Press [b] and then [enter] to navigate (1) bead back.");
+	printf("\n\t Press [n] and then [enter] to navigate (1) bead forward.");
+	printf("\n\t      or just press [enter] to navigate (1) bead forward.");
+	printf("\n\t Press [q] and then [enter] to quit the app.");
+
+	printf("\n\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
+
+	borderCharPrintF("+", desiredDispLen);
+	printf("\n press [enter] to continue");
+	getchar();	// pause for char input
 }
 
 void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct,

@@ -16,14 +16,24 @@
 CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
+all: gnu_dependency ttyRosary gtkRosary ttyTosary_debug gtkRosary_debug
+
+gnu_dependency:
+	sudo apt install -y build-essential libgtk-3-dev gcc
+
 ## Executable
-all: ttyRosary gtkRosary
 
 ttyRosary: mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o
 	$(CC) mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o -o "ttyRosary"
 
+ttyRosary_debug:
+	$(CC) -g mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o -o "ttyRosary_debug"
+
 gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
 	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary"
+
+gtkRosary_debug:
+	$(CC) -g mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary_debug"
 
 ## Libraries for both apps
 
@@ -52,4 +62,4 @@ mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_gtk3_api.o
 ## Restore/Clear
 
 clean:
-	rm -f *.o ttyRosary gtkRosary
+	rm -f *.o ttyRosary gtkRosary ttyRosary_debug gtkRosary_debug
