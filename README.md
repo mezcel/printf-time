@@ -8,6 +8,41 @@ dev branch: ```v0.3.4```
 
 The text database is CSV, the program is C, and the UI is either a Gtk built with from an Xml or a CLI/TTY.
 
+### 2 Gui options:
+
+| CLI Version | GTK3 Version |
+|---|---|
+| The user navigates with with typed instructions. \ Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards. | The user navigates with push-button widget objects. |
+| screenshot taken on Debian WLS | screenshot taken on a i686 Debian |
+| ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
+| [outdated animated cli demo](https://asciinema.org/a/266585) ``` from v0.3.3.?``` | - |
+
+### Compile
+
+Debian
+```sh
+## Makefile Compile ##################
+
+# build everything
+
+make
+
+# or just compile one version or the other
+
+make ttyRosary
+make gtkRosary
+```
+
+```sh
+## Manual Shell Compile ##############
+
+# alternately one can just compile it the basic shell way
+
+./manual_compile.sh
+```
+
+---
+
 ### Inspiration:
 
 This is the 5th program language version in my Rosary App series.
@@ -24,15 +59,6 @@ Previous versions were:
 | no audio | audio theme song | audio (curated event triggered Libre soundtrack) | no audio |
 | lan | internet scraped mass readings | internet scraped mass readings | no interactive networking features |
 | multi user / multi session / group synchronization | multi user / multi session / group synchronization | single user | single user |
-
-### 2 Gui options:
-
-| CLI Version | GTK3 Version |
-|---|---|
-| The user navigates with with typed instructions. \ Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards. | The user navigates with push-button widget objects. |
-| screenshot taken on Debian WLS | screenshot taken on a i686 Debian |
-| ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
-| [outdated animated cli demo](https://asciinema.org/a/266585) ``` from v0.3.3.?``` | - |
 
 ---
 
@@ -62,30 +88,6 @@ Previous versions were:
 	* build:	gcc -Wall -o "%e" "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
 ---
-
-### Compile
-
-Debian
-```sh
-## Makefile Compile ##################
-
-# build everything
-
-make
-
-# or just compile one version or the other
-
-make ttyRosary
-make gtkRosary
-```
-
-```sh
-## Manual Shell Compile ##############
-
-# alternately one can just compile it the basic shell way
-
-./manual_compile.sh
-```
 
 Win10
 
