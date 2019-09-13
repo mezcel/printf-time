@@ -19,9 +19,9 @@ Previous versions were:
 |[repo](https://github.com/mezcel/rosary.net)|[repo](https://github.com/mezcel/electron-container)|[repo](https://github.com/mezcel/jq-tput-terminal)|[repo](https://github.com/mezcel/python-curses)|
 | MySql Database | JSON Database | JSON Database | JSON Database |
 | English and Latin | English and Latin | English and Latin | English only|
-|a WinForm and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
-| Used a MySql Database for both a WPF/WCF version and a WinForm version. The .Net version incorporates multi user synchronization and multiple group sessions. | Uses Jquery Mobile and/or Electron. Has variable color themes, web scraped mass readings, liturgical calendar and feast day calculations. | It has web scraped mass reading, event triggered audio, variable tty colors, liturgical calendar calculations, windows sizing. | just a TTY/Cli App|
-| no audio | audio | audio | no audio |
+|a WinForm version and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
+| [project design](https://mezcel.wixsite.com/rosary) | Uses Jquery Mobile and/or Electron. Has variable color themes, web scraped mass readings, liturgical calendar and feast day calculations. | It has web scraped mass reading, event triggered audio, variable tty colors, liturgical calendar calculations, windows sizing. | just a TTY/Cli App|
+| no audio | audio | audio (curated and event triggered) | no audio |
 | multi user / multi session / group synchronization | multi user / multi session / group synchronization | single user | single user |
 
 ### 2 Gui options:
