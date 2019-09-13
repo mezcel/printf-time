@@ -20,8 +20,9 @@ Previous versions were:
 | MySql Database | JSON Database | JSON Database | JSON Database |
 | English and Latin | English and Latin | English and Latin | English only|
 |a WinForm version and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
-| [project design](https://mezcel.wixsite.com/rosary) | Uses Jquery Mobile and/or Electron. Has variable color themes, web scraped mass readings, liturgical calendar and feast day calculations. | It has web scraped mass reading, event triggered audio, variable tty colors, liturgical calendar calculations, windows sizing. | just a TTY/Cli App|
-| no audio | audio | audio (curated and event triggered) | no audio |
+| [project design page](https://mezcel.wixsite.com/rosary) ```developed on Windows 9``` | Uses Jquery Mobile and/or Electron. Has variable color themes, liturgical calendar and feast day calculations. | It has variable tty colors, liturgical calendar calculations, windows sizing. Curses bases | just a TTY/Cli App|
+| no audio | audio | audio (embellished event triggered ambiance soundtrack) | no audio |
+|| web scraped mass readings | web scraped mass readings ||
 | multi user / multi session / group synchronization | multi user / multi session / group synchronization | single user | single user |
 
 ### 2 Gui options:
