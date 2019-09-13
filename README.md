@@ -48,7 +48,8 @@ Previous versions were:
 
 | .NET/Windows OS | NodeJS/Electron | BASH/GNU | Python (Win/Linux) |
 | --- | --- | --- | --- |
-|[repo](https://github.com/mezcel/rosary.net)|[repo](https://github.com/mezcel/electron-container)|[repo](https://github.com/mezcel/jq-tput-terminal)|[repo](https://github.com/mezcel/python-curses)|
+|[git](https://github.com/mezcel/rosary.net)|[git](https://github.com/mezcel/electron-container)|[git](https://github.com/mezcel/jq-tput-terminal)|[git](https://github.com/mezcel/python-curses)|
+| Windows | cross platform with a web browser | Linux | cross platform with python|
 | MySql Database | JSON Database | JSON Database | JSON Database |
 | English and Latin | English and Latin | English and Latin | English only|
 |a WinForm version and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
