@@ -1,14 +1,16 @@
 # printf-time
 
+A scripture rosary for Gtk and TTY witten in C for Gcc.
+
 ### About:
 
-development branch: ```v0.3.4```
+dev branch: ```v0.3.4```
 
-This is a scriptural rosary slideshow. The text database is CSV, the program is C, and the UI is Gtk built with from an Xml.
+The text database is CSV, the program is C, and the UI is either a Gtk built with from an Xml or a CLI/TTY.
 
 ### Inspiration:
 
-This is the 5th program language version in my Rosary App series. A GCC CLI application and a Gtk3 application.
+This is the 5th program language version in my Rosary App series.
 
 Previous versions were:
 
