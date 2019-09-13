@@ -11,11 +11,12 @@ This is a scriptural rosary slideshow. The text database is CSV, the program is 
 This is the 5th program language version in my Rosary App series. A GCC CLI application and a Gtk3 application.
 
 Previous versions were:
-* [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version),
-* [JqueryMobile/Json](https://github.com/mezcel/electron-container) (an Electron and Heroku version),
-* [Bash/Json](https://github.com/mezcel/jq-tput-terminal) (shell on Arch & Debian),
-* [Python/Json](https://github.com/mezcel/python-curses),
-* and now the [C/CSV](https://github.com/mezcel/printf-time) version.
+
+| .NET/Windows OS | W3C/Electron | BASH/GNU | Python |
+| --- | --- | --- | --- |
+|[repo](https://github.com/mezcel/rosary.net)|[repo](https://github.com/mezcel/electron-container)|[repo](https://github.com/mezcel/jq-tput-terminal)|[repo](https://github.com/mezcel/python-curses)|
+|a WinForm and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
+| Used a MySql Database for both a WPF/WCF version and a WinForm version. The .Net version incorporates multi user synchronization and multiple group sessions | Uses Jquery Mobile for a standard web browser and as a packaged Electron app. Has variable color themes, web scraped mass readings, audio option, and chat room server synchronized with rosary bead positions, liturgical calendar and feast day calculations. Uses a JSON database | It has web scraped mass reading, event triggered audio, variable tty colors, PFM Calculator, windows sizing. Uses a JSON database|Uses a JSON database |
 
 ### 2 Gui options:
 
@@ -59,7 +60,7 @@ Previous versions were:
 
 Debian
 ```sh
-## Makefile Compile ##
+## Makefile Compile ##################
 
 # build everything
 
@@ -69,11 +70,14 @@ make
 
 make ttyRosary
 make gtkRosary
+```
 
-## Manual Shell Compile ##
+```sh
+## Manual Shell Compile ##############
+
+# alternately one can just compile it the basic shell way
 
 ./manual_compile.sh
-
 ```
 
 Win10
