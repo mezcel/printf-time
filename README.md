@@ -21,8 +21,8 @@ Previous versions were:
 | English and Latin | English and Latin | English and Latin | English only|
 |a WinForm version and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
 | [project design page](https://mezcel.wixsite.com/rosary) ```developed on Windows 9``` | Uses Jquery Mobile and/or Electron. Has variable color themes, liturgical calendar and feast day calculations. | It has variable tty colors, liturgical calendar calculations, windows sizing. Curses bases | just a TTY/Cli App|
-| no audio | audio | audio (embellished event triggered ambiance soundtrack) | no audio |
-|| web scraped mass readings | web scraped mass readings ||
+| no audio | audio theme song | audio (curated event triggered Libre soundtrack) | no audio |
+| lan | internet scraped mass readings | internet scraped mass readings | no interactive networking features |
 | multi user / multi session / group synchronization | multi user / multi session / group synchronization | single user | single user |
 
 ### 2 Gui options:
