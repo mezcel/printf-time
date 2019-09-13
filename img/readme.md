@@ -1,8 +1,5 @@
-## outdated screenshot
+## outdated screenshots
 
-taken on a Debian i686
-
----
 | CLI | GTK3 |
 |---|---|
 |taken on Debian WLS|taken on Debian i686 |

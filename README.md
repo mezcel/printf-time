@@ -23,7 +23,7 @@ Previous versions were:
 |---|---|
 | The user navigates with with typed instructions. Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards. | The user navigates with push-button widget objects. |
 | screenshot taken on Debian WLS | screenshot taken on Debian i686 |
-| ![tty-screenshot](tty-screenshot.gif) | ![screenshot](screenshot.gif) |
+| ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
 | [outdated animated demo](https://asciinema.org/a/266585) ``` from v0.3.3.?``` | - |
 
 ---
