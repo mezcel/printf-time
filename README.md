@@ -8,7 +8,7 @@ This is a scriptural rosary slideshow. The text database is CSV, the program is 
 
 ### Inspiration:
 
-This is the 5th program language version in my Rosary App series. Features used in this app are based on previous other versions of the app.
+This is the 5th program language version in my Rosary App series. A GCC CLI application and a Gtk3 application.
 
 Previous versions were:
 * [C#/MySql/.NET](https://github.com/mezcel/rosary.net) (a WinForm and a WPF/WCF version),
@@ -19,21 +19,12 @@ Previous versions were:
 
 ### 2 Gui options:
 
-##### 1. A TTY/CLI version
-
-The user navigates with with typed instructions. Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards.
-
-* Terminal screen app ( printf and key inputs )
-* [stop point, animated demo](https://asciinema.org/a/266585) ```v0.3.3.?```
-	* __shows__: install, compile, start, run, exit
-	* the 1st half is slow, I wanted to show the before/after file size changes
-
-##### 2. A GTK/GUI version
-
-The user navigates with widget objects.
-
-* Desktop window app ( buttons, labels, progressbars, and other misc. widgets )
-* [stop point, screenshot](img/screenshot.gif) ```v0.3.3.?```
+| CLI Version | GTK3 Version |
+|---|---|
+| The user navigates with with typed instructions. Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards. | The user navigates with push-button widget objects. |
+| screenshot taken on Debian WLS | screenshot taken on Debian i686 |
+| ![tty-screenshot](tty-screenshot.gif) | ![screenshot](screenshot.gif) |
+| [outdated animated demo](https://asciinema.org/a/266585) ``` from v0.3.3.?``` | - |
 
 ---
 
@@ -56,11 +47,9 @@ The user navigates with widget objects.
 * [MinGW](http://www.mingw.org/) or Linux (x86 or x64)
 	* this app was developed on Debian WLS and tested on a real Linux
 * GCC v6+
-* GDB debugger (optional yet recommended)
-* git (version control)
 * Glade (a gui drawing tool)
-* a text editor (I use Geany for everything)
-	* Geany macros
+* any text editor (I use Geany for everything)
+	* Geany macros for quick and easy gtk3 development
 	* compile:	gcc -Wall -c "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 	* build:	gcc -Wall -o "%e" "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
