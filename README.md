@@ -21,10 +21,10 @@ Previous versions were:
 
 | CLI Version | GTK3 Version |
 |---|---|
-| The user navigates with with typed instructions. Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards. | The user navigates with push-button widget objects. |
-| screenshot taken on Debian WLS | screenshot taken on Debian i686 |
+| The user navigates with with typed instructions. \ Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards. | The user navigates with push-button widget objects. |
+| screenshot taken on Debian WLS | screenshot taken on a i686 Debian |
 | ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
-| [outdated animated demo](https://asciinema.org/a/266585) ``` from v0.3.3.?``` | - |
+| [outdated animated cli demo](https://asciinema.org/a/266585) ``` from v0.3.3.?``` | - |
 
 ---
 
@@ -32,15 +32,15 @@ Previous versions were:
 
 #### v0.3.4.? (current development)
 
-* Works on Linux and WLS, though the latest version is not yet tested on MinGW
-* Refactoring module libraries
+* Tested on Linux and WLS, I have not yet tested it on a Mac or MinGW
+* Refactoring object libraries
+* Gradually making documentation readable
 
 ##### Runtime Environment
 
 * [MinGW](http://www.mingw.org/) or Linux
 * Command line interface (CLI) / Shell Terminal
 * Xorg (Debian linux) or Xlaunch (Win10/WLS)
-* GTK3+
 
 ##### Developer Environment (debug/mod)
 
@@ -59,7 +59,21 @@ Previous versions were:
 
 Debian
 ```sh
+## Makefile Compile ##
+
+# build everything
+
 make
+
+# or just compile one version or the other
+
+make ttyRosary
+make gtkRosary
+
+## Manual Shell Compile ##
+
+./manual_compile.sh
+
 ```
 
 Win10

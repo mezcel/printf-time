@@ -26,13 +26,15 @@ gnu_dependency:
 ttyRosary: mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o
 	$(CC) mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o -o "ttyRosary"
 
-ttyRosary_debug:
+## used for gdb (optional)
+ttyRosary_debug: mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o
 	$(CC) -g mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o -o "ttyRosary_debug"
 
 gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
 	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary"
 
-gtkRosary_debug:
+## used for gdb (optional)
+gtkRosary_debug: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
 	$(CC) -g mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary_debug"
 
 ## Libraries for both apps
