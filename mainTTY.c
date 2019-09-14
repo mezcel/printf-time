@@ -29,14 +29,14 @@ int main() {
 	int navigtionPosition = initialMystery(weekdayNo); // starting progress position
 
 	// path to csv db files
-	char *rosaryBead_path	= "csv/rosaryBead.csv";
-	char *bead_path 		= "csv/bead.csv";
-	char *book_path 		= "csv/book.csv";
-	char *decade_path 		= "csv/decade.csv";
-	char *message_path 		= "csv/message.csv";
-	char *mystery_path 		= "csv/mystery.csv";
-	char *prayer_path 		= "csv/prayer.csv";
-	char *scripture_path 	= "csv/scripture.csv";
+	char *rosaryBead_path	= "database/csv/rosaryBead.csv";
+	char *bead_path 		= "database/csv/bead.csv";
+	char *book_path 		= "database/csv/book.csv";
+	char *decade_path 		= "database/csv/decade.csv";
+	char *message_path 		= "database/csv/message.csv";
+	char *mystery_path 		= "database/csv/mystery.csv";
+	char *prayer_path 		= "database/csv/prayer.csv";
+	char *scripture_path 	= "database/csv/scripture.csv";
 	char *csv_path_array[8]	= {rosaryBead_path, bead_path, book_path, decade_path,
 			message_path, mystery_path, prayer_path, scripture_path};
 

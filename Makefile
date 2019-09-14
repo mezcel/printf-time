@@ -16,7 +16,7 @@
 CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: gnu_dependency ttyRosary gtkRosary ttyRosary_debug gtkRosary_debug
+all: gnu_dependency ttyRosary gtkRosary
 
 gnu_dependency:
 	sudo apt install -y build-essential libgtk-3-dev gcc

@@ -1,8 +1,10 @@
 # printf-time
 
-dev branch: ```v0.3.4```
+dev branch: ```v0.3.5```
 
-A scripture rosary for Gtk and TTY witten in C for Gcc. Uses a CSV Database
+	starting on the (json/latin) addon
+
+A scripture rosary for Gtk and TTY witten in C for Gcc. It primarily uses a CSV Database, but there is a JSON database option which uses Latin from the Vulgate.
 
 ### GUI Options:
 
