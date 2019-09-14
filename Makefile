@@ -16,7 +16,7 @@
 CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: gnu_dependency ttyRosary gtkRosary ttyTosary_debug gtkRosary_debug
+all: gnu_dependency ttyRosary gtkRosary ttyRosary_debug gtkRosary_debug
 
 gnu_dependency:
 	sudo apt install -y build-essential libgtk-3-dev gcc
@@ -48,18 +48,18 @@ my_csv_structs.o: sources/my_csv_structs.c headers/my_csv_structs.h
 ## TTY app
 
 my_tty_ui.o: sources/my_tty_ui.c headers/my_tty_ui.h my_calendar.o
-	$(CC) -c sources/my_tty_ui.c -l my_calendar.o
+	$(CC) -c sources/my_tty_ui.c
 
 mainTTY.o: mainTTY.c my_calendar.o my_csv_structs.o my_tty_ui.o
-	$(CC) -c mainTTY.c -l my_calendar.o -l my_csv_structs.o -l my_tty_ui.o
+	$(CC) -c mainTTY.c
 
 ## GTK3 app
 
 my_gtk3_api.o: sources/my_gtk3_api.c headers/my_gtk3_api.h my_calendar.o my_csv_structs.o
-	$(CC) -c sources/my_gtk3_api.c -l my_calendar.o -l my_csv_structs.o $(CFLAGS)
+	$(CC) -c sources/my_gtk3_api.c $(CFLAGS)
 
 mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_gtk3_api.o
-	$(CC) -c mainGtk3.c -l my_calendar.o -l my_csv_structs.o -l my_gtk3_api.o $(CFLAGS)
+	$(CC) -c mainGtk3.c $(CFLAGS)
 
 ## Restore/Clear
 

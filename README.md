@@ -24,18 +24,11 @@ Debian
 # build everything
 make
 
-# build the TTY version
+# or just build the TTY version
 make ttyRosary
 
-# build the GTK3 version
+# or just build the GTK3 version
 make gtkRosary
-```
-
-```sh
-## Manual Shell Compile ##############
-# alternately one can just compile it the basic shell way
-
-./manual_compile.sh
 ```
 
 ---
