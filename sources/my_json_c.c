@@ -14,14 +14,14 @@
 
 #include "../headers/my_json_c.h"
 
-const char *queryAttrString(struct json_object *inputObject, char *attrName, int idx) {
+char *queryAttrString(struct json_object *inputObject, char *attrName, int idx) {
 	struct json_object *er_class;
 	er_class = json_object_array_get_idx(inputObject, idx);
 
 	struct json_object *attr;
 	json_object_object_get_ex(er_class, attrName, &attr);
 
-	return json_object_get_string(attr);
+	return (char *)json_object_get_string(attr);
 }
 
 int queryAttrInteger(struct json_object *inputObject, char *attrName, int idx) {
@@ -120,7 +120,6 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 	if ( inputLength < max_line_chars ) { // short enough to be 1 line
 		printf("%s\n\t\t", strIn);
 	} else { // longer than one line
-
 		// input string to an array of words
 		char tmpStringArray[inputLength];
 		strcpy(tmpStringArray, strIn);
@@ -147,6 +146,7 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 
 			token = strtok(NULL, delimiter); // get the next word
 		}
+		printf("\n");
 	}
 }
 

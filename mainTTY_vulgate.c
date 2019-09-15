@@ -77,12 +77,12 @@ int main(int argc, char **argv) {
 
 		// display body
 		printf("\n\n Mystery:\t%s", queryAttrString(mystery, "mysteryName", mysteryFK) );
-		printf("\n Decade:\t%s", queryAttrString(decade, "decadeName", decadeFK) );
-		multiLinePrintF("\n\t\t", (char *)queryAttrString(message, "mesageText", messageFK), desiredDispLen );
-		multiLinePrintF("\n Background:\t", (char *)queryAttrString(decade, "decadeInfo", decadeFK), desiredDispLen );
-		multiLinePrintF("\n\n Scripture:\t", (char *)queryAttrString(scripture, "scriptureText", scriptureFK), desiredDispLen );
-		multiLinePrintF("\n Prayer:\t", (char *)queryAttrString(prayer, "prayerText", prayerFK), desiredDispLen );
-		printf("\n Bead Type:\t%s\n", queryAttrString(bead, "beadType", beadFK) );
+		printf("\n\n Decade:\t%s", queryAttrString(decade, "decadeName", decadeFK) );
+		multiLinePrintF("\n\t\t", queryAttrString(message, "mesageText", messageFK), desiredDispLen );
+		multiLinePrintF("\n Background:\t", queryAttrString(decade, "decadeInfo", decadeFK), desiredDispLen );
+		multiLinePrintF("\n Scripture:\t", queryAttrString(scripture, "scriptureText", scriptureFK), desiredDispLen );
+		multiLinePrintF("\n Prayer:\t", queryAttrString(prayer, "prayerText", prayerFK), desiredDispLen );
+		printf("\n Bead Type:\t%s\n\n", queryAttrString(bead, "beadType", beadFK) );
 
 		// display footer
 		borderCharPrintF("+", 3);
