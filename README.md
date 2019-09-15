@@ -3,6 +3,7 @@
 dev branch: ```v0.3.5```
 
 	starting on the (json/latin) addon
+	less code, but uses resources needed to run libjson-c
 
 A scripture rosary for Gtk and TTY witten in C for Gcc. It primarily uses a CSV Database, but there is a JSON database option which uses Latin from the Vulgate.
 
@@ -17,9 +18,8 @@ A scripture rosary for Gtk and TTY witten in C for Gcc. It primarily uses a CSV 
 
 ---
 
-### Compile
+### Compile on Debian
 
-Debian
 ```sh
 ## Makefile Compile ##################
 
@@ -31,6 +31,20 @@ make ttyRosary
 
 # or just build the GTK3 version
 make gtkRosary
+```
+
+```sh
+## Vulgate Latin JSON Database Version
+## I did not add it to the Makefile, and the file linking is just done within the .c files
+
+## debian libjson-c dependencies
+sudo apt install autotools-dev debhelper dh-autoreconf dh-exec
+
+## debian stretch (libs): 0.12.1-1.1
+sudo apt install libjson-c-dev libjson-c-doc libjson-c3
+
+## compile and build an executable
+gcc -o ttyRosary_vulgate mainTTY_vulgate.c -ljson-c
 ```
 
 ---
