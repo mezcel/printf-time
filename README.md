@@ -9,12 +9,20 @@ A scripture rosary for Gtk and TTY witten in C for Gcc. It primarily uses a CSV 
 
 ### GUI Options:
 
-| CLI Version | GTK3 Version |
-|---|---|
+CSV Database:
+
+| English CLI Version | English GTK3 Version |
+| --- | --- |
 | The user navigates with with typed instructions. \ Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards. | The user navigates with push-button widget objects. |
 | screenshot taken on Debian WLS | screenshot taken on a i686 Debian |
 | ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
-| [outdated animated cli demo](https://asciinema.org/a/266585) ``` from v0.3.3.?``` | - |
+| [outdated animated cli demo](https://asciinema.org/a/266585) ```from the depreciated v0.3.3``` | - |
+
+JSON Database:
+
+| Latin CLI Version |
+| --- |
+| Same UI as the English version, but it uses the json-c library |
 
 ---
 
@@ -76,6 +84,7 @@ Previous versions were:
 * Tested on Linux and WLS, I have not yet tested it on a Mac or MinGW
 * Refactoring object libraries
 * Gradually making documentation readable
+* I intend to go back and merge the 3 versions so their libraries overalap better with each other..
 
 ##### Runtime Environment
 

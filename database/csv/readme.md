@@ -6,7 +6,7 @@ The original json db was taken from my other Rosary apps. I used CSV because it 
 
 This app converts the database into a struct. So if I ever learn how to do Json parsing in C, I wont need to make a new app.
 
-I replaced the semicolon char, ";", with the string: "<semicolon>".
+The original database is from [python-curses](https://github.com/mezcel/python-curses). I took out a lot of the html and unicode. I replaced the semicolon char, ```;```, with the string: "<semicolon>".
 
 Previous versions were json was used:
 
