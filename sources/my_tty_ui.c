@@ -53,7 +53,7 @@ int returnScreenWidth(int isLinux) {
 	// return a number which represents how long/wide the screen text should be
 	int col_length = 85;	// 85 chars wide
 
-	if(IS_LINUX) {
+	if(isLinux) {
 		struct winsize w;						// terminal tty info
 		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);	// tty col/row
 		col_length =  w.ws_col;
