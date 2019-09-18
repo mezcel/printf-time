@@ -39,6 +39,9 @@ make ttyRosary
 
 # or just build the GTK3 version
 make gtkRosary
+
+# or reset/clear previous object builds
+make clear
 ```
 
 ```sh
@@ -53,6 +56,7 @@ sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 
 ## compile and build an executable
 gcc -o ttyRosary_vulgate mainTTY_vulgate.c -ljson-c
+
 ```
 
 ---

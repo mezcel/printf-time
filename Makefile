@@ -4,14 +4,14 @@ CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
 all: ttyRosary_english ttyRosary_latin gtkRosary_english
 
-ttyRosary_english: my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o
-	gcc my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o -o "ttyRosary_english"
+ttyRosary: my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o
+	gcc my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o -o "ttyRosary"
 
 ttyRosary_latin: my_calendar.o my_json_structs.o my_tty_ui.o mainTTY_vulgate.o
 	gcc my_calendar.o my_json_structs.o my_tty_ui.o mainTTY_vulgate.o -ljson-c -o "ttyRosary_latin"
 
-gtkRosary_english: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
-	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary_english"
+gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
+	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary"
 
 debian:
 	sudo apt install -y build-essential libgtk-3-dev gcc
@@ -41,4 +41,4 @@ mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_tty_u
 	gcc -c mainGtk3.c $(CFLAGS)
 
 clean:
-	rm -f *.o ttyRosary_english ttyRosary_latin gtkRosary_english
+	rm -f *.o ttyRosary ttyRosary_latin gtkRosary

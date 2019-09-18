@@ -3,7 +3,7 @@
  * dependency:
  * 	libgtk-3-dev
  * compile:
- * 	gcc sources/my_calendar.c sources/my_csv_structs.c sources/my_gtk3_api.c mainGtk3.c `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -o "gtkRosary_english"
+ * 	gcc sources/my_calendar.c sources/my_csv_structs.c sources/my_gtk3_api.c mainGtk3.c `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -o "gtkRosary"
  * */
 
 #include "gtk/gtk.h"
