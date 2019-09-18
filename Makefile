@@ -2,7 +2,7 @@
 CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: ttyRosary_english ttyRosary_latin gtkRosary_english
+all: ttyRosary ttyRosary_latin gtkRosary
 
 ttyRosary: my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o
 	gcc my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o -o "ttyRosary"
