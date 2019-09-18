@@ -1,10 +1,19 @@
 /*
- * my_csv_structs.h
+ * my_json_structs.h
  * */
 
-// fileguard
-#ifndef MY_CSV_STRUCTS
-#define MY_CSV_STRUCTS
+
+#ifndef MY_JSON_STRUCTS
+#define MY_JSON_STRUCTS
+
+/*#include <stdio.h>
+#include <json-c/json.h>
+#include <sys/stat.h> // used for file size
+#include <json-c/json.h>*/
+
+/*
+ * Data Structures
+ * */
 
 /*
  * Data Structures
@@ -81,22 +90,11 @@ typedef struct rosary_db {
 	scripture_t scripture_dbArray[202];
 } rosary_db_t;
 
-/*
- * Prototypes
- * */
+size_t returnFileSize(char *filePath);
+struct json_object *json_to_struct( char *filePath );
+char *queryAttrString(struct json_object *inputObject, char *attrName, int index);
+int queryAttrInteger(struct json_object *inputObject, char *attrName, int index);
 
-char ** strsplit( const char * src, const char * delim );
-void strsplitfree( char ** strlist );
-
-rosaryBead_t * parse_rosaryBead_record( char * scvline );
-bead_t * parse_bead_record( char * scvline );
-book_t * parse_book_record( char * scvline );
-decade_t * parse_decade_record( char * scvline );
-message_t * parse_message_record( char * scvline );
-mystery_t * parse_mystery_record( char * scvline );
-prayer_t * parse_prayer_record( char * scvline );
-scripture_t * parse_scripture_record( char * scvline );
-
-void make_struct_db_csv(rosary_db_t *rosary_db_struct, char *csv_path_array[8]);
+void make_struct_db_json(rosary_db_t *rosary_db_struct, char *filePath);
 
 #endif

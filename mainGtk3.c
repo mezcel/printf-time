@@ -3,16 +3,20 @@
  * dependency:
  * 	libgtk-3-dev
  * compile:
- * 	gcc -o mainGlade mainGlade.c -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
+ * 	gcc sources/my_calendar.c sources/my_csv_structs.c sources/my_gtk3_api.c mainGtk3.c `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -o "gtkRosary_english"
  * */
 
 #include "gtk/gtk.h"
 #include <time.h>	// After year 2038, only use an x64 compiler
-#include "headers/my_calendar.h"
-#include "headers/my_csv_structs.h"
-#include "headers/my_gtk3_api.h"
 
-rosary_db_t rosary_db_struct; // gtk app's global db
+#include "headers/my_calendar.h"
+// #include "sources/my_calendar.c"
+#include "headers/my_file_to_struct.h"
+// #include "sources/my_csv_structs.c"
+#include "headers/my_gtk3_api.h"
+// #include "sources/my_gtk3_api.c"
+
+rosary_db_t rosary_db_struct; // global var read by Gtk app
 
 int main( int argc, char *argv[] ) {
 
@@ -35,7 +39,7 @@ int main( int argc, char *argv[] ) {
 	char *csv_path_array[8]	= { rosaryBead_path, bead_path, book_path,
 			decade_path, message_path, mystery_path, prayer_path, scripture_path };
 
-	make_struct_db(&rosary_db_struct, csv_path_array);	// make db struct
+	make_struct_db_csv(&rosary_db_struct, csv_path_array);	// make db struct
 
 	gtk_init(&argc, &argv);
 

@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <time.h>	// After year 2038, only use an x64 compiler
+
 #include "../headers/my_calendar.h"
 
 // for use in local my_calendar.c demo

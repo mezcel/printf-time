@@ -9,7 +9,7 @@
  * Data Structures
  * */
 
-#include "../headers/my_csv_structs.h"
+//#include "../headers/my_csv_structs.h"
 
 typedef struct {
 	// accumulator var

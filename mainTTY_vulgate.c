@@ -1,97 +1,54 @@
-#include <stdio.h>
-#include <json-c/json.h>
-#include <sys/stat.h> // used for file size
-#include "headers/my_json_c.h"
-#include "sources/my_json_c.c"
-
 /*
- * Compile: gcc main.c -ljson-c
+ * mainTTY_vulgate.c
+ *
+ * compile:
+ *	gcc my_calendar.c my_json_structs.c my_tty_ui.c mainTTY_vulgate.c -ljson-c -o "ttyRosary_latin"
  * */
 
-int main(int argc, char **argv) {
+#include <stdio.h>
+#include <time.h>	// After year 2038, only use an x64 compiler
+#include <sys/stat.h> // used for file size
+#include <json-c/json.h>
 
-	FILE *fp;
-	char * filePath = "database/json/rosaryJSON-vulgate.json";
-	int FILE_BUFFER_SIZE = returnFileSize(filePath);
-	char buffer[FILE_BUFFER_SIZE];
+#include "headers/my_calendar.h"
+// #include "sources/my_calendar.c"
+#include "headers/my_file_to_struct.h"
+// #include "sources/my_json_structs.c"
+#include "headers/my_tty_ui.h"
+// #include "sources/my_tty_ui.c"
 
-	fp = fopen(filePath,"r");
-	fread(buffer, FILE_BUFFER_SIZE, 1, fp);
-	fclose(fp);
+// flag for POSIX specific functions, intended for later cross platform dev
+int IS_LINUX = 1;
 
-	// convert json into a struct database
-	struct json_object *parsed_json;
-	parsed_json = json_tokener_parse(buffer); // database var
+int main( int argc, char **argv ) {
+	rosary_db_t rosary_db_struct; 				// declare app's db var
+	displayVariables_t queryViewStruct;			// declare db query view var
 
-	// Db entities
-	struct json_object *rosaryBead;
-	struct json_object *bead;
-	struct json_object *decade;
-	struct json_object *mystery;
-	//struct json_object *book;
-	struct json_object *scripture;
-	struct json_object *message;
-	struct json_object *prayer;
-	struct json_object *mysteryInfo;
+	struct tm todaysDate = returnTodaysDate(IS_LINUX);	// define today struct
+	int weekdayNo = todaysDate.tm_wday;			// day of the week
+	int navigtionPosition = initialMystery(weekdayNo); // starting progress position
 
-	// populate entities
-	json_object_object_get_ex(parsed_json, "rosaryBead", &rosaryBead);
-	json_object_object_get_ex(parsed_json, "bead", &bead);
-	json_object_object_get_ex(parsed_json, "decade", &decade);
-	json_object_object_get_ex(parsed_json, "mystery", &mystery);
-	json_object_object_get_ex(parsed_json, "scripture", &scripture);
-	json_object_object_get_ex(parsed_json, "message", &message);
-	json_object_object_get_ex(parsed_json, "prayer", &prayer);
-	json_object_object_get_ex(parsed_json, "mysteryInfo", &mysteryInfo);
+	char *filePath = "database/json/rosaryJSON-vulgate.json";
+	make_struct_db_json(&rosary_db_struct, filePath); // populate rosary_db_t
 
-	int navigtionPosition = 0;
-	int beadFK, decadeFK, mysteryFK, scriptureFK, messageFK, prayerFK;
-	int rosaryBeadID, loopBody, smallbeadPercent, mysteryPercent, mysteryNo;
+	// display
+	int desiredDispLen = returnScreenWidth(IS_LINUX);	// linux terminal width
+	clearScreen(1);								// clear screen
+	splashCoverPage(weekdayNo, desiredDispLen);			// display splash
 
-	int desiredDispLen;	// linux terminal width
-	char *titleLabel = " C/CSV Rosary ";
-	char *footerLabel = " Rosary Progress ";
-
+	// UI Loop
 	while (navigtionPosition <= 315) {
-		clearScreen(1);
-		desiredDispLen = returnScreenWidth(1);
+		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct,
+		navigtionPosition); 						// update query
 
-		// get FKs
-		beadFK = queryAttrInteger(rosaryBead, "beadIndex", navigtionPosition);
-		decadeFK = queryAttrInteger(rosaryBead, "decadeIndex", navigtionPosition);
-		mysteryFK = queryAttrInteger(rosaryBead, "mysteryIndex", navigtionPosition);
-		scriptureFK = queryAttrInteger(rosaryBead, "scriptureIndex", navigtionPosition);
-		messageFK = queryAttrInteger(rosaryBead, "messageIndex", navigtionPosition);
-		prayerFK = queryAttrInteger(rosaryBead, "prayerIndex", navigtionPosition);
-
-		rosaryBeadID = queryAttrInteger(rosaryBead, "rosaryBeadID", navigtionPosition);
-		loopBody = queryAttrInteger(rosaryBead, "loopBody", navigtionPosition);
-		smallbeadPercent = queryAttrInteger(rosaryBead, "smallbeadPercent", navigtionPosition);
-		mysteryPercent = queryAttrInteger(rosaryBead, "mysteryPercent", navigtionPosition);
-		mysteryNo = queryAttrInteger(rosaryBead, "mysteryIndex", navigtionPosition);
-
-		// display header
-		borderCharPrintF("+", 3);
-		printf(titleLabel);
-		borderCharPrintF("+", desiredDispLen - 17);
-
-		// display body
-		printf("\n\n Mystery:\t%s", queryAttrString(mystery, "mysteryName", mysteryFK) );
-		printf("\n\n Decade:\t%s", queryAttrString(decade, "decadeName", decadeFK) );
-		multiLinePrintF("\n\t\t", queryAttrString(message, "mesageText", messageFK), desiredDispLen );
-		multiLinePrintF("\n Background:\t", queryAttrString(decade, "decadeInfo", decadeFK), desiredDispLen );
-		multiLinePrintF("\n Scripture:\t", queryAttrString(scripture, "scriptureText", scriptureFK), desiredDispLen );
-		multiLinePrintF("\n Prayer:\t", queryAttrString(prayer, "prayerText", prayerFK), desiredDispLen );
-		printf("\n Bead Type:\t%s\n\n", queryAttrString(bead, "beadType", beadFK) );
-
-		// display footer
-		borderCharPrintF("+", 3);
-		printf(footerLabel);
-		borderCharPrintF("+", desiredDispLen - 20);
-		displayProgress(rosaryBeadID, loopBody, smallbeadPercent, mysteryPercent, mysteryNo, prayerFK);
+		// display
+		desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
+		clearScreen(IS_LINUX); 							// clear screen
+		outputTtyDisplay( queryViewStruct, desiredDispLen );
 
 		// Navigation Input & Accumulator
-		navigtionPosition = pressKeyContinue(navigtionPosition, 1);
+		navigtionPosition = pressKeyContinue(navigtionPosition, IS_LINUX);
 	}
 
+	return 0;
 }

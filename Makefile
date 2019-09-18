@@ -1,67 +1,44 @@
 ## Makefile (Automated Build)
-#
-# Detect changes in my sources/headers and compile them into objects
-# compile an executable linking pre-compiled object files
-# Output:
-#	ttyRosary executable
-#	gtkRosary executable
-#
-# Cli Instructions:
-#	option 1: make
-#	option 2: make ttyRosary
-#	option 3: make gtkRosary
-
-## declare variables
-
 CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: gnu_dependency ttyRosary gtkRosary
+all: ttyRosary_english ttyRosary_latin gtkRosary_english
 
-gnu_dependency:
+ttyRosary_english: my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o
+	gcc my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o -o "ttyRosary_english"
+
+ttyRosary_latin: my_calendar.o my_json_structs.o my_tty_ui.o mainTTY_vulgate.o
+	gcc my_calendar.o my_json_structs.o my_tty_ui.o mainTTY_vulgate.o -ljson-c -o "ttyRosary_latin"
+
+gtkRosary_english: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
+	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary_english"
+
+debian:
 	sudo apt install -y build-essential libgtk-3-dev gcc
 
-## Executable
-
-ttyRosary: mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o
-	$(CC) mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o -o "ttyRosary"
-
-## used for gdb (optional)
-ttyRosary_debug: mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o
-	$(CC) -g mainTTY.o my_calendar.o my_csv_structs.o my_tty_ui.o -o "ttyRosary_debug"
-
-gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
-	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary"
-
-## used for gdb (optional)
-gtkRosary_debug: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
-	$(CC) -g mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary_debug"
-
-## Libraries for both apps
-
 my_calendar.o: sources/my_calendar.c headers/my_calendar.h
-	$(CC) -c sources/my_calendar.c
+	gcc -c sources/my_calendar.c
 
-my_csv_structs.o: sources/my_csv_structs.c headers/my_csv_structs.h
-	$(CC) -c sources/my_csv_structs.c
+my_csv_structs.o: sources/my_csv_structs.c headers/my_file_to_struct.h
+	gcc -c sources/my_csv_structs.c
 
-## TTY app
+my_json_structs.o: sources/my_json_structs.c headers/my_file_to_struct.h
+	gcc -c sources/my_json_structs.c
 
-my_tty_ui.o: sources/my_tty_ui.c headers/my_tty_ui.h my_calendar.o
-	$(CC) -c sources/my_tty_ui.c
+my_tty_ui.o: sources/my_tty_ui.c headers/my_tty_ui.h my_calendar.o my_csv_structs.o my_json_structs.o
+	gcc -c sources/my_tty_ui.c
 
-mainTTY.o: mainTTY.c my_calendar.o my_csv_structs.o my_tty_ui.o
-	$(CC) -c mainTTY.c
+my_gtk3_api.o: sources/my_gtk3_api.c headers/my_gtk3_api.h my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o
+	gcc -c sources/my_gtk3_api.c $(CFLAGS)
 
-## GTK3 app
+mainTTY_vulgate.o: mainTTY_vulgate.c my_calendar.o my_json_structs.o my_tty_ui.o
+	gcc -c mainTTY_vulgate.c
 
-my_gtk3_api.o: sources/my_gtk3_api.c headers/my_gtk3_api.h my_calendar.o my_csv_structs.o
-	$(CC) -c sources/my_gtk3_api.c $(CFLAGS)
+mainTTY_nab.o: mainTTY_nab.c  my_calendar.o my_csv_structs.o my_tty_ui.o
+	gcc -c mainTTY_nab.c
 
-mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_gtk3_api.o
-	$(CC) -c mainGtk3.c $(CFLAGS)
-
-## Restore/Clear
+mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_gtk3_api.o
+	gcc -c mainGtk3.c $(CFLAGS)
 
 clean:
-	rm -f *.o ttyRosary gtkRosary ttyRosary_debug gtkRosary_debug
+	rm -f *.o ttyRosary_english ttyRosary_latin gtkRosary_english

@@ -2,19 +2,11 @@
  * my_csv_structs.c
  * */
 
-#ifdef _WIN32 // MinGW
-	#include <windows.h>
-	#include <stdio.h>
-	#include <tchar.h>
-#endif
-
-#ifdef linux // Linux GCC v6+
-	#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
-	#include <stdio.h>
-	#include <string.h>
-	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
-	#include <unistd.h> 	// STDOUT_FILENO
-#endif
+#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
+#include <stdio.h>
+#include <string.h>
+#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
+#include <unistd.h> 	// STDOUT_FILENO
 
 #include "../headers/my_csv_structs.h"
 
@@ -449,7 +441,7 @@ void csvToStruct_scripture(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char
 	fclose(csvFile);
 }
 
-void make_struct_db(rosary_db_t *rosary_db_struct, char *csv_path_array[8]) {
+void make_struct_db_csv(rosary_db_t *rosary_db_struct, char *csv_path_array[8]) {
 	// make an ER db struct from csv files
 
 	csvToStruct_rosaryBead( rosary_db_struct, 300, csv_path_array[0]);

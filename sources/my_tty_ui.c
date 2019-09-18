@@ -2,52 +2,16 @@
  * my_tty_ui.c
  * */
 
-#ifdef _WIN32 // MinGW
-	#include <windows.h>
-	#include <stdio.h>
-	#include <tchar.h>
+#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
+#include <stdio.h>
+#include <string.h>
+#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
+#include <unistd.h> 	// STDOUT_FILENO
 
-	#define IS_LINUX 0
-#endif
-
-#ifdef linux // Linux GCC v6+
-	#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
-	#include <stdio.h>
-	#include <string.h>
-	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
-	#include <unistd.h> 	// STDOUT_FILENO
-
-	#define IS_LINUX 1		// os flag
-#endif
-
-#ifndef linux
-	#define IS_LINUX 0		// os flag
-#endif
-
-#include "../headers/my_csv_structs.h"
 #include "../headers/my_calendar.h"
+// #include "sources/my_calendar.c"
+#include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
-
-/*
- * Local Scope Functions
- * */
-
-void remove_newline_ch(char *line) {
-    int new_line = strlen(line) -1;
-    if (line[new_line] == '\n')
-        line[new_line] = '\0';
-}
-
-void borderCharPrintF(char *charSymbol, int borderWidth) {
-	// print a sequence of chars which act as a visual border/divider
-	for (int i = 0; i < borderWidth; i++) {
-		printf("%s", charSymbol);
-	}
-}
-
-/*
- * prototyped in header
- * */
 
 int returnScreenWidth(int isLinux) {
 	// return a number which represents how long/wide the screen text should be
@@ -113,6 +77,13 @@ void clearScreen(int isLinux) {
 		system("clear");	// linux
 	} else {
 		system("@cls");		// win
+	}
+}
+
+void borderCharPrintF(char *charSymbol, int borderWidth) {
+	// print a sequence of chars which act as a visual border/divider
+	for (int i = 0; i < borderWidth; i++) {
+		printf("%s", charSymbol);
 	}
 }
 
@@ -188,8 +159,7 @@ void splashCoverPage(int weekdayNo, int desiredDispLen) {
 	getchar();	// pause for char input
 }
 
-void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct,
-		displayVariables_t *queryViewStruct, int navigtionPosition) {
+void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct, int navigtionPosition) {
 
 	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0,
 		mysteryFK = 0, prayerFK = 0, scriptureFK = 0, loopBody = 0;

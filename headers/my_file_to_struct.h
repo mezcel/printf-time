@@ -1,10 +1,10 @@
 /*
- * my_csv_structs.h
+ * my_file_to_struct.h
  * */
 
 // fileguard
-#ifndef MY_CSV_STRUCTS
-#define MY_CSV_STRUCTS
+#ifndef MY_FILE_TO_STRUCT
+#define MY_FILE_TO_STRUCT
 
 /*
  * Data Structures
@@ -82,7 +82,7 @@ typedef struct rosary_db {
 } rosary_db_t;
 
 /*
- * Prototypes
+ * CSV Prototypes
  * */
 
 char ** strsplit( const char * src, const char * delim );
@@ -98,5 +98,16 @@ prayer_t * parse_prayer_record( char * scvline );
 scripture_t * parse_scripture_record( char * scvline );
 
 void make_struct_db_csv(rosary_db_t *rosary_db_struct, char *csv_path_array[8]);
+
+/*
+ * JSON Prototypes
+ * */
+
+size_t returnFileSize(char *filePath);
+struct json_object *json_to_struct( char *filePath );
+char *queryAttrString(struct json_object *inputObject, char *attrName, int index);
+int queryAttrInteger(struct json_object *inputObject, char *attrName, int index);
+
+void make_struct_db_json(rosary_db_t *rosary_db_struct, char *filePath);
 
 #endif
