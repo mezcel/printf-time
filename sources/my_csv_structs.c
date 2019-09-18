@@ -8,7 +8,7 @@
 #include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
 #include <unistd.h> 	// STDOUT_FILENO
 
-#include "../headers/my_csv_structs.h"
+#include "../headers/my_file_to_struct.h"
 
 /*
  * Functions

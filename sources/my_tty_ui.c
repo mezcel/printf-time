@@ -11,6 +11,8 @@
 #include "../headers/my_calendar.h"
 // #include "sources/my_calendar.c"
 #include "../headers/my_file_to_struct.h"
+// #include "sources/my_csv_structs.c"
+// #include "sources/my_json_structs.c"
 #include "../headers/my_tty_ui.h"
 
 int returnScreenWidth(int isLinux) {
