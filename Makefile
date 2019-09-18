@@ -2,7 +2,7 @@
 CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: ttyRosary ttyRosary_latin gtkRosary
+all: ttyRosary ttyRosary_latin gtkRosary 
 
 ttyRosary: my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o
 	gcc my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o -o "ttyRosary"
@@ -13,8 +13,20 @@ ttyRosary_latin: my_calendar.o my_json_structs.o my_tty_ui.o mainTTY_vulgate.o
 gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
 	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary"
 
-debian:
-	sudo apt install -y build-essential libgtk-3-dev gcc
+debug: debian ttyRosary_debug ttyRosary_latin_debug gtkRosary_debug
+	
+ttyRosary_debug: my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o
+	gcc -g my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o -o "ttyRosary_debug"
+
+ttyRosary_latin_debug: my_calendar.o my_json_structs.o my_tty_ui.o mainTTY_vulgate.o
+	gcc -g my_calendar.o my_json_structs.o my_tty_ui.o mainTTY_vulgate.o -ljson-c -o "ttyRosary_latin_debug"
+
+gtkRosary_debug: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
+	$(CC) -g mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary_debug"
+
+debian: ## Dependencies fo Debian 9 (Stretch) or later
+	## GCC GDB GTK and JSON-C
+	sudo apt install -y build-essential gcc gdb libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3
 
 my_calendar.o: sources/my_calendar.c headers/my_calendar.h
 	gcc -c sources/my_calendar.c
@@ -41,4 +53,5 @@ mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_tty_u
 	gcc -c mainGtk3.c $(CFLAGS)
 
 clean:
-	rm -f *.o ttyRosary ttyRosary_latin gtkRosary
+	rm -f *.o ttyRosary ttyRosary_latin gtkRosary ttyRosary_debug ttyRosary_latin_debug gtkRosary_debug
+

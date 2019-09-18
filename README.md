@@ -42,6 +42,16 @@ make gtkRosary
 
 # or reset/clear previous object builds
 make clear
+
+## Dependencies and debug
+
+# dependencies for Debian 9 or newer
+
+make debian
+
+# Compile for debug with GDB
+
+make debug
 ```
 
 ```sh
