@@ -4,16 +4,12 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkApplicationWindow" id="gtkRosary">
     <property name="name">Gtk_Rosary</property>
-    <property name="width_request">1100</property>
-    <property name="height_request">730</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Gtk Rosary</property>
     <property name="window_position">center</property>
-    <property name="default_width">1100</property>
-    <property name="default_height">730</property>
     <property name="icon">../img/favicon.ico</property>
+    <property name="show_menubar">False</property>
     <signal name="destroy" handler="on_gtkRosary_destroy" swapped="no"/>
-    <child>
+    <child type="titlebar">
       <placeholder/>
     </child>
     <child>
@@ -25,6 +21,7 @@
           <object class="GtkBox" id="bodyFooter">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="valign">start</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkSeparator">
@@ -55,7 +52,7 @@
                         <property name="xpad">10</property>
                         <property name="label" translatable="yes">Liturgical Season:</property>
                         <attributes>
-                          <attribute name="font-desc" value="Monospace 10"/>
+                          <attribute name="font-desc" value="Monospace 9"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
@@ -73,6 +70,7 @@
                         <property name="xpad">10</property>
                         <property name="label" translatable="yes">Feast Day:</property>
                         <attributes>
+                          <attribute name="font-desc" value="Monospace 9"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
@@ -90,7 +88,7 @@
                         <property name="valign">start</property>
                         <property name="label" translatable="yes">Ordinary Time</property>
                         <attributes>
-                          <attribute name="font-desc" value="Monospace 10"/>
+                          <attribute name="font-desc" value="Monospace 9"/>
                         </attributes>
                       </object>
                       <packing>
@@ -107,7 +105,7 @@
                         <property name="valign">start</property>
                         <property name="label" translatable="yes">n/a</property>
                         <attributes>
-                          <attribute name="font-desc" value="Monospace 10"/>
+                          <attribute name="font-desc" value="Monospace 9"/>
                         </attributes>
                       </object>
                       <packing>
@@ -168,7 +166,7 @@
                         <property name="xpad">10</property>
                         <property name="label" translatable="yes">Quotes:</property>
                         <attributes>
-                          <attribute name="font-desc" value="Monospace 10"/>
+                          <attribute name="font-desc" value="Monospace 9"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
@@ -185,7 +183,7 @@
                         <property name="valign">start</property>
                         <property name="label" translatable="yes">The New American Bible (NAB)</property>
                         <attributes>
-                          <attribute name="font-desc" value="Monospace 10"/>
+                          <attribute name="font-desc" value="Monospace 9"/>
                         </attributes>
                       </object>
                       <packing>
@@ -204,7 +202,7 @@
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="padding">10</property>
+                <property name="padding">5</property>
                 <property name="position">10</property>
               </packing>
             </child>
@@ -220,8 +218,8 @@ accelerators:
                 <property name="use_stock">True</property>
                 <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_btnClose_clicked" swapped="no"/>
-                <accelerator key="x" signal="clicked"/>
                 <accelerator key="q" signal="clicked"/>
+                <accelerator key="x" signal="clicked"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -250,19 +248,22 @@ accelerators:
               <object class="GtkGrid" id="readingsContainer">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="valign">start</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
-                <property name="row_spacing">10</property>
+                <property name="row_spacing">5</property>
                 <child>
                   <object class="GtkLabel" id="lblNameMystery">
+                    <property name="height_request">20</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Mystery:</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
@@ -273,13 +274,16 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblNameDecade">
+                    <property name="height_request">20</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Decade:</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
+                      <attribute name="font-desc" value="Monospace 9"/>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
@@ -296,7 +300,9 @@ accelerators:
                     <property name="valign">start</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Decade Message:</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
+                      <attribute name="font-desc" value="Monospace 9"/>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
@@ -313,7 +319,9 @@ accelerators:
                     <property name="valign">start</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Background:</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
+                      <attribute name="font-desc" value="Monospace 9"/>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
@@ -328,9 +336,12 @@ accelerators:
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Scripture:</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
+                      <attribute name="font-desc" value="Monospace 9"/>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
@@ -345,9 +356,12 @@ accelerators:
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Prayer:</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
+                      <attribute name="font-desc" value="Monospace 9"/>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
@@ -364,7 +378,9 @@ accelerators:
                     <property name="valign">start</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Bead Type:</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
+                      <attribute name="font-desc" value="Monospace 9"/>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
@@ -375,19 +391,18 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextMystery">
-                    <property name="height_request">35</property>
+                    <property name="height_request">20</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
                     <property name="xpad">10</property>
-                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
-_</property>
+                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
                     <property name="wrap">True</property>
-                    <property name="yalign">0</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -397,19 +412,18 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextDecade">
-                    <property name="height_request">35</property>
+                    <property name="height_request">20</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
                     <property name="xpad">10</property>
-                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
-_</property>
+                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
                     <property name="wrap">True</property>
-                    <property name="yalign">0</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -419,7 +433,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextDecadeMessage">
-                    <property name="height_request">47</property>
+                    <property name="height_request">30</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes">meditation guide</property>
@@ -427,13 +441,11 @@ _</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
                     <property name="xpad">10</property>
-                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
-_
-_</property>
+                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
                     <property name="wrap">True</property>
-                    <property name="yalign">0</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -443,7 +455,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextBackground">
-                    <property name="height_request">80</property>
+                    <property name="height_request">30</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes">background information pretaining to the decade</property>
@@ -451,16 +463,12 @@ _</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
                     <property name="xpad">10</property>
-                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
-_
-_
-_
-_</property>
+                    <property name="label" translatable="yes">+-----------------------------------------------------------------------------------------------------</property>
                     <property name="justify">fill</property>
                     <property name="wrap">True</property>
-                    <property name="yalign">0</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -470,7 +478,7 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextScripture">
-                    <property name="height_request">80</property>
+                    <property name="height_request">30</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes">quotes from the NAB</property>
@@ -478,16 +486,12 @@ _</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
                     <property name="xpad">10</property>
-                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
-_
-_
-_</property>
+                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
                     <property name="justify">fill</property>
                     <property name="wrap">True</property>
-                    <property name="selectable">True</property>
-                    <property name="yalign">0</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -497,26 +501,20 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextPrayer">
-                    <property name="height_request">95</property>
+                    <property name="height_request">30</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">bead prayer</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
                     <property name="xpad">10</property>
-                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------
-_
-_
-_
-_
-_
-_
-_</property>
+                    <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
                     <property name="justify">fill</property>
                     <property name="wrap">True</property>
-                    <property name="yalign">0</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -526,19 +524,19 @@ _</property>
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextBeadType">
-                    <property name="height_request">16</property>
+                    <property name="height_request">20</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">the bead shape used on a physical rosary chain</property>
+                    <property name="tooltip_text" translatable="yes">a commonly used bead shape observed on a contemporary decorative prayer beads which are dedicated to the Rosary</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
                     <property name="wrap">True</property>
-                    <property name="yalign">0</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -550,7 +548,7 @@ _</property>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="padding">10</property>
+                <property name="padding">4</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -561,6 +559,7 @@ _</property>
               <object class="GtkBox" id="navigationContainer">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="valign">start</property>
                 <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkButton" id="btnBack">
@@ -577,10 +576,10 @@ accelerators:
                     <property name="use_stock">True</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="on_btnBack_clicked" swapped="no"/>
-                    <accelerator key="b" signal="clicked"/>
-                    <accelerator key="space" signal="clicked"/>
-                    <accelerator key="h" signal="clicked"/>
                     <accelerator key="a" signal="clicked"/>
+                    <accelerator key="h" signal="clicked"/>
+                    <accelerator key="space" signal="clicked"/>
+                    <accelerator key="b" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -593,6 +592,9 @@ accelerators:
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">0</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 9"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -617,10 +619,10 @@ accelerators:
                     <property name="image_position">right</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="on_btnForward_clicked" swapped="no"/>
-                    <accelerator key="d" signal="clicked"/>
-                    <accelerator key="n" signal="clicked"/>
-                    <accelerator key="l" signal="clicked"/>
                     <accelerator key="Return" signal="clicked"/>
+                    <accelerator key="l" signal="clicked"/>
+                    <accelerator key="n" signal="clicked"/>
+                    <accelerator key="d" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -631,8 +633,8 @@ accelerators:
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="padding">10</property>
+                <property name="fill">False</property>
+                <property name="padding">4</property>
                 <property name="pack_type">end</property>
                 <property name="position">3</property>
               </packing>
@@ -652,7 +654,7 @@ accelerators:
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Decade:</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
@@ -668,7 +670,7 @@ accelerators:
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">0 %</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -686,7 +688,7 @@ accelerators:
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Mystery:</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
@@ -702,7 +704,7 @@ accelerators:
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">0 %</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -740,6 +742,9 @@ accelerators:
                     <property name="can_focus">False</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">0 / 10</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 9"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
@@ -752,6 +757,9 @@ accelerators:
                     <property name="can_focus">False</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">0 / 50</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 10"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
@@ -765,7 +773,7 @@ accelerators:
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">position</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -780,7 +788,7 @@ accelerators:
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">percent</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -794,7 +802,7 @@ accelerators:
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">progress</property>
                     <attributes>
-                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="font-desc" value="Monospace 9"/>
                     </attributes>
                   </object>
                   <packing>
@@ -807,7 +815,7 @@ accelerators:
                 </child>
               </object>
               <packing>
-                <property name="expand">True</property>
+                <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="pack_type">end</property>
                 <property name="position">4</property>
@@ -842,9 +850,10 @@ accelerators:
               <object class="GtkLabel" id="lblTitleHeder">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Gtk Scripture Rosary (Gtk/Csv/Glade/C)</property>
+                <property name="label" translatable="yes">Gtk Scripture Rosary</property>
                 <property name="track_visited_links">False</property>
                 <attributes>
+                  <attribute name="font-desc" value="Monospace 11"/>
                   <attribute name="weight" value="bold"/>
                   <attribute name="scale" value="1.1000000000000001"/>
                 </attributes>
@@ -862,7 +871,7 @@ accelerators:
                 <property name="tooltip_text" translatable="yes">each weekday has its own mystery focus</property>
                 <property name="label" translatable="yes">date</property>
                 <attributes>
-                  <attribute name="font-desc" value="Monospace 10"/>
+                  <attribute name="font-desc" value="Monospace 9"/>
                 </attributes>
               </object>
               <packing>
