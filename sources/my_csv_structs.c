@@ -56,15 +56,26 @@ void strsplitfree( char ** strlist ) {
 	free( strlist );
 }
 
+char *removeNewLine( char *str ) {
+	for( int i = 0; str[i] != '\0'; i++ ) {
+		if( str[i] == '\n' ) {
+			str[i] = ' ';
+		}
+	}
+	return str;
+}
+
 /*
  * struct functions
  * */
 
 rosaryBead_t * parse_rosaryBead_record( char * scvline ) {
 	char ** pp = NULL;
+	char *cleanScvLine;
 	rosaryBead_t * record_field = NULL;
 
-	pp = strsplit( scvline, ";" );
+	cleanScvLine = removeNewLine( scvline );
+	pp = strsplit( cleanScvLine, ";" );
 	record_field = (rosaryBead_t*) calloc( 1, sizeof(rosaryBead_t) );
 
 	record_field -> rosaryBeadID = atoi(pp[0]);
@@ -84,9 +95,11 @@ rosaryBead_t * parse_rosaryBead_record( char * scvline ) {
 
 bead_t * parse_bead_record( char * scvline ) {
 	char ** pp = NULL;
+	char *cleanScvLine;
 	bead_t * record_field = NULL;
 
-	pp = strsplit( scvline, ";" );
+	cleanScvLine = removeNewLine( scvline );
+	pp = strsplit( cleanScvLine, ";" );
 	record_field = (bead_t*) calloc( 1, sizeof(bead_t) );
 
 	record_field -> beadID = atoi(pp[0]);
@@ -98,9 +111,11 @@ bead_t * parse_bead_record( char * scvline ) {
 
 book_t * parse_book_record( char * scvline ) {
 	char ** pp = NULL;
+	char *cleanScvLine;
 	book_t * record_field = NULL;
 
-	pp = strsplit( scvline, ";" );
+	cleanScvLine = removeNewLine( scvline );
+	pp = strsplit( cleanScvLine, ";" );
 	record_field = (book_t*) calloc( 1, sizeof(book_t) );
 
 	record_field -> bookID = atoi(pp[0]);
@@ -113,9 +128,11 @@ book_t * parse_book_record( char * scvline ) {
 
 decade_t * parse_decade_record( char * scvline ) {
 	char ** pp = NULL;
+	char *cleanScvLine;
 	decade_t * record_field = NULL;
 
-	pp = strsplit( scvline, ";" );
+	cleanScvLine = removeNewLine( scvline );
+	pp = strsplit( cleanScvLine, ";" );
 	record_field = (decade_t*) calloc( 1, sizeof(decade_t) );
 
 	record_field -> decadeID = atoi(pp[0]);
@@ -131,9 +148,11 @@ decade_t * parse_decade_record( char * scvline ) {
 
 message_t * parse_message_record( char * scvline ) {
 	char ** pp = NULL;
+	char *cleanScvLine;
 	message_t * record_field = NULL;
 
-	pp = strsplit( scvline, ";" );
+	cleanScvLine = removeNewLine(scvline);
+	pp = strsplit( cleanScvLine, ";" );
 	record_field = (message_t*) calloc( 1, sizeof(message_t) );
 
 	record_field -> messageID = atoi(pp[0]);
@@ -145,9 +164,11 @@ message_t * parse_message_record( char * scvline ) {
 
 mystery_t * parse_mystery_record( char * scvline ) {
 	char ** pp = NULL;
+	char *cleanScvLine;
 	mystery_t * record_field = NULL;
 
-	pp = strsplit( scvline, ";" );
+	cleanScvLine = removeNewLine(scvline);
+	pp = strsplit( cleanScvLine, ";" );
 	record_field = (mystery_t*) calloc( 1, sizeof(mystery_t) );
 
 	record_field -> mysteryID = atoi(pp[0]);
@@ -160,9 +181,11 @@ mystery_t * parse_mystery_record( char * scvline ) {
 
 prayer_t * parse_prayer_record( char * scvline ) {
 	char ** pp = NULL;
+	char *cleanScvLine;
 	prayer_t * record_field = NULL;
 
-	pp = strsplit( scvline, ";" );
+	cleanScvLine = removeNewLine(scvline);
+	pp = strsplit( cleanScvLine, ";" );
 	record_field = (prayer_t*) calloc( 1, sizeof(prayer_t) );
 
 	record_field -> prayerID = atoi(pp[0]);
@@ -175,10 +198,11 @@ prayer_t * parse_prayer_record( char * scvline ) {
 
 scripture_t * parse_scripture_record( char * scvline ) {
 	char ** pp = NULL;
+	char *cleanScvLine;
 	scripture_t * record_field = NULL;
 
-	pp = strsplit( scvline, ";" );
-
+	cleanScvLine = removeNewLine(scvline);
+	pp = strsplit( cleanScvLine, ";" );
 	record_field = (scripture_t*) calloc( 1, sizeof(scripture_t) );
 
 	record_field -> scriptureID = atoi(pp[0]);
@@ -188,7 +212,6 @@ scripture_t * parse_scripture_record( char * scvline ) {
 	record_field -> scriptureText = strdup(pp[4]);
 
 	strsplitfree( pp );
-
 	return record_field;
 }
 
@@ -449,7 +472,7 @@ void make_struct_db_csv(rosary_db_t *rosary_db_struct, char *csv_path_array[8]) 
 	csvToStruct_book( rosary_db_struct, 300, csv_path_array[2]);
 	csvToStruct_decade( rosary_db_struct, 800, csv_path_array[3]);
 	csvToStruct_message( rosary_db_struct, 150, csv_path_array[4]);
-	csvToStruct_mystery( rosary_db_struct, 100, csv_path_array[5]);
+	csvToStruct_mystery( rosary_db_struct, 67, csv_path_array[5]);
 	csvToStruct_prayer( rosary_db_struct, 1250, csv_path_array[6]);
 	csvToStruct_scripture( rosary_db_struct, 1250, csv_path_array[7]);
 }

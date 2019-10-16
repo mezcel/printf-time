@@ -3,10 +3,11 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkApplicationWindow" id="gtkRosary">
-    <property name="name">Gtk_Rosary</property>
+    <property name="height_request">550</property>
     <property name="can_focus">False</property>
-    <property name="window_position">center</property>
+    <property name="title" translatable="yes">gtk scripture rosary</property>
     <property name="icon">../img/favicon.ico</property>
+    <property name="decorated">False</property>
     <property name="show_menubar">False</property>
     <signal name="destroy" handler="on_gtkRosary_destroy" swapped="no"/>
     <child type="titlebar">
@@ -218,8 +219,8 @@ accelerators:
                 <property name="use_stock">True</property>
                 <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_btnClose_clicked" swapped="no"/>
-                <accelerator key="q" signal="clicked"/>
                 <accelerator key="x" signal="clicked"/>
+                <accelerator key="q" signal="clicked"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -248,17 +249,17 @@ accelerators:
               <object class="GtkGrid" id="readingsContainer">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="valign">start</property>
+                <property name="halign">start</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
-                <property name="row_spacing">5</property>
+                <property name="row_spacing">4</property>
                 <child>
                   <object class="GtkLabel" id="lblNameMystery">
-                    <property name="height_request">20</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Mystery:</property>
                     <property name="track_visited_links">False</property>
@@ -274,11 +275,11 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblNameDecade">
-                    <property name="height_request">20</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Decade:</property>
                     <property name="track_visited_links">False</property>
@@ -298,6 +299,7 @@ accelerators:
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Decade Message:</property>
                     <property name="track_visited_links">False</property>
@@ -317,6 +319,7 @@ accelerators:
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Background:</property>
                     <property name="track_visited_links">False</property>
@@ -376,6 +379,7 @@ accelerators:
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
+                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">Bead Type:</property>
                     <property name="track_visited_links">False</property>
@@ -391,12 +395,12 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextMystery">
-                    <property name="height_request">20</property>
+                    <property name="name">nameTextMysteryValue</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">name of the mystery set</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
-                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
                     <property name="wrap">True</property>
@@ -412,12 +416,12 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextDecade">
-                    <property name="height_request">20</property>
+                    <property name="name">nameTextDecadeValue</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">name of the myster dacade</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
-                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
                     <property name="wrap">True</property>
@@ -433,15 +437,16 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextDecadeMessage">
-                    <property name="height_request">30</property>
+                    <property name="name">nameTextDecadeMessageValue</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">meditation guide</property>
+                    <property name="tooltip_text" translatable="yes">thoughts and meditation guide</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
+                    <property name="justify">fill</property>
                     <property name="wrap">True</property>
                     <property name="track_visited_links">False</property>
                     <attributes>
@@ -455,7 +460,7 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextBackground">
-                    <property name="height_request">30</property>
+                    <property name="name">nameTextBackgroundValue</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes">background information pretaining to the decade</property>
@@ -478,7 +483,7 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextScripture">
-                    <property name="height_request">30</property>
+                    <property name="name">nameTextScriptureValue</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes">quotes from the NAB</property>
@@ -501,10 +506,10 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextPrayer">
-                    <property name="height_request">30</property>
+                    <property name="name">nameTextPrayerValue</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">bead prayer</property>
+                    <property name="tooltip_text" translatable="yes">recite this prayer on this bead position</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="vexpand">True</property>
@@ -524,13 +529,13 @@ accelerators:
                 </child>
                 <child>
                   <object class="GtkLabel" id="lblTextBeadType">
+                    <property name="name">nameTextBeadTypeValue</property>
                     <property name="height_request">20</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">a commonly used bead shape observed on a contemporary decorative prayer beads which are dedicated to the Rosary</property>
+                    <property name="tooltip_text" translatable="yes">decorative bead shape</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
-                    <property name="vexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="label" translatable="yes">+------------------------------------------------------------------------------------------------------</property>
                     <property name="wrap">True</property>
@@ -576,10 +581,10 @@ accelerators:
                     <property name="use_stock">True</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="on_btnBack_clicked" swapped="no"/>
-                    <accelerator key="a" signal="clicked"/>
-                    <accelerator key="h" signal="clicked"/>
-                    <accelerator key="space" signal="clicked"/>
                     <accelerator key="b" signal="clicked"/>
+                    <accelerator key="space" signal="clicked"/>
+                    <accelerator key="h" signal="clicked"/>
+                    <accelerator key="a" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -619,10 +624,10 @@ accelerators:
                     <property name="image_position">right</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="on_btnForward_clicked" swapped="no"/>
-                    <accelerator key="Return" signal="clicked"/>
-                    <accelerator key="l" signal="clicked"/>
-                    <accelerator key="n" signal="clicked"/>
                     <accelerator key="d" signal="clicked"/>
+                    <accelerator key="n" signal="clicked"/>
+                    <accelerator key="l" signal="clicked"/>
+                    <accelerator key="Return" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -853,7 +858,7 @@ accelerators:
                 <property name="label" translatable="yes">Gtk Scripture Rosary</property>
                 <property name="track_visited_links">False</property>
                 <attributes>
-                  <attribute name="font-desc" value="Monospace 11"/>
+                  <attribute name="font-desc" value="Monospace 10"/>
                   <attribute name="weight" value="bold"/>
                   <attribute name="scale" value="1.1000000000000001"/>
                 </attributes>
