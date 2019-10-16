@@ -236,8 +236,8 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen) {
 	multiLinePrintF("\n\t\t", queryViewStruct.mesageText, desiredDispLen);
 	multiLinePrintF("\n Background:\t", queryViewStruct.decadeInfo, desiredDispLen);
 	multiLinePrintF("\n\n Scripture:\t", queryViewStruct.scriptureText, desiredDispLen);
-	multiLinePrintF("\n Prayer:\t", queryViewStruct.prayerText, desiredDispLen);
-	printf("\n Bead Type:\t%s\n", queryViewStruct.beadType);
+	multiLinePrintF("\n\n Prayer:\t", queryViewStruct.prayerText, desiredDispLen);
+	printf("\n\n Bead Type:\t%s\n\n", queryViewStruct.beadType);
 
 	// footer
 	char *footerLabel = " Rosary Progress ";
