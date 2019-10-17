@@ -3,6 +3,7 @@
  * */
 
 #include <stdio.h>
+#include <stdlib.h> // system()
 #include <time.h>	// After year 2038, only use an x64 compiler
 
 #include "headers/my_calendar.h"
@@ -43,6 +44,9 @@ int main() {
 	splashCoverPage(weekdayNo, desiredDispLen);			// display splash
 
 	// UI Loop
+	system("stty -echo");
+	system("stty cbreak");
+
 	while (navigtionPosition <= 315) {
 		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct,
 		navigtionPosition); 						// update query
@@ -55,6 +59,9 @@ int main() {
 		// Navigation Input & Accumulator
 		navigtionPosition = pressKeyContinue(navigtionPosition, IS_LINUX);
 	}
+
+	system("stty echo"); // Make echo work
+	system("stty -cbreak");// go to COOKED mode
 
 	return 0;
 }

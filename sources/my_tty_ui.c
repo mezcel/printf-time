@@ -2,8 +2,8 @@
  * my_tty_ui.c
  * */
 
-#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
 #include <stdio.h>
+#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
 #include <string.h>
 #include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
 #include <unistd.h> 	// STDOUT_FILENO
@@ -39,13 +39,14 @@ int initialMystery(int weekdayNo) {
 
 int pressKeyContinue(int navigtionPosition, int isLinux) {
 	// Increment or decrement the next desired position in the rosary sequence
+	// uses traditional vim or "retro game" navigation keys
 
-	char c[32] = {0};
-	fgets(c, 32, stdin); //fgets(c, sizeof(c), stdin);
-
-	switch (c[0]) {
+	char ch = getchar();
+	switch (ch) {
+		case 10:	// ASCII enter key
 		case 'n':	// [n key] navigates 1 step forward
-		case '\n':	// [enter key] navigates 1 step forward
+		case 'l':	// vim input
+		case 'd':	// game input
 			if (navigtionPosition < 315) {
 				navigtionPosition++;
 			} else {
@@ -53,6 +54,9 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 			}
 			break;
 
+		case 32:	// ASCII spacebar
+		case 'h':	// vim input
+		case 'a':	// game input
 		case 'b':	// [b key] navigates 1 step back
 			if (navigtionPosition > 1) {
 				navigtionPosition--;
@@ -61,12 +65,13 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 			}
 			break;
 
+		case 27:	// ASCII esc key
 		case 'q':	// [q key] quits the app
 			printf("\n Quit App \n");
 			navigtionPosition = 316; // any integer greater than 315
 			break;
 
-		default: // other key entries
+		default:	// other key entries
 			navigtionPosition -= 0; // cancel navigation accumulation
 	}
 
@@ -149,13 +154,14 @@ void splashCoverPage(int weekdayNo, int desiredDispLen) {
 
 	printf("\n\n Display:\n\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
 	printf("\tFull screen is the optimal dimension.\n");
-	printf("\n User Controls:\n\n\t Press [b] and then [enter] to navigate (1) bead back.");
-	printf("\n\t Press [n] and then [enter] to navigate (1) bead forward.");
-	printf("\n\t      or just press [enter] to navigate (1) bead forward.");
-	printf("\n\t Press [q] and then [enter] to quit the app.");
 
-	printf("\n\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
+	printf("\n User Controls:\n\t(q or esc) = quit app\n\tspcae = back, enter = next\n");
+	printf("\n\tvi controls:\n\t\th = back, l = next\n");
+	printf("\n\tgame controls:\n\t\ta = back, d = next\n");
 
+	printf("\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
+
+	borderCharPrintF("+", desiredDispLen);
 	borderCharPrintF("+", desiredDispLen);
 	printf("\n press [enter] to continue");
 	getchar();	// pause for char input
