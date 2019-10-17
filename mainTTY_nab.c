@@ -38,14 +38,17 @@ int main() {
 
 	make_struct_db_csv(&rosary_db_struct, csv_path_array);	// make db struct
 
-	// display
-	int desiredDispLen = returnScreenWidth(IS_LINUX);	// linux terminal width
-	clearScreen(IS_LINUX);								// clear screen
-	splashCoverPage(weekdayNo, desiredDispLen);			// display splash
+	// start display
 
-	// UI Loop
+	int desiredDispLen;
+	desiredDispLen = returnScreenWidth(IS_LINUX);	// linux terminal width
+	clearScreen(IS_LINUX);								// clear screen
+
 	system("stty -echo");
 	system("stty cbreak");
+	splashCoverPage(weekdayNo, desiredDispLen, " C/CSV Rosary ");	// display splash
+
+	// UI Loop
 
 	while (navigtionPosition <= 315) {
 		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct,
@@ -54,7 +57,7 @@ int main() {
 		// display
 		desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
 		clearScreen(IS_LINUX); 							// clear screen
-		outputTtyDisplay( queryViewStruct, desiredDispLen );
+		outputTtyDisplay( queryViewStruct, desiredDispLen, " C/CSV Rosary ");
 
 		// Navigation Input & Accumulator
 		navigtionPosition = pressKeyContinue(navigtionPosition, IS_LINUX);

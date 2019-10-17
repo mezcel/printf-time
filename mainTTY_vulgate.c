@@ -31,14 +31,16 @@ int main( int argc, char **argv ) {
 	char *filePath = "database/json/rosaryJSON-vulgate.json";
 	make_struct_db_json(&rosary_db_struct, filePath); // populate rosary_db_t
 
-	// display
-	int desiredDispLen = returnScreenWidth(IS_LINUX);	// linux terminal width
-	clearScreen(1);								// clear screen
-	splashCoverPage(weekdayNo, desiredDispLen);			// display splash
+	// start display
 
-	// UI Loop
+	int desiredDispLen = returnScreenWidth(IS_LINUX);	// linux terminal width
+	clearScreen(IS_LINUX);								// clear screen
+
 	system("stty -echo");
 	system("stty cbreak");
+	splashCoverPage(weekdayNo, desiredDispLen, " C/JSON Rosary ");	// display splash
+
+	// UI Loop
 
 	while (navigtionPosition <= 315) {
 		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct,
@@ -47,7 +49,7 @@ int main( int argc, char **argv ) {
 		// display
 		desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
 		clearScreen(IS_LINUX); 							// clear screen
-		outputTtyDisplay( queryViewStruct, desiredDispLen );
+		outputTtyDisplay( queryViewStruct, desiredDispLen - 1, " C/JSON Rosary ");
 
 		// Navigation Input & Accumulator
 		navigtionPosition = pressKeyContinue(navigtionPosition, IS_LINUX);

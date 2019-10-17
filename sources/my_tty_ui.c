@@ -42,7 +42,13 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 	// uses traditional vim or "retro game" navigation keys
 
 	char ch = getchar();
+
 	switch (ch) {
+		// Navigate forward
+
+		case 65:	// ASCII up arrow
+		case 67:	// ASCII right arrow
+			printf("\n");
 		case 10:	// ASCII enter key
 		case 'n':	// [n key] navigates 1 step forward
 		case 'l':	// vim input
@@ -54,6 +60,11 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 			}
 			break;
 
+		// Navigate backward
+
+		case 66:	// ASCII down arrow
+		case 68:	// ASCII left arrow
+			printf("\n");
 		case 32:	// ASCII spacebar
 		case 'h':	// vim input
 		case 'a':	// game input
@@ -65,14 +76,20 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 			}
 			break;
 
-		case 27:	// ASCII esc key
+		// Exit Application
+
+		//case 27:	// ASCII esc key
 		case 'q':	// [q key] quits the app
-			printf("\n Quit App \n");
+			printf("%c\n Quit App \n", ch);
 			navigtionPosition = 316; // any integer greater than 315
 			break;
 
+		// Non-mapped keys
+
 		default:	// other key entries
-			navigtionPosition -= 0; // cancel navigation accumulation
+			//printf("%d", ch);
+			printf("\n");
+			break;
 	}
 
 	return navigtionPosition;
@@ -135,11 +152,10 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 	}
 }
 
-void splashCoverPage(int weekdayNo, int desiredDispLen) {
+void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	// display intro and instructions
 	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as an ER database schema. Scriptural readings are quoted from The New American Bible. Additional readings were curated from a variety of different Rosary prayer guides.";
 
-	char *titleLabel = " C/CSV Rosary ";
 	int titleLabelLength = (int)strlen(titleLabel);
 	borderCharPrintF("+", desiredDispLen);
 	printf("\n");
@@ -150,21 +166,22 @@ void splashCoverPage(int weekdayNo, int desiredDispLen) {
 	borderCharPrintF("+", desiredDispLen);
 	printf("\n");
 
-	multiLinePrintF("\n About:\n\n\t", aboutString, desiredDispLen );
+	multiLinePrintF("\n About:\n\t", aboutString, desiredDispLen );
 
-	printf("\n\n Display:\n\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
+	printf("\n\n Display:\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
 	printf("\tFull screen is the optimal dimension.\n");
 
-	printf("\n User Controls:\n\t(q or esc) = quit app\n\tspcae = back, enter = next\n");
+	printf("\n User Controls:\n\tq = quit app, space = back, enter = next\n");
 	printf("\n\tvi controls:\n\t\th = back, l = next\n");
 	printf("\n\tgame controls:\n\t\ta = back, d = next\n");
 
 	printf("\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
 
-	borderCharPrintF("+", desiredDispLen);
-	borderCharPrintF("+", desiredDispLen);
-	printf("\n press [enter] to continue");
-	getchar();	// pause for char input
+	borderCharPrintF("_", desiredDispLen);
+	borderCharPrintF("-", desiredDispLen);
+	printf("\n press [any key] to continue ... ");
+
+	getchar();	// pause for keyboard input
 }
 
 void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct, int navigtionPosition) {
@@ -227,11 +244,10 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 }
 
-void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen) {
+void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel) {
 	// Render all rosary bead content onto the screen
 
 	// header
-	char *titleLabel = " C/CSV Rosary ";
 	borderCharPrintF("+", 3);
 	printf(titleLabel);
 	borderCharPrintF("+", desiredDispLen - 17);
