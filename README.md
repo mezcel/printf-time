@@ -1,11 +1,12 @@
 # printf-time
 
+	this repo was initially a feast day calulator, but then it evolved into a rosary app.
+
 dev branch: ```v0.3.5```
 
-	starting on the (json/latin) addon
-	less code, but uses resources needed to run libjson-c
+### About:
 
-A scripture rosary for Gtk and TTY witten in C for Gcc. It primarily uses a CSV Database, but there is a JSON database option which uses Latin from the Vulgate.
+A scripture rosary witten in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
 
 ### GUI Options:
 
