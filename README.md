@@ -13,8 +13,8 @@ CSV Database:
 
 | English CLI Version | English GTK3 Version |
 | --- | --- |
-| The user navigates with with typed instructions. \ Press [enter] key or the key sequence ["b" + enter] to navigate forwards or backwards. | The user navigates with push-button widget objects. |
-| screenshot taken on Debian WLS | screenshot taken on a i686 Debian |
+| Navigate using Vi kebindings or gamer keys. | The user navigates with push-button widget objects. |
+| screenshot was taken on a Debian WLS | screenshot was taken on a i686 Debian |
 | ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
 | [outdated animated cli demo](https://asciinema.org/a/266585) ```from the depreciated v0.3.3``` | - |
 
@@ -29,49 +29,39 @@ JSON Database:
 ### Compile on Debian
 
 ```sh
-## Makefile Compile ##################
+## Makefile flags ##
 
 # build everything
 make
 
-# or just build the TTY version
+# or just build one of the TTY versions
 make ttyRosary
+make ttyRosary_latin
 
 # or just build the GTK3 version
 make gtkRosary
 
-# or reset/clear previous object builds
+# reset/clear previous object builds
 make clear
-
-## Dependencies and debug
-
-# dependencies for Debian 9 or newer
-
-make debian
-
-# Compile for debug with GDB
-
-make debug
 ```
 
+### Dependencies
+
 ```sh
-## Vulgate Latin JSON Database Version
-## I did not add it to the Makefile, and the file linking is just done within the .c files
+## Get dependencies for Debian 9 or newer
+# used for initial 1st-time setup
+make debian
 
 ## debian libjson-c dependencies
 sudo apt install autotools-dev debhelper dh-autoreconf dh-exec
 
 ## debian stretch (libs): 0.12.1-1.1
 sudo apt install libjson-c-dev libjson-c-doc libjson-c3
-
-## compile and build an executable
-gcc -o ttyRosary_vulgate mainTTY_vulgate.c -ljson-c
-
 ```
 
 ---
 
-### Inspiration:
+### Dev. Evolution:
 
 This is the 5th program language version in my Rosary App series.
 
