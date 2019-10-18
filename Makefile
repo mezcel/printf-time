@@ -26,7 +26,8 @@ gtkRosary_debug: mainGtk3.o my_calendar.o my_csv_structs.o my_gtk3_api.o
 
 debian: ## Dependencies fo Debian 9 (Stretch) or later
 	## GCC GDB GTK and JSON-C
-	sudo apt install -y build-essential gcc gdb libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3 glade
+	sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3 
+	# sudo apt install -y gdb glade
 
 my_calendar.o: sources/my_calendar.c headers/my_calendar.h
 	gcc -c sources/my_calendar.c
