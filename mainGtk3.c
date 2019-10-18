@@ -10,11 +10,8 @@
 #include <time.h>	// After year 2038, only use an x64 compiler
 
 #include "headers/my_calendar.h"
-// #include "sources/my_calendar.c"
 #include "headers/my_file_to_struct.h"
-// #include "sources/my_csv_structs.c"
 #include "headers/my_gtk3_api.h"
-// #include "sources/my_gtk3_api.c"
 
 rosary_db_t rosary_db_struct; // global var read by Gtk app
 
@@ -60,7 +57,7 @@ int main( int argc, char *argv[] ) {
 }
 
 /*
- * functions prototyped by the Glade XML
+ * functions prototyped by the Glade XML, xml/myGladeXml.glade
  * */
 
 // Close App Button Click

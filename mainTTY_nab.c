@@ -7,11 +7,8 @@
 #include <time.h>	// After year 2038, only use an x64 compiler
 
 #include "headers/my_calendar.h"
-// #include "sources/my_calendar.c"
 #include "headers/my_file_to_struct.h"
-// #include "sources/my_csv_structs.c"
 #include "headers/my_tty_ui.h"
-// #include "sources/my_tty_ui.c"
 
 // flag for POSIX specific functions, intended for later cross platform dev
 int IS_LINUX = 1;
@@ -46,7 +43,9 @@ int main() {
 
 	system("stty -echo");
 	system("stty cbreak");
-	splashCoverPage(weekdayNo, desiredDispLen, " C/CSV Rosary ");	// display splash
+
+	char *titleLabel = " C/CSV Rosary (English NAB) ";
+	splashCoverPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
 
 	// UI Loop
 
@@ -57,10 +56,10 @@ int main() {
 		// display
 		desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
 		clearScreen(IS_LINUX); 							// clear screen
-		outputTtyDisplay( queryViewStruct, desiredDispLen, " C/CSV Rosary ");
+		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel);
 
 		// Navigation Input & Accumulator
-		navigtionPosition = pressKeyContinue(navigtionPosition, IS_LINUX);
+		navigtionPosition = pressKeyContinue(navigtionPosition, IS_LINUX, weekdayNo, desiredDispLen);
 	}
 
 	system("stty echo"); // Make echo work

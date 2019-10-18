@@ -7,9 +7,7 @@
 #include "gtk/gtk.h"
 
 #include "../headers/my_calendar.h"
-// #include "sources/my_calendar.c"
 #include "../headers/my_file_to_struct.h"
-// #include "sources/my_csv_structs.c"
 #include "../headers/my_gtk3_api.h"
 
  /*

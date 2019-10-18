@@ -40,7 +40,7 @@ typedef struct displayVariables_struct {
 
 int returnScreenWidth(int isLinux);
 int initialMystery(int weekdayNo);
-int pressKeyContinue(int navigtionPosition, int isLinux);
+int pressKeyContinue(int navigtionPosition, int isLinux, int weekdayNo, int desiredDispLen);
 
 void clearScreen(int isLinux);
 void borderCharPrintF(char *charSymbol, int borderWidth);

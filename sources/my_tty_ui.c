@@ -9,10 +9,7 @@
 #include <unistd.h> 	// STDOUT_FILENO
 
 #include "../headers/my_calendar.h"
-// #include "sources/my_calendar.c"
 #include "../headers/my_file_to_struct.h"
-// #include "sources/my_csv_structs.c"
-// #include "sources/my_json_structs.c"
 #include "../headers/my_tty_ui.h"
 
 int returnScreenWidth(int isLinux) {
@@ -37,16 +34,27 @@ int initialMystery(int weekdayNo) {
 	return navigtionPosition[weekdayNo];
 }
 
-int pressKeyContinue(int navigtionPosition, int isLinux) {
+int pressKeyContinue(int navigtionPosition, int isLinux, int weekdayNo, int desiredDispLen) {
 	// Increment or decrement the next desired position in the rosary sequence
 	// uses traditional vim or "retro game" navigation keys
 
 	char ch = getchar();
 
 	switch (ch) {
+		// help screen
+		case 65:	// ASCII up arrow
+		case 66:	// ASCII down arrow
+			printf("\n");
+		case 'w':
+		case 's':
+		case 'j':
+		case 'k':
+			clearScreen(isLinux);
+			splashCoverPage(weekdayNo, desiredDispLen, " Instructions: ");
+			break;
+
 		// Navigate forward
 
-		case 65:	// ASCII up arrow
 		case 67:	// ASCII right arrow
 			printf("\n");
 		case 10:	// ASCII enter key
@@ -62,7 +70,6 @@ int pressKeyContinue(int navigtionPosition, int isLinux) {
 
 		// Navigate backward
 
-		case 66:	// ASCII down arrow
 		case 68:	// ASCII left arrow
 			printf("\n");
 		case 32:	// ASCII spacebar
@@ -157,13 +164,9 @@ void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as an ER database schema. Scriptural readings are quoted from The New American Bible. Additional readings were curated from a variety of different Rosary prayer guides.";
 
 	int titleLabelLength = (int)strlen(titleLabel);
-	borderCharPrintF("+", desiredDispLen);
-	printf("\n");
-	borderCharPrintF("+", 3);
+	borderCharPrintF("_", 3);
 	printf(titleLabel);
-	borderCharPrintF("+", (desiredDispLen - (titleLabelLength + 3 )) );
-	printf("\n");
-	borderCharPrintF("+", desiredDispLen);
+	borderCharPrintF("_", (desiredDispLen - (titleLabelLength + 3 )) );
 	printf("\n");
 
 	multiLinePrintF("\n About:\n\t", aboutString, desiredDispLen );
@@ -175,10 +178,9 @@ void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	printf("\n\tvi controls:\n\t\th = back, l = next\n");
 	printf("\n\tgame controls:\n\t\ta = back, d = next\n");
 
-	printf("\n\n Today is %s, therefore today's mystery is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
+	printf("\n\n Today is %s, therefore today's focal mystery is the %s Mystery.\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
 
 	borderCharPrintF("_", desiredDispLen);
-	borderCharPrintF("-", desiredDispLen);
 	printf("\n press [any key] to continue ... ");
 
 	getchar();	// pause for keyboard input
@@ -248,9 +250,10 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 	// Render all rosary bead content onto the screen
 
 	// header
-	borderCharPrintF("+", 3);
+	borderCharPrintF("_", 3);
 	printf(titleLabel);
-	borderCharPrintF("+", desiredDispLen - 17);
+	int inputLength = (int)strlen(titleLabel) + 3;
+	borderCharPrintF("_", desiredDispLen - inputLength);
 
 	// body
 	printf("\n\n Mystery:\t%s", queryViewStruct.mysteryName);
@@ -263,9 +266,11 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 
 	// footer
 	char *footerLabel = " Rosary Progress ";
-	borderCharPrintF("+", 3);
+    int footerLabelLength = (int)strlen(footerLabel) + 3;
+
+	borderCharPrintF("_", 3);
 	printf(footerLabel);
-	borderCharPrintF("+", desiredDispLen - 20);
+	borderCharPrintF("_", desiredDispLen - footerLabelLength);
 
 	char *rosaray_region_string;
 	int segment_whole, segment_part;
