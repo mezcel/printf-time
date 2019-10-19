@@ -161,7 +161,7 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 
 void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	// display intro and instructions
-	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as an ER database schema. Scriptural readings are quoted from The New American Bible. Additional readings were curated from a variety of different Rosary prayer guides.";
+	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from either a JSON or CSV scripture database arranged as an ER schema. English readings are quoted from The New American Bible, and the Latin text is quoted from the Vulgate. Additional readings were curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested in BASH.";
 
 	int titleLabelLength = (int)strlen(titleLabel);
 	borderCharPrintF(":", 3);
@@ -174,7 +174,7 @@ void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	printf("\n\n Display:\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
 	printf("\tFull screen is the optimal dimension.\n");
 
-	printf("\n User Controls:\n\tq = quit app, space = back, enter = next\n");
+	printf("\n User Controls:\n\tq = quit app, space = back, enter = next, help = up/down\n");
 	printf("\n\tvi controls:\n\t\th = back, l = next\n");
 	printf("\n\tgame controls:\n\t\ta = back, d = next\n");
 
