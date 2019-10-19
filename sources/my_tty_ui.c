@@ -164,9 +164,9 @@ void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from CSV text files arranged as an ER database schema. Scriptural readings are quoted from The New American Bible. Additional readings were curated from a variety of different Rosary prayer guides.";
 
 	int titleLabelLength = (int)strlen(titleLabel);
-	borderCharPrintF("_", 3);
+	borderCharPrintF(":", 3);
 	printf(titleLabel);
-	borderCharPrintF("_", (desiredDispLen - (titleLabelLength + 3 )) );
+	borderCharPrintF(":", (desiredDispLen - (titleLabelLength + 3 )) );
 	printf("\n");
 
 	multiLinePrintF("\n About:\n\t", aboutString, desiredDispLen );
@@ -178,10 +178,10 @@ void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	printf("\n\tvi controls:\n\t\th = back, l = next\n");
 	printf("\n\tgame controls:\n\t\ta = back, d = next\n");
 
-	printf("\n\n Today is %s, therefore today's focal mystery is the %s Mystery.\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
+	printf("\n\n Today is %s, therefore today's focal mystery is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
 
-	borderCharPrintF("_", desiredDispLen);
-	printf("\n press [any key] to continue ... ");
+	borderCharPrintF(":", desiredDispLen);
+	printf("\n\n press [any key] to continue ... ");
 
 	getchar();	// pause for keyboard input
 }
@@ -250,10 +250,10 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 	// Render all rosary bead content onto the screen
 
 	// header
-	borderCharPrintF("_", 3);
+	borderCharPrintF(":", 3);
 	printf(titleLabel);
 	int inputLength = (int)strlen(titleLabel) + 3;
-	borderCharPrintF("_", desiredDispLen - inputLength);
+	borderCharPrintF(":", desiredDispLen - inputLength);
 
 	// body
 	printf("\n\n Mystery:\t%s", queryViewStruct.mysteryName);
@@ -268,30 +268,43 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 	char *footerLabel = " Rosary Progress ";
     int footerLabelLength = (int)strlen(footerLabel) + 3;
 
-	borderCharPrintF("_", 3);
+	borderCharPrintF(":", 3);
 	printf(footerLabel);
-	borderCharPrintF("_", desiredDispLen - footerLabelLength);
+	borderCharPrintF(":", desiredDispLen - footerLabelLength);
 
 	char *rosaray_region_string;
-	int segment_whole, segment_part;
+	int segment_whole, segment_part, decade_flag;
 
 	if (queryViewStruct.loopBody == 1) {
-		rosaray_region_string = "rosary body";
+		rosaray_region_string = "     rosary body loop";
 		segment_whole = 10;
+		decade_flag = 5;
 		segment_part = queryViewStruct.smallbeadPercent;
 	} else {
 		if ( (queryViewStruct.prayerFK == 7) || (queryViewStruct.prayerFK == 8) ) {
-			rosaray_region_string = "conclusion prayers";
+			rosaray_region_string = "\tconclusion prayer icon";
 			segment_whole = 2;
+			decade_flag = 0;
 			segment_part = queryViewStruct.smallbeadPercent / 5;
 		} else {
-			rosaray_region_string = "introduction prayers";
+			rosaray_region_string = "introduction prayers segment";
 			segment_whole = 7;
+			decade_flag = 0;
 			segment_part = queryViewStruct.smallbeadPercent;
 		}
 	}
 	printf("\n\n position:\t\t%d / %d", queryViewStruct.rosaryPositionID, 315);
-	printf("\n Decade Progress:\t%d / %d\t\t%s", segment_part, segment_whole, rosaray_region_string);
-	printf("\n Mystery Progress:\t%d / 50\t\tMystery:   %d / 4", queryViewStruct.mysteryPercent, queryViewStruct.mysteryNo);
+	//printf("\n Decade Progress:\t%d / %d\t\t%s", segment_part, segment_whole, rosaray_region_string);
+	//printf("\n Mystery Progress:\t%d / 50\t\tMystery:   %d / 4", queryViewStruct.mysteryPercent, queryViewStruct.mysteryNo);
+	printf("\n Decade Progress:\t%d / %d\t[ ", segment_part, segment_whole);
+	borderCharPrintF("o", segment_part);
+	borderCharPrintF("-", segment_whole - segment_part);
+	printf(" ] D[%d/%d]\t%s", queryViewStruct.decadeNo, decade_flag, rosaray_region_string );
+
+	printf("\n Mystery Progress:\t%d / 50\t[ ", queryViewStruct.mysteryPercent);
+	borderCharPrintF("o", queryViewStruct.mysteryPercent);
+	borderCharPrintF("-", 50 - queryViewStruct.mysteryPercent);
+	printf(" ]");
+
 	printf("\n:");
 }
