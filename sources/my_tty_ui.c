@@ -161,7 +161,7 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 
 void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	// display intro and instructions
-	char *aboutString ="This is a scriptural rosary for the command line interface (CLI). This app reads from either a JSON or CSV scripture database arranged as an ER schema. English readings are quoted from The New American Bible, and the Latin text is quoted from the Vulgate. Additional readings were curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested in BASH.";
+	char *aboutString ="This program is a scripture rosary for the command line interface (CLI). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible (CSV files), and Latin readings are quoted from the Vulgate Bible (JSON file). Additional enclosed readings are curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested for use in BASH.";
 
 	int titleLabelLength = (int)strlen(titleLabel);
 	borderCharPrintF(":", 3);
