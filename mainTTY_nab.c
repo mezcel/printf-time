@@ -55,7 +55,7 @@ int main() {
 
 		// display
 		desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
-		clearScreen(IS_LINUX); 							// clear screen
+		//clearScreen(IS_LINUX); 							// clear screen
 		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel);
 
 		// Navigation Input & Accumulator

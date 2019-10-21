@@ -48,6 +48,8 @@ make clear
 
 ### Dependencies
 
+If you get a compile error from the make build: ```#include <json-c/json.h>```, then use ```make debian``` to install potentially missing dependencies. This applies only to compilation on Debian based distros.
+
 ```sh
 ## Get dependencies for Debian 9 or newer
 # used for initial 1st-time setup

@@ -87,7 +87,7 @@ int pressKeyContinue(int navigtionPosition, int isLinux, int weekdayNo, int desi
 
 		//case 27:	// ASCII esc key
 		case 'q':	// [q key] quits the app
-			printf("%c\n Quit App \n", ch);
+			printf("\n\n Quit App \n", ch);
 			navigtionPosition = 316; // any integer greater than 315
 			break;
 
@@ -118,16 +118,18 @@ void borderCharPrintF(char *charSymbol, int borderWidth) {
 	}
 }
 
-void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
+void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength, int minRows) {
 	int screenWidth = desiredLineLength;	// max chars per screen line width
 	int inputLength = (int)strlen(strIn);	// number of chars contained in input string
 	int labelColChars = 17;					// chars used in the label col
 	int max_line_chars = screenWidth - labelColChars;
+	int rowCounter = 1;
 
 	printf("%s", labelChars); // print the content label, initial printf
 
 	if ( inputLength < max_line_chars ) { // short enough to be 1 line
 		printf("%s\n\t\t", strIn);
+		rowCounter++;
 	} else { // longer than one line
 
 		// input string to an array of words
@@ -152,16 +154,27 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength) {
 			} else {
 				charCounter = chars_in_a_word;
 				printf("\n\t\t%s ", token); // start new line indent
+				rowCounter++;
 			}
 
 			token = strtok(NULL, delimiter); // get the next word
+		}
+	}
+
+	// Add empty rows
+	if ( minRows != 0 ) {
+		if ( rowCounter < minRows ) {
+			int difference = minRows - rowCounter;
+			for (int i = 0; i < difference; i++) {
+				printf("\n");
+			}
 		}
 	}
 }
 
 void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	// display intro and instructions
-	char *aboutString ="This program is a scripture rosary for the command line interface (CLI). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible (CSV files), and Latin readings are quoted from the Vulgate Bible (JSON file). Additional enclosed readings are curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested for use in BASH.";
+	char *aboutString ="\tThis program is a scripture rosary for the command line interface (CLI). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible (CSV files), and Latin readings are quoted from the Vulgate Bible (JSON file). Additional enclosed readings are curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested for use in BASH.";
 
 	int titleLabelLength = (int)strlen(titleLabel);
 	borderCharPrintF(":", 3);
@@ -169,16 +182,18 @@ void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	borderCharPrintF(":", (desiredDispLen - (titleLabelLength + 3 )) );
 	printf("\n");
 
-	multiLinePrintF("\n About:\n\t", aboutString, desiredDispLen );
+	multiLinePrintF("\n About:\n\t", aboutString, desiredDispLen, 0 );
 
-	printf("\n\n Display:\n\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
-	printf("\tFull screen is the optimal dimension.\n");
+	printf("\n\n Display:\n\t\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
 
-	printf("\n User Controls:\n\tq = quit app, space = back, enter = next, help = up/down\n");
-	printf("\n\tvi controls:\n\t\th = back, l = next\n");
-	printf("\n\tgame controls:\n\t\ta = back, d = next\n");
+	printf("\n Keyboard:\n\t\tq = quit app, space = back, enter = next, help = up/down\n");
+	printf("\n\t\tvi controls:\th = back, l = next");
+	printf("\n\t\tgame controls:\ta = back, d = next");
+	printf("\n\n Source Code:\n\t\thttps://github.com/mezcel/printf-time.git\n\n");
 
-	printf("\n\n Today is %s, therefore today's focal mystery is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
+	borderCharPrintF(":", desiredDispLen);
+
+	printf("\n\n Today is %s, therefore the mystery of the day is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
 
 	borderCharPrintF(":", desiredDispLen);
 	printf("\n\n press [any key] to continue ... ");
@@ -248,60 +263,101 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel) {
 	// Render all rosary bead content onto the screen
+	int minFruitsRow = 3;
+	int minBackgroundRows = 4;
+	int minScriptureRows = 4;
+	int minPrayerRows = 4;
 
-	// header
-	borderCharPrintF(":", 3);
-	printf(titleLabel);
-	int inputLength = (int)strlen(titleLabel) + 3;
-	borderCharPrintF(":", desiredDispLen - inputLength);
+	int titleLabelLength = (int)strlen(titleLabel) + 3;
+	int mysteryLabelLength = (int)strlen(queryViewStruct.mysteryName) + 4;
 
-	// body
-	printf("\n\n Mystery:\t%s", queryViewStruct.mysteryName);
-	printf("\n Decade:\t%s", queryViewStruct.decadeName);
-	multiLinePrintF("\n\t\t", queryViewStruct.mesageText, desiredDispLen);
-	multiLinePrintF("\n Background:\t", queryViewStruct.decadeInfo, desiredDispLen);
-	multiLinePrintF("\n\n Scripture:\t", queryViewStruct.scriptureText, desiredDispLen);
-	multiLinePrintF("\n\n Prayer:\t", queryViewStruct.prayerText, desiredDispLen);
-	printf("\n\n Bead Type:\t%s\n\n", queryViewStruct.beadType);
-
-	// footer
 	char *footerLabel = " Rosary Progress ";
     int footerLabelLength = (int)strlen(footerLabel) + 3;
 
-	borderCharPrintF(":", 3);
-	printf(footerLabel);
-	borderCharPrintF(":", desiredDispLen - footerLabelLength);
-
 	char *rosaray_region_string;
-	int segment_whole, segment_part, decade_flag;
+	int segment_whole, segment_part, decade_flag, footerLabel2Length;
 
 	if (queryViewStruct.loopBody == 1) {
-		rosaray_region_string = "     rosary body loop";
+		rosaray_region_string = "Rosary Body";
+		footerLabel2Length = (int)strlen(rosaray_region_string) + 5;
 		segment_whole = 10;
 		decade_flag = 5;
 		segment_part = queryViewStruct.smallbeadPercent;
 	} else {
-		if ( (queryViewStruct.prayerFK == 7) || (queryViewStruct.prayerFK == 8) ) {
-			rosaray_region_string = "\tconclusion prayer icon";
+		if ( queryViewStruct.mysteryPercent == 50 ) {
+		//if ( (queryViewStruct.prayerFK == 7) || (queryViewStruct.prayerFK == 8) ) {
+			rosaray_region_string = "Conclusion Prayers";
+			footerLabel2Length = (int)strlen(rosaray_region_string) + 5;
 			segment_whole = 2;
 			decade_flag = 0;
 			segment_part = queryViewStruct.smallbeadPercent / 5;
+			minFruitsRow = 0;
+			minBackgroundRows = 0;
+			minScriptureRows = 0;
+			minPrayerRows = 7;
 		} else {
-			rosaray_region_string = "introduction prayers segment";
+			rosaray_region_string = "Introduction Prayers";
+			footerLabel2Length = (int)strlen(rosaray_region_string) + 5;
 			segment_whole = 7;
 			decade_flag = 0;
 			segment_part = queryViewStruct.smallbeadPercent;
+			minFruitsRow = 0;
+			minBackgroundRows = 0;
+			minScriptureRows = 0;
+			minPrayerRows = 7;
 		}
 	}
-	printf("\n\n position:\t\t%d / %d", queryViewStruct.rosaryPositionID, 315);
-	//printf("\n Decade Progress:\t%d / %d\t\t%s", segment_part, segment_whole, rosaray_region_string);
-	//printf("\n Mystery Progress:\t%d / 50\t\tMystery:   %d / 4", queryViewStruct.mysteryPercent, queryViewStruct.mysteryNo);
-	printf("\n Decade Progress:\t%d / %d\t[ ", segment_part, segment_whole);
+
+	clearScreen(1); // posix
+
+	// header
+
+	borderCharPrintF(":", 3);
+	printf(titleLabel);borderCharPrintF(":", desiredDispLen - titleLabelLength - mysteryLabelLength);
+	printf(" %s", queryViewStruct.mysteryName);
+	borderCharPrintF(":", 3);
+
+	// body
+
+	printf("\n\n Decade:\t%s", queryViewStruct.decadeName);
+	multiLinePrintF("\n\t\t", queryViewStruct.mesageText, desiredDispLen, minFruitsRow);
+	multiLinePrintF("\n Background:\t", queryViewStruct.decadeInfo, desiredDispLen, minBackgroundRows);
+	multiLinePrintF("\n\n Scripture:\t", queryViewStruct.scriptureText, desiredDispLen, minScriptureRows);
+	multiLinePrintF("\n\n Prayer:\t", queryViewStruct.prayerText, desiredDispLen, minPrayerRows);
+	printf("\n\n");
+
+	// footer
+
+	borderCharPrintF(":", 3);
+	printf(footerLabel);
+	borderCharPrintF(":", desiredDispLen - footerLabelLength - footerLabel2Length);
+
+	// Progress Status Bar Meter
+
+	printf(" %s ", rosaray_region_string);
+	borderCharPrintF(":", 3);
+
+	printf("\n\n Decade Counter\t\t %d / %d\t[ ", queryViewStruct.decadeNo, decade_flag);
+	borderCharPrintF("o", queryViewStruct.decadeNo);
+	borderCharPrintF("-", 5 - queryViewStruct.decadeNo);
+	printf(" ]");
+
+	if ( segment_part < 10 ) {
+		printf("\n Segment Progress\t %d / %d\t[ ", segment_part, segment_whole);
+	} else {
+		printf("\n Segment Progress\t%d / %d\t[ ", segment_part, segment_whole);
+	}
+
 	borderCharPrintF("o", segment_part);
 	borderCharPrintF("-", segment_whole - segment_part);
-	printf(" ] D[%d/%d]\t%s", queryViewStruct.decadeNo, decade_flag, rosaray_region_string );
+	printf(" ]");
 
-	printf("\n Mystery Progress:\t%d / 50\t[ ", queryViewStruct.mysteryPercent);
+	if ( queryViewStruct.mysteryPercent < 10 ) {
+		printf("\n Total Progress\t\t %d / 50\t[ ", queryViewStruct.mysteryPercent);
+	} else {
+		printf("\n Total Progress\t\t%d / 50\t[ ", queryViewStruct.mysteryPercent);
+	}
+
 	borderCharPrintF("o", queryViewStruct.mysteryPercent);
 	borderCharPrintF("-", 50 - queryViewStruct.mysteryPercent);
 	printf(" ]");

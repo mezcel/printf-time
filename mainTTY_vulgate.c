@@ -48,7 +48,7 @@ int main( int argc, char **argv ) {
 
 		// display
 		desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
-		clearScreen(IS_LINUX); 							// clear screen
+		//clearScreen(IS_LINUX); 							// clear screen
 		outputTtyDisplay( queryViewStruct, desiredDispLen, " C/JSON Rosary (Latin Vulgate) ");
 
 		// Navigation Input & Accumulator
