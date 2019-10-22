@@ -3,17 +3,16 @@
  * dependency:
  * 	libgtk-3-dev
  * compile:
- * 	gcc sources/my_calendar.c sources/my_csv_structs.c sources/my_gtk3_api.c mainGtk3.c `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -o "gtkRosary"
+ * 	gcc sources/my_calendar.c sources/my_json_structs.c sources/my_gtk3_api.c mainGtk3.c `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -o "gtkRosary"
  * */
 
 #include "gtk/gtk.h"
-#include <string.h>		// strcmp()
-#include <time.h>		// After year 2038, only use an x64 compiler
+#include <time.h>			// After year 2038, only use an x64 compiler
+#include <json-c/json.h>	// parse json db
 
 #include "headers/my_calendar.h"
 #include "headers/my_file_to_struct.h"
 #include "headers/my_gtk3_api.h"
-#include <json-c/json.h>	// parse json db
 
 rosary_db_t rosary_db_struct; // global var read by Gtk app
 
@@ -26,33 +25,10 @@ int main( int argc, char *argv[] ) {
 	struct tm todaysDate 	= returnTodaysDate();
 	int navigtionPosition 	= initialMystery(todaysDate.tm_wday); // starting progress position
 
-	// load text data from the appropriate database
+	// path to json db files
 
-	int nabFlag = 1;
-	if ( argc == 2 ) {
-		nabFlag = strcmp( "-v", argv[1] );
-	}
-
-	if ( nabFlag == 0 ) {
-		// Vulgate JSON Database
-		char *filePath = "database/json/rosaryJSON-vulgate.json";
-
-		make_struct_db_json(&rosary_db_struct, filePath); // populate rosary_db_t
-	} else {
-		// NAB CSV Database
-		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
-		char *bead_path 		= "database/csv/bead.csv";
-		char *book_path 		= "database/csv/book.csv";
-		char *decade_path 		= "database/csv/decade.csv";
-		char *message_path 		= "database/csv/message.csv";
-		char *mystery_path 		= "database/csv/mystery.csv";
-		char *prayer_path 		= "database/csv/prayer.csv";
-		char *scripture_path 	= "database/csv/scripture.csv";
-		char *csv_path_array[8]	= { rosaryBead_path, bead_path, book_path, decade_path,
-				message_path, mystery_path, prayer_path, scripture_path };
-
-		make_struct_db_csv(&rosary_db_struct, csv_path_array);	// make db struct
-	}
+	char *filePath = "database/json/rosaryJSON-vulgate.json";
+	make_struct_db_json(&rosary_db_struct, filePath); // populate rosary_db_t
 
 	gtk_init(&argc, &argv);
 

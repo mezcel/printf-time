@@ -13,7 +13,7 @@
 // flag for POSIX specific functions, intended for later cross platform dev
 int IS_LINUX = 1;
 
-int main() {
+int main( int argc, char **argv ) {
 	rosary_db_t rosary_db_struct; 				// declare app's db var
 	displayVariables_t queryViewStruct;			// declare db query view var
 
@@ -37,8 +37,7 @@ int main() {
 
 	// start display
 
-	int desiredDispLen;
-	desiredDispLen = returnScreenWidth(IS_LINUX);	// linux terminal width
+	int desiredDispLen = returnScreenWidth(IS_LINUX);	// linux terminal width
 	clearScreen(IS_LINUX);								// clear screen
 
 	system("stty -echo");
