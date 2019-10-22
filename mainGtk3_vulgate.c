@@ -26,7 +26,6 @@ int main( int argc, char *argv[] ) {
 	int navigtionPosition 	= initialMystery(todaysDate.tm_wday); // starting progress position
 
 	// path to json db files
-
 	char *filePath = "database/json/rosaryJSON-vulgate.json";
 	make_struct_db_json(&rosary_db_struct, filePath); // populate rosary_db_t
 
