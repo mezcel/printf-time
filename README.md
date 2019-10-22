@@ -35,15 +35,27 @@ JSON Database:
 # build everything
 make
 
-# or just build one of the TTY versions
+# build one of the TTY versions
 make ttyRosary
-make ttyRosary_latin
 
-# or just build the GTK3 version
+# build one of the GTK versions
 make gtkRosary
 
 # reset/clear previous object builds
 make clear
+```
+
+## Run
+```sh
+## TTY App
+
+./ttyRosary		## NAB English
+./ttyRosary -v	## Vulgate Latin
+
+## GTK App
+
+./gtkRosary		## NAB English
+./gtkRosary -v	## Vulgate Latin
 ```
 
 ### Dependencies
@@ -92,6 +104,7 @@ Previous versions were:
 * Refactoring object libraries
 * Gradually making documentation readable
 * I intend to go back and merge the 3 versions so their libraries overalap better with each other..
+* My Makefile also includes isolated build options
 
 ##### Runtime Environment
 
