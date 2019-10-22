@@ -42,10 +42,10 @@ make ttyRosary
 make gtkRosary
 
 # reset/clear previous object builds
-make clear
+make clean
 ```
 
-## Run
+### Run
 ```sh
 ## TTY App
 
