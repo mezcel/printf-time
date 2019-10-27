@@ -36,8 +36,12 @@ gtkRosary_latin: mainGtk3_vulgate.o my_calendar.o my_json_structs.o my_gtk3_api.
 
 debug: debian ttyRosary_debug ttyRosary_latin_debug gtkRosary_debug
 	## install debuging tools
-	sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3
-	sudo apt install -y gdb glade
+	sudo apt install -y build-essential gcc
+	sudo apt install -y libgtk-3-dev
+	sudo apt install -y libgtk2.0-dev
+	sudo apt install -y libjson-c-dev libjson-c-doc libjson-c3
+	sudo apt install -y glade
+	sudo apt install -y gdb
 	#
 
 ttyRosary_debug: my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o
