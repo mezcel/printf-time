@@ -44,7 +44,8 @@ int main( int argc, char **argv ) {
 	system("stty cbreak");
 
 	char *titleLabel = " C/CSV Rosary (English NAB) ";
-	splashCoverPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
+	splashPage(desiredDispLen);
+	infoPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
 
 	// UI Loop
 

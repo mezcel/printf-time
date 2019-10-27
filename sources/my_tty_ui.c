@@ -50,7 +50,7 @@ int pressKeyContinue(int navigtionPosition, int isLinux, int weekdayNo, int desi
 		case 'j':
 		case 'k':
 			clearScreen(isLinux);
-			splashCoverPage(weekdayNo, desiredDispLen, " Instructions: ");
+			infoPage(weekdayNo, desiredDispLen, " Instructions: ");
 			break;
 
 		// Navigate forward
@@ -172,7 +172,44 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength, int m
 	}
 }
 
-void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
+void splashPage(int desiredDispLen) {
+	int strLength, center;
+
+	char *title = "Scriptural Rosary";
+	char *author = "by Mezcel";
+	char *about = "Wirtten in C for use in a (CLI) POSIX/GNU program environment.";
+	char *git = "https://github.com/mezcel/printf-time.git";
+
+	printf("\n\n");
+
+	strLength = (int)strlen(title);
+	center = (desiredDispLen - strLength) / 2;
+	borderCharPrintF(" ", center);
+	printf("%s\n", title);
+
+	strLength = (int)strlen(author);
+	center = (desiredDispLen - strLength) / 2;
+	borderCharPrintF(" ", center);
+	printf("%s\n\n", author);
+
+	strLength = (int)strlen(about);
+	center = (desiredDispLen - strLength) / 2;
+	borderCharPrintF(" ", center);
+	printf("%s\n", about);
+
+	strLength = (int)strlen(git);
+	center = (desiredDispLen - strLength) / 2;
+	borderCharPrintF(" ", center);
+	printf("%s\n\n\n\n", git);
+
+	borderCharPrintF(":", desiredDispLen);
+	printf("\n\n press [any key] to continue ... ");
+
+	getchar();	// pause for keyboard input
+	clearScreen(1); // posix
+}
+
+void infoPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	// display intro and instructions
 	char *aboutString ="\tThis program is a scripture rosary for the command line interface (CLI). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible (CSV files), and Latin readings are quoted from the Vulgate Bible (JSON file). Additional enclosed readings are curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested for use in BASH.";
 
@@ -185,6 +222,7 @@ void splashCoverPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	multiLinePrintF("\n About:\n\t", aboutString, desiredDispLen, 0 );
 
 	printf("\n\n Display:\n\t\tOptimal Terminal Display: (+25 rows) x (+100 cols) to Full Screen.\n");
+	printf("\n\t\tNAB English (mode):\t./ttyRosary -n\n\t\tVulgate Latin (mode):\t./ttyRosary -v\n");
 
 	printf("\n Keyboard:\n\t\tq = quit app, space = back, enter = next, help = up/down\n");
 	printf("\n\t\tvi controls:\th = back, l = next");
@@ -263,10 +301,13 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel) {
 	// Render all rosary bead content onto the screen
-	int minFruitsRow = 3;
-	int minBackgroundRows = 4;
-	int minScriptureRows = 4;
-	int minPrayerRows = 4;
+	int minFruitsRow = 3,
+		minBackgroundRows = 4,
+		minScriptureRows = 4,
+		minPrayerRows = 4;
+
+	int trailingDots = 0,
+		historyDots = 0;
 
 	int titleLabelLength = (int)strlen(titleLabel) + 3;
 	int mysteryLabelLength = (int)strlen(queryViewStruct.mysteryName) + 4;
@@ -308,12 +349,20 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 		}
 	}
 
+	if ( segment_whole == 10 ) {
+		historyDots = (queryViewStruct.decadeNo * 10) - segment_whole;
+		trailingDots = 50 - (segment_whole * queryViewStruct.decadeNo);
+	} else {
+		trailingDots = 50 - segment_whole;
+	}
+
 	clearScreen(1); // posix
 
 	// header
 
 	borderCharPrintF(":", 3);
-	printf(titleLabel);borderCharPrintF(":", desiredDispLen - titleLabelLength - mysteryLabelLength);
+	printf(titleLabel);
+	borderCharPrintF(":", desiredDispLen - titleLabelLength - mysteryLabelLength);
 	printf(" %s", queryViewStruct.mysteryName);
 	borderCharPrintF(":", 3);
 
@@ -337,25 +386,34 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 	printf(" %s ", rosaray_region_string);
 	borderCharPrintF(":", 3);
 
-	printf("\n\n Decade Counter\t\t %d / %d\t[ ", queryViewStruct.decadeNo, decade_flag);
+	printf("\n\n Decade Counter\t\t %d / %d\t\t[ ", queryViewStruct.decadeNo, decade_flag);
 	borderCharPrintF("o", queryViewStruct.decadeNo);
 	borderCharPrintF("-", 5 - queryViewStruct.decadeNo);
 	printf(" ]");
 
-	if ( segment_part < 10 ) {
-		printf("\n Segment Progress\t %d / %d\t[ ", segment_part, segment_whole);
+	if ( segment_whole == 10 ) {
+		if (segment_part < 10) {
+			printf("\n Decade Progress\t %d / %d\t\t", segment_part, segment_whole);
+		} else {
+			printf("\n Decade Progress\t%d / %d\t\t", segment_part, segment_whole);
+		}
+		borderCharPrintF(".", historyDots);
 	} else {
-		printf("\n Segment Progress\t%d / %d\t[ ", segment_part, segment_whole);
+		printf("\n Segment Progress\t %d / %d\t\t", segment_part, segment_whole);
 	}
+	printf("[ ");
+
 
 	borderCharPrintF("o", segment_part);
 	borderCharPrintF("-", segment_whole - segment_part);
 	printf(" ]");
 
+	borderCharPrintF(".", trailingDots);
+
 	if ( queryViewStruct.mysteryPercent < 10 ) {
-		printf("\n Total Progress\t\t %d / 50\t[ ", queryViewStruct.mysteryPercent);
+		printf("\n Total Progress\t\t %d / 50\t\t[ ", queryViewStruct.mysteryPercent);
 	} else {
-		printf("\n Total Progress\t\t%d / 50\t[ ", queryViewStruct.mysteryPercent);
+		printf("\n Total Progress\t\t%d / 50\t\t[ ", queryViewStruct.mysteryPercent);
 	}
 
 	borderCharPrintF("o", queryViewStruct.mysteryPercent);

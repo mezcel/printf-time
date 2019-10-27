@@ -38,7 +38,8 @@ int main( int argc, char **argv ) {
 	system("stty cbreak");
 
 	char *titleLabel = " C/JSON Rosary (Latin Vulgate) ";
-	splashCoverPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
+	splashPage(desiredDispLen);
+	infoPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
 
 	// UI Loop
 

@@ -74,7 +74,9 @@ int main( int argc, char **argv ) {
 	system("stty -echo");
 	system("stty cbreak");
 
-	splashCoverPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
+	splashPage(desiredDispLen);
+
+	infoPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
 
 	// UI Loop
 

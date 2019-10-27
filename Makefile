@@ -3,10 +3,19 @@ CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
 all: ttyRosary gtkRosary
+	##
+	## Use the -v flag to run using the optional Latin translation feature
+	##   ex: ./ttyRosary -v
+	##   ex: ./gtkRosary -v
 
 ttyRosary: my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o mainTTY.o
 	## english and latin
 	gcc my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o mainTTY.o -ljson-c -o "ttyRosary"
+	#
+
+gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o
+	## GTK UI english and latin
+	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o $(CFLAGS) -ljson-c -o "gtkRosary"
 	#
 
 ttyRosary_english: my_calendar.o my_csv_structs.o my_tty_ui.o mainTTY_nab.o
@@ -19,18 +28,13 @@ ttyRosary_latin: my_calendar.o my_json_structs.o my_tty_ui.o mainTTY_vulgate.o
 	gcc my_calendar.o my_json_structs.o my_tty_ui.o mainTTY_vulgate.o -ljson-c -o "ttyRosary_latin"
 	#
 
-gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o
-	## GTK UI english
-	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o $(CFLAGS) -ljson-c -o "gtkRosary"
-	#
-
 gtkRosary_english: mainGtk3_nab.o my_calendar.o my_csv_structs.o my_gtk3_api.o
 	## GTK UI english
 	$(CC) mainGtk3_nab.o my_calendar.o my_csv_structs.o my_gtk3_api.o $(CFLAGS) -o "gtkRosary_english"
 	#
 
 gtkRosary_latin: mainGtk3_vulgate.o my_calendar.o my_json_structs.o my_gtk3_api.o
-	## GTK UI english
+	## GTK UI latin
 	$(CC) mainGtk3_vulgate.o my_calendar.o my_json_structs.o my_gtk3_api.o $(CFLAGS) -ljson-c -o "gtkRosary_latin"
 	#
 
