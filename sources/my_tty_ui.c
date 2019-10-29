@@ -211,6 +211,8 @@ void splashPage(int desiredDispLen) {
 
 void infoPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 	// display intro and instructions
+	char *season = stringLiturgicalSeason();
+	char *feast = stringFeast();
 	char *aboutString ="\tThis program is a scripture rosary for the command line interface (CLI). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible (CSV files), and Latin readings are quoted from the Vulgate Bible (JSON file). Additional enclosed readings are curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested for use in BASH.";
 
 	int titleLabelLength = (int)strlen(titleLabel);
@@ -231,7 +233,7 @@ void infoPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 
 	borderCharPrintF(":", desiredDispLen);
 
-	printf("\n\n Today is %s, therefore the mystery of the day is the %s Mystery.\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo));
+	printf("\n\n Today's %s mystery is the %s Mystery. ( %s / %s )\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo), season, feast);
 
 	borderCharPrintF(":", desiredDispLen);
 	printf("\n\n press [any key] to continue ... ");
