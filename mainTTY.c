@@ -75,18 +75,16 @@ int main( int argc, char **argv ) {
 	system("stty cbreak");
 
 	splashPage(desiredDispLen);
-
 	infoPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
 
 	// UI Loop
 
 	while (navigtionPosition <= 315) {
-		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct,
-		navigtionPosition); 						// update query
+		// update query
+		updateDisplayVariablesStruct(&rosary_db_struct, &queryViewStruct, navigtionPosition);
 
 		// display
 		desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
-		//clearScreen(IS_LINUX); 							// clear screen
 		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel);
 
 		// Navigation Input & Accumulator

@@ -354,8 +354,10 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 	if ( segment_whole == 10 ) {
 		historyDots = (queryViewStruct.decadeNo * 10) - segment_whole;
 		trailingDots = 50 - (segment_whole * queryViewStruct.decadeNo);
-	} else {
+	} else if ( segment_whole == 7 ) {
 		trailingDots = 50 - segment_whole;
+	} else {
+		historyDots = 48;
 	}
 
 	clearScreen(1); // posix
@@ -402,9 +404,9 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 		borderCharPrintF(".", historyDots);
 	} else {
 		printf("\n Segment Progress\t %d / %d\t\t", segment_part, segment_whole);
+		borderCharPrintF(".", historyDots);
 	}
 	printf("[ ");
-
 
 	borderCharPrintF("o", segment_part);
 	borderCharPrintF("-", segment_whole - segment_part);
