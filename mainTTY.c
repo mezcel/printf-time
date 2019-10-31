@@ -22,6 +22,7 @@
 #include "headers/my_tty_ui.h"
 
 // flag for POSIX specific functions, intended for later cross platform dev
+// Not used in this version
 int IS_LINUX = 1;
 
 int main( int argc, char **argv ) {

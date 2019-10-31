@@ -174,6 +174,7 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength, int m
 
 void splashPage(int desiredDispLen) {
 	int strLength, center;
+	int IS_LINUX = 1;
 
 	char *title = "Scriptural Rosary";
 	char *author = "by Mezcel";
@@ -206,7 +207,7 @@ void splashPage(int desiredDispLen) {
 	printf("\n\n press [any key] to continue ... ");
 
 	getchar();	// pause for keyboard input
-	clearScreen(1); // posix
+	clearScreen(IS_LINUX); // posix
 }
 
 void infoPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
@@ -302,6 +303,7 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 }
 
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel) {
+	int IS_LINUX = 1;
 	// Render all rosary bead content onto the screen
 	int minFruitsRow = 3,
 		minBackgroundRows = 4,
@@ -360,7 +362,7 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 		historyDots = 48;
 	}
 
-	clearScreen(1); // posix
+	clearScreen(IS_LINUX); // posix
 
 	// header
 
@@ -391,8 +393,13 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 	borderCharPrintF(":", 3);
 
 	printf("\n\n Decade Counter\t\t %d / %d\t\t[ ", queryViewStruct.decadeNo, decade_flag);
-	borderCharPrintF("o", queryViewStruct.decadeNo);
-	borderCharPrintF("-", 5 - queryViewStruct.decadeNo);
+	if (queryViewStruct.mysteryPercent != 50) {
+		borderCharPrintF("o", queryViewStruct.decadeNo);
+		borderCharPrintF("-", 5 - queryViewStruct.decadeNo);
+	} else {
+		borderCharPrintF("o", 5);
+		borderCharPrintF("-", 0);
+	}
 	printf(" ]");
 
 	if ( segment_whole == 10 ) {
