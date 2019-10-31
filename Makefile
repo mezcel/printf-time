@@ -23,18 +23,6 @@ gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_a
 
 ## Compile binary libraries
 
-debian:
-	## Dependencies for Debian 9 (Stretch) or later
-	sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3
-	sudo apt install -y glade
-	#
-
-archlinux:
-	## Dependencies for Archlinux
-	sudo pacman -Sy base base-devel gcc gtk3
-	# sudo pacman -Sy glade
-	#
-
 my_calendar.o: sources/my_calendar.c headers/my_calendar.h
 	## compile and build "my_calendar.c"
 	gcc -c sources/my_calendar.c
@@ -68,6 +56,20 @@ mainTTY.o: mainTTY.c  my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui
 mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_gtk3_api.o
 	## compile and build "mainGtk3.c"
 	gcc -c mainGtk3.c $(CFLAGS)
+	#
+
+## Linux dependancies
+
+debian:
+	## Dependencies for Debian 9 (Stretch) or later
+	sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3
+	# sudo apt install -y glade
+	#
+
+archlinux:
+	## Dependencies for Archlinux
+	sudo pacman -Sy base base-devel gcc gtk3
+	# sudo pacman -Sy glade
 	#
 
 clean:
