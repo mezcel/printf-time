@@ -17,7 +17,7 @@ CSV Database:
 | Navigate using Vi kebindings or gamer keys. | The user navigates with push-button widget objects. |
 | outdated screenshot was taken on a Debian WLS | outdated screenshot was taken on a i686 Debian |
 | ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
-| [new-ish animated cli demo](https://asciinema.org/a/278462) ```from v0.3.5``` | - |
+| [new-ish animated cli demo](https://asciinema.org/a/278468) ```from v0.3.5``` | - |
 
 JSON Database:
 
@@ -139,4 +139,4 @@ gcc "main.c" -o "my-executable-file.exe "
 
 ## General Demo
 
-[![asciicast](https://asciinema.org/a/278462.svg)](https://asciinema.org/a/278462)
+[![asciicast](https://asciinema.org/a/278462.svg)](https://asciinema.org/a/278468)
