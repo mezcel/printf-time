@@ -17,7 +17,7 @@ CSV Database:
 | Navigate using Vi kebindings or gamer keys. | The user navigates with push-button widget objects. |
 | outdated screenshot was taken on a Debian WLS | outdated screenshot was taken on a i686 Debian |
 | ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
-| [outdated animated cli demo](https://asciinema.org/a/266585) ```from the depreciated v0.3.3``` | - |
+| [new-ish animated cli demo](https://asciinema.org/a/278462) ```from v0.3.5``` | - |
 
 JSON Database:
 
@@ -98,13 +98,12 @@ Previous versions were:
 
 ### Project Status:
 
-#### v0.3.4.? (current development)
+#### v0.3.5.? (current development)
 
 * Tested on Linux and WLS, I have not yet tested it on a Mac or MinGW
-* Refactoring object libraries
-* Gradually making documentation readable
-* I intend to go back and merge the 3 versions so their libraries overalap better with each other..
-* My Makefile also includes isolated build options
+* The Makefile now includes isolated build options
+* Progressbar is now more visually informative in the TTY version
+* Need to go back and clean up the feast day calculator
 
 ##### Runtime Environment
 
@@ -135,3 +134,9 @@ i686-w64-mingw32-gcc "main.c" -o "my-executable-file.exe"
 ## Compile in Win10 with MinGW installed
 gcc "main.c" -o "my-executable-file.exe "
 ```
+
+---
+
+## General Demo
+
+[![asciicast](https://asciinema.org/a/278462.svg)](https://asciinema.org/a/278462)
