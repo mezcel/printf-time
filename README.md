@@ -15,7 +15,7 @@ CSV Database:
 | English CLI Version | English GTK3 Version |
 | --- | --- |
 | Navigate using Vi kebindings or gamer keys. | The user navigates with push-button widget objects. |
-| outdated screenshot was taken on a Debian WLS | outdated screenshot was taken on a i686 Debian |
+| outdated screenshot was taken on a Debian WLS (v0.2.?) | outdated screenshot was taken on a i686 Debian (v0.2.?) |
 | ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
 | [new-ish animated cli demo](https://asciinema.org/a/278468) ```from v0.3.5``` | - |
 
