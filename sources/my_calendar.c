@@ -36,8 +36,8 @@ char *retrunMonthName(int indexNo) {
 }
 
 char *retrunFeastDayName(int indexNo) {
-	char * FEAST_DAY_ARRAY[] = { "advent_start", "immaculate_conception_mary", "christmas_day", "solemnity_of_mary", "epiphany",
-		"jesus_baptism", "ash_wednesday", "holy_thursday", "good_friday", "good_saturday", "easter_sunday", "pentacost", "assension_of_jesus", "all_saints_day", "ordinary_day" };
+	char * FEAST_DAY_ARRAY[] = { "Advent Start", "Immaculate Conception of Mary", "Christmas Day", "Solemnity of Mary", "Epiphany",
+		"Jesus's Baptism", "Ash Wednesday", "Holy Thursday", "Good Friday", "Good Saturday", "Easter Sunday", "Pentacost", "Assension of Jesus", "All Saints Day", "Ordinary Day" };
 	return FEAST_DAY_ARRAY[indexNo];
 }
 
@@ -166,14 +166,14 @@ void shiftJesusBaptism(struct tm *tmDate) {
 }
 
 int isFeastDay(struct tm tmNow, struct tm tmThen) {
-	int intFlag;
+	int intFlag = 0;
 	double returnSeconds = difftime(mktime(&tmNow), mktime(&tmThen));
 	double days = returnSeconds / (24 * 3600);
 
-	if (days != 0) {
-		intFlag = 0;
-	} else {
+	if ((days >= 0) && (days < 1)) {
 		intFlag = 1;
+	} else {
+		intFlag = 0;
 	}
 
 	return intFlag;
@@ -339,9 +339,13 @@ char *stringFeast() {
 			if(isFeast) {feastFlag = 12; break;}
 			break;
 		default:
+			// ordinary time feasts
 			isFeast = isFeastDay(todaysDate, all_saints_day);
-			if(isFeast) {feastFlag = 13; break;}
-			if(isFeast == 0) {feastFlag = 14; break;}
+			if(isFeast) {
+				feastFlag = 13; break;
+			} else if(isFeast == 0) {
+				feastFlag = 14; break;
+			}
 			break;
 	}
 
