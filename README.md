@@ -1,48 +1,32 @@
 # printf-time
 
-	this repo was initially a feast day calulator, but then it evolved into a rosary app.
+For use on Linux or WLS, dev branch: ```v0.3.5```
 
-dev branch: ```v0.3.5```
-
-### About:
+## About:
 
 A scripture rosary witten in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
 
-### GUI Options:
+## GUI Options:
 
-CSV Database:
+> This app can be run within a terminal or a desktop environment gui.
 
 | English CLI Version | English GTK3 Version |
-| --- | --- |
+| :---: | :---: |
 | Navigate using Vi kebindings or gamer keys. | The user navigates with push-button widget objects. |
-| outdated screenshot was taken on a Debian WLS (v0.2.?) | outdated screenshot was taken on a i686 Debian (v0.2.?) |
-| ![tty-screenshot](img/tty-screenshot.gif) | ![screenshot](img/screenshot.gif) |
-| [new-ish animated cli demo](https://asciinema.org/a/278468) ```from v0.3.5``` | - |
-
-JSON Database:
-
-| Latin CLI Version |
-| --- |
-| Same UI as the English version, but it uses the json-c library |
+| outdated screenshot was taken on a Debian WLS (v0.2.?) ![tty-screenshot](img/tty-screenshot.gif) | outdated screenshot was taken on a i686 Debian (v0.2.?) ![gtk-screenshot](img/screenshot.gif) |
+| [A newer-ish animated demo](https://asciinema.org/a/278468) ```from v0.3.5``` i686 Debian [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | - |
 
 ---
 
-### Compile on Debian
+## Compile on Debian
 
 ```sh
-## Makefile flags ##
+## build and compile everything
 
-# build everything
 make
 
-# build one of the TTY versions
-make ttyRosary
-
-# build one of the GTK versions
-make gtkRosary
-
-# reset/clear previous object builds
-make clean
+## the following executan;e binaries will be generated:
+## ttyRosary and gtkRosary
 ```
 
 ### Run
@@ -76,7 +60,7 @@ sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 
 ---
 
-### Dev. Evolution:
+# Development Evolution:
 
 This is the 5th program language version in my Rosary App series.
 
@@ -96,22 +80,22 @@ Previous versions were:
 
 ---
 
-### Project Status:
+## Project Status:
 
-#### v0.3.5.? (current development)
+### v0.3.5.? (current development)
 
 * Tested on Linux and WLS, I have not yet tested it on a Mac or MinGW
 * The Makefile now includes isolated build options
 * Progressbar is now more visually informative in the TTY version
 * Need to go back and clean up the feast day calculator
 
-##### Runtime Environment
+### Runtime Environment
 
 * [MinGW](http://www.mingw.org/) or Linux
 * Command line interface (CLI) / Shell Terminal
 * Xorg (Debian linux) or Xlaunch (Win10/WLS)
 
-##### Developer Environment (debug/mod)
+### Developer Environment (debug/mod)
 
 * [MinGW](http://www.mingw.org/) or Linux (x86 or x64)
 	* this app was developed on Debian WLS and tested on a real Linux
@@ -134,9 +118,3 @@ i686-w64-mingw32-gcc "main.c" -o "my-executable-file.exe"
 ## Compile in Win10 with MinGW installed
 gcc "main.c" -o "my-executable-file.exe "
 ```
-
----
-
-## General Demo
-
-[![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468)
