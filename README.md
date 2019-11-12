@@ -13,7 +13,7 @@ For use on Linux or WLS, dev branch: ```v0.3.5```
 
 ## About:
 
-A scripture rosary witten in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
+A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
 
 ## GUI Options:
 
