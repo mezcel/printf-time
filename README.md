@@ -1,3 +1,12 @@
+<!-- pandoc formatting
+title: 'printf-time'
+subtitle: 'A scripture rosary written in C for Linux OS's'
+author: 'Mezcel'
+date: 'Jan 1, 2019'
+description: 'Scripture rosary using English and Latin Bible text.'
+lang: en-US
+-->
+
 # printf-time
 
 For use on Linux or WLS, dev branch: ```v0.3.5```
@@ -13,8 +22,8 @@ A scripture rosary witten in C/GCC for the GTK and the TTY. It uses both a CSV a
 | English CLI Version | English GTK3 Version |
 | :---: | :---: |
 | Navigate using Vi kebindings or gamer keys. | The user navigates with push-button widget objects. |
-| outdated screenshot was taken on a Debian WLS (v0.2.?) ![tty-screenshot](img/tty-screenshot.gif) | outdated screenshot was taken on a i686 Debian (v0.2.?) ![gtk-screenshot](img/screenshot.gif) |
-| [A newer-ish animated demo](https://asciinema.org/a/278468) ```from v0.3.5``` i686 Debian [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | - |
+| Outdated screenshot was taken on a Debian WLS (v0.2.?) ![tty-screenshot](img/tty-screenshot.gif) | Outdated screenshot was taken on a i686 Debian (v0.2.?) ![gtk-screenshot](img/screenshot.gif) |
+| [A newer-ish animated demo](https://asciinema.org/a/278468) on a i686 Debian (v0.3.5) [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | - |
 
 ---
 
@@ -25,21 +34,21 @@ A scripture rosary witten in C/GCC for the GTK and the TTY. It uses both a CSV a
 
 make
 
-## the following executan;e binaries will be generated:
-## ttyRosary and gtkRosary
+## the following executable binaries will be generated:
+## 	ttyRosary and gtkRosary
 ```
 
 ### Run
 ```sh
 ## TTY App
 
-./ttyRosary		## NAB English
-./ttyRosary -v	## Vulgate Latin
+./ttyRosary		## NAB English, using a CSV database
+./ttyRosary -v		## Vulgate Latin, using a JSON database
 
 ## GTK App
 
 ./gtkRosary		## NAB English
-./gtkRosary -v	## Vulgate Latin
+./gtkRosary -v		## Vulgate Latin
 ```
 
 ### Dependencies
@@ -48,13 +57,15 @@ If you get a compile error from the make build: ```#include <json-c/json.h>```, 
 
 ```sh
 ## Get dependencies for Debian 9 or newer
-# used for initial 1st-time setup
+
 make debian
 
 ## debian libjson-c dependencies
+
 sudo apt install autotools-dev debhelper dh-autoreconf dh-exec
 
 ## debian stretch (libs): 0.12.1-1.1
+
 sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 ```
 
@@ -112,9 +123,11 @@ Win10
 
 ```sh
 ## Compile in Debian and make it usable on a Win10
+
 sudo apt install mingw-w64
 i686-w64-mingw32-gcc "main.c" -o "my-executable-file.exe"
 
 ## Compile in Win10 with MinGW installed
+
 gcc "main.c" -o "my-executable-file.exe "
 ```
