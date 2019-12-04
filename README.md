@@ -57,16 +57,16 @@ If you get a compile error from the make build: ```#include <json-c/json.h>```, 
 
 ```sh
 ## Get dependencies for Debian 9 or newer
-
 make debian
 
 ## debian libjson-c dependencies
-
 sudo apt install autotools-dev debhelper dh-autoreconf dh-exec
 
-## debian stretch (libs): 0.12.1-1.1
-
+## debian stretch (libs)
 sudo apt install libjson-c-dev libjson-c-doc libjson-c3
+
+## man page (manual intervention required)
+sudo apt install groff pandoc
 ```
 
 ---

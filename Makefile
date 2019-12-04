@@ -2,7 +2,7 @@
 CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: ttyRosary gtkRosary
+all: ttyRosary gtkRosary manpage
 	## ###################################################################
 	## Use the -v flag to run using the optional Latin translation feature
 	##   ex: ./ttyRosary -v
@@ -71,6 +71,14 @@ archlinux:
 	sudo pacman -Sy base base-devel gcc gtk3
 	# sudo pacman -Sy glade
 	#
+
+manpage: .manpage.md
+	## generate a man file with Pandoc from an Rmarkdown file
+	## global man page
+	# pandoc .manpage.md -s -t man > /usr/bin/printf-time
+	## local man page
+	pandoc .manpage.md -s -t man > printf-time
+
 
 clean:
 	## removing any precompiled binaries

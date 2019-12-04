@@ -70,7 +70,7 @@ Render a man page from a markdown.
 Must have pandoc installed.
 .TP
 .B \f[B]Example:\f[]
-pandoc .manpage_markdown.md \-s \-t man > /usr/bin/printf_time
+pandoc .manpage.md \-s \-t man > /usr/bin/printf_time
 .RS
 .RE
 .SH GIT
