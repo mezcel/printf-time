@@ -68,7 +68,7 @@ debian:
 
 archlinux:
 	## Dependencies for Archlinux
-	sudo pacman -Sy base base-devel gcc gtk3
+	sudo pacman -Sy --needed base base-devel gcc gtk3
 	# sudo pacman -Sy glade
 	#
 
