@@ -234,7 +234,10 @@ void infoPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
 
 	borderCharPrintF(":", desiredDispLen);
 
-	printf("\n\n Today's %s mystery is the %s Mystery. ( %s / %s )\n\n", retrunWeekdayName(weekdayNo), returnWeekdayMystery(weekdayNo), season, feast);
+	printf("\n\n Today's %s mystery is the %s Mystery. ( %s / %s )\n\n",
+			retrunWeekdayName(weekdayNo),
+			returnWeekdayMystery(weekdayNo),
+			season, feast);
 
 	borderCharPrintF(":", desiredDispLen);
 	printf("\n\n press [any key] to continue ... ");

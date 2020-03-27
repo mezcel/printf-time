@@ -2,12 +2,26 @@
 CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: ttyRosary gtkRosary manpage
+all: notes ttyRosary gtkRosary manpage
+
+
+## Notes
+
+notes:
+	##
+	## Makefile note:
+	##
+	## Install dependencies:
+	##	sudo make debian
+	##	sudo make archlinux
+	##
 	## ###################################################################
 	## Use the -v flag to run using the optional Latin translation feature
 	##   ex: ./ttyRosary -v
 	##   ex: ./gtkRosary -v
 	## ###################################################################
+	##
+
 
 ## Main binaries
 
@@ -20,6 +34,7 @@ gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_a
 	## GTK UI english and latin
 	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o $(CFLAGS) -ljson-c -o "gtkRosary"
 	#
+
 
 ## Compile binary libraries
 
@@ -57,6 +72,7 @@ mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_tty_u
 	## compile and build "mainGtk3.c"
 	gcc -c mainGtk3.c $(CFLAGS)
 	#
+
 
 ## Linux dependancies
 
