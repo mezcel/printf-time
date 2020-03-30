@@ -50,6 +50,8 @@ void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
 
 			isFeast = isFeastDay(todaysDate, immaculate_conception_mary);
 			if(isFeast) {*feastFlag = 1; break;}
+
+			*feastFlag = 15; // generic seasonal day
 			break;
 		case 1:
 			isFeast = isFeastDay(todaysDate, christmas_day);
@@ -63,6 +65,8 @@ void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
 
 			isFeast = isFeastDay(todaysDate, jesus_baptism);
 			if(isFeast) {*feastFlag = 5; break;}
+
+			*feastFlag = 15; // generic seasonal day
 			break;
 		case 2:
 			isFeast = isFeastDay(todaysDate, ash_wednesday);
@@ -79,6 +83,8 @@ void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
 
 			isFeast = isFeastDay(todaysDate, easter_sunday);
 			if(isFeast) {*feastFlag = 10; break;}
+
+			*feastFlag = 15; // generic seasonal day
 			break;
 		case 3:
 			isFeast = isFeastDay(todaysDate, pentacost);
@@ -86,6 +92,8 @@ void intializeCalendar(struct tm todaysDate, int *seasonFlag, int *feastFlag) {
 
 			isFeast = isFeastDay(todaysDate, assension_of_jesus);
 			if(isFeast) {*feastFlag = 12; break;}
+
+			*feastFlag = 15; // generic seasonal day
 			break;
 		default:
 			isFeast = isFeastDay(todaysDate, all_saints_day);
