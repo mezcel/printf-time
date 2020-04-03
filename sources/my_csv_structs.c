@@ -5,8 +5,6 @@
 #include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
 #include <stdio.h>
 #include <string.h>
-#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ
-#include <unistd.h> 	// STDOUT_FILENO
 
 #include "../headers/my_file_to_struct.h"
 
@@ -223,7 +221,9 @@ void csvToStruct_rosaryBead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
 	/*
 	* Copy text string value into struct char var
 	* */
-	char scvline[ LINE_MAX_LEN + 1 ];
+	//char scvline[ LINE_MAX_LEN + 1 ];
+	char *scvline = malloc(LINE_MAX_LEN + 1);
+
 	int counter = 0;
 	int arrayIndex = 0;
 	rosaryBead_t *record_field;
@@ -252,13 +252,16 @@ void csvToStruct_rosaryBead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
 	// destroy temp string memory
 	free(record_field);
 	fclose(csvFile);
+	free(scvline);
 }
 
 void csvToStruct_bead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	char scvline[ LINE_MAX_LEN + 1 ];
+	//char scvline[ LINE_MAX_LEN + 1 ];
+	char *scvline = malloc(LINE_MAX_LEN + 1);
+
 	int counter = 0;
 	int arrayIndex = 0;
 	bead_t *record_field;
@@ -280,13 +283,16 @@ void csvToStruct_bead(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fil
 	//free(record_field -> beadType);//
 	free(record_field);
 	fclose(csvFile);
+	free(scvline);
 }
 
 void csvToStruct_book(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	char scvline[ LINE_MAX_LEN + 1 ];
+	//char scvline[ LINE_MAX_LEN + 1 ];
+	char *scvline = malloc(LINE_MAX_LEN + 1);
+
 	int counter = 0;
 	int arrayIndex = 0;
 	book_t *record_field;
@@ -310,13 +316,16 @@ void csvToStruct_book(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fil
 	//free(record_field -> library);//
 	//free(record_field);//
 	fclose(csvFile);
+	free(scvline);
 }
 
 void csvToStruct_decade(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	char scvline[ LINE_MAX_LEN + 1 ];
+	//char scvline[ LINE_MAX_LEN + 1 ];
+	char *scvline = malloc(LINE_MAX_LEN + 1);
+
 	int counter = 0;
 	int arrayIndex = 0;
 	decade_t *record_field;
@@ -344,13 +353,16 @@ void csvToStruct_decade(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *f
 	//free(record_field -> infoRefference);//
 	free(record_field);
 	fclose(csvFile);
+	free(scvline);
 }
 
 void csvToStruct_message(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	char scvline[ LINE_MAX_LEN + 1 ];
+	//char scvline[ LINE_MAX_LEN + 1 ];
+	char *scvline = malloc(LINE_MAX_LEN + 1);
+
 	int counter = 0;
 	int arrayIndex = 0;
 	message_t *record_field;
@@ -372,13 +384,16 @@ void csvToStruct_message(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	//free(record_field -> mesageText);//
 	free(record_field);
 	fclose(csvFile);
+	free(scvline);
 }
 
 void csvToStruct_mystery(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	char scvline[ LINE_MAX_LEN + 1 ];
+	//char scvline[ LINE_MAX_LEN + 1 ];
+	char *scvline = malloc(LINE_MAX_LEN + 1);
+
 	int counter = 0;
 	int arrayIndex = 0;
 	mystery_t *record_field;
@@ -401,13 +416,16 @@ void csvToStruct_mystery(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	//free(record_field -> mysteryName);//
 	free(record_field);
 	fclose(csvFile);
+	free(scvline);
 }
 
 void csvToStruct_prayer(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	char scvline[ LINE_MAX_LEN + 1 ];
+	//char scvline[ LINE_MAX_LEN + 1 ];
+	char *scvline = malloc(LINE_MAX_LEN + 1);
+
 	int counter = 0;
 	int arrayIndex = 0;
 	prayer_t *record_field;
@@ -431,13 +449,16 @@ void csvToStruct_prayer(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *f
 	//free(record_field -> prayerText);//
 	free(record_field);
 	fclose(csvFile);
+	free(scvline);
 }
 
 void csvToStruct_scripture(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath) {
 	/*
 	* Copy text string value into struct char var
 	* */
-	char scvline[ LINE_MAX_LEN + 1 ];
+	//char scvline[ LINE_MAX_LEN + 1 ];
+	char *scvline = malloc(LINE_MAX_LEN + 1);
+
 	int counter = 0;
 	int arrayIndex = 0;
 	scripture_t *record_field;
@@ -462,6 +483,7 @@ void csvToStruct_scripture(rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char
 	//free(record_field -> scriptureText);//
 	free(record_field);
 	fclose(csvFile);
+	free(scvline);
 }
 
 void make_struct_db_csv(rosary_db_t *rosary_db_struct, char *csv_path_array[8]) {
