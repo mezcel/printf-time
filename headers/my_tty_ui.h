@@ -45,9 +45,9 @@ int pressKeyContinue(int navigtionPosition, int isLinux, int weekdayNo, int desi
 void clearScreen(int isLinux);
 void borderCharPrintF(char *charSymbol, int borderWidth);
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength, int minRows);
-void splashPage(int desiredDispLen);
+void splashPage(int desiredDispLen, int isLinux);
 void infoPage(int weekdayNo, int desiredDispLen, char *titleLabel);
 void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct, int navigtionPosition);
-void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel);
+void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel, int isLinux);
 
 #endif

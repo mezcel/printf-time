@@ -5,8 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
 #include <string.h>
-#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
-#include <unistd.h> 	// STDOUT_FILENO
+
+#ifdef __unix__
+	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
+	#include <unistd.h> 	// STDOUT_FILENO
+#endif
 
 #include "../headers/my_calendar.h"
 #include "../headers/my_file_to_struct.h"
@@ -172,9 +175,8 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength, int m
 	}
 }
 
-void splashPage(int desiredDispLen) {
+void splashPage(int desiredDispLen, int isLinux) {
 	int strLength, center;
-	int IS_LINUX = 1;
 
 	char *title = "Scriptural Rosary";
 	char *author = "by Mezcel";
@@ -207,7 +209,7 @@ void splashPage(int desiredDispLen) {
 	printf("\n\n press [any key] to continue ... ");
 
 	getchar();	// pause for keyboard input
-	clearScreen(IS_LINUX); // posix
+	clearScreen(isLinux); // posix
 }
 
 void infoPage(int weekdayNo, int desiredDispLen, char *titleLabel) {
@@ -305,8 +307,7 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 }
 
-void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel) {
-	int IS_LINUX = 1;
+void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel, int isLinux) {
 	// Render all rosary bead content onto the screen
 	int minFruitsRow = 3,
 		minBackgroundRows = 4,
@@ -365,7 +366,7 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 		historyDots = 48;
 	}
 
-	clearScreen(IS_LINUX); // posix
+	clearScreen(isLinux); // optimized for posix
 
 	// header
 
