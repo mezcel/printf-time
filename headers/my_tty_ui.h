@@ -42,6 +42,8 @@ int returnScreenWidth(int isLinux);
 int initialMystery(int weekdayNo);
 int pressKeyContinue(int navigtionPosition, int isLinux, int weekdayNo, int desiredDispLen);
 
+void deactivateEcho(int isLinux);
+void activateEcho(int isLinux);
 void clearScreen(int isLinux);
 void borderCharPrintF(char *charSymbol, int borderWidth);
 void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength, int minRows);

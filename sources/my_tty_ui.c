@@ -6,26 +6,16 @@
 #include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
 #include <string.h>
 
-#ifdef __unix__
-	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
-	#include <unistd.h> 	// STDOUT_FILENO
-#endif
-
 #include "../headers/my_calendar.h"
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
-int returnScreenWidth(int isLinux) {
-	// return a number which represents how long/wide the screen text should be
-	int col_length = 85;	// 85 chars wide
-
-	if(isLinux) {
-		struct winsize w;						// terminal tty info
-		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);	// tty col/row
-		col_length =  w.ws_col;
-	}
-	return col_length;
-}
+// Seperate files used to minimze errors when compiling on Win10
+#ifdef __unix__
+	#include "../sources/my_tty_ui_posix.c"
+#else
+	#include "../sources/my_tty_ui_win.c"
+#endif
 
 int initialMystery(int weekdayNo) {
 	// return the start of a mystery sequence depending on which day of the week it is
@@ -136,7 +126,8 @@ void multiLinePrintF(char *labelChars, char *strIn, int desiredLineLength, int m
 	} else { // longer than one line
 
 		// input string to an array of words
-		char tmpStringArray[inputLength];
+		//char tmpStringArray[inputLength];
+		char *tmpStringArray = malloc(inputLength + 1);
 		strcpy(tmpStringArray, strIn);
 		char *delimiter = " ";
 		char *token = strtok(tmpStringArray, delimiter); // array of words

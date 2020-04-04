@@ -50,6 +50,7 @@ int main( int argc, char **argv ) {
 
 	if ( nabFlag == 0 ) {
 		// Vulgate JSON Database
+		// Used only by POSIX and Linux environments
 		char *filePath = "database/json/rosaryJSON-vulgate.json";
 
 		make_struct_db_json(&rosary_db_struct, filePath); // populate rosary_db_t
@@ -75,9 +76,7 @@ int main( int argc, char **argv ) {
 
 	int desiredDispLen = returnScreenWidth(IS_LINUX);	// linux terminal width
 	clearScreen(IS_LINUX);								// clear screen
-
-	system("stty -echo");
-	system("stty cbreak");
+	deactivateEcho(IS_LINUX);							// deactivate tty echo
 
 	splashPage(desiredDispLen, IS_LINUX);
 	infoPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
@@ -96,8 +95,7 @@ int main( int argc, char **argv ) {
 		navigtionPosition = pressKeyContinue(navigtionPosition, IS_LINUX, weekdayNo, desiredDispLen);
 	}
 
-	system("stty echo"); // Make echo work
-	system("stty -cbreak");// go to COOKED mode
+	activateEcho(IS_LINUX);								// Restore tty echo
 
 	return 0;
 }
