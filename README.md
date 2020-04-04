@@ -10,7 +10,7 @@ lang: en-US
 # printf-time
 
 Developed for use on Linux or WLS.
-* I worked in compiling compatibility with Win10 Visual Studio using the ```CL```. My Win10 configurations offer fewer functional features than the "for Debian Linux" settings.
+* Only the TTY feature works on Win10 with Visual Studio using the ```CL```. The UI controls are limited where only the ```enter``` and ```q``` keys works, and the user can only navigate forward.
 
 ## About:
 
