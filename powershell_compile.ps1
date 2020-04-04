@@ -1,12 +1,10 @@
-<#
-    Manual compile on Win10:
-        This will compile and build the cli terminal app on Win10 using Powershell.
-        Must have Visual Studio installed with C++ in order to compile.
-#>
+## Manual compile on Win10:
+## This will compile and build the cli terminal app on Win10 using Powershell.
+## Must have Visual Studio installed with C++ in order to compile.
 
 ## clean previous builds
-del *.obj
-del *.exe
+Remove-Item *.obj
+Remove-Item *.exe
 
 ## Compile and build object modules
 cl sources\my_calendar.c
