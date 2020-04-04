@@ -1,6 +1,7 @@
 <#
-    Manual compile:
+    Manual compile on Win10:
         This will compile and build the cli terminal app on Win10 using Powershell.
+        Must have Visual Studio installed with C++ in order to compile.
 #>
 
 ## clean previous builds
