@@ -15,15 +15,18 @@
 #include <string.h>		// strcmp()
 #include <time.h>		// After year 2038, only use an x64 compiler
 #include <sys/stat.h>	// used for file size
-#include <json-c/json.h>	// parse json db
+
+#ifdef __unix__
+	#include <json-c/json.h>	// parse a json db
+	//#int IS_LINUX = 1;
+	#define IS_LINUX 1
+#else
+	#define IS_LINUX 0
+#endif
 
 #include "headers/my_calendar.h"
 #include "headers/my_file_to_struct.h"
 #include "headers/my_tty_ui.h"
-
-// flag for POSIX specific functions, intended for later cross platform dev
-// Not used in this version
-int IS_LINUX = 1;
 
 int main( int argc, char **argv ) {
 
@@ -41,6 +44,7 @@ int main( int argc, char **argv ) {
 
 	int nabFlag = 1;
 	if ( argc == 2 ) {
+		// app input flag
 		nabFlag = strcmp( "-v", argv[1] );
 	}
 
@@ -75,7 +79,7 @@ int main( int argc, char **argv ) {
 	system("stty -echo");
 	system("stty cbreak");
 
-	splashPage(desiredDispLen);
+	splashPage(desiredDispLen, IS_LINUX);
 	infoPage(weekdayNo, desiredDispLen, titleLabel);	// display splash
 
 	// UI Loop
@@ -86,7 +90,7 @@ int main( int argc, char **argv ) {
 
 		// display
 		desiredDispLen = returnScreenWidth(IS_LINUX); 	// screen width
-		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel);
+		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel, IS_LINUX);
 
 		// Navigation Input & Accumulator
 		navigtionPosition = pressKeyContinue(navigtionPosition, IS_LINUX, weekdayNo, desiredDispLen);
