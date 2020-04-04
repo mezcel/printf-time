@@ -16,7 +16,7 @@ notes:
 	##	sudo make archlinux
 	##
 	## ###################################################################
-	## Use the -v flag to run using the optional Latin translation feature
+	## Use the "-v" flag to use the optional Latin translation feature
 	##   ex: ./ttyRosary -v
 	##   ex: ./gtkRosary -v
 	## ###################################################################

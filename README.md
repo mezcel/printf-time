@@ -9,7 +9,8 @@ lang: en-US
 
 # printf-time
 
-For use on Linux or WLS, dev branch: ```v0.3.5```
+Developed for use on Linux or WLS.
+* I worked in compiling compatibility with Win10 Visual Studio using the ```CL```. My Win10 configurations offer fewer functional features than the "for Debian Linux" settings.
 
 ## About:
 
@@ -69,6 +70,23 @@ sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 sudo apt install groff pandoc
 ```
 
+## Compile on Win10
+* [Configure VS Code for Microsoft C++](https://code.visualstudio.com/docs/cpp/config-msvc)
+* [Visual Studio](https://visualstudio.microsoft.com/downloads/#other)
+
+```ps1
+## clean previous builds
+del *.obj *.exe
+
+## Compile and build
+cl sources\my_calendar.c
+cl sources\my_csv_structs.c
+cl sources\my_tty_ui.c
+cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj
+
+## run
+.\mainTTY.exe
+```
 ---
 
 # Development Evolution:
