@@ -9,13 +9,19 @@ lang: en-US
 
 # printf-time
 
-Developed for use on Linux or WLS.
-* Only the TTY feature works on Win10 with Visual Studio using the ```CL```. The UI controls are limited where only the ```enter``` and ```q``` keys works, and the user can only navigate forward.
-
 ## About:
 
 A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
 
+Developed for use on Linux or WLS.
+* All availble features work on Debian Linux and WLS.
+* Uses [json-c](https://github.com/json-c/json-c) from the Debian repo.
+	* Only the latin translation needs json.
+
+* Also works on Win10 with Visual Studio C++ installed.
+	* The Gtk feature does not work outside of WLS on Win10.
+	* The compiled ```.exe``` works in Win10 Powershell.
+	* The UI is limited where only the ```enter``` and ```q``` keys works, and the user can only navigate forward. No changes occur when the screen is resized.
 ## GUI Options:
 
 > This app can be run within a terminal or a desktop environment gui.
@@ -113,16 +119,13 @@ Previous versions were:
 
 ## Project Status:
 
-### v0.3.5.? (current development)
+### v0.3.6.? (current development)
 
-* Tested on Linux and WLS, I have not yet tested it on a Mac or MinGW
-* The Makefile now includes isolated build options
-* Progressbar is now more visually informative in the TTY version
-* Need to go back and clean up the feast day calculator
+* Refactored the code to allow for Win10 compilation.
 
 ### Runtime Environment
 
-* [MinGW](http://www.mingw.org/) or Linux
+* Linux, [MinGW](http://www.mingw.org/) or Win10 Powershell with Visual Studio C++
 * Command line interface (CLI) / Shell Terminal
 * Xorg (Debian linux) or Xlaunch (Win10/WLS)
 
