@@ -1,12 +1,13 @@
 /*
  * my_json_structs.c
  * guidance: https://json-c.github.io/json-c/json-c-0.10/doc/html/json__object_8h.html
+ * sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3
  * */
 
 #include <stdio.h>
 #include <json-c/json.h>
-#include <sys/stat.h> // used for file size
-#include <json-c/json.h>
+#include <sys/stat.h> 		// used for file size
+#include <json-c/json.h>	// Debian Linux json-c library
 
 #include "../headers/my_file_to_struct.h"
 
