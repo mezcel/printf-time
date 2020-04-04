@@ -76,12 +76,14 @@ sudo apt install groff pandoc
 
 ```ps1
 ## clean previous builds
-del *.obj *.exe
+del *.obj
+del *.exe
 
 ## Compile and build
 cl sources\my_calendar.c
 cl sources\my_csv_structs.c
 cl sources\my_tty_ui.c
+
 cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj
 
 ## run
