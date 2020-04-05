@@ -82,8 +82,8 @@ sudo apt install groff pandoc
 
 ```ps1
 ## clean previous builds
-del *.obj
-del *.exe
+Remove-Item *.obj
+Remove-Item *.exe
 
 ## Compile and build
 cl sources\my_calendar.c
