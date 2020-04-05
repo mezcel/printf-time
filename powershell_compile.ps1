@@ -24,9 +24,9 @@ function makeClean {
 function makeBuild {
     Write-Host "Building ..."
     ## Compile and build object modules
-    cl sources\my_calendar.c
-    cl sources\my_csv_structs.c
-    cl sources\my_tty_ui.c
+    cl /c sources\my_calendar.c
+    cl /c sources\my_csv_structs.c
+    cl /c sources\my_tty_ui.c
 
     ## Build the executable file
     cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj
