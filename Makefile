@@ -58,7 +58,7 @@ my_tty_ui.o: sources/my_tty_ui.c headers/my_tty_ui.h my_calendar.o my_csv_struct
 	gcc -c sources/my_tty_ui.c
 	#
 
-my_gtk3_api.o: sources/my_gtk3_api.c headers/my_gtk3_api.h my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o
+my_gtk3_api.o: sources/my_gtk3_api.c headers/my_gtk3_api.h my_calendar.o my_csv_structs.o my_json_structs.o
 	## compile and build "my_gtk3_api.c"
 	gcc -c sources/my_gtk3_api.c $(CFLAGS)
 	#
@@ -68,7 +68,7 @@ mainTTY.o: mainTTY.c  my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui
 	gcc -c mainTTY.c
 	#
 
-mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_gtk3_api.o
+mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_api.o
 	## compile and build "mainGtk3.c"
 	gcc -c mainGtk3.c $(CFLAGS)
 	#
