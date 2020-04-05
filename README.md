@@ -49,12 +49,13 @@ make
 ./gtkRosary -v		## Vulgate Latin
 ```
 
-### Dependencies
+### Debian Dependencies
 
-If you get a compile error from the make build: ```#include <json-c/json.h>```, then use ```make debian``` to install potentially missing dependencies. This applies only to compilation on Debian based distros.
+> If you get a compile error from the make build: ```#include <json-c/json.h>```, then use ```make debian``` to install potentially missing dependencies.
+> It is assumed that Xorg and GTK are installed on the base system.
 
 ```sh
-## Get dependencies for Debian 9 or newer
+## Get dependencies for Debian 9 or newer using the Makefile
 make debian
 
 ## debian libjson-c dependencies
