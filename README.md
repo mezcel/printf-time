@@ -13,16 +13,7 @@ lang: en-US
 
 A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
 
-Developed for use on Linux or WLS.
-* All availble features work on Debian Linux and WLS.
-* Uses [json-c](https://github.com/json-c/json-c) and GTK+ from the Debian repo.
-	* Only the latin translation needs json.
 
-Minor development for Win10 compatability
-* Works on Win10 compiled with Visual Studio C++.
-	* No Json latin database.
-	* The Gtk feature does not work outside of WLS on Win10.
-	* The UI is limited and does not resize.
 
 ## GUI Options:
 
@@ -40,11 +31,9 @@ Minor development for Win10 compatability
 
 ```sh
 ## build and compile everything
+##	generate the following executables: ttyRosary and gtkRosary
 
 make
-
-## the following executable binaries will be generated:
-## 	ttyRosary and gtkRosary
 ```
 
 ### Run
@@ -71,14 +60,14 @@ make debian
 ## debian libjson-c dependencies
 sudo apt install autotools-dev debhelper dh-autoreconf dh-exec
 
-## debian stretch (libs)
+## debian libjson-c
 sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 
 ## man page (manual intervention required)
 sudo apt install groff pandoc
 ```
 
-## Compile on Win10
+## Compile on Win10's Visual Studio
 * [Configure VS Code for Microsoft C++](https://code.visualstudio.com/docs/cpp/config-msvc)
 * [Visual Studio](https://visualstudio.microsoft.com/downloads/#other)
 
@@ -107,12 +96,12 @@ Previous versions were:
 | .NET/Windows OS | NodeJS/Electron | BASH/GNU | Python (Win/Linux) |
 | --- | --- | --- | --- |
 |[git](https://github.com/mezcel/rosary.net)|[git](https://github.com/mezcel/electron-container)|[git](https://github.com/mezcel/jq-tput-terminal)|[git](https://github.com/mezcel/python-curses)|
-| Windows | cross platform with a web browser | Linux | cross platform with python|
+| Windows | cross platform with Electron | Linux | cross platform with Python|
 | MySql Database | JSON Database | JSON Database | JSON Database |
 | English and Latin | English and Latin | English and Latin | English only|
 |a WinForm version and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
-| [project design page](https://mezcel.wixsite.com/rosary) ```developed on Windows 9``` | Uses Jquery Mobile and/or Electron. Has variable color themes, liturgical calendar and feast day calculations. | It has variable tty colors, liturgical calendar calculations, windows sizing. Curses bases | just a TTY/Cli App|
-| no audio | audio theme song | audio (curated event triggered Libre soundtrack) | no audio |
+| [project wiki](https://mezcel.wixsite.com/rosary) : ```developed on Windows 9``` | Uses Jquery Mobile and/or Electron. Has variable color themes, liturgical calendar and feast day calculations. | It has variable tty colors, liturgical calendar calculations, windows sizing. Curses bases | just a TTY/Cli App|
+| no audio | audio theme song | audio soundtrack (latin prayer chant) | no audio |
 | lan | internet scraped mass readings | internet scraped mass readings | no interactive networking features |
 | multi user / multi session / group synchronization | multi user / multi session / group synchronization | single user | single user |
 
@@ -121,16 +110,15 @@ Previous versions were:
 ## Project Status:
 
 ### v0.3.6.? (current development)
+* Primarily developed for Linux or WLS. The TTY also works in Win10 Visual Studio.
 
-* Refactored the code to allow for Win10 compilation.
-
-### Runtime Environment
+### Debian Runtime Environment
 
 * Linux, [MinGW](http://www.mingw.org/) or Win10 Powershell with Visual Studio C++
 * Command line interface (CLI) / Shell Terminal
 * Xorg (Debian linux) or Xlaunch (Win10/WLS)
 
-### Developer Environment (debug/mod)
+### Debian Developer Environment (debug/mod)
 
 * [MinGW](http://www.mingw.org/) or Linux (x86 or x64)
 	* this app was developed on Debian WLS and tested on a real Linux
@@ -143,7 +131,7 @@ Previous versions were:
 
 ---
 
-Win10
+Win10 MinGW
 
 ```sh
 ## Compile in Debian and make it usable on a Win10
