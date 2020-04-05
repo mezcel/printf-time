@@ -6,6 +6,7 @@
  * libraries and functions are mentioned in the code algorithm.
  * */
 
+#include "conio.h"		// getch()
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
@@ -48,4 +49,73 @@ void activateEcho( int isLinux ) {
 	 * On a POSIX terminal it would restore "echo" on key press
 	 * */
 	return;
+}
+
+int pressKeyContinue( int navigtionPosition, int isLinux, int weekdayNo, int desiredDispLen ) {
+	// user keyboard input for win10
+	// Increment or decrement the next desired position in the rosary sequence
+	// uses traditional vim or "retro game" navigation keys
+	// https://www.alt-codes.net/arrow_alt_codes.php
+
+	//char ch = getchar();
+	char ch = getch();	// input keyboard key without the enter key
+
+	switch ( ch ) {
+
+		// help screen
+
+		case 72:	// ASCII up arrow
+		case 80:	// ASCII down arrow
+		case 'w':
+		case 's':
+		case 'j':
+		case 'k':
+			clearScreen( isLinux );
+			infoPage( weekdayNo, desiredDispLen, " Instructions: " );
+			break;
+
+		// Navigate forward
+
+		case 77:	// ASCII right arrow
+		case 'n':	// [ n key ] navigates 1 step forward
+		case 'l':	// vim input
+		case 'd':	// game input
+			if ( navigtionPosition < 315 ) {
+				navigtionPosition++;
+			} else {
+				navigtionPosition = 0; // loop to the beginning
+			}
+			break;
+
+		// Navigate backward
+
+		case 75:	// ASCII left arrow
+		case 32:	// ASCII spacebar
+		case 'h':	// vim input
+		case 'a':	// game input
+		case 'b':	// [ b key ] navigates 1 step back
+			if ( navigtionPosition > 1 ) {
+				navigtionPosition--;
+			} else {
+				navigtionPosition = 315; // loop back to the end
+			}
+			break;
+
+		// Exit Application
+
+		//case 27:	// ASCII esc key
+		case 'q':	// [ q key ] quits the app
+			printf( "\n\n Quit App \n", ch );
+			navigtionPosition = 316; // any integer greater than 315
+			break;
+
+		// Non-mapped keys
+
+		default:	// other key entries
+			//printf( "%d", ch );
+			//printf( "\n" );
+			break;
+	}
+
+	return navigtionPosition;
 }

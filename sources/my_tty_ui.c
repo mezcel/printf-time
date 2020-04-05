@@ -29,74 +29,6 @@ int initialMystery( int weekdayNo ) {
 	return navigtionPosition[ weekdayNo ];
 }
 
-int pressKeyContinue( int navigtionPosition, int isLinux, int weekdayNo, int desiredDispLen ) {
-	// Increment or decrement the next desired position in the rosary sequence
-	// uses traditional vim or "retro game" navigation keys
-
-	char ch = getchar();
-
-	switch ( ch ) {
-		// help screen
-		case 65:	// ASCII up arrow
-		case 66:	// ASCII down arrow
-			printf( "\n" );
-		case 'w':
-		case 's':
-		case 'j':
-		case 'k':
-			clearScreen( isLinux );
-			infoPage( weekdayNo, desiredDispLen, " Instructions: " );
-			break;
-
-		// Navigate forward
-
-		case 67:	// ASCII right arrow
-			printf( "\n" );
-		case 10:	// ASCII enter key
-		case 'n':	// [ n key ] navigates 1 step forward
-		case 'l':	// vim input
-		case 'd':	// game input
-			if ( navigtionPosition < 315 ) {
-				navigtionPosition++;
-			} else {
-				navigtionPosition = 0; // loop to the beginning
-			}
-			break;
-
-		// Navigate backward
-
-		case 68:	// ASCII left arrow
-			printf( "\n" );
-		case 32:	// ASCII spacebar
-		case 'h':	// vim input
-		case 'a':	// game input
-		case 'b':	// [ b key ] navigates 1 step back
-			if ( navigtionPosition > 1 ) {
-				navigtionPosition--;
-			} else {
-				navigtionPosition = 315; // loop back to the end
-			}
-			break;
-
-		// Exit Application
-
-		//case 27:	// ASCII esc key
-		case 'q':	// [ q key ] quits the app
-			printf( "\n\n Quit App \n", ch );
-			navigtionPosition = 316; // any integer greater than 315
-			break;
-
-		// Non-mapped keys
-
-		default:	// other key entries
-			//printf( "%d", ch );
-			printf( "\n" );
-			break;
-	}
-
-	return navigtionPosition;
-}
-
 void clearScreen( int isLinux ) {
 	// system( "@cls||clear" );
 	if ( isLinux == 1 ) {
@@ -235,7 +167,7 @@ void infoPage( int weekdayNo, int desiredDispLen, char *titleLabel ) {
 			season, feast );
 
 	borderCharPrintF( ":", desiredDispLen );
-	printf( "\n\n press [ any key ] to continue ... " );
+	printf( "\n\n press [ enter key ] to continue ... " );
 
 	getchar();	// pause for keyboard input
 }
@@ -327,7 +259,6 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 		segment_part		= queryViewStruct.smallbeadPercent;
 	} else {
 		if ( queryViewStruct.mysteryPercent == 50 ) {
-		//if ( ( queryViewStruct.prayerFK == 7 ) || ( queryViewStruct.prayerFK == 8 ) ) {
 			rosaray_region_string = "Conclusion Prayers";
 			footerLabel2Length = ( int )strlen( rosaray_region_string ) + 5;
 			segment_whole = 2;
