@@ -31,7 +31,7 @@ void make_struct_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
 	 *
 	 * this is based on my_json_structs.c which was not loaded
 	*/
-	return 0;
+	return;
 }
 
 void deactivateEcho( int isLinux ) {
@@ -39,7 +39,7 @@ void deactivateEcho( int isLinux ) {
 	 * n/a
 	 * On a POSIX terminal it would turn off "echo" on key press
 	 * */
-	return 0;
+	return;
 }
 
 void activateEcho( int isLinux ) {
@@ -47,5 +47,5 @@ void activateEcho( int isLinux ) {
 	 * n/a
 	 * On a POSIX terminal it would restore "echo" on key press
 	 * */
-	return 0;
+	return;
 }
