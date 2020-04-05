@@ -4,11 +4,14 @@
  * dependency:
  * 	works within Debian or WLS
  * 	libgtk-3-dev
+ * 	sudo apt install build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3
+ * 	sudo pacman -Sy --needed base base-devel gcc gtk3
+ *
  * compile:
  * 	gcc sources/my_calendar.c sources/my_csv_structs.c sources/my_gtk3_api.c mainGtk3.c `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -o "gtkRosary"
  * */
 
-#include "gtk/gtk.h"
+#include <gtk/gtk.h>
 #include <string.h>		// strcmp()
 #include <time.h>		// After year 2038, only use an x64 compiler
 

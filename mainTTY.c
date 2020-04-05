@@ -12,6 +12,7 @@
 #include "headers/my_tty_ui.h"
 
 #ifdef __unix__
+	// Ideally this app would run on a Debian Linux
 	#define IS_LINUX 1
 #else
 	#define IS_LINUX 0
@@ -62,7 +63,7 @@ int main( int argc, char **argv ) {
 	clearScreen( IS_LINUX );										// clear screen
 	deactivateEcho( IS_LINUX );										// deactivate tty echo
 
-	splashPage( desiredDispLen, IS_LINUX );							// display splash
+	splashPage( desiredDispLen, IS_LINUX );							// display splash title
 	infoPage( weekdayNo, desiredDispLen, titleLabel );				// display info
 
 	// User interface application loop
