@@ -67,7 +67,8 @@ sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 sudo apt install groff pandoc
 ```
 
-## Compile on Win10's Visual Studio
+## Compile on Win10's Visual Studio's Developer Powershell
+
 * [Configure VS Code for Microsoft C++](https://code.visualstudio.com/docs/cpp/config-msvc)
 * [Visual Studio](https://visualstudio.microsoft.com/downloads/#other)
 
@@ -76,7 +77,7 @@ sudo apt install groff pandoc
 Remove-Item *.obj
 Remove-Item *.exe
 
-## Compile and build with Visual Studio
+## Compile and build with Visual Studio's Developer Powershell
 cl /c sources\my_calendar.c
 cl /c sources\my_csv_structs.c
 cl /c sources\my_tty_ui.c

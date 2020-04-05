@@ -1,6 +1,6 @@
 ## Manual compile on Win10:
-## This will compile and build the cli terminal app on Win10 using Powershell.
-## Must have Visual Studio installed with C++ in order to compile.
+## This will compile and build the cli terminal app on Win10.
+## This script must be run within Visual Studio's Developer Powershell.
 
 ## External arument inputs
 param( $inputArgs )
