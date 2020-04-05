@@ -3,10 +3,10 @@
 ## Must have Visual Studio installed with C++ in order to compile.
 
 function makeClean {
-    Write-Host "Cleaning ..."
+    Write-Host "Cleaning ...
+    "
     ## clean previous builds
     if (Test-Path *.obj) {
-        Write-Host ""
         Write-Host "Removing the following:"
         Get-ChildItem *.obj
         Remove-Item *.obj
@@ -18,11 +18,13 @@ function makeClean {
         Get-ChildItem *.exe
         Remove-Item *.exe
     }
-    Write-Host "Done."
+    Write-Host "Done Cleaning.
+    "
 }
 
 function makeBuild {
-    Write-Host "Building ..."
+    Write-Host "Building ...
+    "
     ## Compile and build object modules
     cl /c sources\my_calendar.c
     cl /c sources\my_csv_structs.c
@@ -30,18 +32,22 @@ function makeBuild {
 
     ## Build the executable file
     cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj
-    Write-Host "Done."
+    Write-Host "Done Building.
+    "
 }
 
 function makeRun {
+    Write-Host "Running ...
+    "
     ## Run
     .\mainTTY.exe
-    Write-Host "Done."
+    Write-Host "Done Running.
+    "
 }
 
 function menu {
     Write-Host "
-    This script is a DIY Makefile. Select from the folllowing option.
+    This script is a DIY Makefile. Select from the following option.
         clean, build, run
 
     Options:
@@ -75,7 +81,8 @@ function menu {
             Input only one of the following: 'clean', 'build', or 'run'.
         Try Again.
         "
-        Write-Host "Done."
+        Write-Host "Done.
+        "
     }
 
 }
