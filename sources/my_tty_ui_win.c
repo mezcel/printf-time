@@ -1,12 +1,12 @@
 /* my_tty_ui_win.c
  *
- * Counterpart to ../sources/posixFunctions.c
+ * Counterpart to ../sources/my_tty_ui_posix.c
  * For use on non-linux & non-posix terminal environments.
  * Visual Studio's compiler returns errors if non-comliant
  * libraries and functions are mentioned in the code algorithm.
  * */
 
-#include "conio.h"		// getch()
+#include <conio.h>		// getch() win10
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
@@ -57,7 +57,6 @@ int pressKeyContinue( int navigtionPosition, int isLinux, int weekdayNo, int des
 	// uses traditional vim or "retro game" navigation keys
 	// https://www.alt-codes.net/arrow_alt_codes.php
 
-	//char ch = getchar();
 	char ch = getch();	// input keyboard key without the enter key
 
 	switch ( ch ) {
@@ -112,8 +111,6 @@ int pressKeyContinue( int navigtionPosition, int isLinux, int weekdayNo, int des
 		// Non-mapped keys
 
 		default:	// other key entries
-			//printf( "%d", ch );
-			//printf( "\n" );
 			break;
 	}
 
