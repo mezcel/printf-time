@@ -12,8 +12,10 @@
 
 // Seperate files used to minimze errors when compiling on Win10
 #ifdef __unix__
+	// Ideal functionality, available on Debian linux
 	#include "../sources/my_tty_ui_posix.c"
 #else
+	// win10 workaround
 	#include "../sources/my_tty_ui_win.c"
 #endif
 
