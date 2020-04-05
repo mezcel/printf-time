@@ -135,15 +135,15 @@ void shiftTowardSunday( struct tm *tmDate ) {
 
 	if ( intial_wday != 0 ) {
 
-	if ( intial_wday <= 4 ) {
-		tmDate -> tm_mday -= intial_wday;
-	} else if ( intial_wday == 6 ) {
-		tmDate -> tm_mday += 1;
-	} else {
-		tmDate -> tm_mday += ( 6 - intial_wday );
-	}
+		if ( intial_wday <= 4 ) {
+			tmDate -> tm_mday -= intial_wday;
+		} else if ( intial_wday == 6 ) {
+			tmDate -> tm_mday += 1;
+		} else {
+			tmDate -> tm_mday += ( 6 - intial_wday );
+		}
 
-	time_t t = mktime( tmDate );
+		time_t t = mktime( tmDate );
 		tmDate -> tm_mday = localtime( &t ) -> tm_mday;
 	}
 }
