@@ -47,8 +47,12 @@ function makeRun {
 
 function menu {
     Write-Host "
-    This script is a DIY Makefile. Select from the following option.
+    About:
+        This script is a DIY Makefile. Select from the following option.
         clean, build, run
+        
+    Important: 
+        This script must run within: Developer Powershell for VS 2019+
 
     Options:
         clean:

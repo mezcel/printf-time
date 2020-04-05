@@ -15,13 +15,15 @@ A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV 
 
 Developed for use on Linux or WLS.
 * All availble features work on Debian Linux and WLS.
-* Uses [json-c](https://github.com/json-c/json-c) from the Debian repo.
+* Uses [json-c](https://github.com/json-c/json-c) and GTK+ from the Debian repo.
 	* Only the latin translation needs json.
 
-* Also works on Win10 with Visual Studio C++ installed.
+Minor development for Win10 compatability
+* Works on Win10 compiled with Visual Studio C++.
+	* No Json latin database.
 	* The Gtk feature does not work outside of WLS on Win10.
-	* The compiled ```.exe``` works in Win10 Powershell.
-	* The UI is limited where only the ```enter``` and ```q``` keys works, and the user can only navigate forward. No changes occur when the screen is resized.
+	* The UI is limited and does not resize.
+
 ## GUI Options:
 
 > This app can be run within a terminal or a desktop environment gui.
@@ -85,7 +87,7 @@ sudo apt install groff pandoc
 Remove-Item *.obj
 Remove-Item *.exe
 
-## Compile and build
+## Compile and build with Visual Studio
 cl /c sources\my_calendar.c
 cl /c sources\my_csv_structs.c
 cl /c sources\my_tty_ui.c
