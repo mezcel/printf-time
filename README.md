@@ -86,10 +86,9 @@ Remove-Item *.obj
 Remove-Item *.exe
 
 ## Compile and build
-cl sources\my_calendar.c
-cl sources\my_csv_structs.c
-cl sources\my_tty_ui.c
-
+cl /c sources\my_calendar.c
+cl /c sources\my_csv_structs.c
+cl /c sources\my_tty_ui.c
 cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj
 
 ## run
