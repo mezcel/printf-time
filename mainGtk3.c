@@ -16,7 +16,7 @@
 #include "headers/my_file_to_struct.h"
 #include "headers/my_gtk3_api.h"
 
-rosary_db_t rosary_db_struct;			// global var read by Gtk app
+rosary_db_t rosary_db_struct;	// global var read by Gtk app
 
 int main( int argc, char *argv[] ) {
 
@@ -29,13 +29,13 @@ int main( int argc, char *argv[] ) {
 	int nabFlag;													// Sets either NAB or Vulgate
 
 	// load text data from the appropriate database
-	if ( argc == 2 ) {									// set Latin Vulgate from app launch
+	if ( argc == 2 ) {												// set Latin Vulgate from app launch
 		nabFlag = strcmp( "-v", argv[1] );
-	} else {											// no input, default to NAB
+	} else {														// no input, default to NAB
 		nabFlag = 1;
 	}
 
-	if ( nabFlag == 0 ) {			// Vulgate JSON Database
+	if ( nabFlag == 0 ) {											// Vulgate JSON Database
 		char *jsonFilePath = "database/json/rosaryJSON-vulgate.json";
 
 		make_struct_db_json( &rosary_db_struct, jsonFilePath );		// make struct database
@@ -60,8 +60,8 @@ int main( int argc, char *argv[] ) {
 	gtk_builder_add_from_file( builder, "xml/myGladeXml.glade", NULL );
 	window = GTK_WIDGET( gtk_builder_get_object( builder, "gtkRosary" ) );
 
-	initializeLabelPointers( builder, window, widgets );	// get pointers to label widgets
-	widgets -> navigtionPosition = navigtionPosition;	// starting progress position;
+	initializeLabelPointers( builder, window, widgets );			// get pointers to label widgets
+	widgets -> navigtionPosition = navigtionPosition;				// starting progress position;
 
 	gtk_builder_connect_signals( builder, widgets );
 	g_object_unref( builder );

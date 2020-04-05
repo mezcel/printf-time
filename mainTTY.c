@@ -3,9 +3,9 @@
  * */
 
 #include <stdio.h>
-#include <stdlib.h>				// system()
-#include <string.h>				// strcmp()
-#include <time.h>				// After year 2038, use an x64 compiler
+#include <stdlib.h>			// system()
+#include <string.h>			// strcmp()
+#include <time.h>			// After year 2038, use an x64 compiler
 
 #include "headers/my_calendar.h"
 #include "headers/my_file_to_struct.h"
@@ -35,12 +35,12 @@ int main( int argc, char **argv ) {
 		nabFlag = 1;
 	}
 
-	if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {		// Vulgate JSON Database with POSIX
+	if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {			// Vulgate JSON Database with POSIX
 		titleLabel = " C/JSON Rosary ( Latin Vulgate ) ";
 		char *jsonFilePath = "database/json/rosaryJSON-vulgate.json";
 
-		make_struct_db_json( &rosary_db_struct, jsonFilePath );	// make struct database
-	} else {													// NAB CSV Database
+		make_struct_db_json( &rosary_db_struct, jsonFilePath );		// make struct database
+	} else {														// NAB CSV Database
 		titleLabel = " C/CSV Rosary ( English NAB ) ";
 		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
 		char *bead_path 		= "database/csv/bead.csv";
@@ -58,12 +58,12 @@ int main( int argc, char **argv ) {
 
 	// Welcome display
 
-	int desiredDispLen = returnScreenWidth( IS_LINUX );		// linux terminal width
-	clearScreen( IS_LINUX );								// clear screen
-	deactivateEcho( IS_LINUX );								// deactivate tty echo
+	int desiredDispLen = returnScreenWidth( IS_LINUX );				// linux terminal width
+	clearScreen( IS_LINUX );										// clear screen
+	deactivateEcho( IS_LINUX );										// deactivate tty echo
 
-	splashPage( desiredDispLen, IS_LINUX );					// display splash
-	infoPage( weekdayNo, desiredDispLen, titleLabel );		// display info
+	splashPage( desiredDispLen, IS_LINUX );							// display splash
+	infoPage( weekdayNo, desiredDispLen, titleLabel );				// display info
 
 	// User interface application loop
 
@@ -72,14 +72,14 @@ int main( int argc, char **argv ) {
 		updateDisplayVariablesStruct( &rosary_db_struct, &queryViewStruct, navigtionPosition );
 
 		// render display text
-		desiredDispLen = returnScreenWidth( IS_LINUX );		// get tty screen width
+		desiredDispLen = returnScreenWidth( IS_LINUX );				// get tty screen width
 		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel, IS_LINUX );
 
 		// Prompt for navigation user input
 		navigtionPosition = pressKeyContinue( navigtionPosition, IS_LINUX, weekdayNo, desiredDispLen );
 	}
 
-	activateEcho( IS_LINUX );								// Restore tty echo
+	activateEcho( IS_LINUX );										// Restore tty echo
 
 	return 0;
 }
