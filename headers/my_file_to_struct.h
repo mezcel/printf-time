@@ -97,17 +97,17 @@ mystery_t * parse_mystery_record( char * scvline );
 prayer_t * parse_prayer_record( char * scvline );
 scripture_t * parse_scripture_record( char * scvline );
 
-void make_struct_db_csv(rosary_db_t *rosary_db_struct, char *csv_path_array[8]);
+void make_struct_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_array[8] );
 
 /*
  * JSON Prototypes
  * */
 
 size_t returnFileSize(char *filePath);
-struct json_object *json_to_struct( char *filePath );
-char *queryAttrString(struct json_object *inputObject, char *attrName, int index);
-int queryAttrInteger(struct json_object *inputObject, char *attrName, int index);
+struct json_object *json_to_struct( char *jsonFilePath );
+char *queryAttrString( struct json_object *inputObject, char *attrName, int index );
+int queryAttrInteger( struct json_object *inputObject, char *attrName, int index );
 
-void make_struct_db_json(rosary_db_t *rosary_db_struct, char *filePath);
+void make_struct_db_json( rosary_db_t *rosary_db_struct, char *filePath );
 
 #endif

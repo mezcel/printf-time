@@ -6,9 +6,10 @@
  * libraries and functions are mentioned in the code algorithm.
  * */
 
+#include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
-int returnScreenWidth(int isLinux) {
+int returnScreenWidth( int isLinux ) {
 	/*
 	 * On a POSIX terminal I would use the following to determine
 	 * how many columns wide the terminal is.
@@ -20,17 +21,20 @@ int returnScreenWidth(int isLinux) {
 	return 94; // number of chars wide
 }
 
-void make_struct_db_json(rosary_db_t *rosary_db_struct, char *filePath) {
+void make_struct_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
 	/*
+	 * n/a
 	 * This is a place holder just to make the Win10 VS compiler happy.
 	 * The real function, by the same name, was designed for use on a
 	 * Debian Linux using the json-c library. This dummy function was
 	 * likely called by a non-linux OS, like Win10.
+	 *
+	 * this is based on my_json_structs.c which was not loaded
 	*/
 	return 0;
 }
 
-void deactivateEcho(int isLinux) {
+void deactivateEcho( int isLinux ) {
 	/*
 	 * n/a
 	 * On a POSIX terminal it would turn off "echo" on key press
@@ -38,7 +42,7 @@ void deactivateEcho(int isLinux) {
 	return 0;
 }
 
-void activateEcho(int isLinux) {
+void activateEcho( int isLinux ) {
 	/*
 	 * n/a
 	 * On a POSIX terminal it would restore "echo" on key press

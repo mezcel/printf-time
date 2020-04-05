@@ -45,8 +45,8 @@ typedef struct {
  * Prototypes
  * */
 
-void initializeLabelPointers(GtkBuilder *builder, GtkWidget *window, app_widgets *widgets);
-int initialMystery(int weekdayNo);
-void update_widgets_labels(rosary_db_t *rosary_db_struct, app_widgets *widgets);
+void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widgets *widgets );
+int initialMystery( int weekdayNo );
+void update_widgets_labels( rosary_db_t *rosary_db_struct, app_widgets *widgets );
 
 #endif
