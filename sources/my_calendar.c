@@ -51,7 +51,7 @@ char *returnWeekdayMystery( int indexNo ) {
 	return WEEKDAY_MYSTERY[ indexNo ];
 }
 
-struct tm returnTodaysDate( int indexNo ) {
+struct tm returnTodaysDate() {
 	time_t currentDate = time( NULL );
 	struct tm output_tm = *localtime( &currentDate );
 	return output_tm;
@@ -232,7 +232,7 @@ int returnLiturgicalSeason( struct tm *tmNow, struct tm *advent_start,
 }
 
 char *stringLiturgicalSeason() {
-	struct tm todaysDate = returnTodaysDate( 1 );
+	struct tm todaysDate = returnTodaysDate();
 
 	struct tm advent_start = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 ); // Dec 1
 	shiftTowardSunday( &advent_start ); // first sun of advent
@@ -266,7 +266,7 @@ char *stringLiturgicalSeason() {
 }
 
 char *stringFeast() {
-	struct tm todaysDate = returnTodaysDate(1 );
+	struct tm todaysDate = returnTodaysDate();
 
 	struct tm advent_start = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 ); // Dec 1
 	shiftTowardSunday( &advent_start ); // first sun of advent

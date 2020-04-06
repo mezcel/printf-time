@@ -1,7 +1,9 @@
 /*
  * my_json_structs.c
+ *
  * guidance: https://json-c.github.io/json-c/json-c-0.10/doc/html/json__object_8h.html
  * sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3
+ * compile: gcc -c sources/my_json_structs.c -ljson-c
  * */
 
 #include <stdio.h>

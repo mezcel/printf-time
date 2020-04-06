@@ -3,40 +3,38 @@
  * For use on Debian Linux POSIX terminal environments.
  * */
 
-#ifdef __unix__
-    #include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
-	#include <unistd.h> 	// STDOUT_FILENO
-#endif
+#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
+#include <unistd.h> 	// STDOUT_FILENO
 
 #include "../headers/my_tty_ui.h"
 
-int returnScreenWidth( int isLinux ) {
+void clearScreen() {
+	// system( "@cls||clear" );
+	system( "clear" );	// linux
+}
+
+int returnScreenWidth() {
 	// return a number which represents how long/wide the screen text should be
 	int col_length = 95;	// 85 chars wide
 
-	if( isLinux == 1 ) {
-		struct winsize w;						// terminal tty info
-		ioctl( STDOUT_FILENO, TIOCGWINSZ, &w );	// tty col/row
-		col_length =  w.ws_col;
-	}
+	struct winsize w;						// terminal tty info
+	ioctl( STDOUT_FILENO, TIOCGWINSZ, &w );	// tty col/row
+	col_length =  w.ws_col;
+
 	return col_length;
 }
 
-void deactivateEcho( int isLinux ) {
-	if( isLinux == 1 ) {
-		system( "stty -echo" );
-		system( "stty cbreak" );
-	}
+void deactivateEcho() {
+	system( "stty -echo" );
+	system( "stty cbreak" );
 }
 
-void activateEcho( int isLinux ) {
-	if( isLinux == 1 ) {
-		system( "stty echo" ); // Make echo work
-		system( "stty -cbreak" );// go to COOKED mode
-	}
+void activateEcho() {
+	system( "stty echo" ); // Make echo work
+	system( "stty -cbreak" );// go to COOKED mode
 }
 
-int pressKeyContinue( int navigtionPosition, int isLinux, int weekdayNo, int desiredDispLen ) {
+int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen ) {
 	// Increment or decrement the next desired position in the rosary sequence
 	// uses traditional vim or "retro game" navigation keys
 
@@ -51,7 +49,7 @@ int pressKeyContinue( int navigtionPosition, int isLinux, int weekdayNo, int des
 		case 's':
 		case 'j':
 		case 'k':
-			clearScreen( isLinux );
+			clearScreen();
 			infoPage( weekdayNo, desiredDispLen, " Instructions: " );
 			break;
 

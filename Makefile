@@ -1,9 +1,8 @@
-## Makefile (Automated Build)
+## Makefile (Automated Build) GCC
 CC=gcc
 CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
 all: notes ttyRosary gtkRosary manpage
-
 
 ## Notes
 
@@ -22,8 +21,9 @@ notes:
 	## ###################################################################
 	##
 
-
-## Main binaries
+################
+## Main Binaries
+################
 
 ttyRosary: my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o mainTTY.o
 	## english and latin
@@ -35,8 +35,9 @@ gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_a
 	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o $(CFLAGS) -ljson-c -o "gtkRosary"
 	#
 
-
+###########################
 ## Compile binary libraries
+###########################
 
 my_calendar.o: sources/my_calendar.c headers/my_calendar.h
 	## compile and build "my_calendar.c"
@@ -73,8 +74,9 @@ mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_
 	gcc -c mainGtk3.c $(CFLAGS)
 	#
 
-
-## Linux dependancies
+#####################
+## Linux dependencies
+#####################
 
 debian:
 	## Dependencies for Debian 9 (Stretch) or later
@@ -98,5 +100,5 @@ manpage: .manpage.md
 
 clean:
 	## removing any precompiled binaries
-	rm -f *.o ttyRosary gtkRosary *.o
+	rm -f *.o ttyRosary gtkRosary *.o *.out
 	#

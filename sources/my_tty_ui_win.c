@@ -10,7 +10,12 @@
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
-int returnScreenWidth( int isLinux ) {
+void clearScreen() {
+	// system( "@cls||clear" );
+	system( "@cls" );	// win os
+}
+
+int returnScreenWidth() {
 	/*
 	 * On a POSIX terminal I would use the following to determine
 	 * how many columns wide the terminal is.
@@ -35,23 +40,7 @@ void make_struct_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
 	return;
 }
 
-void deactivateEcho( int isLinux ) {
-	/*
-	 * n/a
-	 * On a POSIX terminal it would turn off "echo" on key press
-	 * */
-	return;
-}
-
-void activateEcho( int isLinux ) {
-	/*
-	 * n/a
-	 * On a POSIX terminal it would restore "echo" on key press
-	 * */
-	return;
-}
-
-int pressKeyContinue( int navigtionPosition, int isLinux, int weekdayNo, int desiredDispLen ) {
+int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen ) {
 	// user keyboard input for win10
 	// Increment or decrement the next desired position in the rosary sequence
 	// uses traditional vim or "retro game" navigation keys
@@ -69,7 +58,7 @@ int pressKeyContinue( int navigtionPosition, int isLinux, int weekdayNo, int des
 		case 's':
 		case 'j':
 		case 'k':
-			clearScreen( isLinux );
+			clearScreen();
 			infoPage( weekdayNo, desiredDispLen, " Instructions: " );
 			break;
 

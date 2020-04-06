@@ -1,5 +1,5 @@
 /*
- * mainTTY_nab.c
+ * mainTTY.c
  * */
 
 #include <stdio.h>
@@ -11,9 +11,18 @@
 #include "headers/my_file_to_struct.h"
 #include "headers/my_tty_ui.h"
 
+/*
+// Dependency:
+#include "sources/my_calendar.c"
+#include "sources/my_csv_structs.c"
+#include "sources/my_tty_ui.c"
+*/
+
 #ifdef __unix__
 	// Ideally this app would run on a Debian Linux
 	#define IS_LINUX 1
+	// Dependency:
+	// #include "sources/my_json_structs.c"					// Compile Note: gcc mainTTY.c -ljson-c -o "ttyRosary"
 #else
 	#define IS_LINUX 0
 #endif
@@ -23,16 +32,17 @@ int main( int argc, char **argv ) {
 	rosary_db_t rosary_db_struct;							// declare app's db var
 	displayVariables_t queryViewStruct;						// declare db query view var
 
-	struct tm todaysDate = returnTodaysDate( IS_LINUX );	// define today struct
+	struct tm todaysDate = returnTodaysDate();				// define today struct
 	int weekdayNo = todaysDate.tm_wday;						// day of the week
 	int navigtionPosition = initialMystery( weekdayNo );	// starting progress position
 
 	char *titleLabel;										// string to display which db is used
 	int nabFlag;											// Sets either NAB or Vulgate
+	int desiredDispLen;										// posix terminal column width
 
 	if ( argc == 2 ) {										// set Latin Vulgate from app launch
 		nabFlag = strcmp( "-v", argv[1] );
-	} else {												// no input, default to NAB
+	} else {												// no input, default to NAB English
 		nabFlag = 1;
 	}
 
@@ -59,11 +69,11 @@ int main( int argc, char **argv ) {
 
 	// Welcome display
 
-	int desiredDispLen = returnScreenWidth( IS_LINUX );				// linux terminal width
-	clearScreen( IS_LINUX );										// clear screen
-	deactivateEcho( IS_LINUX );										// deactivate tty echo
+	desiredDispLen = returnScreenWidth();							// terminal width
+	clearScreen();													// clear screen
+	if ( IS_LINUX ) { deactivateEcho(); }							// deactivate posix tty echo
 
-	splashPage( desiredDispLen, IS_LINUX );							// display splash title
+	splashPage( desiredDispLen );									// display splash title
 	infoPage( weekdayNo, desiredDispLen, titleLabel );				// display info
 
 	// User interface application loop
@@ -73,14 +83,14 @@ int main( int argc, char **argv ) {
 		updateDisplayVariablesStruct( &rosary_db_struct, &queryViewStruct, navigtionPosition );
 
 		// render display text
-		desiredDispLen = returnScreenWidth( IS_LINUX );				// get tty screen width
-		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel, IS_LINUX );
+		desiredDispLen = returnScreenWidth();						// get tty screen width
+		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel );
 
 		// Prompt for navigation user input
-		navigtionPosition = pressKeyContinue( navigtionPosition, IS_LINUX, weekdayNo, desiredDispLen );
+		navigtionPosition = pressKeyContinue( navigtionPosition, weekdayNo, desiredDispLen );
 	}
 
-	activateEcho( IS_LINUX );										// Restore tty echo
+	if ( IS_LINUX ) { activateEcho(); }								// Restore posix tty echo
 
 	return 0;
 }

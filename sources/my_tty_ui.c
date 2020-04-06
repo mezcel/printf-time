@@ -29,15 +29,6 @@ int initialMystery( int weekdayNo ) {
 	return navigtionPosition[ weekdayNo ];
 }
 
-void clearScreen( int isLinux ) {
-	// system( "@cls||clear" );
-	if ( isLinux == 1 ) {
-		system( "clear" );	// linux
-	} else {
-		system( "@cls" );		// win
-	}
-}
-
 void borderCharPrintF( char *charSymbol, int borderWidth ) {
 	// print a sequence of chars which act as a visual border/divider
 	for ( int i = 0; i < borderWidth; i++ ) {
@@ -100,7 +91,7 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
 	}
 }
 
-void splashPage( int desiredDispLen, int isLinux ) {
+void splashPage( int desiredDispLen) {
 	int strLength, center;
 
 	char *title = "Scriptural Rosary";
@@ -134,7 +125,7 @@ void splashPage( int desiredDispLen, int isLinux ) {
 	printf( "\n\n press [ any key ] to continue ... " );
 
 	getchar();	// pause for keyboard input
-	clearScreen( isLinux ); // posix
+	clearScreen();
 }
 
 void infoPage( int weekdayNo, int desiredDispLen, char *titleLabel ) {
@@ -232,7 +223,7 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 }
 
-void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel, int isLinux ) {
+void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel ) {
 	// Render all rosary bead content onto the screen
 	int minFruitsRow = 3,
 		minBackgroundRows = 4,
@@ -290,7 +281,7 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 		historyDots = 48;
 	}
 
-	clearScreen( isLinux ); // optimized for posix
+	clearScreen();
 
 	// header
 
