@@ -6,7 +6,7 @@
  * libraries and functions are mentioned in the code algorithm.
  * */
 
-#include <conio.h>		// getch() win10
+#include <conio.h>		// getch() Win10 only
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
@@ -24,7 +24,7 @@ int returnScreenWidth() {
 	 * Since Win10 Visual Studio does not support this, I will just set
 	 * the terminal's column width.
 	*/
-	return 94; // number of chars wide
+	return 94;	// Estimate and aproximate ( 85 - 120 ) chars screen width
 }
 
 void deactivateEcho() {
@@ -62,7 +62,7 @@ int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen )
 	// uses traditional vim or "retro game" navigation keys
 	// https://www.alt-codes.net/arrow_alt_codes.php
 
-	char ch = getch();	// input keyboard key without the enter key
+	char ch = getch();	// input keyboard key without the enter key on Win10
 
 	switch ( ch ) {
 

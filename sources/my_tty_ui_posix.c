@@ -15,7 +15,7 @@ void clearScreen() {
 
 int returnScreenWidth() {
 	// return a number which represents how long/wide the screen text should be
-	int col_length = 95;	// 85 chars wide
+	int col_length = 95;	// Estimate and aproximate ( 85 - 120 ) chars screen width
 
 	struct winsize w;						// terminal tty info
 	ioctl( STDOUT_FILENO, TIOCGWINSZ, &w );	// tty col/row
@@ -30,8 +30,8 @@ void deactivateEcho() {
 }
 
 void activateEcho() {
-	system( "stty echo" ); // Make echo work
-	system( "stty -cbreak" );// go to COOKED mode
+	system( "stty echo" );					// Make echo work
+	system( "stty -cbreak" );				// read one key without pressing enter
 }
 
 int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen ) {
