@@ -71,7 +71,7 @@ int main( int argc, char **argv ) {
 
 	desiredDispLen = returnScreenWidth();							// terminal width
 	clearScreen();													// clear screen
-	if ( IS_LINUX ) { deactivateEcho(); }							// deactivate posix tty echo
+	deactivateEcho();												// deactivate posix tty echo
 
 	splashPage( desiredDispLen );									// display splash title
 	infoPage( weekdayNo, desiredDispLen, titleLabel );				// display info
@@ -90,7 +90,7 @@ int main( int argc, char **argv ) {
 		navigtionPosition = pressKeyContinue( navigtionPosition, weekdayNo, desiredDispLen );
 	}
 
-	if ( IS_LINUX ) { activateEcho(); }								// Restore posix tty echo
+	activateEcho();													// Restore posix tty echo
 
 	return 0;
 }

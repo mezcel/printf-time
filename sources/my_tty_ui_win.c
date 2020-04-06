@@ -27,6 +27,22 @@ int returnScreenWidth() {
 	return 94; // number of chars wide
 }
 
+void deactivateEcho() {
+	/*
+	 * n/a
+	 * used to deactivate echo on posix compliant termainls
+	 * */
+	return;
+}
+
+void activateEcho() {
+	/*
+	 * n/a
+	 * used to reactivate echo on posix compliant termainls
+	 * */
+	return;
+}
+
 void make_struct_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
 	/*
 	 * n/a
