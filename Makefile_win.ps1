@@ -1,3 +1,5 @@
+## Makefile_win.ps1
+
 ## Manual compile on Win10:
 ## This will compile and build the cli terminal app on Win10.
 ## This script must be run within Visual Studio's Developer Powershell.
@@ -46,14 +48,17 @@ function makeRun {
     Write-Host "Running ...
     "
     ## Run
-    .\mainTTY.exe
+    if (Test-Path .\mainTTY.exe) {
+        .\mainTTY.exe
+    }
     Write-Host "Done Running.
     "
 }
 
 function menu {
     Write-Host ""
-    Write-Host "$scriptName"
+    Write-Host "$scriptName
+    Compile and build a CLI scripture Rosary on Win10."
     Write-Host "
     About:
         This script is a DIY Makefile. Select from the following option.
@@ -61,6 +66,7 @@ function menu {
         
     Important: 
         This script must run within: Developer Powershell for VS 2019+
+        The executable will be mainTTY.exe
         
     Run from terminal:
         .\$scriptName clean
