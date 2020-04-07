@@ -49,7 +49,9 @@ SET userinput=%1
     SET /P userinput= Type selection option [ clean, build, run ] :
 
 :menuOptions
-    IF "%userinput%"=="quit" GOTO EOF
+    IF "%userinput%"=="quit" (
+		GOTO EOF
+	)
     IF "%userinput%"=="clean" (
         CALL :makeClean EOF
     )
