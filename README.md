@@ -35,6 +35,10 @@ A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV 
 ##	generate the following executables: ttyRosary and gtkRosary
 
 make
+
+## or
+make ttyRosary
+make gtkRosary
 ```
 
 ### 1.1 Run
