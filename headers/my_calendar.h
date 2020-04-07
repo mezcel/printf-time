@@ -7,6 +7,7 @@
 
 char *retrunWeekdayName( int indexNo );
 char *retrunMonthName( int indexNo );
+char *returnVerboseDate( struct tm tmDate );
 char *retrunFeastDayName( int indexNo );
 char *retrunLiturgicalName( int indexNo );
 char *returnWeekdayMystery( int indexNo );

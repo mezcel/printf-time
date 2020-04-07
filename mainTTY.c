@@ -33,6 +33,7 @@ int main( int argc, char **argv ) {
 	displayVariables_t queryViewStruct;						// declare db query view var
 
 	struct tm todaysDate = returnTodaysDate();				// define today struct
+	char *verboseDate = returnVerboseDate( todaysDate );	// Decorative Date Display
 	int weekdayNo = todaysDate.tm_wday;						// day of the week
 	int navigtionPosition = initialMystery( weekdayNo );	// starting progress position
 
@@ -73,7 +74,7 @@ int main( int argc, char **argv ) {
 	clearScreen();													// clear screen
 	deactivateEcho();												// deactivate posix tty echo
 
-	splashPage( desiredDispLen );									// display splash title
+	splashPage( desiredDispLen, verboseDate  );						// display splash title
 	infoPage( weekdayNo, desiredDispLen, titleLabel );				// display info
 
 	// User interface application loop

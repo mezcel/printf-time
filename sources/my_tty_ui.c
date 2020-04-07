@@ -21,6 +21,7 @@
 
 int initialMystery( int weekdayNo ) {
 	// return the start of a mystery sequence depending on which day of the week it is
+	
 	int navigtionPosition[ ] = {237, 0, 158, 237, 79, 158, 0};
 
 	if ( ( weekdayNo > 6 ) || ( weekdayNo < 0 ) ) {
@@ -31,31 +32,33 @@ int initialMystery( int weekdayNo ) {
 
 void borderCharPrintF( char *charSymbol, int borderWidth ) {
 	// print a sequence of chars which act as a visual border/divider
+	
 	for ( int i = 0; i < borderWidth; i++ ) {
 		printf( "%s", charSymbol );
 	}
 }
 
 void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int minRows ) {
-	int screenWidth = desiredLineLength;	// max chars per screen line width
+	// Automatically wrap string arrays that are longer than 1 terminal row
+	
+	int screenWidth = desiredLineLength;		// max chars per screen line width
 	int inputLength = ( int )strlen( strIn );	// number of chars contained in input string
-	int labelColChars = 17;					// chars used in the label col
+	int labelColChars = 17;						// chars used in the label col
 	int max_line_chars = screenWidth - labelColChars;
 	int rowCounter = 1;
 
-	printf( "%s", labelChars ); // print the content label, initial printf
+	printf( "%s", labelChars );					// print the content label, initial printf
 
-	if ( inputLength < max_line_chars ) { // short enough to be 1 line
+	if ( inputLength < max_line_chars ) {		// short enough to be 1 line
 		printf( "%s\n\t\t", strIn );
 		rowCounter++;
 	} else { // longer than one line
 
 		// input string to an array of words
-		//char tmpStringArray[ inputLength ];
 		char *tmpStringArray = malloc( inputLength + 1 );
 		strcpy( tmpStringArray, strIn );
 		char *delimiter = " ";
-		char *token = strtok( tmpStringArray, delimiter ); // array of words
+		char *token = strtok( tmpStringArray, delimiter );	// array of words
 
 		// init counters
 		int chars_in_a_word = 0;
@@ -72,15 +75,15 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
 				printf( "%s ", token );
 			} else {
 				charCounter = chars_in_a_word;
-				printf( "\n\t\t%s ", token ); // start new line indent
+				printf( "\n\t\t%s ", token );				// start new line indent
 				rowCounter++;
 			}
 
-			token = strtok( NULL, delimiter ); // get the next word
+			token = strtok( NULL, delimiter );				// get the next word
 		}
 	}
 
-	// Add empty rows
+	// Add empty rows for visual spacing 
 	if ( minRows != 0 ) {
 		if ( rowCounter < minRows ) {
 			int difference = minRows - rowCounter;
@@ -91,13 +94,15 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
 	}
 }
 
-void splashPage( int desiredDispLen) {
+void splashPage( int desiredDispLen, char *verboseDate ) {
+	// display a decorative cover page
+	
 	int strLength, center;
 
-	char *title = "Scriptural Rosary";
-	char *author = "by Mezcel";
-	char *about = "Wirtten in C for use in a ( CLI ) POSIX/GNU program environment.";
-	char *git = "https://github.com/mezcel/printf-time.git";
+	char *title		= "Scriptural Rosary";
+	char *author	= "by Mezcel";
+	char *about		= "Wirtten in C for use in a ( CLI ) POSIX/GNU program environment.";
+	char *git		= "https://github.com/mezcel/printf-time.git";
 
 	printf( "\n\n" );
 
@@ -120,16 +125,22 @@ void splashPage( int desiredDispLen) {
 	center = ( desiredDispLen - strLength ) / 2;
 	borderCharPrintF( " ", center );
 	printf( "%s\n\n\n\n", git );
-
+	
+	strLength = ( int )strlen( verboseDate );
+	center = ( desiredDispLen - strLength ) / 2;
+	borderCharPrintF( " ", center );
+	printf( "%s\n\n\n\n", verboseDate );
+	
 	borderCharPrintF( ":", desiredDispLen );
-	printf( "\n\n press [ any key ] to continue ... " );
+	printf( "\n\n press [ enter key ] to continue ... " );
 
 	getchar();	// pause for keyboard input
 	clearScreen();
 }
 
 void infoPage( int weekdayNo, int desiredDispLen, char *titleLabel ) {
-	// display intro and instructions
+	// display about and instructions
+	
 	char *season = stringLiturgicalSeason();
 	char *feast = stringFeast();
 	char *aboutString ="\tThis program is a scripture rosary for the command line interface ( CLI ). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible ( CSV files ), and Latin readings are quoted from the Vulgate Bible ( JSON file ). Additional enclosed readings are curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested for use in BASH.";
@@ -145,10 +156,10 @@ void infoPage( int weekdayNo, int desiredDispLen, char *titleLabel ) {
 	printf( "\n\n Display:\n\t\tOptimal Terminal Display: ( +25 rows ) x ( +100 cols ) to Full Screen.\t(cols: %d)\n", returnScreenWidth() );
 	printf( "\n\t\tNAB English ( mode ):\t./ttyRosary -n\n\t\t\t  ( Win 10 ):\t.\\mainTTY.exe\n\t\tVulgate Latin ( mode ):\t./ttyRosary -v\n" );
 
-	printf( "\n Keyboard:\n\t\tq = quit app, space = back, help = up/down\n" );
-	printf( "\n\t\t0 = Today's mystery, 1 = Joyful, 2 = Sorrowful, 3 = Luminous, 4 = Glorious\n" );
-	printf( "\n\t\tvi controls:\th = back, l = next" );
-	printf( "\n\t\tgame controls:\ta = back, d = next" );
+	printf( "\n Keyboard:\n\t\tGeneral:\t\tq = quit app, help = up/down" );
+	printf( "\n\t\tVi controls:\t\th = back, l = next" );
+	printf( "\n\t\tGame controls:\t\ta = back, d = next" );
+	printf( "\n\t\tJump to Mystery:\t0 = Today's mystery, 1 = Joyful, 2 = Sorrowful, 3 = Luminous, 4 = Glorious" );
 	printf( "\n\n Source Code:\n\t\thttps://github.com/mezcel/printf-time.git\n\n" );
 
 	borderCharPrintF( ":", desiredDispLen );
@@ -165,6 +176,7 @@ void infoPage( int weekdayNo, int desiredDispLen, char *titleLabel ) {
 }
 
 void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct, int navigtionPosition ) {
+	// Redefine all string variables used in rosary text display
 
 	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0,
 		prayerFK = 0, scriptureFK = 0, loopBody = 0;
@@ -226,6 +238,8 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel ) {
 	// Render all rosary bead content onto the screen
+	// Primary display rendering
+	
 	int minFruitsRow = 3,
 		minBackgroundRows = 4,
 		minScriptureRows = 4,

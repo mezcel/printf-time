@@ -7,54 +7,54 @@
 
 #include "../headers/my_calendar.h"
 
-// for use in local my_calendar.c demo
-void print_date( struct tm tmDate, char *labelString ) {
-	int monthIndex	= tmDate.tm_mon;
-	int weekIndex	= tmDate.tm_wday;
-	char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May",
-				"June", "July", "August", "September", "October", "November", "December" };
-	char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday",
-				"Thursday", "Friday", "Saturday" };
-
-	printf( "\n%s: %s, %d, %s, %d\n",
-		labelString,
-		WEEKDAY_NAME_ARRAY[ weekIndex ],
-		tmDate.tm_mday,
-		MONTH_NAME_ARRAY[ monthIndex ],
-		tmDate.tm_year + 1900
-	 );
-}
-
 char *retrunWeekdayName( int indexNo ) {
 	char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+	
 	return WEEKDAY_NAME_ARRAY[ indexNo ];
 }
 
 char *retrunMonthName( int indexNo ) {
 	char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+	
 	return MONTH_NAME_ARRAY[ indexNo ];
 }
 
 char *retrunFeastDayName( int indexNo ) {
 	char * FEAST_DAY_ARRAY[] = { "Advent Start", "Immaculate Conception of Mary", "Christmas Day", "Solemnity of Mary", "Epiphany",
 		"Jesus's Baptism", "Ash Wednesday", "Holy Thursday", "Good Friday", "Good Saturday", "Easter Sunday", "Pentecost", "Ascension of Jesus", "All Saints Day", "Ordinary Day", "Seasonal Day" };
+	
 	return FEAST_DAY_ARRAY[ indexNo ];
 }
 
 char *retrunLiturgicalName( int indexNo ) {
 	char * LITURGICAL_SEASON_ARRAY[] = { "Advent Season", "Christmas Season", "Lent Season", "Easter Season", "Ordinary Time" };
+	
 	return LITURGICAL_SEASON_ARRAY[ indexNo ];
 }
 
 char *returnWeekdayMystery( int indexNo ) {
 	char * WEEKDAY_MYSTERY[] = { "Glorious", "Joyful", "Sorrowful", "Glorious", "Luminous", "Sorrowful", "Joyful" };
+	
 	return WEEKDAY_MYSTERY[ indexNo ];
 }
 
 struct tm returnTodaysDate() {
+	// Return a time struct containing today's date values
+	
 	time_t currentDate = time( NULL );
 	struct tm output_tm = *localtime( &currentDate );
+	
 	return output_tm;
+}
+
+char *returnVerboseDate( struct tm tmDate ) {
+	char *verboseDate = "";											// Decorative Date Display
+	sprintf( verboseDate, "%s %d %s, %d",							// automatic int to char conversion
+		retrunWeekdayName( tmDate.tm_wday ),
+		tmDate.tm_mday, retrunMonthName( tmDate.tm_mon ),
+		tmDate.tm_year + 1900 );
+		
+	return verboseDate;
 }
 
 struct tm setSpecificDate( int year, int month, int day ) {
@@ -206,7 +206,7 @@ int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm seaso
 }
 
 int returnLiturgicalSeason( struct tm *tmNow, struct tm *advent_start,
-		struct tm *christmas_day, struct tm *epiphany, struct tm *ash_wednesday,
+	struct tm *christmas_day, struct tm *epiphany, struct tm *ash_wednesday,
 		struct tm *easter_sunday, struct tm *pentacost ) {
 
 	int isAdvent	= isLiturgicalSeason( *tmNow, *advent_start, *christmas_day );
@@ -234,13 +234,13 @@ int returnLiturgicalSeason( struct tm *tmNow, struct tm *advent_start,
 char *stringLiturgicalSeason() {
 	struct tm todaysDate = returnTodaysDate();
 
-	struct tm advent_start = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 ); // Dec 1
-	shiftTowardSunday( &advent_start ); // first sun of advent
+	struct tm advent_start = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 );				// Dec 1
+	shiftTowardSunday( &advent_start );															// first sun of advent
 
-	struct tm immaculate_conception_mary = setSpecificDate( todaysDate.tm_year + 1900, 11, 8 ); // Dec 8
-	struct tm christmas_day				= setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed dec 25
-	struct tm solemnity_of_mary			= setSpecificDate( todaysDate.tm_year + 1900, 0, 1 ); // Jan 1
-	struct tm epiphany					= addDays( christmas_day,12 ); // 12 days after Christmas
+	struct tm immaculate_conception_mary = setSpecificDate( todaysDate.tm_year + 1900, 11, 8 );	// Dec 8
+	struct tm christmas_day				= setSpecificDate( todaysDate.tm_year + 1900, 11, 25 );	// wed dec 25
+	struct tm solemnity_of_mary			= setSpecificDate( todaysDate.tm_year + 1900, 0, 1 );	// Jan 1
+	struct tm epiphany					= addDays( christmas_day,12 );							// 12 days after Christmas
 	shiftTowardSunday( &epiphany ); // epiphany sunday
 
 	struct tm jesus_baptism = addDays( christmas_day,12 );
@@ -256,7 +256,7 @@ char *stringLiturgicalSeason() {
 
 	struct tm assension_of_jesus = addDays( easter_sunday, 40 );
 
-	struct tm all_saints_day = setSpecificDate( todaysDate.tm_year + 1900, 10, 1 ); // Nov 1
+	struct tm all_saints_day = setSpecificDate( todaysDate.tm_year + 1900, 10, 1 );				// Nov 1
 
 	int seasonFlag = returnLiturgicalSeason( &todaysDate, &advent_start, &christmas_day,
 			&epiphany, &ash_wednesday, &easter_sunday, &pentacost );
@@ -268,17 +268,17 @@ char *stringLiturgicalSeason() {
 char *stringFeast() {
 	struct tm todaysDate = returnTodaysDate();
 
-	struct tm advent_start = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 ); // Dec 1
+	struct tm advent_start = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 );				// Dec 1
 	shiftTowardSunday( &advent_start ); // first sun of advent
 
-	struct tm immaculate_conception_mary = setSpecificDate( todaysDate.tm_year + 1900, 11, 8 ); // Dec 8
-	struct tm christmas_day		= setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed dec 25
-	struct tm solemnity_of_mary = setSpecificDate( todaysDate.tm_year + 1900, 0, 1 ); // Jan 1
-	struct tm epiphany			= addDays( christmas_day, 12 ); // 12 days after Christmas
-	shiftTowardSunday( &epiphany ); // epiphany sunday
+	struct tm immaculate_conception_mary = setSpecificDate( todaysDate.tm_year + 1900, 11, 8 );	// Dec 8
+	struct tm christmas_day		= setSpecificDate( todaysDate.tm_year + 1900, 11, 25 );			// wed Dec 25
+	struct tm solemnity_of_mary = setSpecificDate( todaysDate.tm_year + 1900, 0, 1 );			// Jan 1
+	struct tm epiphany			= addDays( christmas_day, 12 );									// 12 days after Christmas
+	shiftTowardSunday( &epiphany );																// epiphany Sunday
 
 	struct tm jesus_baptism = addDays( christmas_day, 12 );
-	shiftJesusBaptism( &jesus_baptism ); // avoid epiphany overlap
+	shiftJesusBaptism( &jesus_baptism );													// avoid epiphany overlap
 
 	struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 ); // pfm
 	struct tm good_saturday = subtractDays( easter_sunday, 1 );
@@ -286,11 +286,11 @@ char *stringFeast() {
 	struct tm holy_thursday = subtractDays( easter_sunday, 3 );
 	struct tm ash_wednesday = subtractDays( easter_sunday, 46 );
 	struct tm pentacost		= addDays( easter_sunday, 21 );
-	shiftTowardSunday( &pentacost );  // sun june 9, 7 sundays after easter
+	shiftTowardSunday( &pentacost );														// sun June 9, 7 Sundays after Easter
 
 	struct tm assension_of_jesus = addDays( easter_sunday, 40 );
 
-	struct tm all_saints_day = setSpecificDate( todaysDate.tm_year + 1900, 10, 1 ); // Nov 1
+	struct tm all_saints_day = setSpecificDate( todaysDate.tm_year + 1900, 10, 1 );			// Nov 1
 
 	int seasonFlag = returnLiturgicalSeason( &todaysDate, &advent_start, &christmas_day,
 			&epiphany, &ash_wednesday, &easter_sunday, &pentacost );
@@ -298,7 +298,7 @@ char *stringFeast() {
 	int isFeast, feastFlag;
 	switch ( seasonFlag ) {
 		case 0:
-			feastFlag = 15; // generic seasonal day
+			feastFlag = 15;										// generic seasonal day
 
 			isFeast = isFeastDay( todaysDate, advent_start );
 			if( isFeast ) { feastFlag = 0; break; }
@@ -306,8 +306,9 @@ char *stringFeast() {
 			isFeast = isFeastDay( todaysDate, immaculate_conception_mary );
 			if( isFeast ) { feastFlag = 1; break; }
 			break;
+			
 		case 1:
-			feastFlag = 15; // generic seasonal day
+			feastFlag = 15;										// generic seasonal day
 
 			isFeast = isFeastDay( todaysDate, christmas_day );
 			if( isFeast ) { feastFlag = 2; break; }
@@ -321,8 +322,9 @@ char *stringFeast() {
 			isFeast = isFeastDay( todaysDate, jesus_baptism );
 			if( isFeast ) { feastFlag = 5; break; }
 			break;
+			
 		case 2:
-			feastFlag = 15; // generic seasonal day
+			feastFlag = 15;										// generic seasonal day
 
 			isFeast = isFeastDay( todaysDate, ash_wednesday );
 			if( isFeast ) { feastFlag = 6; break; }
@@ -339,8 +341,9 @@ char *stringFeast() {
 			isFeast = isFeastDay( todaysDate, easter_sunday );
 			if( isFeast ) { feastFlag = 10; break; }
 			break;
+			
 		case 3:
-			feastFlag = 15; // generic seasonal day
+			feastFlag = 15;										// generic seasonal day
 
 			isFeast = isFeastDay( todaysDate, pentacost );
 			if( isFeast ) { feastFlag = 11; break; }
@@ -348,8 +351,8 @@ char *stringFeast() {
 			isFeast = isFeastDay( todaysDate, assension_of_jesus );
 			if( isFeast ) { feastFlag = 12; break; }
 			break;
-		default:
-			// ordinary time feasts
+			
+		default:												// ordinary time feasts
 			isFeast = isFeastDay( todaysDate, all_saints_day );
 
 			if( isFeast ) {
