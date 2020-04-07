@@ -28,8 +28,13 @@ SET userinput=%1
     ECHO        clean, build, run
     ECHO.
     ECHO    Important:
-    ECHO        This script must run within: Developer CommandPrompt for VS 2019+
+    ECHO        This script must run within: Developer Command Prompt for VS 2019
     ECHO        The executable will be mainTTY.exe
+    ECHO.
+    ECHO    Run from terminal:
+    ECHO        .\Makefile_win.bat clean
+    ECHO        .\Makefile_win.bat build
+    ECHO        .\Makefile_win.bat run
     ECHO.
     ECHO    Options:
     ECHO        clean:
