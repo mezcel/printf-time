@@ -6,6 +6,7 @@
  * libraries and functions are mentioned in the code algorithm.
  * */
 
+#include <windows.h>	// Win10 GetConsoleScreenBufferInfo()
 #include <conio.h>		// getch() Win10 only
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
@@ -17,14 +18,25 @@ void clearScreen() {
 
 int returnScreenWidth() {
 	/*
-	 * On a POSIX terminal I would use the following to determine
-	 * how many columns wide the terminal is.
+	 * On a POSIX terminal I would use the following headers
 	 * 	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
 	 * 	#include <unistd.h> 	// STDOUT_FILENO
-	 * Since Win10 Visual Studio does not support this, I will just set
-	 * the terminal's column width.
+	 * 
+	 * On Win10 I use #include <windows.h>
+	 * 	#include <windows.h>	// GetConsoleScreenBufferInfo()
+	 * batch script to get console width:
+	 * for /F "usebackq tokens=2* delims=: " %%W in (`mode con ^| findstr Columns`) do echo %%W
 	*/
-	return 94;	// Estimate and aproximate ( 85 - 120 ) chars screen width
+
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+    int columns;
+	//int rows;
+
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    //rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	
+	return columns;		// I want an int greater than around 95;
 }
 
 void deactivateEcho() {
