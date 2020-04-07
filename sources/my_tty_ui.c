@@ -144,8 +144,10 @@ void infoPage( int weekdayNo, int desiredDispLen, char *titleLabel ) {
 
 	printf( "\n\n Display:\n\t\tOptimal Terminal Display: ( +25 rows ) x ( +100 cols ) to Full Screen.\n" );
 	printf( "\n\t\tNAB English ( mode ):\t./ttyRosary -n\n\t\tVulgate Latin ( mode ):\t./ttyRosary -v\n" );
+	printf( "\n\t\t\tcurren width = %d cols", returnScreenWidth() );
 
-	printf( "\n Keyboard:\n\t\tq = quit app, space = back, enter = next, help = up/down\n" );
+	printf( "\n Keyboard:\n\t\tq = quit app, space = back, help = up/down\n" );
+	printf( "\n\t\t0 = Today's mystery, 1 = Joyful, 2 = Sorrowful, 3 = Luminous, 4 = Glorious\n" );
 	printf( "\n\t\tvi controls:\th = back, l = next" );
 	printf( "\n\t\tgame controls:\ta = back, d = next" );
 	printf( "\n\n Source Code:\n\t\thttps://github.com/mezcel/printf-time.git\n\n" );
