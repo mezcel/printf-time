@@ -18,23 +18,23 @@ void clearScreen() {
 
 int returnScreenWidth() {
 	/*
-	 * On a POSIX terminal I would use the following headers
-	 * 	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
-	 * 	#include <unistd.h> 	// STDOUT_FILENO
-	 *
-	 * On Win10 I use #include <windows.h>
-	 * 	#include <windows.h>	// GetConsoleScreenBufferInfo()
-	 * batch script to get console width:
-	 * for /F "usebackq tokens=2* delims=: " %%W in (`mode con ^| findstr Columns`) do echo %%W
+	* On a POSIX terminal I would use the following headers
+	* 	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
+	* 	#include <unistd.h> 	// STDOUT_FILENO
+	*
+	* On Win10 I use #include <windows.h>
+	* 	#include <windows.h>	// GetConsoleScreenBufferInfo()
+	* batch script to get console width:
+	* for /F "usebackq tokens=2* delims=: " %%W in (`mode con ^| findstr Columns`) do echo %%W
 	*/
 
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
-    int columns;
+	int columns;
 	//int rows;
 
-    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-    columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
-    //rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	//rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
 
 	return columns;		// I want an int greater than around 95;
 }

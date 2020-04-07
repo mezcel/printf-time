@@ -77,7 +77,7 @@ int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen )
 			if ( navigtionPosition > 1 ) {
 				navigtionPosition--;
 			} else {
-				navigtionPosition = 315; 			// loop back to the end
+				navigtionPosition = 315;			// loop back to the end
 			}
 			break;
 
