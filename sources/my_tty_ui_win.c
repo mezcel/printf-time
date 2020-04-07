@@ -21,7 +21,7 @@ int returnScreenWidth() {
 	 * On a POSIX terminal I would use the following headers
 	 * 	#include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
 	 * 	#include <unistd.h> 	// STDOUT_FILENO
-	 * 
+	 *
 	 * On Win10 I use #include <windows.h>
 	 * 	#include <windows.h>	// GetConsoleScreenBufferInfo()
 	 * batch script to get console width:
@@ -35,14 +35,14 @@ int returnScreenWidth() {
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
     columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
     //rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
-	
+
 	return columns;		// I want an int greater than around 95;
 }
 
 void deactivateEcho() {
 	/*
 	 * n/a
-	 * used to deactivate echo on posix compliant termainls
+	 * used to deactivate echo on posix compliant terminals
 	 * */
 	return;
 }
@@ -50,7 +50,7 @@ void deactivateEcho() {
 void activateEcho() {
 	/*
 	 * n/a
-	 * used to reactivate echo on posix compliant termainls
+	 * used to reactivate echo on posix compliant terminals
 	 * */
 	return;
 }
@@ -106,7 +106,7 @@ int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen )
 		// Navigate backward
 
 		case 75:	// ASCII left arrow
-		case 32:	// ASCII spacebar
+		case 32:	// ASCII space bar
 		case 'h':	// vim input
 		case 'a':	// game input
 		case 'b':	// [ b key ] navigates 1 step back

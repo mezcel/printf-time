@@ -3,14 +3,14 @@
 functional libraries
 
 * A struct ER Database
-	* reads csv file data and converts it into an in-app app ER DB accesed via structs
+	* reads csv file data and converts it into an in-app app ER DB accessed via structs
 * calculate feast day calendar dates
 	* uses time.h to calculate the date of a variety of feast day calendar dates
 * user interfaces
 	* A UI for the CLI
 	* A UI for a window desktop
 
-With the exception of the UI's, the calendar and db were designed arround standard gcc libraries. The UI's required extra data formatting and OOP interacing.
+With the exception of the UI's, the calendar and db were designed around standard gcc libraries. The UI's required extra data formatting and OOP interacting.
 
 Dependency Matrix:
 

@@ -37,7 +37,7 @@ char *retrunMonthName( int indexNo ) {
 
 char *retrunFeastDayName( int indexNo ) {
 	char * FEAST_DAY_ARRAY[] = { "Advent Start", "Immaculate Conception of Mary", "Christmas Day", "Solemnity of Mary", "Epiphany",
-		"Jesus's Baptism", "Ash Wednesday", "Holy Thursday", "Good Friday", "Good Saturday", "Easter Sunday", "Pentacost", "Assension of Jesus", "All Saints Day", "Ordinary Day", "Seasonal Day" };
+		"Jesus's Baptism", "Ash Wednesday", "Holy Thursday", "Good Friday", "Good Saturday", "Easter Sunday", "Pentecost", "Ascension of Jesus", "All Saints Day", "Ordinary Day", "Seasonal Day" };
 	return FEAST_DAY_ARRAY[ indexNo ];
 }
 
@@ -151,7 +151,7 @@ void shiftTowardSunday( struct tm *tmDate ) {
 void shiftJesusBaptism( struct tm *tmDate ) {
 	/*
 	* Aprox Jan 13
-	* sunday after the Mass which celbrates the Epiphany
+	* sunday after the Mass which celebrates the Epiphany
 	* Monday if Epiphany Sunday shared the same day
 	* */
 	int intial_wday = tmDate -> tm_wday;
@@ -181,7 +181,7 @@ int isFeastDay( struct tm tmNow, struct tm tmThen ) {
 
 int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm season_end ) {
 	/*
-	* Easter season is 50 days starting at Pentacost
+	* Easter season is 50 days starting at Pentecost
 	* Lent season is 46 days between Ash Wed and Easter
 	* Advent season lasts through Christmas Day
 	* Christmas season lasts through the epiphany
@@ -240,7 +240,7 @@ char *stringLiturgicalSeason() {
 	struct tm immaculate_conception_mary = setSpecificDate( todaysDate.tm_year + 1900, 11, 8 ); // Dec 8
 	struct tm christmas_day				= setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed dec 25
 	struct tm solemnity_of_mary			= setSpecificDate( todaysDate.tm_year + 1900, 0, 1 ); // Jan 1
-	struct tm epiphany					= addDays( christmas_day,12 ); // 12 days after christmas
+	struct tm epiphany					= addDays( christmas_day,12 ); // 12 days after Christmas
 	shiftTowardSunday( &epiphany ); // epiphany sunday
 
 	struct tm jesus_baptism = addDays( christmas_day,12 );
@@ -252,7 +252,7 @@ char *stringLiturgicalSeason() {
 	struct tm holy_thursday = subtractDays( easter_sunday, 3 );
 	struct tm ash_wednesday = subtractDays( easter_sunday, 46 );
 	struct tm pentacost		= addDays( easter_sunday, 21 );
-	shiftTowardSunday( &pentacost );  // sun june 9, 7 sundays after easter
+	shiftTowardSunday( &pentacost );  // sun June 9, 7 Sundays after Easter
 
 	struct tm assension_of_jesus = addDays( easter_sunday, 40 );
 

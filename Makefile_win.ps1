@@ -4,7 +4,7 @@
 ## This will compile and build the cli terminal app on Win10.
 ## This script must be run within Visual Studio's Developer Powershell.
 
-## External arument inputs
+## External argument inputs
 param( $inputArgs )
 
 ## Store the file name of this script
@@ -63,11 +63,11 @@ function menu {
     About:
         This script is a DIY Makefile. Select from the following option.
         clean, build, run
-        
-    Important: 
+
+    Important:
         This script must run within: Developer Powershell for VS 2019+
         The executable will be mainTTY.exe
-        
+
     Run from terminal:
         .\$scriptName clean
         .\$scriptName build

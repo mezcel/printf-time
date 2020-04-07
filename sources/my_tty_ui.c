@@ -10,7 +10,7 @@
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
-// Seperate files used to minimze errors when compiling on Win10
+// Separate files used to minimize errors when compiling on Win10
 #ifdef __unix__
 	// Ideal functionality, available on Debian linux
 	#include "../sources/my_tty_ui_posix.c"

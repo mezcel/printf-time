@@ -8,7 +8,7 @@
 @echo off
 ::@cls
 
-:: Input exterinal arguments, global var
+:: Input external arguments, global var
 SET userinput=%1
 
 ::::::::::::::::::: main menu function :::::::::::::::::::
@@ -18,7 +18,7 @@ SET userinput=%1
     IF %userinput%=="build" GOTO menuOptions
     IF %userinput%=="run" GOTO menuOptions
 
-    :: splash screen and intructions
+    :: splash screen and instructions
     ECHO.
     ECHO ---------------------------------------------------
     ECHO Compile and build a CLI scripture Rosary on Win10.
@@ -27,7 +27,7 @@ SET userinput=%1
     ECHO        This script is a DIY Makefile. Select from the following option.
     ECHO        clean, build, run
     ECHO.
-    ECHO    Important: 
+    ECHO    Important:
     ECHO        This script must run within: Developer CommandPrompt for VS 2019+
     ECHO        The executable will be mainTTY.exe
     ECHO.
@@ -45,9 +45,9 @@ SET userinput=%1
     ECHO            do nothing, abort script
     ECHO ---------------------------------------------------
     ECHO.
-    
+
     ::SETLOCAL
-    SET /P userinput= Type selection option [ clean, build, run ] : 
+    SET /P userinput= Type selection option [ clean, build, run ] :
     ::ENDLOCAL
 
 :menuOptions
@@ -70,7 +70,7 @@ SET userinput=%1
 
 ::::::::::::::::::::: menu functions :::::::::::::::::::::
 
-:makeClean 
+:makeClean
     ECHO Cleaning ...
     :: clean previous builds
     IF EXIST *.obj DEL /F *.obj
@@ -90,7 +90,7 @@ SET userinput=%1
     ::EXIT /B 0
     GOTO %~1
 
-:makeRun 
+:makeRun
     ECHO Running ...
     :: Run
     IF EXIST .\mainTTY.exe CALL .\mainTTY.exe

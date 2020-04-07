@@ -15,7 +15,7 @@ void clearScreen() {
 
 int returnScreenWidth() {
 	// return a number which represents how long/wide the screen text should be
-	int col_length = 95;	// Estimate and aproximate ( 85 - 120 ) chars screen width
+	int col_length = 95;	// Estimate and proximate ( 85 - 120 ) chars screen width
 
 	struct winsize w;						// terminal tty info
 	ioctl( STDOUT_FILENO, TIOCGWINSZ, &w );	// tty col/row
@@ -72,7 +72,7 @@ int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen )
 
 		case 68:	// ASCII left arrow
 			printf( "\n" );
-		case 32:	// ASCII spacebar
+		case 32:	// ASCII space bar
 		case 'h':	// vim input
 		case 'a':	// game input
 		case 'b':	// [ b key ] navigates 1 step back

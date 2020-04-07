@@ -21,7 +21,7 @@ A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV 
 
 | English CLI Version | English GTK3 Version |
 | :---: | :---: |
-| Navigate using Vi kebindings or gamer keys. | The user navigates with push-button widget objects. |
+| Navigate using Vi keybindings or gamer keys. | The user navigates with push-button widget objects. |
 | Outdated screenshot was taken on a Debian WLS (v0.2.?) ![tty-screenshot](img/tty-screenshot.gif) | Outdated screenshot was taken on a i686 Debian (v0.2.?) ![gtk-screenshot](img/screenshot.gif) |
 | [A newer-ish animated demo](https://asciinema.org/a/278468) on a i686 Debian (v0.3.5) [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | - |
 
