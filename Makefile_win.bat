@@ -46,9 +46,7 @@ SET userinput=%1
     ECHO ---------------------------------------------------
     ECHO.
 
-    ::SETLOCAL
     SET /P userinput= Type selection option [ clean, build, run ] :
-    ::ENDLOCAL
 
 :menuOptions
     IF "%userinput%"=="quit" GOTO EOF
