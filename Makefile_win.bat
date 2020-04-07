@@ -9,11 +9,7 @@
 ::@cls
 
 :: Input external arguments, global var
-if %1 !== "" (
-	SET userinput=%1
-) ELSE (
-	SET userinput="noinputstring"
-)
+SET userinput=%1
 
 ::::::::::::::::::: main menu function :::::::::::::::::::
 
