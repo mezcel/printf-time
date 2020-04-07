@@ -1,6 +1,6 @@
 <!-- pandoc formatting
 title: 'printf-time'
-subtitle: 'A scripture rosary written in C for Linux OS's'
+subtitle: 'A scripture Rosary written in C for Debian Linux and Win10 VS'
 author: 'Mezcel'
 date: 'Jan 1, 2019'
 description: 'Scripture rosary using English and Latin Bible text.'
@@ -13,8 +13,6 @@ lang: en-US
 
 A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
 
-
-
 ## GUI Options:
 
 > This app can be run within a terminal or a desktop environment gui.
@@ -26,6 +24,7 @@ A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV 
 | [A newer-ish animated demo](https://asciinema.org/a/278468) on a i686 Debian (v0.3.5) [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | - |
 
 ---
+
 # Compile C
 
 ## 1. Compile on Debian or WLS ( Primary OS )
@@ -42,6 +41,7 @@ make gtkRosary
 ```
 
 ### 1.1 Run
+
 ```sh
 ## TTY App
 
@@ -98,10 +98,12 @@ cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj
 ### 2.2 Homebrew Makefile scripts
 
 I made the following to scripts to automate the compile and build.
+
 * ```Makefile_win.bat``` and ```Makefile_win.ps1```
 * Simulates the behavior of a GNU [Makefile](https://en.wikipedia.org/wiki/Makefile)
 
 Developer Powershell for VS 2019
+
 ```ps1
 .\Makefile_win.ps1 clean
 .\Makefile_win.ps1 build
@@ -109,19 +111,21 @@ Developer Powershell for VS 2019
 ```
 
 Developer Command Prompt for VS 2019
+
 ```bat
 .\Makefile_win.bat clean
 .\Makefile_win.bat build
 .\Makefile_win.bat run
 ```
 
-VS Code:
+VS Code Editor:
+
 * I just do my C coding in VS Code
 * Launch ```.code``` from within ```Developer Powershell for VS 2019```
 
 ---
 
-# Development Evolution:
+## Development Evolution:
 
 This is the 5th program language version in my Rosary App series.
 
@@ -154,15 +158,15 @@ Previous versions were:
 * [MinGW](http://www.mingw.org/) or Linux (x86 or x64)
 	* this app was developed on Debian WLS and tested on a real Linux
 * GCC v6+
-* Glade (a gui drawing tool)
-* any text editor (I use Geany for everything)
+* [Glade](https://glade.gnome.org/) (a gui designing tool)
+* any text editor (I use Geany for everything on Linux)
 	* Geany macros for quick and easy gtk3 development
 	* compile:	gcc -Wall -c "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 	* build:	gcc -Wall -o "%e" "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
 ---
 
-Win10 MinGW
+Win10 MinGW ( not tested recently )
 
 ```sh
 ## Compile in Debian and make it usable on a Win10
