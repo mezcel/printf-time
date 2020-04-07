@@ -11,4 +11,4 @@ sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc
 ```
 
 The CSV is a multifile databse.
-* used for both the CLI or GTK3 Version
+* used for both the CLI terminal or GTK3 Version

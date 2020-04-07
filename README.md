@@ -26,8 +26,9 @@ A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV 
 | [A newer-ish animated demo](https://asciinema.org/a/278468) on a i686 Debian (v0.3.5) [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | - |
 
 ---
+# Compile C
 
-## Compile on Debian
+## 1. Compile on Debian or WLS ( Primary OS )
 
 ```sh
 ## build and compile everything
@@ -36,7 +37,7 @@ A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV 
 make
 ```
 
-### Run
+### 1.1 Run
 ```sh
 ## TTY App
 
@@ -49,7 +50,7 @@ make
 ./gtkRosary -v		## Vulgate Latin
 ```
 
-### Debian Dependencies
+### 1.2 Debian Dependencies
 
 > If you get a compile error from the make build: ```#include <json-c/json.h>```, then use ```make debian``` to install potentially missing dependencies.
 > It is assumed that Xorg and GTK are installed on the base system.
@@ -68,11 +69,12 @@ sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 sudo apt install groff pandoc
 ```
 
-## Compile on Win10's Visual Studio's Developer Powershell / Command Prompt
+## 2. Compile on Win10 ( Secondary OS )
+
+### 2.1 Visual Studio's Developer Powershell / Command Prompt
 
 * [Configure VS Code for Microsoft C++](https://code.visualstudio.com/docs/cpp/config-msvc)
 * [Visual Studio](https://visualstudio.microsoft.com/downloads/#other)
-	* I just do my C coding in VS Code, ```.code```, launched from within ```Developer Powershell for VS 2019```
 
 ```ps1
 ## clean previous builds
@@ -88,6 +90,31 @@ cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj
 ## run
 .\mainTTY.exe
 ```
+
+### 2.2 Homebrew Makefile scripts
+
+I made the following to scripts to automate the compile and build.
+* ```Makefile_win.bat``` and ```Makefile_win.ps1```
+* Simulates the behavior of a GNU [Makefile](https://en.wikipedia.org/wiki/Makefile)
+
+Developer Powershell for VS 2019
+```ps1
+.\Makefile_win.ps1 clean
+.\Makefile_win.ps1 build
+.\Makefile_win.ps1 run
+```
+
+Developer Command Prompt for VS 2019
+```bat
+.\Makefile_win.bat clean
+.\Makefile_win.bat build
+.\Makefile_win.bat run
+```
+
+VS Code:
+* I just do my C coding in VS Code
+* Launch ```.code``` from within ```Developer Powershell for VS 2019```
+
 ---
 
 # Development Evolution:

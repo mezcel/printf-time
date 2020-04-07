@@ -12,6 +12,7 @@ Windows 10 (Visual Studio 2019)
 ```c
 #include <windows.h>        // Win10 GetConsoleScreenBufferInfo()
 #include <conio.h>          // getch() Win10 only
+#include <stdlib.h>         // calloc(), realloc(), malloc(), system(), free()
 ```
 
 Debian Linux
