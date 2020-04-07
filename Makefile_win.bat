@@ -15,8 +15,8 @@ SET userinput=%1
 
 :about
     IF "%userinput%"=="clean" GOTO menuOptions
-    IF %userinput%=="build" GOTO menuOptions
-    IF %userinput%=="run" GOTO menuOptions
+    IF "%userinput%"=="build" GOTO menuOptions
+    IF "%userinput%"=="run" GOTO menuOptions
 
     :: splash screen and instructions
     ECHO.
