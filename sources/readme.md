@@ -20,7 +20,3 @@ Dependency Matrix:
 | __dependency:__ | my_calendar.h | n/a | n/a| my_calendar.h | my_calendar.h |
 | __dependency:__ | n/a | my_file_to_struct.h |my_file_to_struct.h | my_file_to_struct.h | my_file_to_struct.h |
 | __dependency:__ | n/a | n/a | n/a | my_tty_ui.h | my_gtk3_api.h |
-
----
-
-[![asciicast](https://asciinema.org/a/266585.svg)](https://asciinema.org/a/266585)

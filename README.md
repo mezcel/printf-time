@@ -68,17 +68,18 @@ sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 sudo apt install groff pandoc
 ```
 
-## Compile on Win10's Visual Studio's Developer Powershell
+## Compile on Win10's Visual Studio's Developer Powershell / Command Prompt
 
 * [Configure VS Code for Microsoft C++](https://code.visualstudio.com/docs/cpp/config-msvc)
 * [Visual Studio](https://visualstudio.microsoft.com/downloads/#other)
+	* I just do my C coding in VS Code, ```.code```, launched from within ```Developer Powershell for VS 2019```
 
 ```ps1
 ## clean previous builds
 Remove-Item *.obj
 Remove-Item *.exe
 
-## Compile and build with Visual Studio's Developer Powershell
+## Compile and build with Visual Studio's Developer Powershell/Command Prompt
 cl /c sources\my_calendar.c
 cl /c sources\my_csv_structs.c
 cl /c sources\my_tty_ui.c
@@ -109,10 +110,7 @@ Previous versions were:
 
 ---
 
-## Project Status:
-
-### v0.3.6.? (current development)
-* Primarily developed for Linux or WLS. The TTY also works in Win10 Visual Studio.
+## Misc. Development Background
 
 ### Debian Runtime Environment
 
