@@ -14,13 +14,13 @@ function makeClean {
     Write-Host "Cleaning ...
     "
     ## clean previous builds
-    if (Test-Path *.obj) {
+    if ( Test-Path *.obj ) {
         Write-Host "Removing the following:"
         Get-ChildItem *.obj
         Remove-Item *.obj
     }
 
-    if (Test-Path *.exe) {
+    if ( Test-Path *.exe ) {
         Write-Host ""
         Write-Host "Removing the following:"
         Get-ChildItem *.exe
@@ -39,7 +39,7 @@ function makeBuild {
     cl /c sources\my_tty_ui.c
 
     ## Build the executable file
-    cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj
+    cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
     Write-Host "Done Building.
     "
 }
@@ -48,8 +48,8 @@ function makeRun {
     Write-Host "Running ...
     "
     ## Run
-    if (Test-Path .\mainTTY.exe) {
-        .\mainTTY.exe
+    if ( Test-Path .\ttyRosary.exe ) {
+        .\ttyRosary.exe
     }
     Write-Host "Done Running.
     "
