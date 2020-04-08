@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <time.h>	// After year 2038, only use an x64 compiler
+#include <stdlib.h>	// malloc()
 
 #include "../headers/my_calendar.h"
 
@@ -47,9 +48,8 @@ struct tm returnTodaysDate() {
 	return output_tm;
 }
 
-/*char *returnVerboseDate( struct tm tmDate ) {
-	//char *verboseDate = "";											// Decorative Date Display
-	char verboseDate[100] = {'\0'};
+char *returnVerboseDate( struct tm tmDate ) {
+	char *verboseDate = malloc(32);									// Decorative Date Display
 
 	sprintf( verboseDate, "%s %d %s, %d",							// automatic int to char conversion
 		retrunWeekdayName( tmDate.tm_wday ),
@@ -57,7 +57,7 @@ struct tm returnTodaysDate() {
 		tmDate.tm_year + 1900 );
 
 	return verboseDate;
-}*/
+}
 
 struct tm setSpecificDate( int year, int month, int day ) {
 	struct tm newTime = {
