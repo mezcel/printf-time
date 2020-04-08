@@ -154,7 +154,7 @@ void infoPage( int weekdayNo, int desiredDispLen, char *titleLabel ) {
 	multiLinePrintF( "\n About:\n\t", aboutString, desiredDispLen, 0 );
 
 	printf( "\n\n Display:\n\t\tOptimal Terminal Display: ( +25 rows ) x ( +100 cols ) to Full Screen.\t(cols: %d)\n", returnScreenWidth() );
-	printf( "\n\t\tNAB English ( mode ):\t./ttyRosary -n\n\t\t\t  ( Win 10 ):\t.\\mainTTY.exe\n\t\tVulgate Latin ( mode ):\t./ttyRosary -v\n" );
+	printf( "\n\t\tNAB English ( mode ):\t./ttyRosary -n\n\t\t\t  ( Win 10 ):\t.\\ttyRosary.exe\n\t\tVulgate Latin ( mode ):\t./ttyRosary -v\n" );
 
 	printf( "\n Keyboard:\n\t\tGeneral:\t\tq = quit app, help = up/down" );
 	printf( "\n\t\tVi controls:\t\th = back, l = next" );
