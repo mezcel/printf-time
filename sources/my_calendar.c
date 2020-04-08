@@ -9,53 +9,55 @@
 
 char *retrunWeekdayName( int indexNo ) {
 	char * WEEKDAY_NAME_ARRAY[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-	
+
 	return WEEKDAY_NAME_ARRAY[ indexNo ];
 }
 
 char *retrunMonthName( int indexNo ) {
 	char * MONTH_NAME_ARRAY[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-	
+
 	return MONTH_NAME_ARRAY[ indexNo ];
 }
 
 char *retrunFeastDayName( int indexNo ) {
 	char * FEAST_DAY_ARRAY[] = { "Advent Start", "Immaculate Conception of Mary", "Christmas Day", "Solemnity of Mary", "Epiphany",
 		"Jesus's Baptism", "Ash Wednesday", "Holy Thursday", "Good Friday", "Good Saturday", "Easter Sunday", "Pentecost", "Ascension of Jesus", "All Saints Day", "Ordinary Day", "Seasonal Day" };
-	
+
 	return FEAST_DAY_ARRAY[ indexNo ];
 }
 
 char *retrunLiturgicalName( int indexNo ) {
 	char * LITURGICAL_SEASON_ARRAY[] = { "Advent Season", "Christmas Season", "Lent Season", "Easter Season", "Ordinary Time" };
-	
+
 	return LITURGICAL_SEASON_ARRAY[ indexNo ];
 }
 
 char *returnWeekdayMystery( int indexNo ) {
 	char * WEEKDAY_MYSTERY[] = { "Glorious", "Joyful", "Sorrowful", "Glorious", "Luminous", "Sorrowful", "Joyful" };
-	
+
 	return WEEKDAY_MYSTERY[ indexNo ];
 }
 
 struct tm returnTodaysDate() {
 	// Return a time struct containing today's date values
-	
+
 	time_t currentDate = time( NULL );
 	struct tm output_tm = *localtime( &currentDate );
-	
+
 	return output_tm;
 }
 
-char *returnVerboseDate( struct tm tmDate ) {
-	char *verboseDate = "";											// Decorative Date Display
+/*char *returnVerboseDate( struct tm tmDate ) {
+	//char *verboseDate = "";											// Decorative Date Display
+	char verboseDate[100] = {'\0'};
+
 	sprintf( verboseDate, "%s %d %s, %d",							// automatic int to char conversion
 		retrunWeekdayName( tmDate.tm_wday ),
 		tmDate.tm_mday, retrunMonthName( tmDate.tm_mon ),
 		tmDate.tm_year + 1900 );
-		
+
 	return verboseDate;
-}
+}*/
 
 struct tm setSpecificDate( int year, int month, int day ) {
 	struct tm newTime = {
@@ -306,7 +308,7 @@ char *stringFeast() {
 			isFeast = isFeastDay( todaysDate, immaculate_conception_mary );
 			if( isFeast ) { feastFlag = 1; break; }
 			break;
-			
+
 		case 1:
 			feastFlag = 15;										// generic seasonal day
 
@@ -322,7 +324,7 @@ char *stringFeast() {
 			isFeast = isFeastDay( todaysDate, jesus_baptism );
 			if( isFeast ) { feastFlag = 5; break; }
 			break;
-			
+
 		case 2:
 			feastFlag = 15;										// generic seasonal day
 
@@ -341,7 +343,7 @@ char *stringFeast() {
 			isFeast = isFeastDay( todaysDate, easter_sunday );
 			if( isFeast ) { feastFlag = 10; break; }
 			break;
-			
+
 		case 3:
 			feastFlag = 15;										// generic seasonal day
 
@@ -351,7 +353,7 @@ char *stringFeast() {
 			isFeast = isFeastDay( todaysDate, assension_of_jesus );
 			if( isFeast ) { feastFlag = 12; break; }
 			break;
-			
+
 		default:												// ordinary time feasts
 			isFeast = isFeastDay( todaysDate, all_saints_day );
 
