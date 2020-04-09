@@ -4,7 +4,7 @@
 
 | library | Linux | Windows 10 |  use case |
 | --- | --- | --- | --- |
-| ```#include <stdio.h>``` | [stdio.h](http://man7.org/linux/man-pages/man3/stdio.3.html) | [cstdio.h](https://docs.microsoft.com/en-us/cpp/standard-library/cstdio?view=vs-2019) | printf(), fread(), fopen(), fclose() |
+| ```#include <stdio.h>``` | [stdio.h](http://man7.org/linux/man-pages/man3/stdio.3.html) | [cstdio.h](https://docs.microsoft.com/en-us/cpp/standard-library/cstdio?view=vs-2019) | printf(), sprintf(), fread(), fopen(), fclose() |
 | ```#include <stdlib.h>``` | [stdlib.h](http://man7.org/linux/man-pages/man0/stdlib.h.0p.html) | [cstdio.h](https://docs.microsoft.com/en-us/cpp/standard-library/cstdlib?view=vs-2019) | calloc(), realloc(), malloc(), system(), free() |
 | ```#include <string.h>``` | [string.h](http://man7.org/linux/man-pages/man0/string.h.0p.html) | [cstring.h](https://docs.microsoft.com/en-us/cpp/standard-library/cstring?view=vs-2019) | strcmp() |
 | ```#include <time.h>``` | [time.h](http://man7.org/linux/man-pages/man0/time.h.0p.html) | [ctime.h](https://docs.microsoft.com/en-us/cpp/standard-library/ctime?view=vs-2019) | After year 2038, use an x64 compiler |

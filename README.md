@@ -11,23 +11,27 @@ lang: en-US
 
 ## About:
 
-A scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
+A **( Latin / English )** scripture **Rosary** written in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
 
-## GUI Options:
+## UI Options:
 
 > This app can be run within a terminal or a desktop environment gui.
 
-| English CLI Version | English GTK3 Version |
+| CLI Version | GTK3 Version |
 | :---: | :---: |
-| Navigate using Vi keybindings or gamer keys. | The user navigates with push-button widget objects. |
-| Outdated screenshot was taken on a Debian WLS (v0.2.?) ![tty-screenshot](img/tty-screenshot.gif) | Outdated screenshot was taken on a i686 Debian (v0.2.?) ![gtk-screenshot](img/screenshot.gif) |
-| [A newer-ish animated demo](https://asciinema.org/a/278468) on a i686 Debian (v0.3.5) [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | - |
+| (v0.2) Debian WLS ![tty-screenshot](img/tty-screenshot.gif) | (v0.2) i686 Debian ![gtk-screenshot](img/screenshot.gif) |
+
+||||
+|---:|:---:|:---|
+| . | LIVE DEMO (v0.3.5) i686 Debian [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | . |
 
 ---
 
 # Compile C
 
 ## 1. Compile on Debian or WLS ( Primary OS )
+
+Makefile
 
 ```sh
 ## build and compile everything
@@ -102,11 +106,15 @@ I made the following to scripts to automate the compile and build.
 * ```Makefile_win.bat``` and ```Makefile_win.ps1```
 * Simulates the behavior of a GNU [Makefile](https://en.wikipedia.org/wiki/Makefile)
 
-Nmake
+Makefile
 
 ```bat
-:: Win10's namke
+:: Win10's nmake
+
+:: clean
 nmake nclean
+
+:: build
 nmake build
 ```
 
@@ -128,8 +136,8 @@ Developer Command Prompt for VS 2019
 
 VS Code Editor:
 
-* I just do my C coding in VS Code
-* Launch ```.code``` from within ```Developer Powershell for VS 2019```
+* I just do my Win10 C coding in VS Code
+* Launch ```code .``` from within ```Developer Powershell for VS 2019```
 
 ---
 
