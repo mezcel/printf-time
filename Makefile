@@ -108,9 +108,9 @@ clean:
 
 nclean:
 	:: clean previous *.obj and *.exe builds (Win10)
-	@IF EXIST *.obj DEL /F *.obj
-    @IF EXIST *.exe DEL /F *.exe
-
+	@IF EXIST *.obj DEL /F *.obj;
+	@IF EXIST *.exe DEL /F *.exe;
+	
 build:
 	:: build executable ttyRosary.exe
 	cl /c sources\my_calendar.c
