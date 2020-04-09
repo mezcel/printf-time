@@ -96,10 +96,10 @@ cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
 
 ### 2.2 Homebrew Makefile scripts
 
-I made the following to scripts to automate the compile and build.
+I made the following to scripts to automate the compile and build preocess.
 
 * ```Makefile_win.bat``` and ```Makefile_win.ps1```
-* Simulates the behavior of a GNU [Makefile](https://en.wikipedia.org/wiki/Makefile)
+* Added [Nmake](https://docs.microsoft.com/en-us/cpp/build/reference/nmake-reference?view=vs-2019) options within a  GNU [Makefile](https://en.wikipedia.org/wiki/Makefile)
 
 Makefile
 
