@@ -107,14 +107,25 @@ clean:
 #####################
 
 nclean:
-	:: clean previous *.obj and *.exe builds (Win10)
+	:::: clean previous *.obj and *.exe builds (Win10)
 	@IF EXIST *.obj DEL /F *.obj;
 	@IF EXIST *.exe DEL /F *.exe;
+	::
+	:::: clean vscode related files
+	@IF EXIST *.obj DEL /F *.ilk;
+	@IF EXIST *.exe DEL /F *.pdb;
+	::
+	:::: batch script tp perform clean
+	::Makefile_win.bat clean
 	
 build:
-	:: build executable ttyRosary.exe
+	:::: compile ttyRosary
 	cl /c sources\my_calendar.c
 	cl /c sources\my_csv_structs.c
 	cl /c sources\my_tty_ui.c
-	
+	::
+	:::: build executable ttyRosary.exe
 	cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
+	::
+	:::: batch script to perform build 
+	::Makefile_win.bat build

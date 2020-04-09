@@ -80,7 +80,10 @@ SET userinput=%1
     :: clean previous builds
     IF EXIST *.obj DEL /F *.obj
     IF EXIST *.exe DEL /F *.exe
-    ::EXIT /B 0
+
+    :: vscode generated stuff
+    IF EXIST *.ilk DEL /F *.ilk
+    IF EXIST *.pdb DEL /F *.pdb
     GOTO %~1
 
 :makeBuild
@@ -92,14 +95,12 @@ SET userinput=%1
 
     :: Build the executable file
     cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
-    ::EXIT /B 0
     GOTO %~1
 
 :makeRun
     ECHO Running ...
     :: Run
     IF EXIST .\ttyRosary.exe CALL .\ttyRosary.exe
-    ::EXIT /B 0
     GOTO %~1
 
 @echo on

@@ -13,19 +13,19 @@ $scriptName = $MyInvocation.MyCommand.Name
 function makeClean {
     Write-Host "Cleaning ...
     "
-    ## clean previous builds
-    if ( Test-Path *.obj ) {
-        Write-Host "Removing the following:"
-        Get-ChildItem *.obj
-        Remove-Item *.obj
-    }
+	
+	## array of file extensions
+	$fileExt = @("*.obj", "*.exe", "*.pdb", "*.ilk")
+	
+	foreach ($element in $fileExt) {
+		## clean previous builds
+		if ( Test-Path $element ) {
+			Write-Host "Removing the following:"
+			Get-ChildItem $element
+			Remove-Item $element
+		}
+	}
 
-    if ( Test-Path *.exe ) {
-        Write-Host ""
-        Write-Host "Removing the following:"
-        Get-ChildItem *.exe
-        Remove-Item *.exe
-    }
     Write-Host "Done Cleaning.
     "
 }
