@@ -7,7 +7,7 @@
  * */
 
 #include <stdio.h>
-#include <sys/stat.h> 		// used to get file size
+#include <sys/stat.h> 		// used to get file size, stat()
 #include <json-c/json.h>	// Debian Linux json-c library
 
 #include "../headers/my_file_to_struct.h"
