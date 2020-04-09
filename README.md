@@ -102,6 +102,14 @@ I made the following to scripts to automate the compile and build.
 * ```Makefile_win.bat``` and ```Makefile_win.ps1```
 * Simulates the behavior of a GNU [Makefile](https://en.wikipedia.org/wiki/Makefile)
 
+Nmake
+
+```bat
+:: Win10's namke
+nmake wclean
+nmake build
+```
+
 Developer Powershell for VS 2019
 
 ```ps1
