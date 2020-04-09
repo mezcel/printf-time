@@ -1,2 +1,3 @@
 Makefile_win.bat eol=crlf
 Makefile_win.ps1 eol=crlf
+Makefile eol=lf
