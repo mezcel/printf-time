@@ -19,11 +19,12 @@ A **( Latin / English )** scripture **Rosary** written in C/GCC for the GTK and 
 
 | CLI Version | GTK3 Version |
 | :---: | :---: |
-| (v0.2) Debian WLS ![tty-screenshot](img/tty-screenshot.gif) | (v0.2) i686 Debian ![gtk-screenshot](img/screenshot.gif) |
+| (v0.2) Debian WLS | (v0.2) i686 Debian |
+| <a href="./img/tty-screenshot.gif" target="_blank"><img src="./img//tty-screenshot.gif" height="300" /></a> | <a href="./img/screenshot.gif" target="_blank"><img src="./img/screenshot.gif" height="300" /></a> |
 
-||||
-|---:|:---:|:---|
-| . | LIVE DEMO (v0.3.5) i686 Debian [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | . |
+<p style="text-align: center;">LIVE DEMO (v0.3.5) i686 Debian</p>
+<!-- [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468)``` -->
+<p style="text-align: center;"><a href="https://asciinema.org/a/278468" target="_blank"><img src="https://asciinema.org/a/278468.svg" height="300" /></a></p>
 
 ---
 
