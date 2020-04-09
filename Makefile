@@ -108,8 +108,8 @@ clean:
 
 nclean:
 	:: clean previous *.obj and *.exe builds (Win10)
-	DEL /F *.obj
-    DEL /F *.exe
+	@IF EXIST *.obj DEL /F *.obj
+    @IF EXIST *.exe DEL /F *.exe
 
 build:
 	:: build executable ttyRosary.exe
