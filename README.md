@@ -106,7 +106,7 @@ Nmake
 
 ```bat
 :: Win10's namke
-nmake wclean
+nmake nclean
 nmake build
 ```
 
