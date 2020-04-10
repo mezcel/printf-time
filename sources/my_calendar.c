@@ -168,11 +168,12 @@ void shiftJesusBaptism( struct tm *tmDate ) {
 }
 
 int isFeastDay( struct tm tmNow, struct tm tmThen ) {
+	// return 1 if the difference in tims is within a 1 day duration
 	int intFlag = 0;
-	double returnSeconds = difftime( mktime(&tmNow ), mktime(&tmThen ) );
-	double days = returnSeconds / (24 * 3600 );
+	double returnSeconds = difftime( mktime ( &tmNow ), mktime( &tmThen ) );
+	double days = returnSeconds / ( 24 * 3600 );
 
-	if ( (days >= 0 ) && (days < 1 ) ) {
+	if ( ( days >= 0 ) && ( days <= 1 ) ) {
 		intFlag = 1;
 	} else {
 		intFlag = 0;
@@ -249,9 +250,9 @@ char *stringLiturgicalSeason() {
 	shiftJesusBaptism( &jesus_baptism ); // avoid epiphany overlap
 
 	struct tm easter_sunday	= setEasterDate( todaysDate.tm_year + 1900 ); // pfm
-	struct tm good_saturday = subtractDays( easter_sunday, 1 );
+	/*struct tm good_saturday = subtractDays( easter_sunday, 1 );
 	struct tm good_friday	= subtractDays( easter_sunday, 2 );
-	struct tm holy_thursday = subtractDays( easter_sunday, 3 );
+	struct tm holy_thursday = subtractDays( easter_sunday, 3 );*/
 	struct tm ash_wednesday = subtractDays( easter_sunday, 46 );
 	struct tm pentacost		= addDays( easter_sunday, 21 );
 	shiftTowardSunday( &pentacost );  // sun June 9, 7 Sundays after Easter
