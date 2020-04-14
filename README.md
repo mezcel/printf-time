@@ -141,11 +141,13 @@ VS Code Editor:
 
 ---
 
-## Development Evolution:
+## 3.0 Development Evolution:
+
+### 3.1 Other Version Platforms
 
 This is the 5th program language version in my Rosary App series.
 
-Previous versions were:
+#### Previous versions:
 
 | .NET/Windows OS | NodeJS/Electron | BASH/GNU | Python (Win/Linux) |
 | --- | --- | --- | --- |
@@ -161,15 +163,15 @@ Previous versions were:
 
 ---
 
-## Misc. Development Background
+### 3.2 Misc. Development Background
 
-### Debian Runtime Environment
+#### Debian Runtime Environment
 
 * Linux, [MinGW](http://www.mingw.org/) or Win10 Powershell with Visual Studio C++
 * Command line interface (CLI) / Shell Terminal
 * Xorg (Debian linux) or Xlaunch (Win10/WLS)
 
-### Debian Developer Environment (debug/mod)
+#### Debian Developer Environment (debug/mod)
 
 * [MinGW](http://www.mingw.org/) or Linux (x86 or x64)
 	* this app was developed on Debian WLS and tested on a real Linux
@@ -180,9 +182,7 @@ Previous versions were:
 	* compile:	gcc -Wall -c "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 	* build:	gcc -Wall -o "%e" "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
----
-
-Win10 MinGW ( not tested recently )
+### 3.3 Win10 MinGW ( not tested recently )
 
 ```sh
 ## Compile in Debian and make it usable on a Win10
