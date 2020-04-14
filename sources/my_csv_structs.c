@@ -63,6 +63,30 @@ char *removeNewLine( char *str ) {
 	return str;
 }
 
+int returnCsvRecordCount(char * filePath) {
+	FILE *fp; 
+    int count = 0;  // Line counter (result)
+    char c;  // To store a character read from file 
+  
+    fp = fopen(filePath, "r");	// Open the file 
+  
+    // Check if file path exists 
+    if (fp == NULL) { 
+        printf("Could not open file %s", filePath); 
+        return 0; 
+    } 
+  
+    // Extract characters from file and store in character c 
+    for (c = getc(fp); c != EOF; c = getc(fp)) {
+        if (c == '\n') { // Increment count if this character is newline 
+            count = count + 1;
+		}
+	}
+  
+    fclose(fp);	// Close the file 
+	return count;	
+}
+
 /*
  * struct functions
  * */
@@ -208,6 +232,25 @@ scripture_t * parse_scripture_record( char * scvline ) {
 	record_field -> chapterIndex = atoi( pp[ 2 ] );
 	record_field -> verseIndex	= atoi( pp[ 3 ] );
 	record_field -> scriptureText = strdup( pp[ 4 ] );
+
+	strsplitfree( pp );
+	return record_field;
+}
+
+feast_t * parse_feast_record( char * scvline ) {
+	char ** pp = NULL;
+	char *cleanScvLine;
+	feast_t * record_field = NULL;
+
+	cleanScvLine = removeNewLine( scvline );
+	pp = strsplit( cleanScvLine, ";" );
+	record_field = ( feast_t* ) calloc( 1, sizeof( feast_t ) );
+
+	record_field -> feastID		= atoi( pp[ 0 ] );
+	record_field -> feastName	= strdup( pp[ 1 ] );
+	record_field -> feastDay	= atoi( pp[ 2 ] );
+	record_field -> feastMonth	= atoi( pp[ 3 ] );
+	record_field -> monthName	= strdup( pp[ 4 ] );
 
 	strsplitfree( pp );
 	return record_field;
@@ -486,7 +529,43 @@ void csvToStruct_scripture( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
 	free( scvline );
 }
 
-void make_struct_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_array[ 8 ] ) {
+void csvToStruct_feast( feast_db_t *feast_db_struct, int LINE_MAX_LEN, char *filePath ) {
+	/*
+	* Copy text string value into struct char var
+	* */
+	//char scvline[ LINE_MAX_LEN + 1 ];
+	char *scvline = malloc( LINE_MAX_LEN + 1 );
+
+	int counter = 0;
+	int arrayIndex = 0;
+	feast_t *record_field;
+
+	FILE * csvFile = fopen( filePath, "r" );
+
+	while( fgets( scvline, LINE_MAX_LEN, csvFile ) ) {
+		if ( counter > 0 ) {
+			record_field = parse_feast_record( scvline );
+
+			arrayIndex = counter - 1;
+			feast_db_struct -> feast_dbArray[ arrayIndex ].feastID		= record_field -> feastID;
+			feast_db_struct -> feast_dbArray[ arrayIndex ].feastName	= record_field -> feastName;
+			feast_db_struct -> feast_dbArray[ arrayIndex ].feastDay		= record_field -> feastDay;
+			feast_db_struct -> feast_dbArray[ arrayIndex ].feastMonth	= record_field -> feastMonth;
+			feast_db_struct -> feast_dbArray[ arrayIndex ].monthName	= record_field -> monthName;
+		}
+		counter++;
+	}
+
+	// destroy temp string memory
+	fclose( csvFile );
+	free( scvline );
+}
+
+/*
+ * Bundle methods
+ * */
+
+void make_struct_rosary_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_array[ 8 ] ) {
 	// make an ER db struct from csv files
 
 	csvToStruct_rosaryBead( rosary_db_struct, 300, csv_path_array[ 0 ] );
@@ -497,4 +576,9 @@ void make_struct_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_array[ 8 
 	csvToStruct_mystery( rosary_db_struct, 67, csv_path_array[ 5 ] );
 	csvToStruct_prayer( rosary_db_struct, 1250, csv_path_array[ 6 ] );
 	csvToStruct_scripture( rosary_db_struct, 1250, csv_path_array[ 7 ] );
+}
+
+void make_struct_feast_db_csv( rosary_db_t *feast_db_struct, char *filePath ) {
+	// make an ER db struct from csv files
+	csvToStruct_feast( feast_db_struct, 90, filePath );
 }

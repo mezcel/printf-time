@@ -81,12 +81,30 @@ typedef struct rosary_db {
 	scripture_t scripture_dbArray[202];
 } rosary_db_t;
 
+/* 
+ * Feast day mini db
+ * */
+
+typedef struct feast_struct {
+	int feastID;
+	char *feastName;
+	int feastDay;
+	int feastMonth;
+	char *monthName;
+} feast_t;
+
+typedef struct feast_db {
+	// one must know beforehand how many records are there
+	feast_t feast_dbArray[20]; // assume are more records than there actually is
+} feast_db_t;
+
 /*
  * CSV Prototypes
  * */
 
 char ** strsplit( const char * src, const char * delim );
 void strsplitfree( char ** strlist );
+int returnCsvRecordCount(char * filePath);
 
 rosaryBead_t * parse_rosaryBead_record( char * scvline );
 bead_t * parse_bead_record( char * scvline );
@@ -97,7 +115,10 @@ mystery_t * parse_mystery_record( char * scvline );
 prayer_t * parse_prayer_record( char * scvline );
 scripture_t * parse_scripture_record( char * scvline );
 
-void make_struct_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_array[8] );
+feast_t * parse_feast_record( char * scvline );
+
+void make_struct_rosary_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_array[8] );
+void make_struct_feast_db_csv( feast_db_t *feast_db_struct, char *filePath );
 
 /*
  * JSON Prototypes

@@ -236,6 +236,33 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 }
 
+void updateFeastDisplayVariablesStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int navigtionPosition ) {
+
+	// Get values from DB Struct
+	int feastID = feast_db_struct -> feast_dbArray[ navigtionPosition ].feastID;
+	int feastDay = feast_db_struct -> feast_dbArray[ navigtionPosition ].feastDay;
+	int feastMonth = feast_db_struct -> feast_dbArray[ navigtionPosition ].feastMonth;
+	
+	char *feastName = feast_db_struct -> feast_dbArray[ navigtionPosition ].feastName;
+	char *monthName = feast_db_struct -> feast_dbArray[ navigtionPosition ].monthName;
+
+	// int's
+	queryFeastViewStruct -> feastID = feastID;
+	queryFeastViewStruct -> feastDay	= feastDay;
+	queryFeastViewStruct -> feastMonth = feastMonth;
+
+	// strings
+	strcpy( queryFeastViewStruct -> feastName, feastName );
+	strcpy( queryFeastViewStruct -> monthName, monthName );
+}
+
+void printStaticFeastArray ( displayFeastVariables_t queryFeastViewStruct, int todayDay, int todayMonth ) {
+	// Print a static feast day frmo the user defined feast day database
+	if ( ( todayDay == queryFeastViewStruct.feastDay ) && ( todayMonth == queryFeastViewStruct.feastMonth ) ) {
+		printf( " [%s]", queryFeastViewStruct.feastName );
+	}
+}
+
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel ) {
 	// Render all rosary bead content onto the screen
 	// Primary display rendering

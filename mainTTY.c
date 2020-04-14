@@ -32,6 +32,9 @@ int main( int argc, char **argv ) {
 	rosary_db_t rosary_db_struct;							// declare app's db var
 	displayVariables_t queryViewStruct;						// declare db query view var
 
+	feast_db_t feast_db_struct;							// declare app's db var
+	displayFeastVariables_t queryFeastViewStruct;						// declare db query view var
+
 	struct tm todaysDate = returnTodaysDate();				// define today struct
 	char *verboseDate = returnVerboseDate( todaysDate );	// Decorative Date Display
 	int weekdayNo = todaysDate.tm_wday;						// day of the week
@@ -65,7 +68,18 @@ int main( int argc, char **argv ) {
 		char *csv_path_array[8]	= { rosaryBead_path, bead_path, book_path, decade_path,
 				message_path, mystery_path, prayer_path, scripture_path };
 
-		make_struct_db_csv( &rosary_db_struct, csv_path_array );	// make struct database
+		make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );	// make struct database
+
+		make_struct_feast_db_csv( &feast_db_struct, "database/csv/feast.csv" );	// fixed feast day db
+
+		// DEBUG
+		/*int recordCount = returnCsvRecordCount( "database/csv/feast.csv" );
+		printf( "\n%d\n", recordCount );
+		for ( int i=0; i < recordCount; i++ ) {
+			updateFeastDisplayVariablesStruct( &feast_db_struct, &queryFeastViewStruct, i );
+			printStaticFeastArray( queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
+		}
+		return 0;*/
 	}
 
 	// Welcome display
