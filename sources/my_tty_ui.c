@@ -41,11 +41,11 @@ void borderCharPrintF( char *charSymbol, int borderWidth ) {
 void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int minRows ) {
 	// Automatically wrap string arrays that are longer than 1 terminal row
 	
-	int screenWidth = desiredLineLength;		// max chars per screen line width
-	int inputLength = ( int )strlen( strIn );	// number of chars contained in input string
-	int labelColChars = 17;						// chars used in the label col
-	int max_line_chars = screenWidth - labelColChars;
-	int rowCounter = 1;
+	int screenWidth		= desiredLineLength;		// max chars per screen line width
+	int inputLength		= ( int )strlen( strIn );	// number of chars contained in input string
+	int labelColChars	= 17;						// chars used in the label col
+	int max_line_chars	= screenWidth - labelColChars;
+	int rowCounter		= 1;
 
 	printf( "%s", labelChars );					// print the content label, initial printf
 
@@ -106,28 +106,28 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 
 	printf( "\n\n" );
 
-	strLength = ( int )strlen( title );
-	center = ( desiredDispLen - strLength ) / 2;
+	strLength	= ( int )strlen( title );
+	center		= ( desiredDispLen - strLength ) / 2;
 	borderCharPrintF( " ", center );
 	printf( "%s\n", title );
 
-	strLength = ( int )strlen( author );
-	center = ( desiredDispLen - strLength ) / 2;
+	strLength	= ( int )strlen( author );
+	center		= ( desiredDispLen - strLength ) / 2;
 	borderCharPrintF( " ", center );
 	printf( "%s\n\n", author );
 
-	strLength = ( int )strlen( about );
-	center = ( desiredDispLen - strLength ) / 2;
+	strLength	= ( int )strlen( about );
+	center		= ( desiredDispLen - strLength ) / 2;
 	borderCharPrintF( " ", center );
 	printf( "%s\n", about );
 
-	strLength = ( int )strlen( git );
-	center = ( desiredDispLen - strLength ) / 2;
+	strLength	= ( int )strlen( git );
+	center		= ( desiredDispLen - strLength ) / 2;
 	borderCharPrintF( " ", center );
 	printf( "%s\n\n\n\n", git );
 	
-	strLength = ( int )strlen( verboseDate );
-	center = ( desiredDispLen - strLength ) / 2;
+	strLength	= ( int )strlen( verboseDate );
+	center		= ( desiredDispLen - strLength ) / 2;
 	borderCharPrintF( " ", center );
 	printf( "%s\n\n\n\n", verboseDate );
 	
@@ -141,8 +141,8 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int desiredDispLen, char *titleLabel ) {
 	// display about and instructions
 	
-	char *season = stringLiturgicalSeason();
-	char *feast = stringFeast( queryFeastViewStruct.feastDay , queryFeastViewStruct.feastMonth, queryFeastViewStruct.feastName );
+	char *season	= stringLiturgicalSeason();
+	char *feast		= stringFeast( queryFeastViewStruct.feastDay , queryFeastViewStruct.feastMonth, queryFeastViewStruct.feastName );
 	char *aboutString ="\tThis program is a scripture rosary for the command line interface ( CLI ). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible ( CSV files ), and Latin readings are quoted from the Vulgate Bible ( JSON file ). Additional enclosed readings are curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested for use in BASH.";
 
 	int titleLabelLength = ( int )strlen( titleLabel );
@@ -181,7 +181,7 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 	int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0,
 		prayerFK = 0, scriptureFK = 0, loopBody = 0;
 	int smallbeadPercent = 0, mysteryPercent = 0;
-	int decadeNo 		= 0, mysteryNo = 0;
+	int decadeNo = 0, mysteryNo = 0;
 
 	char *beadType, *decadeName, *decadeInfo, *mesageText, *mysteryName;
 	char *scriptureText, *prayerText;
@@ -244,25 +244,25 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 	char *feastName, *monthName;
 	
 	while ( ( todayDay != feastDay ) && ( todayMonth != feastMonth ) ) {
-		feastDay = feast_db_struct -> feast_dbArray[ counter ].feastDay;
-		feastMonth = feast_db_struct -> feast_dbArray[ counter ].feastMonth;
+		feastDay = feast_db_struct		-> feast_dbArray[ counter ].feastDay;
+		feastMonth = feast_db_struct	-> feast_dbArray[ counter ].feastMonth;
 		counter++;
 	}
 	
 	if ( ( todayDay == feastDay ) && ( todayMonth == feastMonth ) ) {
 		counter--;
 		
-		feastID = feast_db_struct -> feast_dbArray[ counter ].feastID;
-		feastDay = feast_db_struct -> feast_dbArray[ counter ].feastDay;
+		feastID = feast_db_struct	-> feast_dbArray[ counter ].feastID;
+		feastDay = feast_db_struct	-> feast_dbArray[ counter ].feastDay;
 		feastMonth = feast_db_struct -> feast_dbArray[ counter ].feastMonth;
 		
-		feastName = feast_db_struct -> feast_dbArray[ counter ].feastName;
-		monthName = feast_db_struct -> feast_dbArray[ counter ].monthName;
+		feastName = feast_db_struct	-> feast_dbArray[ counter ].feastName;
+		monthName = feast_db_struct	-> feast_dbArray[ counter ].monthName;
 
 		// int's
-		queryFeastViewStruct -> feastID = feastID;
+		queryFeastViewStruct -> feastID		= feastID;
 		queryFeastViewStruct -> feastDay	= feastDay;
-		queryFeastViewStruct -> feastMonth = feastMonth;
+		queryFeastViewStruct -> feastMonth	= feastMonth;
 
 		// strings
 		strcpy( queryFeastViewStruct -> feastName, feastName );
@@ -270,9 +270,9 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 	} else {
 		// Populate queryFeastViewStruct with dummy values
 		// int's
-		queryFeastViewStruct -> feastID = 0;
+		queryFeastViewStruct -> feastID		= 0;
 		queryFeastViewStruct -> feastDay	= 0;
-		queryFeastViewStruct -> feastMonth = 0;
+		queryFeastViewStruct -> feastMonth	= 0;
 
 		// strings
 		strcpy( queryFeastViewStruct -> feastName, "" );
@@ -286,13 +286,13 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 	// Render all rosary bead content onto the screen
 	// Primary display rendering
 	
-	int minFruitsRow = 3,
-		minBackgroundRows = 4,
-		minScriptureRows = 4,
-		minPrayerRows = 4;
+	int minFruitsRow		= 3,
+		minBackgroundRows	= 4,
+		minScriptureRows	= 4,
+		minPrayerRows		= 4;
 
-	int trailingDots = 0,
-		historyDots = 0;
+	int trailingDots	= 0,
+		historyDots		= 0;
 
 	int titleLabelLength	= ( int )strlen( titleLabel ) + 3;
 	int mysteryLabelLength	= ( int )strlen( queryViewStruct.mysteryName ) + 4;
@@ -311,25 +311,25 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 		segment_part		= queryViewStruct.smallbeadPercent;
 	} else {
 		if ( queryViewStruct.mysteryPercent == 50 ) {
-			rosaray_region_string = "Conclusion Prayers";
-			footerLabel2Length = ( int )strlen( rosaray_region_string ) + 5;
-			segment_whole = 2;
-			decade_flag = 0;
-			segment_part = queryViewStruct.smallbeadPercent / 5;
-			minFruitsRow = 0;
-			minBackgroundRows = 0;
-			minScriptureRows = 0;
-			minPrayerRows = 7;
+			rosaray_region_string	= "Conclusion Prayers";
+			footerLabel2Length		= ( int )strlen( rosaray_region_string ) + 5;
+			segment_whole			= 2;
+			decade_flag				= 0;
+			segment_part			= queryViewStruct.smallbeadPercent / 5;
+			minFruitsRow			= 0;
+			minBackgroundRows		= 0;
+			minScriptureRows		= 0;
+			minPrayerRows			= 7;
 		} else {
-			rosaray_region_string = "Introduction Prayers";
-			footerLabel2Length = ( int )strlen( rosaray_region_string ) + 5;
-			segment_whole = 7;
-			decade_flag = 0;
-			segment_part = queryViewStruct.smallbeadPercent;
-			minFruitsRow = 0;
-			minBackgroundRows = 0;
-			minScriptureRows = 0;
-			minPrayerRows = 7;
+			rosaray_region_string	= "Introduction Prayers";
+			footerLabel2Length		= ( int )strlen( rosaray_region_string ) + 5;
+			segment_whole			= 7;
+			decade_flag				= 0;
+			segment_part			= queryViewStruct.smallbeadPercent;
+			minFruitsRow			= 0;
+			minBackgroundRows		= 0;
+			minScriptureRows		= 0;
+			minPrayerRows			= 7;
 		}
 	}
 
