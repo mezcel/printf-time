@@ -9,6 +9,11 @@ lang: en-US
 
 # printf-time
 
+Dev Branch: ```v0.4``` 
+
+* Adding a separate csv for Fixed feast days.
+* Only the feast days that change every year will be imbedded in code, other feasts will be called from a user defined CSV file.
+
 ## About:
 
 A **( Latin / English )** scripture **Rosary** written in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
