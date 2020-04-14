@@ -125,7 +125,7 @@ build:
 	cl /c sources\my_tty_ui.c
 	::
 	:::: build executable ttyRosary.exe
-	cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
+	cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /Fe"ttyRosary.exe"
 	::
 	:::: batch script to perform build 
 	::Makefile_win.bat build

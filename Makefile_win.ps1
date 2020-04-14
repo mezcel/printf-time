@@ -39,7 +39,8 @@ function makeBuild {
     cl /c sources\my_tty_ui.c
 
     ## Build the executable file
-    cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
+    #cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
+	cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /Fe"ttyRosary.exe"
     Write-Host "Done Building.
     "
 }
