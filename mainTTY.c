@@ -69,18 +69,12 @@ int main( int argc, char **argv ) {
 				message_path, mystery_path, prayer_path, scripture_path };
 
 		make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );	// make struct database
-
-		make_struct_feast_db_csv( &feast_db_struct, "database/csv/feast.csv" );	// fixed feast day db
-
-		// DEBUG
-		/*int recordCount = returnCsvRecordCount( "database/csv/feast.csv" );
-		printf( "\n%d\n", recordCount );
-		for ( int i=0; i < recordCount; i++ ) {
-			updateFeastDisplayVariablesStruct( &feast_db_struct, &queryFeastViewStruct, i );
-			printStaticFeastArray( queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
-		}
-		return 0;*/
 	}
+
+	// User defined feast days, CSV File
+	char *feastCSVFile = "database/csv/feast.csv";
+	make_struct_feast_db_csv( &feast_db_struct, feastCSVFile );	// fixed feast day db
+	updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
 
 	// Welcome display
 
@@ -89,7 +83,7 @@ int main( int argc, char **argv ) {
 	deactivateEcho();												// deactivate posix tty echo
 
 	splashPage( desiredDispLen, verboseDate  );						// display splash title
-	infoPage( weekdayNo, desiredDispLen, titleLabel );				// display info
+	infoPage( queryFeastViewStruct, weekdayNo, desiredDispLen, titleLabel );				// display info
 
 	// User interface application loop
 
@@ -102,7 +96,7 @@ int main( int argc, char **argv ) {
 		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel );
 
 		// Prompt for navigation user input
-		navigtionPosition = pressKeyContinue( navigtionPosition, weekdayNo, desiredDispLen );
+		navigtionPosition = pressKeyContinue( queryFeastViewStruct, navigtionPosition, weekdayNo, desiredDispLen );
 	}
 
 	activateEcho();													// Restore posix tty echo

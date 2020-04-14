@@ -20,7 +20,7 @@ char *retrunFeastDayName( int indexNo );
 char *retrunLiturgicalName( int indexNo );
 char *returnWeekdayMystery( int indexNo );
 char *stringLiturgicalSeason();
-char *stringFeast();
+char *stringFeast( int additionalDay, int additionalMonth, char *additionalFeast );
 
 void shiftTowardSunday( struct tm *tmDate );
 void shiftJesusBaptism( struct tm *tmDate );

@@ -138,11 +138,11 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 	clearScreen();
 }
 
-void infoPage( int weekdayNo, int desiredDispLen, char *titleLabel ) {
+void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int desiredDispLen, char *titleLabel ) {
 	// display about and instructions
 	
 	char *season = stringLiturgicalSeason();
-	char *feast = stringFeast();
+	char *feast = stringFeast( queryFeastViewStruct.feastDay , queryFeastViewStruct.feastMonth, queryFeastViewStruct.feastName );
 	char *aboutString ="\tThis program is a scripture rosary for the command line interface ( CLI ). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible ( CSV files ), and Latin readings are quoted from the Vulgate Bible ( JSON file ). Additional enclosed readings are curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested for use in BASH.";
 
 	int titleLabelLength = ( int )strlen( titleLabel );
@@ -236,31 +236,50 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 }
 
-void updateFeastDisplayVariablesStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int navigtionPosition ) {
-
-	// Get values from DB Struct
-	int feastID = feast_db_struct -> feast_dbArray[ navigtionPosition ].feastID;
-	int feastDay = feast_db_struct -> feast_dbArray[ navigtionPosition ].feastDay;
-	int feastMonth = feast_db_struct -> feast_dbArray[ navigtionPosition ].feastMonth;
+void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int todayDay, int todayMonth ) {
+	int feastDay	= 0,
+		feastMonth	= 0,
+		counter		= 0;
+	int feastID;
+	char *feastName, *monthName;
 	
-	char *feastName = feast_db_struct -> feast_dbArray[ navigtionPosition ].feastName;
-	char *monthName = feast_db_struct -> feast_dbArray[ navigtionPosition ].monthName;
-
-	// int's
-	queryFeastViewStruct -> feastID = feastID;
-	queryFeastViewStruct -> feastDay	= feastDay;
-	queryFeastViewStruct -> feastMonth = feastMonth;
-
-	// strings
-	strcpy( queryFeastViewStruct -> feastName, feastName );
-	strcpy( queryFeastViewStruct -> monthName, monthName );
-}
-
-void printStaticFeastArray ( displayFeastVariables_t queryFeastViewStruct, int todayDay, int todayMonth ) {
-	// Print a static feast day frmo the user defined feast day database
-	if ( ( todayDay == queryFeastViewStruct.feastDay ) && ( todayMonth == queryFeastViewStruct.feastMonth ) ) {
-		printf( " [%s]", queryFeastViewStruct.feastName );
+	while ( ( todayDay != feastDay ) && ( todayMonth != feastMonth ) ) {
+		feastDay = feast_db_struct -> feast_dbArray[ counter ].feastDay;
+		feastMonth = feast_db_struct -> feast_dbArray[ counter ].feastMonth;
+		counter++;
 	}
+	
+	if ( ( todayDay == feastDay ) && ( todayMonth == feastMonth ) ) {
+		counter--;
+		
+		feastID = feast_db_struct -> feast_dbArray[ counter ].feastID;
+		feastDay = feast_db_struct -> feast_dbArray[ counter ].feastDay;
+		feastMonth = feast_db_struct -> feast_dbArray[ counter ].feastMonth;
+		
+		feastName = feast_db_struct -> feast_dbArray[ counter ].feastName;
+		monthName = feast_db_struct -> feast_dbArray[ counter ].monthName;
+
+		// int's
+		queryFeastViewStruct -> feastID = feastID;
+		queryFeastViewStruct -> feastDay	= feastDay;
+		queryFeastViewStruct -> feastMonth = feastMonth;
+
+		// strings
+		strcpy( queryFeastViewStruct -> feastName, feastName );
+		strcpy( queryFeastViewStruct -> monthName, monthName );
+	} else {
+		// Populate queryFeastViewStruct with dummy values
+		// int's
+		queryFeastViewStruct -> feastID = 0;
+		queryFeastViewStruct -> feastDay	= 0;
+		queryFeastViewStruct -> feastMonth = 0;
+
+		// strings
+		strcpy( queryFeastViewStruct -> feastName, "" );
+		strcpy( queryFeastViewStruct -> monthName, "" );
+		
+	}
+	
 }
 
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel ) {

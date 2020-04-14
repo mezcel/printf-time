@@ -68,7 +68,7 @@ void make_struct_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
 	return;
 }
 
-int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen ) {
+int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct, int navigtionPosition, int weekdayNo, int desiredDispLen ) {
 	// user keyboard input for win10
 	// Increment or decrement the next desired position in the rosary sequence
 	// uses traditional vim or "retro game" navigation keys
@@ -86,7 +86,7 @@ int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen )
 		case 'j':
 		case 'k':
 			clearScreen();
-			infoPage( weekdayNo, desiredDispLen, " Instructions: " );
+			infoPage( queryFeastViewStruct, weekdayNo, desiredDispLen, " Instructions: " );
 			break;
 
 		// Navigate forward

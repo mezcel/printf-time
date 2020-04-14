@@ -48,7 +48,7 @@ typedef struct displayFeastVariables_struct {
 
 int returnScreenWidth();
 int initialMystery( int weekdayNo );
-int pressKeyContinue( int navigtionPosition, int weekdayNo, int desiredDispLen );
+int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct, int navigtionPosition, int weekdayNo, int desiredDispLen );
 
 void deactivateEcho();
 void activateEcho();
@@ -58,12 +58,11 @@ void borderCharPrintF( char *charSymbol, int borderWidth );
 void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int minRows );
 
 void splashPage( int desiredDispLen, char *verboseDate );
-void infoPage( int weekdayNo, int desiredDispLen, char *titleLabel );
+void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int desiredDispLen, char *titleLabel );
 
 void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct, int navigtionPosition );
-void updateFeastDisplayVariablesStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int navigtionPosition );
+void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int todayDay, int todayMonth );
 
-void printStaticFeastArray( displayFeastVariables_t queryFeastViewStruct, int todayDay, int todayMonth );
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel );
 
 #endif

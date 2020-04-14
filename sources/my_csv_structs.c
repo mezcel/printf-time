@@ -578,7 +578,7 @@ void make_struct_rosary_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_ar
 	csvToStruct_scripture( rosary_db_struct, 1250, csv_path_array[ 7 ] );
 }
 
-void make_struct_feast_db_csv( rosary_db_t *feast_db_struct, char *filePath ) {
+void make_struct_feast_db_csv( feast_db_t *feast_db_struct, char *filePath ) {
 	// make an ER db struct from csv files
 	csvToStruct_feast( feast_db_struct, 90, filePath );
 }
