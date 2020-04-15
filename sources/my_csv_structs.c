@@ -2,9 +2,9 @@
  * my_csv_structs.c
  * */
 
-#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free()
-#include <stdio.h>
-#include <string.h>
+#include <stdio.h>		// fopen(), fclose()
+#include <stdlib.h>		// calloc(), realloc(), malloc(), system(), free(), atoi()
+#include <string.h>		// strlen(), strdup()
 
 #include "../headers/my_file_to_struct.h"
 
@@ -19,8 +19,8 @@ char ** strsplit( const char * src, const char * delim ) {
 	int srclen		= 0;
 	char ** pparr	= NULL;
 
-	srclen = strlen( src );
-	pbuf = ( char* ) malloc( srclen + 1 );
+	srclen	= strlen( src );
+	pbuf	= ( char* ) malloc( srclen + 1 );
 
 	if( !pbuf ) {
 		return NULL;
@@ -303,10 +303,10 @@ void csvToStruct_bead( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fi
 	* Copy text string value into struct char var
 	* */
 	//char scvline[ LINE_MAX_LEN + 1 ];
-	char *scvline = malloc( LINE_MAX_LEN + 1 );
+	char *scvline	= malloc( LINE_MAX_LEN + 1 );
 
-	int counter = 0;
-	int arrayIndex = 0;
+	int counter		= 0;
+	int arrayIndex	= 0;
 	bead_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -323,7 +323,6 @@ void csvToStruct_bead( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fi
 	}
 
 	// destroy temp string memory
-	//free( record_field -> beadType );//
 	free( record_field );
 	fclose( csvFile );
 	free( scvline );
@@ -336,8 +335,8 @@ void csvToStruct_book( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fi
 	//char scvline[ LINE_MAX_LEN + 1 ];
 	char *scvline = malloc( LINE_MAX_LEN + 1 );
 
-	int counter = 0;
-	int arrayIndex = 0;
+	int counter		= 0;
+	int arrayIndex	= 0;
 	book_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -355,9 +354,6 @@ void csvToStruct_book( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fi
 	}
 
 	// destroy temp string memory
-	//free( record_field -> bookName );//
-	//free( record_field -> library );//
-	//free( record_field );//
 	fclose( csvFile );
 	free( scvline );
 }
@@ -369,8 +365,8 @@ void csvToStruct_decade( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	//char scvline[ LINE_MAX_LEN + 1 ];
 	char *scvline = malloc( LINE_MAX_LEN + 1 );
 
-	int counter = 0;
-	int arrayIndex = 0;
+	int counter		= 0;
+	int arrayIndex	= 0;
 	decade_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -391,9 +387,6 @@ void csvToStruct_decade( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	}
 
 	// destroy temp string memory
-	//free( record_field -> decadeName );//
-	//free( record_field -> decadeInfo );//
-	//free( record_field -> infoRefference );//
 	free( record_field );
 	fclose( csvFile );
 	free( scvline );
@@ -406,8 +399,8 @@ void csvToStruct_message( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char 
 	//char scvline[ LINE_MAX_LEN + 1 ];
 	char *scvline = malloc( LINE_MAX_LEN + 1 );
 
-	int counter = 0;
-	int arrayIndex = 0;
+	int counter		= 0;
+	int arrayIndex	= 0;
 	message_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -424,7 +417,6 @@ void csvToStruct_message( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char 
 	}
 
 	// destroy temp string memory
-	//free( record_field -> mesageText );//
 	free( record_field );
 	fclose( csvFile );
 	free( scvline );
@@ -437,8 +429,8 @@ void csvToStruct_mystery( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char 
 	//char scvline[ LINE_MAX_LEN + 1 ];
 	char *scvline = malloc( LINE_MAX_LEN + 1 );
 
-	int counter = 0;
-	int arrayIndex = 0;
+	int counter		= 0;
+	int arrayIndex	= 0;
 	mystery_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -456,7 +448,6 @@ void csvToStruct_mystery( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char 
 	}
 
 	// destroy temp string memory
-	//free( record_field -> mysteryName );//
 	free( record_field );
 	fclose( csvFile );
 	free( scvline );
@@ -469,8 +460,8 @@ void csvToStruct_prayer( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	//char scvline[ LINE_MAX_LEN + 1 ];
 	char *scvline = malloc( LINE_MAX_LEN + 1 );
 
-	int counter = 0;
-	int arrayIndex = 0;
+	int counter		= 0;
+	int arrayIndex	= 0;
 	prayer_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -488,8 +479,6 @@ void csvToStruct_prayer( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
 	}
 
 	// destroy temp string memory
-	//free( record_field -> prayerName );//
-	//free( record_field -> prayerText );//
 	free( record_field );
 	fclose( csvFile );
 	free( scvline );
@@ -502,8 +491,8 @@ void csvToStruct_scripture( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
 	//char scvline[ LINE_MAX_LEN + 1 ];
 	char *scvline = malloc( LINE_MAX_LEN + 1 );
 
-	int counter = 0;
-	int arrayIndex = 0;
+	int counter		= 0;
+	int arrayIndex	= 0;
 	scripture_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
@@ -523,7 +512,6 @@ void csvToStruct_scripture( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
 	}
 
 	// destroy temp string memory
-	//free( record_field -> scriptureText );//
 	free( record_field );
 	fclose( csvFile );
 	free( scvline );
@@ -533,11 +521,10 @@ void csvToStruct_feast( feast_db_t *feast_db_struct, int LINE_MAX_LEN, char *fil
 	/*
 	* Copy text string value into struct char var
 	* */
-	//char scvline[ LINE_MAX_LEN + 1 ];
 	char *scvline = malloc( LINE_MAX_LEN + 1 );
 
-	int counter = 0;
-	int arrayIndex = 0;
+	int counter		= 0;
+	int arrayIndex	= 0;
 	feast_t *record_field;
 
 	FILE * csvFile = fopen( filePath, "r" );
