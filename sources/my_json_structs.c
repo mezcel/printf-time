@@ -31,7 +31,7 @@ struct json_object *json_to_struct( char *jsonFilePath ) {
 	int FILE_BUFFER_SIZE = returnFileSize( jsonFilePath );
 	char buffer[ FILE_BUFFER_SIZE ];
 
-	fp = fopen( jsonFilePath,"r" );
+	fp = fopen( jsonFilePath, "r" );
 	fread( buffer, FILE_BUFFER_SIZE, 1, fp );
 	fclose( fp );
 
@@ -185,7 +185,7 @@ void jsonToStruct_feast( feast_db_t *feast_db_struct, struct json_object *parsed
 
 	for ( int i = 0; i < er_object_size; i++ ) {
 		feast_db_struct -> feast_dbArray[ i ].feastID 		= queryAttrInteger( er_object, "feastID", i );
-		feast_db_struct -> feast_dbArray[ i ].feastName		= queryAttrInteger( er_object, "feastName", i );
+		feast_db_struct -> feast_dbArray[ i ].feastName		= queryAttrString( er_object, "feastName", i );
 		feast_db_struct -> feast_dbArray[ i ].feastDay		= queryAttrInteger( er_object, "feastDay", i );
 		feast_db_struct -> feast_dbArray[ i ].feastMonth	= queryAttrInteger( er_object, "feastMonth", i );
 		feast_db_struct -> feast_dbArray[ i ].monthName		= queryAttrString( er_object, "monthName", i );

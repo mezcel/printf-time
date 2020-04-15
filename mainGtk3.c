@@ -20,6 +20,7 @@
 #include "headers/my_gtk3_api.h"
 
 rosary_db_t rosary_db_struct;	// global var read by Gtk app
+feast_db_t feast_db_struct;
 
 int main( int argc, char *argv[] ) {
 
@@ -42,6 +43,7 @@ int main( int argc, char *argv[] ) {
 		char *jsonFilePath = "database/json/rosaryJSON-vulgate.json";
 
 		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );		// make struct database
+		make_struct_db_json( &feast_db_struct, jsonFilePath );
 	} else {																// NAB CSV Database
 		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
 		char *bead_path 		= "database/csv/bead.csv";
