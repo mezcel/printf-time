@@ -6,8 +6,10 @@
  * libraries and functions are mentioned in the code algorithm.
  * */
 
+//#include <stdlib.h>		// system()
 #include <windows.h>	// Win10 GetConsoleScreenBufferInfo()
 #include <conio.h>		// getch() Win10 only
+
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
@@ -30,10 +32,11 @@ int returnScreenWidth() {
 
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	int columns;
-	//int rows;
 
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	GetConsoleScreenBufferInfo( GetStdHandle( STD_OUTPUT_HANDLE ), &csbi );
 	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	
+	//int rows;
 	//rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
 
 	return columns;		// I want an int greater than around 95;
@@ -91,6 +94,7 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct, int navigtio
 
 		// Navigate forward
 		case 77:									// ASCII right arrow
+		case '\r':									// [ enter ] key
 		case 'n':									// [ n key ] navigates 1 step forward
 		case 'l':									// vim input
 		case 'd':									// game input
