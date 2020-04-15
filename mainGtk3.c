@@ -54,7 +54,7 @@ int main( int argc, char *argv[] ) {
 		char *csv_path_array[8]	= { rosaryBead_path, bead_path, book_path, decade_path,
 				message_path, mystery_path, prayer_path, scripture_path };
 
-		make_struct_db_csv( &rosary_db_struct, csv_path_array );	// make struct database
+		make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );	// make struct database
 	}
 
 	gtk_init( &argc, &argv );
