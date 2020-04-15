@@ -15,7 +15,7 @@ There are two database file types.
 ### 2.2 User Defined Feast Days
 
 * I made a standalone CSV file for static feast days.
-    * Note: Feast days that designate the Liturgical callendar are embedded into the code. Adding those days are redundant.
+    * Note: Feast days that designate the Liturgical calendar are embedded into the code. Adding those days are redundant.
 * The user may add their own additional days.
 * Edit the [printf-time/database/csv/feast.csv](csv/feast.csv) file.
     * Note: January starts at month 0, not 1.

@@ -19,12 +19,9 @@
 */
 
 #ifdef __unix__
-	// Ideally this app would run on a Debian Linux
-	#define IS_LINUX 1
-	// Dependency:
-	// #include "sources/my_json_structs.c"					// Compile Note: gcc mainTTY.c -ljson-c -o "ttyRosary"
+	#define IS_LINUX 1	// This app was tested on Debian Linux ( x86/x64 ) Jan 2020
 #else
-	#define IS_LINUX 0
+	#define IS_LINUX 0	// This app was tested on Win10 ( x86/x64 ) Jan 2020
 #endif
 
 int main( int argc, char **argv ) {
@@ -38,7 +35,7 @@ int main( int argc, char **argv ) {
 	struct tm todaysDate	= returnTodaysDate();				// define today struct
 	char *verboseDate		= returnVerboseDate( todaysDate );	// Decorative Date Display
 	int weekdayNo			= todaysDate.tm_wday;				// day of the week
-	int navigtionPosition	= initialMystery( weekdayNo );	// starting progress position
+	int navigtionPosition	= initialMystery( weekdayNo );		// starting progress position
 
 	char *titleLabel;										// string to display which db is used
 	int nabFlag;											// Sets either NAB or Vulgate
@@ -54,7 +51,7 @@ int main( int argc, char **argv ) {
 		titleLabel				= " C/JSON Rosary ( Latin Vulgate ) ";
 		char *jsonFilePath		= "database/json/rosaryJSON-vulgate.json";
 
-		make_struct_db_json( &rosary_db_struct, jsonFilePath );		// make struct database
+		make_struct_db_json( &rosary_db_struct, jsonFilePath );		// make struct database from file
 	} else {														// NAB CSV Database
 		titleLabel = " C/CSV Rosary ( English NAB ) ";
 		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
@@ -68,38 +65,39 @@ int main( int argc, char **argv ) {
 		char *csv_path_array[8]	= { rosaryBead_path, bead_path, book_path, decade_path,
 				message_path, mystery_path, prayer_path, scripture_path };
 
-		make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );	// make struct database
+		make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );	// make struct database from files
 	}
 
 	// User defined feast days, CSV File
 	char *feastCSVFile = "database/csv/feast.csv";
-	make_struct_feast_db_csv( &feast_db_struct, feastCSVFile );		// fixed feast day db
+	make_struct_feast_db_csv( &feast_db_struct, feastCSVFile );			// fixed feast day db
 	updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
 
 	// Welcome display
 
-	desiredDispLen = returnScreenWidth();							// terminal width
-	clearScreen();													// clear screen
-	deactivateEcho();												// deactivate posix tty echo
+	desiredDispLen = returnScreenWidth();								// terminal width
+	clearScreen();														// clear screen
+	deactivateEcho();													// deactivate posix tty echo
 
-	splashPage( desiredDispLen, verboseDate  );						// display splash title
-	infoPage( queryFeastViewStruct, weekdayNo, desiredDispLen, titleLabel );	// display info
+	splashPage( desiredDispLen, verboseDate  );							// display splash title
+	infoPage( queryFeastViewStruct, weekdayNo, desiredDispLen, titleLabel );	// display info/about
 
 	// User interface application loop
 
 	while ( navigtionPosition <= 315 ) {
 		// query database text based on the current navigation position
+		// Update the displayFeastVariables_t struct 
 		updateDisplayVariablesStruct( &rosary_db_struct, &queryViewStruct, navigtionPosition );
 
 		// render display text
-		desiredDispLen		= returnScreenWidth();					// get tty screen width
+		desiredDispLen		= returnScreenWidth();						// get tty screen width
 		outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel );
 
-		// Prompt for navigation user input
+		// Prompt for keyboard navigation user input
 		navigtionPosition	= pressKeyContinue( queryFeastViewStruct, navigtionPosition, weekdayNo, desiredDispLen );
 	}
 
-	activateEcho();													// Restore posix tty echo
+	activateEcho();														// Restore posix tty echo
 
 	return 0;
 }

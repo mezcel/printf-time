@@ -154,7 +154,7 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 	multiLinePrintF( "\n About:\n\t", aboutString, desiredDispLen, 0 );
 
 	printf( "\n\n Display:\n\t\tOptimal Terminal Display: ( +25 rows ) x ( +100 cols ) to Full Screen.\t(cols: %d)\n", returnScreenWidth() );
-	//printf( "\n\t\tNAB English\t( POSIX TTY ):\t\t./ttyRosary -n\n\t\t\t\t( Win 10 CMD/Powershell ):\t\t.\\ttyRosary.exe\n\t\tVulgate Latin\t( Linux GTK ):\t\t./ttyRosary -v\n" );
+
 	printf("\n\t\tNAB English\t( POSIX TTY ):\t\t./ttyRosary -n\n");
 	printf("\t\t\t\t( CMD/Powershell ):\t.\\ttyRosary.exe\n");
 	printf("\t\tVulgate Latin\t( Linux GTK ):\t\t./ttyRosary -v\n");
@@ -214,15 +214,15 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 	// Populate/Update Query View Struct
 	queryViewStruct -> rosaryPositionID = rosaryPositionID;
-	queryViewStruct -> beadFK 		= beadFK;
-	queryViewStruct -> decadeFK 	= decadeFK;
-	queryViewStruct -> messageFK 	= messageFK;
-	queryViewStruct -> mysteryFK 	= mysteryFK;
-	queryViewStruct -> prayerFK 	= prayerFK;
-	queryViewStruct -> scriptureFK 	= scriptureFK;
-	queryViewStruct -> loopBody 	= loopBody;
+	queryViewStruct -> beadFK 			= beadFK;
+	queryViewStruct -> decadeFK 		= decadeFK;
+	queryViewStruct -> messageFK 		= messageFK;
+	queryViewStruct -> mysteryFK 		= mysteryFK;
+	queryViewStruct -> prayerFK 		= prayerFK;
+	queryViewStruct -> scriptureFK 		= scriptureFK;
+	queryViewStruct -> loopBody 		= loopBody;
 	queryViewStruct -> smallbeadPercent = smallbeadPercent;
-	queryViewStruct -> mysteryPercent = mysteryPercent;
+	queryViewStruct -> mysteryPercent 	= mysteryPercent;
 
 	// strings
 	strcpy( queryViewStruct -> beadType, beadType );
