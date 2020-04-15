@@ -177,11 +177,26 @@ void jsonToStruct_scripture( rosary_db_t *rosary_db_struct, struct json_object *
 	}
 }
 
+void jsonToStruct_feast( feast_db_t *feast_db_struct, struct json_object *parsed_json_db ) {
+	struct json_object *er_object;
+	json_object_object_get_ex( parsed_json_db, "feast", &er_object );
+
+	int er_object_size = json_object_array_length( er_object );
+
+	for ( int i = 0; i < er_object_size; i++ ) {
+		feast_db_struct -> feast_dbArray[ i ].feastID 		= queryAttrInteger( er_object, "feastID", i );
+		feast_db_struct -> feast_dbArray[ i ].feastName		= queryAttrInteger( er_object, "feastName", i );
+		feast_db_struct -> feast_dbArray[ i ].feastDay		= queryAttrInteger( er_object, "feastDay", i );
+		feast_db_struct -> feast_dbArray[ i ].feastMonth	= queryAttrInteger( er_object, "feastMonth", i );
+		feast_db_struct -> feast_dbArray[ i ].monthName		= queryAttrString( er_object, "monthName", i );
+	}
+}
+
 /*
  * populate rosary_db_t
  * */
 
-void make_struct_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
+void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
 	struct json_object *parsed_json;
 	parsed_json = json_to_struct( jsonFilePath );
 
@@ -193,4 +208,15 @@ void make_struct_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
 	jsonToStruct_mystery( rosary_db_struct, parsed_json );
 	jsonToStruct_prayer( rosary_db_struct, parsed_json );
 	jsonToStruct_scripture( rosary_db_struct, parsed_json );
+}
+
+/*
+ * populate feast_db_t
+ * */
+
+void make_struct_db_json( feast_db_t *feast_db_struct, char *jsonFilePath ) {
+	struct json_object *parsed_json;
+	parsed_json = json_to_struct( jsonFilePath );
+
+	jsonToStruct_feast( feast_db_struct, parsed_json );
 }

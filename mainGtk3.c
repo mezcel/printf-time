@@ -23,8 +23,8 @@ rosary_db_t rosary_db_struct;	// global var read by Gtk app
 
 int main( int argc, char *argv[] ) {
 
-	GtkBuilder *builder;
-	GtkWidget *window;
+	GtkBuilder	*builder;
+	GtkWidget	*window;
 	app_widgets *widgets 	= g_slice_new( app_widgets );
 
 	struct tm todaysDate 	= returnTodaysDate();
@@ -41,8 +41,8 @@ int main( int argc, char *argv[] ) {
 	if ( nabFlag == 0 ) {											// Vulgate JSON Database
 		char *jsonFilePath = "database/json/rosaryJSON-vulgate.json";
 
-		make_struct_db_json( &rosary_db_struct, jsonFilePath );		// make struct database
-	} else {														// NAB CSV Database
+		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );		// make struct database
+	} else {																// NAB CSV Database
 		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
 		char *bead_path 		= "database/csv/bead.csv";
 		char *book_path 		= "database/csv/book.csv";
@@ -59,9 +59,9 @@ int main( int argc, char *argv[] ) {
 
 	gtk_init( &argc, &argv );
 
-	builder = gtk_builder_new();
+	builder	= gtk_builder_new();
 	gtk_builder_add_from_file( builder, "xml/myGladeXml.glade", NULL );
-	window = GTK_WIDGET( gtk_builder_get_object( builder, "gtkRosary" ) );
+	window	= GTK_WIDGET( gtk_builder_get_object( builder, "gtkRosary" ) );
 
 	initializeLabelPointers( builder, window, widgets );			// get pointers to label widgets
 	widgets -> navigtionPosition = navigtionPosition;				// starting progress position;

@@ -81,7 +81,7 @@ typedef struct rosary_db {
 	scripture_t scripture_dbArray[202];
 } rosary_db_t;
 
-/* 
+/*
  * Feast day mini db
  * */
 
@@ -129,6 +129,6 @@ struct json_object *json_to_struct( char *jsonFilePath );
 char *queryAttrString( struct json_object *inputObject, char *attrName, int index );
 int queryAttrInteger( struct json_object *inputObject, char *attrName, int index );
 
-void make_struct_db_json( rosary_db_t *rosary_db_struct, char *filePath );
-
+void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *filePath );
+void make_struct_db_json( feast_db_t *feast_db_struct, char *jsonFilePath );
 #endif
