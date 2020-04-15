@@ -5344,7 +5344,7 @@
 			"prayerName": "Sancte Míchaël Archángele",
 			"prayerText": "Sancte Míchaël Archángele, defénde nos in proélio; contra nequítiam et insídias diáboli esto praesídium. Ímperet illi Deus, súpplices deprecámur, tuque, Princeps milítiae caeléstis, Sátanam aliósque spíritus malígnos, qui ad perditiónem animárum pervagántur in mundo, divína virtúte, in inférnum detrúde. Amen."
 		}
-	]/*,
+	],
 	"feast": [{
 			"feastID": 0,
 			"feastName": "-",
@@ -5359,7 +5359,7 @@
 			"monthName": "January"
 		}, {
 			"feastID": 2,
-			"feastName": "Saint Patrick\'s Day",
+			"feastName": "Saint Patrick's Day",
 			"feastDay": 17,
 			"feastMonth": 2,
 			"monthName": "March"
@@ -5424,5 +5424,5 @@
 			"feastMonth": 11,
 			"monthName": "December"
 		}
-	]*/
+	]
 }
