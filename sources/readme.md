@@ -18,5 +18,6 @@ Dependency Matrix:
 | - | --- | --- | --- | --- | --- |
 | __about:__ | calculates feast days using time.h | converts csv files into an ER Schema, the DB is stored in a single struct | json to struct using [libjson-c](https://github.com/json-c/json-c) | command line terminal interface GUI | Gtk3 desktop window application GUI|
 | __dependency:__ | my_calendar.h | n/a | n/a| my_calendar.h | my_calendar.h |
-| __dependency:__ | n/a | my_file_to_struct.h |my_file_to_struct.h | my_file_to_struct.h | my_file_to_struct.h |
+| __dependency:__ | n/a | my_file_to_struct.h |my_file_to_struct.h | my_file_to_struct.h my_tty_ui_win.c my_tty_ui_posix.c | my_file_to_struct.h |
 | __dependency:__ | n/a | n/a | n/a | my_tty_ui.h | my_gtk3_api.h |
+| __C Library:__ | <stdio.h> <stdlib.h> <time.h> | <stdio.h> <stdlib.h> <string.h> | <stdio.h> <sys/stat.h> <json-c/json.h> | <stdio.h> <stdlib.h> <string.h> <windows.h> <conio.h> <sys/ioctl.h> <unistd.h> | "gtk/gtk.h" |
