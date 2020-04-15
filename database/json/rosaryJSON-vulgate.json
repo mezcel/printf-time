@@ -5344,5 +5344,85 @@
 			"prayerName": "Sancte Míchaël Archángele",
 			"prayerText": "Sancte Míchaël Archángele, defénde nos in proélio; contra nequítiam et insídias diáboli esto praesídium. Ímperet illi Deus, súpplices deprecámur, tuque, Princeps milítiae caeléstis, Sátanam aliósque spíritus malígnos, qui ad perditiónem animárum pervagántur in mundo, divína virtúte, in inférnum detrúde. Amen."
 		}
-	]
+	]/*,
+	"feast": [{
+			"feastID": 0,
+			"feastName": "-",
+			"feastDay": 0,
+			"feastMonth": 12,
+			"monthName": "Month Name"
+		}, {
+			"feastID": 1,
+			"feastName": "Solemnity of Mary",
+			"feastDay": 1,
+			"feastMonth": 0,
+			"monthName": "January"
+		}, {
+			"feastID": 2,
+			"feastName": "Saint Patrick\'s Day",
+			"feastDay": 17,
+			"feastMonth": 2,
+			"monthName": "March"
+		}, {
+			"feastID": 3,
+			"feastName": "Feast of St. Anthony of Padua",
+			"feastDay": 13,
+			"feastMonth": 5,
+			"monthName": "June"
+		}, {
+			"feastID": 4,
+			"feastName": "Feast of St. Thomas Moore",
+			"feastDay": 22,
+			"feastMonth": 5,
+			"monthName": "June"
+		}, {
+			"feastID": 5,
+			"feastName": "Feast of St. John the Baptist",
+			"feastDay": 24,
+			"feastMonth": 5,
+			"monthName": "June"
+		}, {
+			"feastID": 6,
+			"feastName": "St. Peter the Apostle",
+			"feastDay": 29,
+			"feastMonth": 5,
+			"monthName": "June"
+		}, {
+			"feastID": 7,
+			"feastName": "Feast of St. Moses the Black",
+			"feastDay": 26,
+			"feastMonth": 7,
+			"monthName": "August"
+		}, {
+			"feastID": 8,
+			"feastName": "Feast of St. Jerome of Stridon",
+			"feastDay": 30,
+			"feastMonth": 8,
+			"monthName": "September"
+		}, {
+			"feastID": 9,
+			"feastName": "Feast of St. Francis of Assisi",
+			"feastDay": 4,
+			"feastMonth": 9,
+			"monthName": "October"
+		}, {
+			"feastID": 10,
+			"feastName": "All Souls Day",
+			"feastDay": 2,
+			"feastMonth": 10,
+			"monthName": "November"
+		}, {
+			"feastID": 11,
+			"feastName": "Immaculate Conception of Mary",
+			"feastDay": 8,
+			"feastMonth": 11,
+			"monthName": "December"
+		}, {
+			"feastID": 12,
+			"feastName": "Christmas",
+			"feastDay": 25,
+			"feastMonth": 11,
+			"monthName": "December"
+		}
+	]*/
 }
