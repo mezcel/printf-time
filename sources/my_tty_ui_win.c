@@ -1,5 +1,6 @@
 /* my_tty_ui_win.c
- *
+ * USECASE: Supliment the my_tty_ui.c source code.
+ * 
  * Counterpart to ../sources/my_tty_ui_posix.c
  * For use on non-linux & non-posix terminal environments.
  * Visual Studio's compiler returns errors if non-comliant

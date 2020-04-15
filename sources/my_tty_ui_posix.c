@@ -1,6 +1,10 @@
 /* my_tty_ui_posix.c
+ * USECASE: Supliment the my_tty_ui.c source code.
  *
+ * Counterpart to ../sources/my_tty_ui_win.c
  * For use on Debian Linux POSIX terminal environments.
+ * Visual Studio's compiler returns errors if non-comliant
+ * libraries and functions are mentioned in the code algorithm.
  * */
 
 #include <sys/ioctl.h>	// ioctl(), TIOCGWINSZ, struct winsize
