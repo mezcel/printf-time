@@ -21,7 +21,7 @@
 
 int initialMystery( int weekdayNo ) {
 	// return the start of a mystery sequence depending on which day of the week it is
-	
+
 	int navigtionPosition[ ] = {237, 0, 158, 237, 79, 158, 0};
 
 	if ( ( weekdayNo > 6 ) || ( weekdayNo < 0 ) ) {
@@ -32,7 +32,7 @@ int initialMystery( int weekdayNo ) {
 
 void borderCharPrintF( char *charSymbol, int borderWidth ) {
 	// print a sequence of chars which act as a visual border/divider
-	
+
 	for ( int i = 0; i < borderWidth; i++ ) {
 		printf( "%s", charSymbol );
 	}
@@ -40,7 +40,7 @@ void borderCharPrintF( char *charSymbol, int borderWidth ) {
 
 void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int minRows ) {
 	// Automatically wrap string arrays that are longer than 1 terminal row
-	
+
 	int screenWidth		= desiredLineLength;		// max chars per screen line width
 	int inputLength		= ( int )strlen( strIn );	// number of chars contained in input string
 	int labelColChars	= 17;						// chars used in the label col
@@ -83,7 +83,7 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
 		}
 	}
 
-	// Add empty rows for visual spacing 
+	// Add empty rows for visual spacing
 	if ( minRows != 0 ) {
 		if ( rowCounter < minRows ) {
 			int difference = minRows - rowCounter;
@@ -96,7 +96,7 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
 
 void splashPage( int desiredDispLen, char *verboseDate ) {
 	// display a decorative cover page
-	
+
 	int strLength, center;
 
 	char *title		= "Scriptural Rosary";
@@ -125,12 +125,12 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 	center		= ( desiredDispLen - strLength ) / 2;
 	borderCharPrintF( " ", center );
 	printf( "%s\n\n\n\n", git );
-	
+
 	strLength	= ( int )strlen( verboseDate );
 	center		= ( desiredDispLen - strLength ) / 2;
 	borderCharPrintF( " ", center );
 	printf( "%s\n\n\n\n", verboseDate );
-	
+
 	borderCharPrintF( ":", desiredDispLen );
 	printf( "\n\n press [ enter key ] to continue ... " );
 
@@ -140,10 +140,10 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 
 void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int desiredDispLen, char *titleLabel ) {
 	// display about and instructions
-	
+
 	char *season	= stringLiturgicalSeason();
 	char *feast		= stringFeast( queryFeastViewStruct.feastDay , queryFeastViewStruct.feastMonth, queryFeastViewStruct.feastName );
-	char *aboutString ="\tThis program is a scripture rosary for the command line interface ( CLI ). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible ( CSV files ), and Latin readings are quoted from the Vulgate Bible ( JSON file ). Additional enclosed readings are curated from a variety of different Rosary prayer guides. This program was developed in C/GCC and tested for use in BASH.";
+	char *aboutString ="\tThis program is a scripture rosary for the command line interface ( CLI ). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible ( CSV files ), and Latin readings are quoted from the Vulgate Bible ( JSON file ). User defined feast days can be modified by editing the \"database/csv/feast.csv\" file.";
 
 	int titleLabelLength = ( int )strlen( titleLabel );
 	borderCharPrintF( ":", 3 );
@@ -154,11 +154,14 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 	multiLinePrintF( "\n About:\n\t", aboutString, desiredDispLen, 0 );
 
 	printf( "\n\n Display:\n\t\tOptimal Terminal Display: ( +25 rows ) x ( +100 cols ) to Full Screen.\t(cols: %d)\n", returnScreenWidth() );
-	printf( "\n\t\tNAB English ( mode ):\t./ttyRosary -n\n\t\t\t  ( Win 10 ):\t.\\ttyRosary.exe\n\t\tVulgate Latin ( mode ):\t./ttyRosary -v\n" );
+	//printf( "\n\t\tNAB English\t( POSIX TTY ):\t\t./ttyRosary -n\n\t\t\t\t( Win 10 CMD/Powershell ):\t\t.\\ttyRosary.exe\n\t\tVulgate Latin\t( Linux GTK ):\t\t./ttyRosary -v\n" );
+	printf("\n\t\tNAB English\t( POSIX TTY ):\t\t./ttyRosary -n\n");
+	printf("\t\t\t\t( CMD/Powershell ):\t.\\ttyRosary.exe\n");
+	printf("\t\tVulgate Latin\t( Linux GTK ):\t\t./ttyRosary -v\n");
 
-	printf( "\n Keyboard:\n\t\tGeneral:\t\tq = quit app, help = up/down" );
-	printf( "\n\t\tVi controls:\t\th = back, l = next" );
-	printf( "\n\t\tGame controls:\t\ta = back, d = next" );
+	printf( "\n Keyboard:\n\t\tGeneral:\t\tq = quit app,\thelp = up/down" );
+	printf( "\n\t\tVi controls:\t\th = back,\t   l = next" );
+	printf( "\n\t\tGame controls:\t\ta = back,\t   d = next" );
 	printf( "\n\t\tJump to Mystery:\t0 = Today's mystery, 1 = Joyful, 2 = Sorrowful, 3 = Luminous, 4 = Glorious" );
 	printf( "\n\n Source Code:\n\t\thttps://github.com/mezcel/printf-time.git\n\n" );
 
@@ -242,20 +245,20 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 		counter		= 0;
 	int feastID;
 	char *feastName, *monthName;
-	
+
 	while ( ( todayDay != feastDay ) && ( todayMonth != feastMonth ) ) {
 		feastDay = feast_db_struct		-> feast_dbArray[ counter ].feastDay;
 		feastMonth = feast_db_struct	-> feast_dbArray[ counter ].feastMonth;
 		counter++;
 	}
-	
+
 	if ( ( todayDay == feastDay ) && ( todayMonth == feastMonth ) ) {
 		counter--;
-		
+
 		feastID = feast_db_struct	-> feast_dbArray[ counter ].feastID;
 		feastDay = feast_db_struct	-> feast_dbArray[ counter ].feastDay;
 		feastMonth = feast_db_struct -> feast_dbArray[ counter ].feastMonth;
-		
+
 		feastName = feast_db_struct	-> feast_dbArray[ counter ].feastName;
 		monthName = feast_db_struct	-> feast_dbArray[ counter ].monthName;
 
@@ -277,15 +280,15 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 		// strings
 		strcpy( queryFeastViewStruct -> feastName, "" );
 		strcpy( queryFeastViewStruct -> monthName, "" );
-		
+
 	}
-	
+
 }
 
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel ) {
 	// Render all rosary bead content onto the screen
 	// Primary display rendering
-	
+
 	int minFruitsRow		= 3,
 		minBackgroundRows	= 4,
 		minScriptureRows	= 4,
