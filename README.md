@@ -9,10 +9,7 @@ lang: en-US
 
 # printf-time
 
-Dev Branch: ```v0.4``` 
-
-* Adding a separate csv for Fixed feast days.
-* Only the feast days that change every year will be imbedded in code, other feasts will be called from a user defined CSV file.
+Version: ```v0.4``` 
 
 ## About:
 
