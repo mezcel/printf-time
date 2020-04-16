@@ -59,7 +59,7 @@ void activateEcho() {
 	return;
 }
 
-void make_struct_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
+void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
 	/*
 	 * n/a
 	 * This is a place holder just to make the Win10 VS compiler happy.
