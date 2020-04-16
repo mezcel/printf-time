@@ -291,7 +291,7 @@ char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeas
 
 	// User Defined Feast Days
 	struct tm userFeastDay;
-	if ( ( userDefinedFeast != NULL ) && ( userDefinedFeast != "" ) ) {
+	if ( ( userDefinedFeast != NULL ) && ( userDefinedFeast != "" ) && ( userDefinedFeast[0] != '\0' ) ) {
 		userFeastDay = setSpecificDate( todaysDate.tm_year + 1900, additionalMonth, additionalDay );
 	}
 
