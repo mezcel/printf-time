@@ -162,15 +162,16 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 	printf( "\n Keyboard:\n\t\tGeneral:\t\tq = quit app,\thelp = up/down" );
 	printf( "\n\t\tVi controls:\t\th = back,\t   l = next" );
 	printf( "\n\t\tGame controls:\t\ta = back,\t   d = next" );
-	printf( "\n\t\tJump to Mystery:\t0 = Today's mystery, 1 = Joyful, 2 = Sorrowful, 3 = Luminous, 4 = Glorious" );
+	printf( "\n\t\tJump to Mystery:\t0 = Today's mystery\t1 = Joyful, 2 = Sorrowful" );
+	printf( "\n\t\t\t\t\t\t\t\t3 = Luminous, 4 = Glorious" );
 	printf( "\n\n Source Code:\n\t\thttps://github.com/mezcel/printf-time.git\n\n" );
 
 	borderCharPrintF( ":", desiredDispLen );
 
 	printf( "\n\n Today's %s mystery is the %s Mystery. ( %s / %s )\n\n",
-			retrunWeekdayName( weekdayNo ),
-			returnWeekdayMystery( weekdayNo ),
-			season, feast );
+		retrunWeekdayName( weekdayNo ),
+		returnWeekdayMystery( weekdayNo ),
+		season, feast );
 
 	borderCharPrintF( ":", desiredDispLen );
 	printf( "\n\n press [ enter key ] to continue ... " );
