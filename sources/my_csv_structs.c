@@ -410,7 +410,7 @@ void csvToStruct_message( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char 
 			record_field = parse_message_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct -> message_dbArray[ arrayIndex ].messageID = record_field -> messageID;
+			rosary_db_struct -> message_dbArray[ arrayIndex ].messageID	= record_field -> messageID;
 			rosary_db_struct -> message_dbArray[ arrayIndex ].mesageText = record_field -> mesageText;
 		}
 		counter++;

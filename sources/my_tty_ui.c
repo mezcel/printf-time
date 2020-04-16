@@ -245,19 +245,21 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 		feastMonth	= 0,
 		counter		= 0;
 	int feastID,
-		isFeastDay = 0;
+		isFeastDay	= 0; // flag if today's date is a user defined feast date
 
 	char *feastName, *monthName;
 	
 	while ( counter < recordCount  ) {
 		feastDay	= feast_db_struct -> feast_dbArray[ counter ].feastDay;
 		feastMonth	= feast_db_struct -> feast_dbArray[ counter ].feastMonth;
+
 		if ( todayDay == feastDay ) {
 			if ( todayMonth == feastMonth ) {
 				isFeastDay = 1;
 				break;
 			}
 		} 
+		
 		counter++;
 	}
 
