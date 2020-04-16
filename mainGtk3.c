@@ -52,13 +52,6 @@ int main( int argc, char *argv[] ) {
 
 		char *jsonFilePath = "database/json/rosaryJSON-vulgate.json";
 		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );	// make struct database
-
-		// User defined feast days, CSV File
-		char *fesat_json_file = "database/json/feast.json";				// or "database/json/rosaryJSON-vulgate.json"
-		make_struct_feast_db_json( &feast_db_struct, fesat_json_file );
-		updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
-		userDefinedFeast = stringFeast( todaysDate.tm_mday , todaysDate.tm_mon, queryFeastViewStruct.feastName );
-
 	} else {															// NAB CSV Database
 
 		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
@@ -72,14 +65,14 @@ int main( int argc, char *argv[] ) {
 		char *csv_path_array[8]	= { rosaryBead_path, bead_path, book_path, decade_path,
 				message_path, mystery_path, prayer_path, scripture_path };
 		make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );		// make struct database
-		
-		// User defined feast days, CSV File
-		char *feast_csv_file = "database/csv/feast.csv";
-		make_struct_feast_db_csv( &feast_db_struct, feast_csv_file );		// fixed feast day db
-		updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
-		userDefinedFeast = stringFeast( todaysDate.tm_mday , todaysDate.tm_mon, queryFeastViewStruct.feastName );
-		
+
 	}
+
+	// User defined feast days, JSON File
+	char *fesat_json_file = "database/json/feast.json";				// or "database/json/rosaryJSON-vulgate.json"
+	make_struct_feast_db_json( &feast_db_struct, fesat_json_file );
+	updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
+	userDefinedFeast = stringFeast( todaysDate.tm_mday , todaysDate.tm_mon, queryFeastViewStruct.feastName );
 
 	gtk_init( &argc, &argv );
 
