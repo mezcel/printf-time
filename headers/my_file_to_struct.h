@@ -2,7 +2,6 @@
  * my_file_to_struct.h
  * */
 
-// fileguard
 #ifndef MY_FILE_TO_STRUCT
 #define MY_FILE_TO_STRUCT
 
