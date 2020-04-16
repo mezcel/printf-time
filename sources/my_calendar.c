@@ -170,7 +170,7 @@ void shiftJesusBaptism( struct tm *tmDate ) {
 int isFeastDay( struct tm tmNow, struct tm tmThen ) {
 	// return 1 if the difference in time is within a 1 day duration
 	int intFlag = 0;
-	double returnSeconds = difftime( mktime ( &tmNow ), mktime( &tmThen ) );
+	double returnSeconds = difftime( mktime( &tmNow ), mktime( &tmThen ) );
 	double days = returnSeconds / ( 24 * 3600 );
 
 	if ( ( days >= 0 ) && ( days <= 1 ) ) {
@@ -291,9 +291,7 @@ char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeas
 
 	// User Defined Feast Days
 	struct tm userFeastDay;
-	if ( ( userDefinedFeast != NULL ) && ( userDefinedFeast != "" ) && ( userDefinedFeast[0] != '\0' ) ) {
-		userFeastDay = setSpecificDate( todaysDate.tm_year + 1900, additionalMonth, additionalDay );
-	}
+	userFeastDay = setSpecificDate( todaysDate.tm_year + 1900, additionalMonth, additionalDay );
 
 	int seasonFlag = returnLiturgicalSeason( &todaysDate, &advent_start, &christmas_day,
 			&epiphany, &ash_wednesday, &easter_sunday, &pentacost );
