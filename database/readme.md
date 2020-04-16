@@ -12,6 +12,14 @@ There are two database file types.
 * Developed for use on Win10 and Linux
 * Contains English translations
 
+### 2.1 Data Structures limitation ( feast.csv )
+
+* Feast database must be within 100 records long.
+    * Number of feast days <= 100
+    * ```feast_t feast_dbArray[100];```
+* Each record needs to be within 100 chars long
+    * ```csvToStruct_feast( feast_db_struct, 100, filePath );```
+
 ### 2.2 User Defined Feast Days
 
 * I made a standalone CSV file for static feast days.
@@ -32,5 +40,12 @@ There are two database file types.
 ## Install json-c on Debian Linux
 sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc
 ```
+---
 
+## Feast Day Research
 
+Some links used to look up the feast day for different saints.
+
+* [Catholic Saint of the Day](https://mycatholic.life/saints/saints-of-the-liturgical-year)
+
+* [Celebrate with the Saints](https://help.svdpusa.org/feast-days)
