@@ -10,7 +10,6 @@ lang: en-US
 # printf-time
 
 Version: ```v0.4.1```
-* Incorperating feast object with json and GTK
 
 ## About:
 
