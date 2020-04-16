@@ -51,7 +51,7 @@ int main( int argc, char **argv ) {
 		titleLabel				= " C/JSON Rosary ( Latin Vulgate ) ";
 		char *jsonFilePath		= "database/json/rosaryJSON-vulgate.json";
 
-		make_struct_db_json( &rosary_db_struct, jsonFilePath );		// make struct database from file
+		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );		// make struct database from file
 	} else {														// NAB CSV Database
 		titleLabel = " C/CSV Rosary ( English NAB ) ";
 		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
