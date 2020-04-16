@@ -162,8 +162,8 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 	printf( "\n Keyboard:\n\t\tGeneral:\t\tq = quit app,\thelp = up/down" );
 	printf( "\n\t\tVi controls:\t\th = back,\t   l = next" );
 	printf( "\n\t\tGame controls:\t\ta = back,\t   d = next" );
-	printf( "\n\t\tJump to Mystery:\t0 = Today's mystery\t1 = Joyful, 2 = Sorrowful" );
-	printf( "\n\t\t\t\t\t\t\t\t3 = Luminous, 4 = Glorious" );
+	printf( "\n\t\tJump to Mystery:\t0 = Today's mystery\t1 = Joyful\t2 = Sorrowful" );
+	printf( "\n\t\t\t\t\t\t\t\t3 = Luminous\t4 = Glorious" );
 	printf( "\n\n Source Code:\n\t\thttps://github.com/mezcel/printf-time.git\n\n" );
 
 	borderCharPrintF( ":", desiredDispLen );
@@ -240,28 +240,34 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 }
 
-void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int todayDay, int todayMonth ) {
+void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int todayDay, int todayMonth, int recordCount ) {
 	int feastDay	= 0,
 		feastMonth	= 0,
 		counter		= 0;
-	int feastID;
-	char *feastName, *monthName;
+	int feastID,
+		isFeastDay = 0;
 
-	while ( ( todayDay != feastDay ) && ( todayMonth != feastMonth ) ) {
-		feastDay = feast_db_struct		-> feast_dbArray[ counter ].feastDay;
-		feastMonth = feast_db_struct	-> feast_dbArray[ counter ].feastMonth;
+	char *feastName, *monthName;
+	
+	while ( counter < recordCount  ) {
+		feastDay	= feast_db_struct -> feast_dbArray[ counter ].feastDay;
+		feastMonth	= feast_db_struct -> feast_dbArray[ counter ].feastMonth;
+		if ( todayDay == feastDay ) {
+			if ( todayMonth == feastMonth ) {
+				isFeastDay = 1;
+				break;
+			}
+		} 
 		counter++;
 	}
 
-	if ( ( todayDay == feastDay ) && ( todayMonth == feastMonth ) ) {
-		counter--;
+	if ( isFeastDay ) {
+		feastID		= feast_db_struct -> feast_dbArray[ counter ].feastID;
+		feastDay	= feast_db_struct -> feast_dbArray[ counter ].feastDay;
+		feastMonth	= feast_db_struct -> feast_dbArray[ counter ].feastMonth;
 
-		feastID = feast_db_struct	-> feast_dbArray[ counter ].feastID;
-		feastDay = feast_db_struct	-> feast_dbArray[ counter ].feastDay;
-		feastMonth = feast_db_struct -> feast_dbArray[ counter ].feastMonth;
-
-		feastName = feast_db_struct	-> feast_dbArray[ counter ].feastName;
-		monthName = feast_db_struct	-> feast_dbArray[ counter ].monthName;
+		feastName	= feast_db_struct	-> feast_dbArray[ counter ].feastName;
+		monthName	= feast_db_struct	-> feast_dbArray[ counter ].monthName;
 
 		// int's
 		queryFeastViewStruct -> feastID		= feastID;
