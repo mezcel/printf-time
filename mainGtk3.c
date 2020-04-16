@@ -47,13 +47,15 @@ int main( int argc, char *argv[] ) {
 		nabFlag = 1;
 	}
 
+	// Load Database files
 	if ( nabFlag == 0 ) {												// Vulgate JSON Database
 
 		char *jsonFilePath = "database/json/rosaryJSON-vulgate.json";
 		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );	// make struct database
 
-		char *feastJSONFile = "database/json/feast.json";				// or "database/json/rosaryJSON-vulgate.json"
-		make_struct_feast_db_json( &feast_db_struct, feastJSONFile );
+		// User defined feast days, CSV File
+		char *fesat_json_file = "database/json/feast.json";				// or "database/json/rosaryJSON-vulgate.json"
+		make_struct_feast_db_json( &feast_db_struct, fesat_json_file );
 		updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
 		userDefinedFeast = stringFeast( todaysDate.tm_mday , todaysDate.tm_mon, queryFeastViewStruct.feastName );
 
@@ -69,10 +71,11 @@ int main( int argc, char *argv[] ) {
 		char *scripture_path 	= "database/csv/scripture.csv";
 		char *csv_path_array[8]	= { rosaryBead_path, bead_path, book_path, decade_path,
 				message_path, mystery_path, prayer_path, scripture_path };
-		make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );	// make struct database
+		make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );		// make struct database
 		
-		char *feastCSVFile = "database/csv/feast.csv";
-		make_struct_feast_db_csv( &feast_db_struct, feastCSVFile );			// fixed feast day db
+		// User defined feast days, CSV File
+		char *feast_csv_file = "database/csv/feast.csv";
+		make_struct_feast_db_csv( &feast_db_struct, feast_csv_file );		// fixed feast day db
 		updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
 		userDefinedFeast = stringFeast( todaysDate.tm_mday , todaysDate.tm_mon, queryFeastViewStruct.feastName );
 		
@@ -84,8 +87,8 @@ int main( int argc, char *argv[] ) {
 	gtk_builder_add_from_file( builder, "xml/myGladeXml.glade", NULL );
 	window	= GTK_WIDGET( gtk_builder_get_object( builder, "gtkRosary" ) );
 
-	initializeLabelPointers( builder, window, widgets, userDefinedFeast );				// get pointers to label widgets
-	widgets -> navigtionPosition = navigtionPosition;					// starting progress position;
+	initializeLabelPointers( builder, window, widgets, userDefinedFeast );	// get pointers to label widgets
+	widgets -> navigtionPosition = navigtionPosition;						// starting progress position;
 
 	gtk_builder_connect_signals( builder, widgets );
 	g_object_unref( builder );
