@@ -14,6 +14,7 @@
  * Header API Scope Functions
  * */
 
+void intializeCalendar( struct tm todaysDate, int *seasonFlag, int *feastFlag );	// local prototype
 void intializeCalendar( struct tm todaysDate, int *seasonFlag, int *feastFlag ) { 
 	struct tm advent_start = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 );					// Dec 1
 	shiftTowardSunday( &advent_start );																// first sun of advent
@@ -103,7 +104,8 @@ void intializeCalendar( struct tm todaysDate, int *seasonFlag, int *feastFlag ) 
 	}
 }
 
-void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widgets *widgets ) { 
+void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widgets *widgets, char *userDefinedFeast ) { 
+
 	struct tm todaysDate = returnTodaysDate();
 	int seasonFlag = 4; // ordinary time
 	int feastFlag = 14; // ordinary day
@@ -135,9 +137,14 @@ void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widget
 	widgets -> levelBar_decade			= GTK_WIDGET( gtk_builder_get_object( builder, "levelBar_decade" ) );
 	widgets -> levelBar_mystery			= GTK_WIDGET( gtk_builder_get_object( builder, "levelBar_mystery" ) );
 
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextDate ),				retrunWeekdayName( todaysDate.tm_wday ) );
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextLiturgicalCalendar ),	retrunLiturgicalName( seasonFlag ) );
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextFeast ),				retrunFeastDayName( feastFlag ) );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextDate ), retrunWeekdayName( todaysDate.tm_wday ) );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextLiturgicalCalendar ), retrunLiturgicalName( seasonFlag ) );
+
+	if ( userDefinedFeast[0] != '\0' ) {
+		gtk_label_set_text( GTK_LABEL( widgets -> lblTextFeast ), userDefinedFeast );
+	} else {
+		gtk_label_set_text( GTK_LABEL( widgets -> lblTextFeast ), retrunFeastDayName( feastFlag ) );
+	}
 }
 
 int initialMystery( int weekdayNo ) { 
@@ -261,4 +268,50 @@ void update_widgets_labels( rosary_db_t *rosary_db_struct, app_widgets *widgets 
 	gtk_label_set_text( GTK_LABEL( widgets -> lblTextProgressTitle ), progressLabel );
 	gtk_level_bar_set_value( GTK_LEVEL_BAR( widgets -> levelBar_decade ), smallbeadDouble );
 	gtk_level_bar_set_value( GTK_LEVEL_BAR( widgets -> levelBar_mystery ), mysteryDouble );
+}
+
+void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int todayDay, int todayMonth ) {
+	int feastDay	= 0,
+		feastMonth	= 0,
+		counter		= 0;
+	int feastID;
+	char *feastName, *monthName;
+
+	while ( ( todayDay != feastDay ) && ( todayMonth != feastMonth ) ) {
+		feastDay = feast_db_struct		-> feast_dbArray[ counter ].feastDay;
+		feastMonth = feast_db_struct	-> feast_dbArray[ counter ].feastMonth;
+		counter++;
+	}
+
+	if ( ( todayDay == feastDay ) && ( todayMonth == feastMonth ) ) {
+		counter--;
+
+		feastID = feast_db_struct	-> feast_dbArray[ counter ].feastID;
+		feastDay = feast_db_struct	-> feast_dbArray[ counter ].feastDay;
+		feastMonth = feast_db_struct -> feast_dbArray[ counter ].feastMonth;
+
+		feastName = feast_db_struct	-> feast_dbArray[ counter ].feastName;
+		monthName = feast_db_struct	-> feast_dbArray[ counter ].monthName;
+
+		// int's
+		queryFeastViewStruct -> feastID		= feastID;
+		queryFeastViewStruct -> feastDay	= feastDay;
+		queryFeastViewStruct -> feastMonth	= feastMonth;
+
+		// strings
+		strcpy( queryFeastViewStruct -> feastName, feastName );
+		strcpy( queryFeastViewStruct -> monthName, monthName );
+	} else {
+		// Populate queryFeastViewStruct with dummy values
+		// int's
+		queryFeastViewStruct -> feastID		= 0;
+		queryFeastViewStruct -> feastDay	= 0;
+		queryFeastViewStruct -> feastMonth	= 0;
+
+		// strings
+		strcpy( queryFeastViewStruct -> feastName, "" );
+		strcpy( queryFeastViewStruct -> monthName, "" );
+
+	}
+
 }

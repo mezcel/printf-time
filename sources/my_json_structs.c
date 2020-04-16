@@ -214,7 +214,7 @@ void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePa
  * populate feast_db_t
  * */
 
-void make_struct_db_json( feast_db_t *feast_db_struct, char *jsonFilePath ) {
+void make_struct_feast_db_json( feast_db_t *feast_db_struct, char *jsonFilePath ) {
 	struct json_object *parsed_json;
 	parsed_json = json_to_struct( jsonFilePath );
 

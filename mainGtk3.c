@@ -19,8 +19,8 @@
 #include "headers/my_file_to_struct.h"
 #include "headers/my_gtk3_api.h"
 
-rosary_db_t rosary_db_struct;	// global var read by Gtk app
-feast_db_t feast_db_struct;
+rosary_db_t rosary_db_struct;	// global rosary struct read by Gtk app
+feast_db_t feast_db_struct;		// struct for user defined feast days
 
 // Function prototypes used xml/myGladeXml.glade
 void on_gtkRosary_destroy();
@@ -29,6 +29,7 @@ void on_btnForward_clicked( GtkButton *button, app_widgets *widgets );
 void on_btnBack_clicked( GtkButton *button, app_widgets *widgets );
 
 int main( int argc, char *argv[] ) {
+	displayFeastVariables_t queryFeastViewStruct;						// declare db query view var
 
 	GtkBuilder	*builder;
 	GtkWidget	*window;
@@ -37,6 +38,7 @@ int main( int argc, char *argv[] ) {
 	struct tm todaysDate 	= returnTodaysDate();
 	int navigtionPosition 	= initialMystery( todaysDate.tm_wday );		// starting progress position
 	int nabFlag;														// Sets either NAB or Vulgate
+	char *userDefinedFeast;												// User defined static feast day
 
 	// load text data from the appropriate database
 	if ( argc == 2 ) {													// set Latin Vulgate from app launch
@@ -46,11 +48,17 @@ int main( int argc, char *argv[] ) {
 	}
 
 	if ( nabFlag == 0 ) {												// Vulgate JSON Database
-		char *jsonFilePath = "database/json/rosaryJSON-vulgate.json";
 
+		char *jsonFilePath = "database/json/rosaryJSON-vulgate.json";
 		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );	// make struct database
-		make_struct_db_json( &feast_db_struct, jsonFilePath );
+
+		char *feastJSONFile = "database/json/feast.json";				// or "database/json/rosaryJSON-vulgate.json"
+		make_struct_feast_db_json( &feast_db_struct, feastJSONFile );
+		updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
+		userDefinedFeast = stringFeast( todaysDate.tm_mday , todaysDate.tm_mon, queryFeastViewStruct.feastName );
+
 	} else {															// NAB CSV Database
+
 		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
 		char *bead_path 		= "database/csv/bead.csv";
 		char *book_path 		= "database/csv/book.csv";
@@ -61,8 +69,13 @@ int main( int argc, char *argv[] ) {
 		char *scripture_path 	= "database/csv/scripture.csv";
 		char *csv_path_array[8]	= { rosaryBead_path, bead_path, book_path, decade_path,
 				message_path, mystery_path, prayer_path, scripture_path };
-
 		make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );	// make struct database
+		
+		char *feastCSVFile = "database/csv/feast.csv";
+		make_struct_feast_db_csv( &feast_db_struct, feastCSVFile );			// fixed feast day db
+		updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
+		userDefinedFeast = stringFeast( todaysDate.tm_mday , todaysDate.tm_mon, queryFeastViewStruct.feastName );
+		
 	}
 
 	gtk_init( &argc, &argv );
@@ -71,7 +84,7 @@ int main( int argc, char *argv[] ) {
 	gtk_builder_add_from_file( builder, "xml/myGladeXml.glade", NULL );
 	window	= GTK_WIDGET( gtk_builder_get_object( builder, "gtkRosary" ) );
 
-	initializeLabelPointers( builder, window, widgets );				// get pointers to label widgets
+	initializeLabelPointers( builder, window, widgets, userDefinedFeast );				// get pointers to label widgets
 	widgets -> navigtionPosition = navigtionPosition;					// starting progress position;
 
 	gtk_builder_connect_signals( builder, widgets );
