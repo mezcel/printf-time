@@ -36,7 +36,7 @@ typedef struct displayVariables_struct {
 
 typedef struct displayFeastVariables_struct {
 	int feastID;
-	char feastName[40];
+	char feastName[80];
 	int feastDay;
 	int feastMonth;
 	char monthName[40];
