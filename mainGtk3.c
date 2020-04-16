@@ -22,6 +22,12 @@
 rosary_db_t rosary_db_struct;	// global var read by Gtk app
 feast_db_t feast_db_struct;
 
+// Function prototypes used xml/myGladeXml.glade
+void on_gtkRosary_destroy();
+void on_btnClose_clicked();
+void on_btnForward_clicked( GtkButton *button, app_widgets *widgets );
+void on_btnBack_clicked( GtkButton *button, app_widgets *widgets );
+
 int main( int argc, char *argv[] ) {
 
 	GtkBuilder	*builder;
@@ -29,22 +35,22 @@ int main( int argc, char *argv[] ) {
 	app_widgets *widgets 	= g_slice_new( app_widgets );
 
 	struct tm todaysDate 	= returnTodaysDate();
-	int navigtionPosition 	= initialMystery( todaysDate.tm_wday );	// starting progress position
-	int nabFlag;													// Sets either NAB or Vulgate
+	int navigtionPosition 	= initialMystery( todaysDate.tm_wday );		// starting progress position
+	int nabFlag;														// Sets either NAB or Vulgate
 
 	// load text data from the appropriate database
-	if ( argc == 2 ) {												// set Latin Vulgate from app launch
+	if ( argc == 2 ) {													// set Latin Vulgate from app launch
 		nabFlag = strcmp( "-v", argv[1] );
-	} else {														// no input, default to NAB
+	} else {															// no input, default to NAB
 		nabFlag = 1;
 	}
 
-	if ( nabFlag == 0 ) {											// Vulgate JSON Database
+	if ( nabFlag == 0 ) {												// Vulgate JSON Database
 		char *jsonFilePath = "database/json/rosaryJSON-vulgate.json";
 
-		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );		// make struct database
+		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );	// make struct database
 		make_struct_db_json( &feast_db_struct, jsonFilePath );
-	} else {																// NAB CSV Database
+	} else {															// NAB CSV Database
 		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
 		char *bead_path 		= "database/csv/bead.csv";
 		char *book_path 		= "database/csv/book.csv";
@@ -65,8 +71,8 @@ int main( int argc, char *argv[] ) {
 	gtk_builder_add_from_file( builder, "xml/myGladeXml.glade", NULL );
 	window	= GTK_WIDGET( gtk_builder_get_object( builder, "gtkRosary" ) );
 
-	initializeLabelPointers( builder, window, widgets );			// get pointers to label widgets
-	widgets -> navigtionPosition = navigtionPosition;				// starting progress position;
+	initializeLabelPointers( builder, window, widgets );				// get pointers to label widgets
+	widgets -> navigtionPosition = navigtionPosition;					// starting progress position;
 
 	gtk_builder_connect_signals( builder, widgets );
 	g_object_unref( builder );

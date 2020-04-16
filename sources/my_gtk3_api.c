@@ -15,29 +15,29 @@
  * */
 
 void intializeCalendar( struct tm todaysDate, int *seasonFlag, int *feastFlag ) { 
-	struct tm advent_start = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 ); // Dec 1
-	shiftTowardSunday( &advent_start ); // first sun of advent
+	struct tm advent_start = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 );					// Dec 1
+	shiftTowardSunday( &advent_start );																// first sun of advent
 
-	struct tm immaculate_conception_mary	= setSpecificDate( todaysDate.tm_year + 1900, 11, 8 ); // Dec 8
-	struct tm christmas_day					= setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed dec 25
-	struct tm solemnity_of_mary				= setSpecificDate( todaysDate.tm_year + 1900, 0, 1 ); // Jan 1
-	struct tm epiphany						= addDays( christmas_day,12 ); // 12 days after christmas
-	shiftTowardSunday( &epiphany ); // epiphany sunday
+	struct tm immaculate_conception_mary	= setSpecificDate( todaysDate.tm_year + 1900, 11, 8 );	// Dec 8
+	struct tm christmas_day					= setSpecificDate( todaysDate.tm_year + 1900, 11, 25 );	// wed dec 25
+	struct tm solemnity_of_mary				= setSpecificDate( todaysDate.tm_year + 1900, 0, 1 );	// Jan 1
+	struct tm epiphany						= addDays( christmas_day,12 );							// 12 days after christmas
+	shiftTowardSunday( &epiphany );																	// epiphany sunday
 
 	struct tm jesus_baptism					= addDays( christmas_day,12 );
-	shiftJesusBaptism( &jesus_baptism ); // avoid epiphany overlap
+	shiftJesusBaptism( &jesus_baptism );															// avoid epiphany overlap
 
-	struct tm easter_sunday					= setEasterDate( todaysDate.tm_year + 1900 ); // pfm
+	struct tm easter_sunday					= setEasterDate( todaysDate.tm_year + 1900 );			// pfm
 	struct tm good_saturday					= subtractDays( easter_sunday,1 );
 	struct tm good_friday					= subtractDays( easter_sunday,2 );
 	struct tm holy_thursday					= subtractDays( easter_sunday,3 );
 	struct tm ash_wednesday					= subtractDays( easter_sunday,46 );
 	struct tm pentacost						= addDays( easter_sunday,21 );
-	shiftTowardSunday( &pentacost );  // sun june 9, 7 sundays after easter
+	shiftTowardSunday( &pentacost ); 																// 7 sundays after easter
 
 	struct tm assension_of_jesus			= addDays( easter_sunday,40 );
 
-	struct tm all_saints_day				= setSpecificDate( todaysDate.tm_year + 1900, 10, 1 ); // Nov 1
+	struct tm all_saints_day				= setSpecificDate( todaysDate.tm_year + 1900, 10, 1 );	// Nov 1
 
 	*seasonFlag = returnLiturgicalSeason( &todaysDate, &advent_start, &christmas_day,
 			&epiphany, &ash_wednesday, &easter_sunday, &pentacost );
@@ -135,9 +135,9 @@ void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widget
 	widgets -> levelBar_decade			= GTK_WIDGET( gtk_builder_get_object( builder, "levelBar_decade" ) );
 	widgets -> levelBar_mystery			= GTK_WIDGET( gtk_builder_get_object( builder, "levelBar_mystery" ) );
 
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextDate ), retrunWeekdayName( todaysDate.tm_wday ) );
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextLiturgicalCalendar ), retrunLiturgicalName( seasonFlag ) );
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextFeast ), retrunFeastDayName( feastFlag ) );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextDate ),				retrunWeekdayName( todaysDate.tm_wday ) );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextLiturgicalCalendar ),	retrunLiturgicalName( seasonFlag ) );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextFeast ),				retrunFeastDayName( feastFlag ) );
 }
 
 int initialMystery( int weekdayNo ) { 
@@ -221,13 +221,13 @@ void update_widgets_labels( rosary_db_t *rosary_db_struct, app_widgets *widgets 
 	* */
 
 	// Readings
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextMystery ), mysteryName );
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextDecade ), decadeName );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextMystery ),		mysteryName );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextDecade ),		decadeName );
 	gtk_label_set_text( GTK_LABEL( widgets -> lblTextDecadeMessage ), mesageText );
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextBackground ), decadeInfo );
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextScripture ), scriptureText );
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextPrayer ), prayerText );
-	gtk_label_set_text( GTK_LABEL( widgets -> lblTextBeadType ), beadType );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextBackground ),	decadeInfo );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextScripture ),	scriptureText );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextPrayer ),		prayerText );
+	gtk_label_set_text( GTK_LABEL( widgets -> lblTextBeadType ),	beadType );
 
 	// Decade
 	gchar *str_smallbeadPercentDouble = g_strdup_printf( "%.0f %%", smallbeadPercentDouble ); // 0 decimal places

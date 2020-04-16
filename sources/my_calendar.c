@@ -294,7 +294,6 @@ char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeas
 	if ( ( userDefinedFeast != NULL ) && ( userDefinedFeast != "" ) ) {
 		userFeastDay = setSpecificDate( todaysDate.tm_year + 1900, additionalMonth, additionalDay );
 	}
-	//struct tm userFeastDay = userFeastDay = setSpecificDate( todaysDate.tm_year + 1900, additionalMonth, additionalDay );
 
 	int seasonFlag = returnLiturgicalSeason( &todaysDate, &advent_start, &christmas_day,
 			&epiphany, &ash_wednesday, &easter_sunday, &pentacost );

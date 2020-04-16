@@ -141,9 +141,9 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int desiredDispLen, char *titleLabel ) {
 	// display about and instructions
 
-	char *season	= stringLiturgicalSeason();
-	char *feast		= stringFeast( queryFeastViewStruct.feastDay , queryFeastViewStruct.feastMonth, queryFeastViewStruct.feastName );
-	char *aboutString ="\tThis program is a scripture rosary for the command line interface ( CLI ). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible ( CSV files ), and Latin readings are quoted from the Vulgate Bible ( JSON file ). User defined feast days can be modified by editing the \"database/csv/feast.csv\" file.";
+	char *season		= stringLiturgicalSeason();
+	char *feast			= stringFeast( queryFeastViewStruct.feastDay , queryFeastViewStruct.feastMonth, queryFeastViewStruct.feastName );
+	char *aboutString	= "\tThis program is a scripture rosary for the command line interface ( CLI ). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible ( CSV files ), and Latin readings are quoted from the Vulgate Bible ( JSON file ). User defined feast days can be modified by editing the \"database/csv/feast.csv\" file.";
 
 	int titleLabelLength = ( int )strlen( titleLabel );
 	borderCharPrintF( ":", 3 );
