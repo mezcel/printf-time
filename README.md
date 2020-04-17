@@ -9,7 +9,10 @@ lang: en-US
 
 # printf-time
 
-Version: ```v0.4.1```
+Version: ```v0.4.2```
+* experimenting with a new technique to consolidate some functions.
+* curating the feast flags
+
 
 ## About:
 
