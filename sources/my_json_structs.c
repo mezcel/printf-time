@@ -177,6 +177,20 @@ void jsonToStruct_scripture( rosary_db_t *rosary_db_struct, struct json_object *
 	}
 }
 
+int returnIndexCount ( char *jsonFilePath  ) {
+
+	struct json_object *parsed_json;
+	struct json_object *er_object;
+	int er_object_size;
+
+	parsed_json = json_to_struct( jsonFilePath );
+	json_object_object_get_ex( parsed_json, "feast", &er_object );
+
+	er_object_size = json_object_array_length( er_object );
+
+	return er_object_size;
+}
+
 void jsonToStruct_feast( feast_db_t *feast_db_struct, struct json_object *parsed_json_db ) {
 	struct json_object *er_object;
 	json_object_object_get_ex( parsed_json_db, "feast", &er_object );
