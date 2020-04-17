@@ -47,12 +47,13 @@ int main( int argc, char **argv ) {
 		nabFlag = 1;
 	}
 
+	// Load Database files
 	if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {			// Vulgate JSON Database with POSIX
 		titleLabel				= " C/JSON Rosary ( Latin Vulgate ) ";
 		char *jsonFilePath		= "database/json/rosaryJSON-vulgate.json";
 
-		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );		// make struct database from file
-	} else {														// NAB CSV Database
+		make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );	// make struct database from file
+	} else {															// NAB CSV Database
 		titleLabel = " C/CSV Rosary ( English NAB ) ";
 		char *rosaryBead_path	= "database/csv/rosaryBead.csv";
 		char *bead_path 		= "database/csv/bead.csv";
@@ -69,9 +70,10 @@ int main( int argc, char **argv ) {
 	}
 
 	// User defined feast days, CSV File
-	char *feastCSVFile = "database/csv/feast.csv";
-	make_struct_feast_db_csv( &feast_db_struct, feastCSVFile );			// fixed feast day db
-	updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon );
+	char *feast_csv_file = "database/csv/feast.csv";
+	int recordCount = returnCsvRecordCount( feast_csv_file );
+	make_struct_feast_db_csv( &feast_db_struct, feast_csv_file );		// fixed feast day db
+	updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon, recordCount );
 
 	// Welcome display
 

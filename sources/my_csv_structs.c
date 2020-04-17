@@ -410,7 +410,7 @@ void csvToStruct_message( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char 
 			record_field = parse_message_record( scvline );
 
 			arrayIndex = counter - 1;
-			rosary_db_struct -> message_dbArray[ arrayIndex ].messageID = record_field -> messageID;
+			rosary_db_struct -> message_dbArray[ arrayIndex ].messageID	= record_field -> messageID;
 			rosary_db_struct -> message_dbArray[ arrayIndex ].mesageText = record_field -> mesageText;
 		}
 		counter++;
@@ -555,17 +555,17 @@ void csvToStruct_feast( feast_db_t *feast_db_struct, int LINE_MAX_LEN, char *fil
 void make_struct_rosary_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_array[ 8 ] ) {
 	// make an ER db struct from csv files
 
-	csvToStruct_rosaryBead	( rosary_db_struct, 300, csv_path_array[ 0 ] );
-	csvToStruct_bead		( rosary_db_struct, 40, csv_path_array[ 1 ] );
-	csvToStruct_book		( rosary_db_struct, 300, csv_path_array[ 2 ] );
-	csvToStruct_decade		( rosary_db_struct, 800, csv_path_array[ 3 ] );
-	csvToStruct_message		( rosary_db_struct, 150, csv_path_array[ 4 ] );
-	csvToStruct_mystery		( rosary_db_struct, 67, csv_path_array[ 5 ] );
-	csvToStruct_prayer		( rosary_db_struct, 1250, csv_path_array[ 6 ] );
-	csvToStruct_scripture	( rosary_db_struct, 1250, csv_path_array[ 7 ] );
+	csvToStruct_rosaryBead	( rosary_db_struct, 300, csv_path_array[ 0 ] );		// database/csv/rosaryBead.csv
+	csvToStruct_bead		( rosary_db_struct, 40, csv_path_array[ 1 ] );		// database/csv/bead.csv
+	csvToStruct_book		( rosary_db_struct, 300, csv_path_array[ 2 ] );		// database/csv/book.csv
+	csvToStruct_decade		( rosary_db_struct, 800, csv_path_array[ 3 ] );		// database/csv/decade.csv
+	csvToStruct_message		( rosary_db_struct, 150, csv_path_array[ 4 ] );		// database/csv/message.csv
+	csvToStruct_mystery		( rosary_db_struct, 67, csv_path_array[ 5 ] );		// database/csv/mystery.csv
+	csvToStruct_prayer		( rosary_db_struct, 1250, csv_path_array[ 6 ] );	// database/csv/prayer.csv
+	csvToStruct_scripture	( rosary_db_struct, 1250, csv_path_array[ 7 ] );	// database/csv/scripture.csv
 }
 
 void make_struct_feast_db_csv( feast_db_t *feast_db_struct, char *filePath ) {
 	// make an ER db struct from csv files
-	csvToStruct_feast( feast_db_struct, 90, filePath );
+	csvToStruct_feast( feast_db_struct, 100, filePath );						// database/csv/feast.csv
 }

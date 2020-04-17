@@ -94,7 +94,7 @@ typedef struct feast_struct {
 
 typedef struct feast_db {
 	// one must know beforehand how many records are there
-	feast_t feast_dbArray[20]; // assume are more records than there actually is
+	feast_t feast_dbArray[100]; // this will accomidate 100 feasts records
 } feast_db_t;
 
 /*
