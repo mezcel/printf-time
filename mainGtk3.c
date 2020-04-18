@@ -13,8 +13,8 @@
  * */
 
 #include <gtk/gtk.h>
-#include <string.h>     // strcmp()
-#include <time.h>       // After year 2038, only use an x64 compiler
+#include <string.h>             // strcmp()
+#include <time.h>               // After year 2038, only use an x64 compiler
 
 #include "headers/my_calendar.h"
 #include "headers/my_file_to_struct.h"
@@ -71,11 +71,13 @@ int main( int argc, char *argv[] ) {
     }
 
     // User defined feast days, JSON File
-    char *fesat_json_file = "database/json/feast.json";     // or "database/json/rosaryJSON-vulgate.json"
+    char *fesat_json_file = "database/json/feast.json"; // or "database/json/rosaryJSON-vulgate.json"
     make_struct_feast_db_json( &feast_db_struct, fesat_json_file );
     int recordCount = returnIndexCount ( fesat_json_file  );
 
-    updateFeastDisplayStruct( &feast_db_struct, &queryFeastViewStruct, todaysDate.tm_mday, todaysDate.tm_mon, recordCount );
+    updateFeastDisplayStruct(
+        &feast_db_struct, &queryFeastViewStruct,
+        todaysDate.tm_mday, todaysDate.tm_mon, recordCount );
     userDefinedFeast = stringFeast( todaysDate.tm_mday , todaysDate.tm_mon, queryFeastViewStruct.feastName );
 
     gtk_init( &argc, &argv );

@@ -55,8 +55,8 @@ SET userinput=%1
 
 :menuOptions
     IF "%userinput%"=="quit" (
-		GOTO EOF
-	)
+        GOTO EOF
+    )
     IF "%userinput%"=="clean" (
         CALL :makeClean EOF
     )
@@ -95,7 +95,7 @@ SET userinput=%1
 
     :: Build the executable file
     :: cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
-	cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /Fe"ttyRosary.exe"
+    cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /Fe"ttyRosary.exe"
     GOTO %~1
 
 :makeRun

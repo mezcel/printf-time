@@ -70,16 +70,16 @@ void jsonToStruct_rosaryBead( rosary_db_t *rosary_db_struct, struct json_object 
     int er_object_size = json_object_array_length( er_object );
 
     for ( int i = 0; i < er_object_size; i++ ) {
-        rosary_db_struct -> rosaryBead_dbArray[ i ].rosaryBeadID    = queryAttrInteger( er_object, "rosaryBeadID", i );
-        rosary_db_struct -> rosaryBead_dbArray[ i ].beadIndex       = queryAttrInteger( er_object, "beadIndex", i );
-        rosary_db_struct -> rosaryBead_dbArray[ i ].decadeIndex     = queryAttrInteger( er_object, "decadeIndex", i );
-        rosary_db_struct -> rosaryBead_dbArray[ i ].mysteryIndex    = queryAttrInteger( er_object, "mysteryIndex", i );
-        rosary_db_struct -> rosaryBead_dbArray[ i ].prayerIndex     = queryAttrInteger( er_object, "prayerIndex", i );
-        rosary_db_struct -> rosaryBead_dbArray[ i ].scriptureIndex  = queryAttrInteger( er_object, "scriptureIndex", i );
-        rosary_db_struct -> rosaryBead_dbArray[ i ].messageIndex    = queryAttrInteger( er_object, "messageIndex", i );
-        rosary_db_struct -> rosaryBead_dbArray[ i ].loopBody        = queryAttrInteger( er_object, "loopBody", i );
+        rosary_db_struct -> rosaryBead_dbArray[ i ].rosaryBeadID     = queryAttrInteger( er_object, "rosaryBeadID", i );
+        rosary_db_struct -> rosaryBead_dbArray[ i ].beadIndex        = queryAttrInteger( er_object, "beadIndex", i );
+        rosary_db_struct -> rosaryBead_dbArray[ i ].decadeIndex      = queryAttrInteger( er_object, "decadeIndex", i );
+        rosary_db_struct -> rosaryBead_dbArray[ i ].mysteryIndex     = queryAttrInteger( er_object, "mysteryIndex", i );
+        rosary_db_struct -> rosaryBead_dbArray[ i ].prayerIndex      = queryAttrInteger( er_object, "prayerIndex", i );
+        rosary_db_struct -> rosaryBead_dbArray[ i ].scriptureIndex   = queryAttrInteger( er_object, "scriptureIndex", i );
+        rosary_db_struct -> rosaryBead_dbArray[ i ].messageIndex     = queryAttrInteger( er_object, "messageIndex", i );
+        rosary_db_struct -> rosaryBead_dbArray[ i ].loopBody         = queryAttrInteger( er_object, "loopBody", i );
         rosary_db_struct -> rosaryBead_dbArray[ i ].smallbeadPercent = queryAttrInteger( er_object, "smallbeadPercent", i );
-        rosary_db_struct -> rosaryBead_dbArray[ i ].mysteryPercent  = queryAttrInteger( er_object, "mysteryPercent", i );
+        rosary_db_struct -> rosaryBead_dbArray[ i ].mysteryPercent   = queryAttrInteger( er_object, "mysteryPercent", i );
     }
 }
 
@@ -214,14 +214,14 @@ void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePa
     struct json_object *parsed_json;
     parsed_json = json_to_struct( jsonFilePath );
 
-    jsonToStruct_rosaryBead( rosary_db_struct, parsed_json );
-    jsonToStruct_bead( rosary_db_struct, parsed_json );
-    jsonToStruct_book( rosary_db_struct, parsed_json );
-    jsonToStruct_decade( rosary_db_struct, parsed_json );
-    jsonToStruct_message( rosary_db_struct, parsed_json );
-    jsonToStruct_mystery( rosary_db_struct, parsed_json );
-    jsonToStruct_prayer( rosary_db_struct, parsed_json );
-    jsonToStruct_scripture( rosary_db_struct, parsed_json );
+    jsonToStruct_rosaryBead ( rosary_db_struct, parsed_json );
+    jsonToStruct_bead       ( rosary_db_struct, parsed_json );
+    jsonToStruct_book       ( rosary_db_struct, parsed_json );
+    jsonToStruct_decade     ( rosary_db_struct, parsed_json );
+    jsonToStruct_message    ( rosary_db_struct, parsed_json );
+    jsonToStruct_mystery    ( rosary_db_struct, parsed_json );
+    jsonToStruct_prayer     ( rosary_db_struct, parsed_json );
+    jsonToStruct_scripture  ( rosary_db_struct, parsed_json );
 }
 
 /*

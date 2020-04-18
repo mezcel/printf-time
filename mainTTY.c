@@ -3,9 +3,9 @@
  * */
 
 #include <stdio.h>
-#include <stdlib.h>         // system()
-#include <string.h>         // strcmp()
-#include <time.h>           // After year 2038, use an x64 compiler
+#include <stdlib.h>     // system()
+#include <string.h>     // strcmp()
+#include <time.h>       // After year 2038, use an x64 compiler
 
 #include "headers/my_calendar.h"
 #include "headers/my_file_to_struct.h"
@@ -26,23 +26,23 @@
 
 int main( int argc, char **argv ) {
 
-    rosary_db_t rosary_db_struct;                           // declare app's rosary db var
-    displayVariables_t queryViewStruct;                     // declare rosary db query view var
+    rosary_db_t rosary_db_struct;                               // declare app's rosary db var
+    displayVariables_t queryViewStruct;                         // declare rosary db query view var
 
-    feast_db_t feast_db_struct;                             // declare app's feast db var
-    displayFeastVariables_t queryFeastViewStruct;           // declare feast db query view var
+    feast_db_t feast_db_struct;                                 // declare app's feast db var
+    displayFeastVariables_t queryFeastViewStruct;               // declare feast db query view var
 
     struct tm todaysDate    = returnTodaysDate();               // define today struct
     char *verboseDate       = returnVerboseDate( todaysDate );  // Decorative Date Display
     int weekdayNo           = todaysDate.tm_wday;               // day of the week
     int navigtionPosition   = initialMystery( weekdayNo );      // starting progress position
 
-    char *titleLabel;                                       // string to display which db is used
-    int nabFlag = returnLaunchArgument( argc, argv[1] );    // Sets either NAB or Vulgate
-    int desiredDispLen;                                     // posix terminal column width
+    char *titleLabel;                                           // string to display which db is used
+    int nabFlag = returnLaunchArgument( argc, argv[1] );        // Sets either NAB or Vulgate
+    int desiredDispLen;                                         // POSIX terminal column width
 
     // Load Database files
-    if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {          // Vulgate JSON Database with POSIX
+    if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {              // Vulgate JSON Database with POSIX
         titleLabel              = " C/JSON Rosary ( Latin Vulgate ) ";
         char *jsonFilePath      = "database/json/rosaryJSON-vulgate.json";
 
@@ -88,14 +88,14 @@ int main( int argc, char **argv ) {
         updateDisplayVariablesStruct( &rosary_db_struct, &queryViewStruct, navigtionPosition );
 
         // render display text
-        desiredDispLen      = returnScreenWidth();                              // get tty screen width
+        desiredDispLen      = returnScreenWidth();                      // get tty screen width
         outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel );
 
         // Prompt for keyboard navigation user input
         navigtionPosition   = pressKeyContinue( queryFeastViewStruct, navigtionPosition, weekdayNo, desiredDispLen );
     }
 
-    activateEcho();                                                             // Restore posix tty echo
+    activateEcho();                                                     // Restore posix tty echo
 
     return 0;
 }

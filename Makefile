@@ -117,7 +117,7 @@ nclean:
 	::
 	:::: batch script tp perform clean
 	::Makefile_win.bat clean
-	
+
 build:
 	:::: compile ttyRosary
 	cl /c sources\my_calendar.c
@@ -127,5 +127,5 @@ build:
 	:::: build executable ttyRosary.exe
 	cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /Fe"ttyRosary.exe"
 	::
-	:::: batch script to perform build 
+	:::: batch script to perform build
 	::Makefile_win.bat build

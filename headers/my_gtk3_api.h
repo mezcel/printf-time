@@ -54,13 +54,10 @@ typedef struct displayFeastVariables_struct {
 int initialMystery( int weekdayNo );
 int returnIndexCount ( char *jsonFilePath  );
 
-void initializeLabelPointers(
-    GtkBuilder *builder,
-    GtkWidget *window,
-    app_widgets *widgets,
-    char *userDefinedFeast );
+void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widgets *widgets, char *userDefinedFeast );
 void update_widgets_labels( rosary_db_t *rosary_db_struct, app_widgets *widgets );
-void updateFeastDisplayStruct( feast_db_t *feast_db_struct,
+void updateFeastDisplayStruct(
+    feast_db_t *feast_db_struct,
     displayFeastVariables_t *queryFeastViewStruct,
     int todayDay, int todayMonth, int recordCount );
 

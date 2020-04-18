@@ -100,16 +100,16 @@ rosaryBead_t * parse_rosaryBead_record( char * scvline ) {
     pp = strsplit( cleanScvLine, ";" );
     record_field = ( rosaryBead_t* ) calloc( 1, sizeof( rosaryBead_t ) );
 
-    record_field -> rosaryBeadID    = atoi( pp[ 0 ] );
-    record_field -> beadIndex       = atoi( pp[ 1 ] );
-    record_field -> decadeIndex     = atoi( pp[ 2 ] );
-    record_field -> mysteryIndex    = atoi( pp[ 3 ] );
-    record_field -> prayerIndex     = atoi( pp[ 4 ] );
-    record_field -> scriptureIndex  = atoi( pp[ 5 ] );
-    record_field -> messageIndex    = atoi( pp[ 6 ] );
-    record_field -> loopBody        = atoi( pp[ 7 ] );
+    record_field -> rosaryBeadID     = atoi( pp[ 0 ] );
+    record_field -> beadIndex        = atoi( pp[ 1 ] );
+    record_field -> decadeIndex      = atoi( pp[ 2 ] );
+    record_field -> mysteryIndex     = atoi( pp[ 3 ] );
+    record_field -> prayerIndex      = atoi( pp[ 4 ] );
+    record_field -> scriptureIndex   = atoi( pp[ 5 ] );
+    record_field -> messageIndex     = atoi( pp[ 6 ] );
+    record_field -> loopBody         = atoi( pp[ 7 ] );
     record_field -> smallbeadPercent = atoi( pp[ 8 ] );
-    record_field -> mysteryPercent  = atoi( pp[ 9 ] );
+    record_field -> mysteryPercent   = atoi( pp[ 9 ] );
 
     strsplitfree( pp );
     return record_field;
@@ -278,16 +278,16 @@ void csvToStruct_rosaryBead( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, ch
             record_field = parse_rosaryBead_record( scvline );
 
             arrayIndex = counter - 1;
-            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].rosaryBeadID   = record_field -> rosaryBeadID;
-            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].beadIndex      = record_field -> beadIndex;
-            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].decadeIndex    = record_field -> decadeIndex;
-            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].mysteryIndex   = record_field -> mysteryIndex;
-            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].prayerIndex    = record_field -> prayerIndex;
-            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].scriptureIndex = record_field -> scriptureIndex;
-            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].messageIndex   = record_field -> messageIndex;
-            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].loopBody       = record_field -> loopBody;
+            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].rosaryBeadID     = record_field -> rosaryBeadID;
+            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].beadIndex        = record_field -> beadIndex;
+            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].decadeIndex      = record_field -> decadeIndex;
+            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].mysteryIndex     = record_field -> mysteryIndex;
+            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].prayerIndex      = record_field -> prayerIndex;
+            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].scriptureIndex   = record_field -> scriptureIndex;
+            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].messageIndex     = record_field -> messageIndex;
+            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].loopBody         = record_field -> loopBody;
             rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].smallbeadPercent = record_field -> smallbeadPercent;
-            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].mysteryPercent = record_field -> mysteryPercent;
+            rosary_db_struct -> rosaryBead_dbArray[ arrayIndex ].mysteryPercent   = record_field -> mysteryPercent;
         }
         counter++;
     }
@@ -440,8 +440,8 @@ void csvToStruct_mystery( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char 
             record_field = parse_mystery_record( scvline );
 
             arrayIndex = counter - 1;
-            rosary_db_struct -> mystery_dbArray[ arrayIndex ].mysteryID = record_field -> mysteryID;
-            rosary_db_struct -> mystery_dbArray[ arrayIndex ].mysteryNo = record_field -> mysteryNo;
+            rosary_db_struct -> mystery_dbArray[ arrayIndex ].mysteryID   = record_field -> mysteryID;
+            rosary_db_struct -> mystery_dbArray[ arrayIndex ].mysteryNo   = record_field -> mysteryNo;
             rosary_db_struct -> mystery_dbArray[ arrayIndex ].mysteryName = record_field -> mysteryName;
         }
         counter++;
@@ -471,7 +471,7 @@ void csvToStruct_prayer( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
             record_field = parse_prayer_record( scvline );
 
             arrayIndex = counter - 1;
-            rosary_db_struct -> prayer_dbArray[ arrayIndex ].prayerID = record_field -> prayerID;
+            rosary_db_struct -> prayer_dbArray[ arrayIndex ].prayerID   = record_field -> prayerID;
             rosary_db_struct -> prayer_dbArray[ arrayIndex ].prayerName = record_field -> prayerName;
             rosary_db_struct -> prayer_dbArray[ arrayIndex ].prayerText = record_field -> prayerText;
         }
@@ -502,10 +502,10 @@ void csvToStruct_scripture( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
             record_field = parse_scripture_record( scvline );
 
             arrayIndex = counter - 1;
-            rosary_db_struct -> scripture_dbArray[ arrayIndex ].scriptureID = record_field -> scriptureID;
-            rosary_db_struct -> scripture_dbArray[ arrayIndex ].bookIndex   = record_field -> bookIndex;
-            rosary_db_struct -> scripture_dbArray[ arrayIndex ].chapterIndex = record_field -> chapterIndex;
-            rosary_db_struct -> scripture_dbArray[ arrayIndex ].verseIndex  = record_field -> verseIndex;
+            rosary_db_struct -> scripture_dbArray[ arrayIndex ].scriptureID   = record_field -> scriptureID;
+            rosary_db_struct -> scripture_dbArray[ arrayIndex ].bookIndex     = record_field -> bookIndex;
+            rosary_db_struct -> scripture_dbArray[ arrayIndex ].chapterIndex  = record_field -> chapterIndex;
+            rosary_db_struct -> scripture_dbArray[ arrayIndex ].verseIndex    = record_field -> verseIndex;
             rosary_db_struct -> scripture_dbArray[ arrayIndex ].scriptureText = record_field -> scriptureText;
         }
         counter++;
@@ -555,17 +555,17 @@ void csvToStruct_feast( feast_db_t *feast_db_struct, int LINE_MAX_LEN, char *fil
 void make_struct_rosary_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_array[ 8 ] ) {
     // make an ER db struct from csv files
 
-    csvToStruct_rosaryBead  ( rosary_db_struct, 300, csv_path_array[ 0 ] );     // database/csv/rosaryBead.csv
-    csvToStruct_bead        ( rosary_db_struct, 40, csv_path_array[ 1 ] );      // database/csv/bead.csv
-    csvToStruct_book        ( rosary_db_struct, 300, csv_path_array[ 2 ] );     // database/csv/book.csv
-    csvToStruct_decade      ( rosary_db_struct, 800, csv_path_array[ 3 ] );     // database/csv/decade.csv
-    csvToStruct_message     ( rosary_db_struct, 150, csv_path_array[ 4 ] );     // database/csv/message.csv
-    csvToStruct_mystery     ( rosary_db_struct, 67, csv_path_array[ 5 ] );      // database/csv/mystery.csv
-    csvToStruct_prayer      ( rosary_db_struct, 1250, csv_path_array[ 6 ] );    // database/csv/prayer.csv
-    csvToStruct_scripture   ( rosary_db_struct, 1250, csv_path_array[ 7 ] );    // database/csv/scripture.csv
+    csvToStruct_rosaryBead( rosary_db_struct, 300,  csv_path_array[ 0 ] );  // database/csv/rosaryBead.csv
+    csvToStruct_bead      ( rosary_db_struct, 40,   csv_path_array[ 1 ] );  // database/csv/bead.csv
+    csvToStruct_book      ( rosary_db_struct, 300,  csv_path_array[ 2 ] );  // database/csv/book.csv
+    csvToStruct_decade    ( rosary_db_struct, 800,  csv_path_array[ 3 ] );  // database/csv/decade.csv
+    csvToStruct_message   ( rosary_db_struct, 150,  csv_path_array[ 4 ] );  // database/csv/message.csv
+    csvToStruct_mystery   ( rosary_db_struct, 67,   csv_path_array[ 5 ] );  // database/csv/mystery.csv
+    csvToStruct_prayer    ( rosary_db_struct, 1250, csv_path_array[ 6 ] );  // database/csv/prayer.csv
+    csvToStruct_scripture ( rosary_db_struct, 1250, csv_path_array[ 7 ] );  // database/csv/scripture.csv
 }
 
 void make_struct_feast_db_csv( feast_db_t *feast_db_struct, char *filePath ) {
     // make an ER db struct from csv files
-    csvToStruct_feast( feast_db_struct, 100, filePath );                        // database/csv/feast.csv
+    csvToStruct_feast( feast_db_struct, 100, filePath );                    // database/csv/feast.csv
 }

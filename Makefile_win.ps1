@@ -13,18 +13,18 @@ $scriptName = $MyInvocation.MyCommand.Name
 function makeClean {
     Write-Host "Cleaning ...
     "
-	
-	## array of file extensions
-	$fileExt = @("*.obj", "*.exe", "*.pdb", "*.ilk")
-	
-	foreach ($element in $fileExt) {
-		## clean previous builds
-		if ( Test-Path $element ) {
-			Write-Host "Removing the following:"
-			Get-ChildItem $element
-			Remove-Item $element
-		}
-	}
+
+    ## array of file extensions
+    $fileExt = @("*.obj", "*.exe", "*.pdb", "*.ilk")
+
+    foreach ($element in $fileExt) {
+        ## clean previous builds
+        if ( Test-Path $element ) {
+            Write-Host "Removing the following:"
+            Get-ChildItem $element
+            Remove-Item $element
+        }
+    }
 
     Write-Host "Done Cleaning.
     "
@@ -40,7 +40,7 @@ function makeBuild {
 
     ## Build the executable file
     #cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
-	cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /Fe"ttyRosary.exe"
+    cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /Fe"ttyRosary.exe"
     Write-Host "Done Building.
     "
 }

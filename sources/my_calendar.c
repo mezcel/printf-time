@@ -277,10 +277,10 @@ char *stringLiturgicalSeason() {
     struct tm advent_start  = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 );              // Dec 1
     shiftTowardSunday( &advent_start );                                                         // first Sun of Advent
 
-    struct tm immaculate_conception_mary = setSpecificDate( todaysDate.tm_year + 1900, 11, 8 ); // Dec 8
-    struct tm christmas_day             = setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed Dec 25
-    struct tm solemnity_of_mary         = setSpecificDate( todaysDate.tm_year + 1900, 0, 1 );   // Jan 1
-    struct tm epiphany                  = addDays( christmas_day,12 );                          // 12 days after Christmas
+    struct tm immaculate_conception_mary = setSpecificDate( todaysDate.tm_year + 1900, 11, 8 );  // Dec 8
+    struct tm christmas_day              = setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed Dec 25
+    struct tm solemnity_of_mary          = setSpecificDate( todaysDate.tm_year + 1900, 0, 1 );   // Jan 1
+    struct tm epiphany                   = addDays( christmas_day,12 );                          // 12 days after Christmas
     shiftTowardSunday( &epiphany );         // epiphany Sunday
 
     struct tm jesus_baptism = addDays( christmas_day,12 );
@@ -307,28 +307,28 @@ char *stringLiturgicalSeason() {
 }
 
 char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeast ) {
-    char *feast;                                                                            // feast day display string
+    char *feast;                                                                                // feast day display
     struct tm todaysDate    = returnTodaysDate();
 
-    struct tm advent_start  = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 );          // Dec 1
-    shiftTowardSunday( &advent_start );                                                     // first Sun of Advent
+    struct tm advent_start  = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 );              // Dec 1
+    shiftTowardSunday( &advent_start );                                                         // first Sun of Advent
 
     struct tm immaculate_conception_mary = setSpecificDate( todaysDate.tm_year + 1900, 11, 8 ); // Dec 8
-    struct tm christmas_day             = setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // Dec 25
-    struct tm solemnity_of_mary         = setSpecificDate( todaysDate.tm_year + 1900, 0, 1 );   // Jan 1
-    struct tm epiphany                  = addDays( christmas_day, 12 );                         // 12 days after Christmas
+    struct tm christmas_day              = setSpecificDate( todaysDate.tm_year + 1900, 11, 25 );// Dec 25
+    struct tm solemnity_of_mary          = setSpecificDate( todaysDate.tm_year + 1900, 0, 1 );  // Jan 1
+    struct tm epiphany                   = addDays( christmas_day, 12 );                        // 12 days after Christmas
     shiftTowardSunday( &epiphany );                                                             // epiphany Sunday
 
     struct tm jesus_baptism = addDays( christmas_day, 12 );
-    shiftJesusBaptism( &jesus_baptism );                                                    // avoid epiphany overlap
+    shiftJesusBaptism( &jesus_baptism );                                                        // avoid epiphany overlap
 
-    struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 );                   // derived from paschal full moon (pfm)
+    struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 );                       // based on pfm
     struct tm good_saturday = subtractDays( easter_sunday, 1 );
     struct tm good_friday   = subtractDays( easter_sunday, 2 );
     struct tm holy_thursday = subtractDays( easter_sunday, 3 );
     struct tm ash_wednesday = subtractDays( easter_sunday, 46 );
     struct tm pentacost     = addDays( easter_sunday, 21 );
-    shiftTowardSunday( &pentacost );                                                        // 7 Sundays after Easter
+    shiftTowardSunday( &pentacost );                                                            // 7 Sundays after Easter
 
     struct tm assension_of_jesus = addDays( easter_sunday, 40 );
 

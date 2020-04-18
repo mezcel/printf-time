@@ -178,7 +178,10 @@ void update_widgets_labels( rosary_db_t *rosary_db_struct, app_widgets *widgets 
     gtk_level_bar_set_value( GTK_LEVEL_BAR( widgets -> levelBar_mystery ), mysteryDouble );
 }
 
-void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int todayDay, int todayMonth, int recordCount ) {
+void updateFeastDisplayStruct(
+        feast_db_t *feast_db_struct,
+        displayFeastVariables_t *queryFeastViewStruct,
+        int todayDay, int todayMonth, int recordCount ) {
     int feastDay    = 0,
         feastMonth  = 0,
         counter     = 0;

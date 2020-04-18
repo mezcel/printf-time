@@ -38,7 +38,8 @@ void activateEcho() {
     system( "stty -cbreak" );                       // read one key without pressing enter
 }
 
-int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct, int navigtionPosition, int weekdayNo, int desiredDispLen ) {
+int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
+        int navigtionPosition, int weekdayNo, int desiredDispLen ) {
     // Increment or decrement the next desired position in the rosary sequence
     // uses traditional vim or "retro game" navigation keys
 

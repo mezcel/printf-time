@@ -52,15 +52,15 @@ void borderCharPrintF( char *charSymbol, int borderWidth ) {
 void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int minRows ) {
     // Automatically wrap string arrays that are longer than 1 terminal row
 
-    int screenWidth     = desiredLineLength;        // max chars per screen line width
-    int inputLength     = ( int )strlen( strIn );   // number of chars contained in input string
-    int labelColChars   = 17;                       // chars used in the label col
+    int screenWidth     = desiredLineLength;                // max chars per screen line width
+    int inputLength     = ( int )strlen( strIn );           // number of chars contained in input string
+    int labelColChars   = 17;                               // chars used in the label col
     int max_line_chars  = screenWidth - labelColChars;
     int rowCounter      = 1;
 
-    printf( "%s", labelChars );                     // print the content label, initial printf
+    printf( "%s", labelChars );                             // print the content label, initial printf
 
-    if ( inputLength < max_line_chars ) {           // short enough to be 1 line
+    if ( inputLength < max_line_chars ) {                   // short enough to be 1 line
         printf( "%s\n\t\t", strIn );
         rowCounter++;
     } else { // longer than one line
@@ -153,8 +153,14 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
     // display about and instructions
 
     char *season        = stringLiturgicalSeason();
-    char *feast         = stringFeast( queryFeastViewStruct.feastDay , queryFeastViewStruct.feastMonth, queryFeastViewStruct.feastName );
-    char *aboutString   = "\tThis program is a scripture rosary for the command line interface ( CLI ). This app reads from a scripture database arranged in an ER schema. English readings are quoted from The New American Bible ( CSV files ), and Latin readings are quoted from the Vulgate Bible ( JSON file ). User defined feast days can be modified by editing the \"database/csv/feast.csv\" file.";
+    char *feast         = stringFeast(  queryFeastViewStruct.feastDay,
+                                        queryFeastViewStruct.feastMonth,
+                                        queryFeastViewStruct.feastName );
+    char *aboutString   = "\tThis program is a scripture rosary for the command line interface ( CLI ). \
+                            This app reads from a scripture database arranged in an ER schema. \
+                            English readings are quoted from The New American Bible ( CSV files ), \
+                            and Latin readings are quoted from the Vulgate Bible ( JSON file ). \
+                            User defined feast days can be modified by editing the \"database/csv/feast.csv\" file.";
 
     int titleLabelLength = ( int )strlen( titleLabel );
     borderCharPrintF( ":", 3 );
@@ -164,7 +170,8 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 
     multiLinePrintF( "\n About:\n\t", aboutString, desiredDispLen, 0 );
 
-    printf( "\n\n Display:\n\t\tOptimal Terminal Display: ( +25 rows ) x ( +100 cols ) to Full Screen.\t(cols: %d)\n", returnScreenWidth() );
+    printf( "\n\n Display:\n\t\tOptimal Terminal Display: ( +25 rows ) x ( +100 cols ) to Full Screen.\t(cols: %d)\n",
+        returnScreenWidth() );
 
     printf("\n\t\tNAB English\t( POSIX TTY ):\t\t./ttyRosary -n\n");
     printf("\t\t\t\t( CMD/Powershell ):\t.\\ttyRosary.exe\n");
@@ -190,7 +197,8 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
     getchar();  // pause for keyboard input
 }
 
-void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct, int navigtionPosition ) {
+void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct,
+        int navigtionPosition ) {
     // Redefine all string variables used in rosary text display
 
     int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0,
@@ -251,7 +259,8 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 }
 
-void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct, int todayDay, int todayMonth, int recordCount ) {
+void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct,
+        int todayDay, int todayMonth, int recordCount ) {
     int feastDay    = 0,
         feastMonth  = 0,
         counter     = 0;
