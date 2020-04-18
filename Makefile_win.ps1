@@ -11,6 +11,7 @@ param( $inputArgs )
 $scriptName = $MyInvocation.MyCommand.Name
 
 function makeClean {
+
     Write-Host "Cleaning ...
     "
 
@@ -28,9 +29,11 @@ function makeClean {
 
     Write-Host "Done Cleaning.
     "
+
 }
 
 function makeBuild {
+
     Write-Host "Building ...
     "
     ## Compile and build object modules
@@ -43,9 +46,11 @@ function makeBuild {
     cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /Fe"ttyRosary.exe"
     Write-Host "Done Building.
     "
+
 }
 
 function makeRun {
+
     Write-Host "Running ...
     "
     ## Run
@@ -54,9 +59,11 @@ function makeRun {
     }
     Write-Host "Done Running.
     "
+
 }
 
 function menu {
+
     Write-Host ""
     Write-Host "$scriptName
     Compile and build a CLI scripture Rosary on Win10."
@@ -85,6 +92,7 @@ function menu {
             compile and build
             run the compile executable 'mainTTY.exe'
     "
+
     $userinput = Read-Host -Prompt "Type selection option [ clean, build, run ] "
 
     if ( $userinput -eq "clean" ) {
@@ -114,8 +122,10 @@ function menu {
 ## main
 
 switch ( $inputArgs ) {
+
     "clean" { makeClean }
     "build" { makeClean; makeBuild }
     "run"   { makeClean; makeBuild; makeRun }
     default { menu }
+
 }

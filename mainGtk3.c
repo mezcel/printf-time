@@ -30,6 +30,7 @@ void on_btnForward_clicked( GtkButton *button, app_widgets *widgets );
 void on_btnBack_clicked( GtkButton *button, app_widgets *widgets );
 
 int main( int argc, char *argv[] ) {
+
     displayFeastVariables_t queryFeastViewStruct;                       // declare db query view var
 
     GtkBuilder  *builder;
@@ -96,6 +97,7 @@ int main( int argc, char *argv[] ) {
     gtk_main();
 
     return 0;
+
 }
 
 /*
@@ -104,15 +106,20 @@ int main( int argc, char *argv[] ) {
 
 // Close App Button Click
 void on_gtkRosary_destroy() {
+
     gtk_main_quit();
+
 }
 
 void on_btnClose_clicked() {
+
     gtk_main_quit();
+
 }
 
 // Navigate Forward Button Click
 void on_btnForward_clicked( GtkButton *button, app_widgets *widgets ) {
+
     int navigtionPosition = widgets -> navigtionPosition;
 
     if ( navigtionPosition < 315 ) {
@@ -121,10 +128,12 @@ void on_btnForward_clicked( GtkButton *button, app_widgets *widgets ) {
         widgets -> navigtionPosition = 0;
     }
     update_widgets_labels( &rosary_db_struct, widgets );
+
 }
 
 // Navigate Backward Button Click
 void on_btnBack_clicked( GtkButton *button, app_widgets *widgets ) {
+
     int navigtionPosition = widgets -> navigtionPosition;
 
     if ( navigtionPosition > 0 ) {
@@ -133,4 +142,5 @@ void on_btnBack_clicked( GtkButton *button, app_widgets *widgets ) {
         widgets -> navigtionPosition = 315;
     }
     update_widgets_labels( &rosary_db_struct, widgets );
+
 }

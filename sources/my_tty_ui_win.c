@@ -30,7 +30,7 @@ int returnScreenWidth() {
     *   #include <windows.h>    // GetConsoleScreenBufferInfo()
     * batch script to get console width:
     * for /F "usebackq tokens=2* delims=: " %%W in (`mode con ^| findstr Columns`) do echo %%W
-    */
+    * */
 
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     int columns;
@@ -41,7 +41,7 @@ int returnScreenWidth() {
     //int rows;
     //rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
 
-    return columns;     // I want an int greater than around 95;
+    return columns;     // For comfortable readability, aim for an int greater than 95;
 }
 
 void deactivateEcho() {
@@ -66,19 +66,21 @@ void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePa
      * This is a place holder just to make the Win10 VS compiler happy.
      * The real function, by the same name, was designed for use on a
      * Debian Linux using the json-c library. This dummy function was
-     * likely called by a non-linux OS, like Win10.
+     * likely to be called by a non-linux OS, like Win10.
      *
      * this is based on my_json_structs.c which was not loaded
-    */
+     * */
     return;
 }
 
 int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
         int navigtionPosition, int weekdayNo, int desiredDispLen ) {
-    // user keyboard input for win10
-    // Increment or decrement the next desired position in the rosary sequence
-    // uses traditional vim or "retro game" navigation keys
-    // https://www.alt-codes.net/arrow_alt_codes.php
+    /*
+     * User keyboard input on win10
+     * Increment or decrement the next desired position in the rosary sequence
+     * Uses traditional vim or "retro game" navigation keys
+     * https://www.alt-codes.net/arrow_alt_codes.php
+     * */
 
     char ch = getch();  // input keyboard key without the enter key on Win10
 

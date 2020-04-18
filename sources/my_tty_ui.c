@@ -12,14 +12,15 @@
 
 // Separate files used to minimize errors when compiling on Win10
 #ifdef __unix__
-    // Ideal functionality, available on Debian linux
+    // Optimized functions for POSIX
     #include "../sources/my_tty_ui_posix.c"
 #else
-    // win10 workaround
+    // Optimized functions for Win10 ( compile workarounds )
     #include "../sources/my_tty_ui_win.c"
 #endif
 
 int returnLaunchArgument( int argc, char *argv ) {
+
     int nabFlag = 0;
     if ( argc == 2 ) {                  // set Latin Vulgate from app launch
         nabFlag = strcmp( "-v", argv );
@@ -28,9 +29,11 @@ int returnLaunchArgument( int argc, char *argv ) {
     }
 
     return nabFlag;
+
 }
 
 int initialMystery( int weekdayNo ) {
+
     // return the start of a mystery sequence depending on which day of the week it is
 
     int navigtionPosition[ ] = { 237, 0, 158, 237, 79, 158, 0 };
@@ -39,6 +42,7 @@ int initialMystery( int weekdayNo ) {
         weekdayNo = 0;
     }
     return navigtionPosition[ weekdayNo ];
+
 }
 
 void borderCharPrintF( char *charSymbol, int borderWidth ) {
@@ -50,6 +54,7 @@ void borderCharPrintF( char *charSymbol, int borderWidth ) {
 }
 
 void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int minRows ) {
+
     // Automatically wrap string arrays that are longer than 1 terminal row
 
     int screenWidth     = desiredLineLength;                // max chars per screen line width
@@ -103,9 +108,11 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
             }
         }
     }
+
 }
 
 void splashPage( int desiredDispLen, char *verboseDate ) {
+
     // display a decorative cover page
 
     int strLength, center;
@@ -147,9 +154,11 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 
     getchar();  // pause for keyboard input
     clearScreen();
+
 }
 
 void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int desiredDispLen, char *titleLabel ) {
+
     // display about and instructions
 
     char *season        = stringLiturgicalSeason();
@@ -195,10 +204,12 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
     printf( "\n\n press [ enter key ] to continue ... " );
 
     getchar();  // pause for keyboard input
+
 }
 
 void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct,
         int navigtionPosition ) {
+
     // Redefine all string variables used in rosary text display
 
     int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0,
@@ -211,26 +222,26 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
     // Get values from DB Struct
     rosaryPositionID = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].rosaryBeadID;
-    beadFK      = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].beadIndex;
-    decadeFK    = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].decadeIndex;
-    messageFK   = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].messageIndex;
-    mysteryFK   = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].mysteryIndex;
-    prayerFK    = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].prayerIndex;
-    scriptureFK = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].scriptureIndex;
-    loopBody    = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].loopBody;
+    beadFK           = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].beadIndex;
+    decadeFK         = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].decadeIndex;
+    messageFK        = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].messageIndex;
+    mysteryFK        = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].mysteryIndex;
+    prayerFK         = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].prayerIndex;
+    scriptureFK      = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].scriptureIndex;
+    loopBody         = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].loopBody;
     smallbeadPercent = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].smallbeadPercent;
-    mysteryPercent  = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].mysteryPercent;
+    mysteryPercent   = rosary_db_struct -> rosaryBead_dbArray[ navigtionPosition ].mysteryPercent;
 
-    beadType    = rosary_db_struct -> bead_dbArray[ beadFK ].beadType;
-    decadeName  = rosary_db_struct -> decade_dbArray[ decadeFK ].decadeName;
-    decadeInfo  = rosary_db_struct -> decade_dbArray[ decadeFK ].decadeInfo;
-    mesageText  = rosary_db_struct -> message_dbArray[ messageFK ].mesageText;
-    mysteryName = rosary_db_struct -> mystery_dbArray[ mysteryFK ].mysteryName;
-    scriptureText = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
-    prayerText  = rosary_db_struct -> prayer_dbArray[ prayerFK ].prayerText;
+    beadType         = rosary_db_struct -> bead_dbArray[ beadFK ].beadType;
+    decadeName       = rosary_db_struct -> decade_dbArray[ decadeFK ].decadeName;
+    decadeInfo       = rosary_db_struct -> decade_dbArray[ decadeFK ].decadeInfo;
+    mesageText       = rosary_db_struct -> message_dbArray[ messageFK ].mesageText;
+    mysteryName      = rosary_db_struct -> mystery_dbArray[ mysteryFK ].mysteryName;
+    scriptureText    = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+    prayerText       = rosary_db_struct -> prayer_dbArray[ prayerFK ].prayerText;
 
-    decadeNo    = rosary_db_struct -> decade_dbArray[ decadeFK ].decadeNo;
-    mysteryNo   = rosary_db_struct -> mystery_dbArray[ mysteryFK ].mysteryNo;
+    decadeNo         = rosary_db_struct -> decade_dbArray[ decadeFK ].decadeNo;
+    mysteryNo        = rosary_db_struct -> mystery_dbArray[ mysteryFK ].mysteryNo;
 
     // Populate/Update Query View Struct
     queryViewStruct -> rosaryPositionID = rosaryPositionID;
@@ -261,6 +272,7 @@ void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariabl
 
 void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct,
         int todayDay, int todayMonth, int recordCount ) {
+
     int feastDay    = 0,
         feastMonth  = 0,
         counter     = 0;
@@ -315,6 +327,7 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 }
 
 void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel ) {
+
     // Render all rosary bead content onto the screen
     // Primary display rendering
 
@@ -444,4 +457,5 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
     printf( " ]" );
 
     printf( "\n:" );
+
 }

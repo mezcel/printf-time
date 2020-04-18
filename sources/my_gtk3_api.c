@@ -53,9 +53,11 @@ void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widget
     } else {
         gtk_label_set_text( GTK_LABEL( widgets -> lblTextFeast ), retrunFeastDayName( feastFlag ) );
     }
+
 }
 
 int initialMystery( int weekdayNo ) {
+
     int navigtionPosition[] = { 237, 0, 158, 237, 79, 158, 0 };
 
     if ( ( weekdayNo > 6 ) || ( weekdayNo < 0 ) ) {
@@ -63,9 +65,11 @@ int initialMystery( int weekdayNo ) {
     }
 
     return navigtionPosition[ weekdayNo ];
+
 }
 
 void update_widgets_labels( rosary_db_t *rosary_db_struct, app_widgets *widgets ) {
+
     int navigtionPosition   = widgets->navigtionPosition;
 
     /*
@@ -176,9 +180,11 @@ void update_widgets_labels( rosary_db_t *rosary_db_struct, app_widgets *widgets 
     gtk_label_set_text( GTK_LABEL( widgets -> lblTextProgressTitle ), progressLabel );
     gtk_level_bar_set_value( GTK_LEVEL_BAR( widgets -> levelBar_decade ), smallbeadDouble );
     gtk_level_bar_set_value( GTK_LEVEL_BAR( widgets -> levelBar_mystery ), mysteryDouble );
+
 }
 
 void updateFeastDisplayStruct(
+
         feast_db_t *feast_db_struct,
         displayFeastVariables_t *queryFeastViewStruct,
         int todayDay, int todayMonth, int recordCount ) {

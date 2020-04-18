@@ -12,11 +12,11 @@
 #include "headers/my_tty_ui.h"
 
 /*
-// Dependency:
-#include "sources/my_calendar.c"
-#include "sources/my_csv_structs.c"
-#include "sources/my_tty_ui.c"
-*/
+ * // Dependency:
+ * #include "sources/my_calendar.c"
+ * #include "sources/my_csv_structs.c"
+ * #include "sources/my_tty_ui.c"
+ * */
 
 #ifdef __unix__
     #define IS_LINUX 1  // This app was tested on Debian Linux ( x86/x64 ) Jan 2020
@@ -83,8 +83,7 @@ int main( int argc, char **argv ) {
     // User interface loop
 
     while ( navigtionPosition <= 315 ) {
-        // query database text based on the current navigation position
-        // Update the displayFeastVariables_t struct
+        // Update the displayFeastVariables_t struct based on the current navigation position
         updateDisplayVariablesStruct( &rosary_db_struct, &queryViewStruct, navigtionPosition );
 
         // render display text
@@ -98,4 +97,5 @@ int main( int argc, char **argv ) {
     activateEcho();                                                     // Restore posix tty echo
 
     return 0;
+
 }
