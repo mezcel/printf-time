@@ -38,14 +38,8 @@ int main( int argc, char **argv ) {
 	int navigtionPosition	= initialMystery( weekdayNo );		// starting progress position
 
 	char *titleLabel;										// string to display which db is used
-	int nabFlag;											// Sets either NAB or Vulgate
+	int nabFlag = returnLaunchArgument( argc, argv[1] );	// Sets either NAB or Vulgate
 	int desiredDispLen;										// posix terminal column width
-
-	if ( argc == 2 ) {										// set Latin Vulgate from app launch
-		nabFlag = strcmp( "-v", argv[1] );
-	} else {												// no input, default to NAB English
-		nabFlag = 1;
-	}
 
 	// Load Database files
 	if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {			// Vulgate JSON Database with POSIX
@@ -88,7 +82,7 @@ int main( int argc, char **argv ) {
 
 	while ( navigtionPosition <= 315 ) {
 		// query database text based on the current navigation position
-		// Update the displayFeastVariables_t struct 
+		// Update the displayFeastVariables_t struct
 		updateDisplayVariablesStruct( &rosary_db_struct, &queryViewStruct, navigtionPosition );
 
 		// render display text

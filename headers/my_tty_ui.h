@@ -46,6 +46,7 @@ typedef struct displayFeastVariables_struct {
  * Prototypes
  * */
 
+int returnLaunchArgument( int argc, char *argv );
 int returnScreenWidth();
 int initialMystery( int weekdayNo );
 int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct, int navigtionPosition, int weekdayNo, int desiredDispLen );

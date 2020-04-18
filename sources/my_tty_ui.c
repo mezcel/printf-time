@@ -19,6 +19,17 @@
 	#include "../sources/my_tty_ui_win.c"
 #endif
 
+int returnLaunchArgument( int argc, char *argv ) {
+	int nabFlag = 0;
+	if ( argc == 2 ) {										// set Latin Vulgate from app launch
+		nabFlag = strcmp( "-v", argv );
+	} else {												// no input, default to NAB English
+		nabFlag = 1;
+	}
+
+	return nabFlag;
+}
+
 int initialMystery( int weekdayNo ) {
 	// return the start of a mystery sequence depending on which day of the week it is
 
@@ -248,7 +259,7 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 		isFeastDay	= 0; // flag if today's date is a user defined feast date
 
 	char *feastName, *monthName;
-	
+
 	while ( counter < recordCount  ) {
 		feastDay	= feast_db_struct -> feast_dbArray[ counter ].feastDay;
 		feastMonth	= feast_db_struct -> feast_dbArray[ counter ].feastMonth;
@@ -258,8 +269,8 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 				isFeastDay = 1;
 				break;
 			}
-		} 
-		
+		}
+
 		counter++;
 	}
 
