@@ -21,9 +21,9 @@
 
 int returnLaunchArgument( int argc, char *argv ) {
     int nabFlag = 0;
-    if ( argc == 2 ) {                                      // set Latin Vulgate from app launch
+    if ( argc == 2 ) {                  // set Latin Vulgate from app launch
         nabFlag = strcmp( "-v", argv );
-    } else {                                                // no input, default to NAB English
+    } else {                            // no input, default to NAB English
         nabFlag = 1;
     }
 
@@ -288,8 +288,8 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
         feastDay    = feast_db_struct -> feast_dbArray[ counter ].feastDay;
         feastMonth  = feast_db_struct -> feast_dbArray[ counter ].feastMonth;
 
-        feastName   = feast_db_struct   -> feast_dbArray[ counter ].feastName;
-        monthName   = feast_db_struct   -> feast_dbArray[ counter ].monthName;
+        feastName   = feast_db_struct -> feast_dbArray[ counter ].feastName;
+        monthName   = feast_db_struct -> feast_dbArray[ counter ].monthName;
 
         // int's
         queryFeastViewStruct -> feastID     = feastID;
@@ -318,13 +318,13 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
     // Render all rosary bead content onto the screen
     // Primary display rendering
 
-    int minFruitsRow        = 3,
-        minBackgroundRows   = 4,
-        minScriptureRows    = 4,
-        minPrayerRows       = 4;
+    int minFruitsRow      = 3,
+        minBackgroundRows = 4,
+        minScriptureRows  = 4,
+        minPrayerRows     = 4;
 
-    int trailingDots    = 0,
-        historyDots     = 0;
+    int trailingDots = 0,
+        historyDots  = 0;
 
     int titleLabelLength    = ( int )strlen( titleLabel ) + 3;
     int mysteryLabelLength  = ( int )strlen( queryViewStruct.mysteryName ) + 4;
@@ -337,10 +337,10 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 
     if ( queryViewStruct.loopBody == 1 ) {
         rosaray_region_string = "Rosary Body";
-        footerLabel2Length  = ( int )strlen( rosaray_region_string ) + 5;
-        segment_whole       = 10;
-        decade_flag         = 5;
-        segment_part        = queryViewStruct.smallbeadPercent;
+        footerLabel2Length    = ( int )strlen( rosaray_region_string ) + 5;
+        segment_whole         = 10;
+        decade_flag           = 5;
+        segment_part          = queryViewStruct.smallbeadPercent;
     } else {
         if ( queryViewStruct.mysteryPercent == 50 ) {
             rosaray_region_string   = "Conclusion Prayers";

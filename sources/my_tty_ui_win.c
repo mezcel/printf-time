@@ -15,8 +15,9 @@
 #include "../headers/my_tty_ui.h"
 
 void clearScreen() {
+    // WIN10, Powershell or Command Terminal
     // system( "@cls||clear" );
-    system( "@cls" );   // win os
+    system( "@cls" );
 }
 
 int returnScreenWidth() {

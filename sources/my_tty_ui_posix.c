@@ -13,8 +13,9 @@
 #include "../headers/my_tty_ui.h"
 
 void clearScreen() {
+    // POSIX
     // system( "@cls||clear" );
-    system( "clear" );                              // linux
+    system( "clear" );
 }
 
 int returnScreenWidth() {
