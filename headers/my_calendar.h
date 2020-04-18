@@ -27,7 +27,8 @@ void shiftJesusBaptism( struct tm *tmDate );
 
 int isFeastDay( struct tm tmNow, struct tm tmThen );
 int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm season_end );
-int returnLiturgicalSeason( struct tm *tmNow, struct tm *advent_start, struct tm *christmas_day,
-		struct tm *epiphany, struct tm *ash_wednesday, struct tm *easter_sunday, struct tm *pentacost );
+int returnLiturgicalSeason( struct tm *tmNow, struct tm *advent_start,
+    struct tm *christmas_day, struct tm *epiphany, struct tm *ash_wednesday,
+    struct tm *easter_sunday, struct tm *pentacost );
 
 #endif
