@@ -9,9 +9,10 @@ lang: en-US
 
 # printf-time
 
-Version: ```v0.4.2```
-* experimenting with a new technique to consolidate some functions.
-* curating the feast flags
+Version: ```v0.4.2.?```
+* misc. consolidation
+* curating the user defined feast day db
+* cleaning up some syntax and script formatting
 
 
 ## About:
@@ -35,7 +36,7 @@ Makefile
 
 ```sh
 ## build and compile everything
-##	generate the following executables: ttyRosary and gtkRosary
+##  generate the following executable files: ttyRosary and gtkRosary
 
 make
 
@@ -49,13 +50,13 @@ make gtkRosary
 ```sh
 ## TTY App
 
-./ttyRosary		## NAB English, using a CSV database
-./ttyRosary -v		## Vulgate Latin, using a JSON database
+./ttyRosary         ## NAB English, using a CSV database
+./ttyRosary -v      ## Vulgate Latin, using a JSON database
 
 ## GTK App
 
-./gtkRosary		## NAB English
-./gtkRosary -v		## Vulgate Latin
+./gtkRosary         ## NAB English
+./gtkRosary -v      ## Vulgate Latin
 ```
 
 ### 1.2 Debian Dependencies
@@ -174,13 +175,13 @@ This is the 5th program language version in my Rosary App series.
 #### Debian Developer Environment (debug/mod)
 
 * [MinGW](http://www.mingw.org/) or Linux (x86 or x64)
-	* this app was developed on Debian WLS and tested on a real Linux
+    * this app was developed on Debian WLS and tested on a real Linux
 * GCC v6+
 * [Glade](https://glade.gnome.org/) (a gui designing tool)
 * any text editor (I use Geany for everything on Linux)
-	* Geany macros for quick and easy gtk3 development
-	* compile:	gcc -Wall -c "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
-	* build:	gcc -Wall -o "%e" "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
+    * Geany macros for quick and easy gtk3 development
+    * compile:  gcc -Wall -c "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
+    * build:    gcc -Wall -o "%e" "%f" `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
 ### 3.3 Win10 MinGW ( not tested recently )
 
