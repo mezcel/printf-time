@@ -13,12 +13,15 @@
 #include "../headers/my_tty_ui.h"
 
 void clearScreen() {
+
     // POSIX
     // system( "@cls||clear" );
     system( "clear" );
+
 }
 
 int returnScreenWidth() {
+
     // return a number which represents how long/wide the screen text should be
     int col_length = 95;    // Estimate and proximate ( 85 - 120 ) chars screen width
 
@@ -27,20 +30,26 @@ int returnScreenWidth() {
     col_length =  w.ws_col;
 
     return col_length;
+
 }
 
 void deactivateEcho() {
+
     system( "stty -echo" );
     system( "stty cbreak" );
+
 }
 
 void activateEcho() {
+
     system( "stty echo" );                          // Make echo work
     system( "stty -cbreak" );                       // read one key without pressing enter
+
 }
 
 int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
         int navigtionPosition, int weekdayNo, int desiredDispLen ) {
+
     // Increment or decrement the next desired position in the rosary sequence
     // uses traditional vim or "retro game" navigation keys
 
@@ -119,4 +128,5 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
     }
 
     return navigtionPosition;
+
 }

@@ -64,8 +64,9 @@ int main( int argc, char **argv ) {
     }
 
     // User defined feast days, CSV File
-    char *feast_csv_file = "database/csv/feast.csv";
-    int recordCount = returnCsvRecordCount( feast_csv_file );
+    char *feast_csv_file    = "database/csv/feast.csv";
+    int recordCount         = returnCsvRecordCount( feast_csv_file );
+
     make_struct_feast_db_csv( &feast_db_struct, feast_csv_file );       // fixed feast day db
     updateFeastDisplayStruct(
         &feast_db_struct, &queryFeastViewStruct,

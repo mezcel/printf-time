@@ -72,9 +72,9 @@ int main( int argc, char *argv[] ) {
     }
 
     // User defined feast days, JSON File
-    char *fesat_json_file = "database/json/feast.json"; // or "database/json/rosaryJSON-vulgate.json"
+    char *fesat_json_file   = "database/json/feast.json"; // or "database/json/rosaryJSON-vulgate.json"
     make_struct_feast_db_json( &feast_db_struct, fesat_json_file );
-    int recordCount = returnIndexCount ( fesat_json_file  );
+    int recordCount         = returnIndexCount ( fesat_json_file  );
 
     updateFeastDisplayStruct(
         &feast_db_struct, &queryFeastViewStruct,

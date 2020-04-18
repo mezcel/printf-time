@@ -15,12 +15,15 @@
 #include "../headers/my_tty_ui.h"
 
 void clearScreen() {
+
     // WIN10, Powershell or Command Terminal
     // system( "@cls||clear" );
     system( "@cls" );
+
 }
 
 int returnScreenWidth() {
+
     /*
     * On a POSIX terminal I would use the following headers
     *   #include <sys/ioctl.h>  // ioctl(), TIOCGWINSZ, struct winsize
@@ -42,25 +45,33 @@ int returnScreenWidth() {
     //rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
 
     return columns;     // For comfortable readability, aim for an int greater than 95;
+
 }
 
 void deactivateEcho() {
+
     /*
      * n/a
      * used to deactivate echo on posix compliant terminals
      * */
+
     return;
+
 }
 
 void activateEcho() {
+
     /*
      * n/a
      * used to reactivate echo on posix compliant terminals
      * */
+
     return;
+
 }
 
 void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
+
     /*
      * n/a
      * This is a place holder just to make the Win10 VS compiler happy.
@@ -70,11 +81,14 @@ void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePa
      *
      * this is based on my_json_structs.c which was not loaded
      * */
+
     return;
+
 }
 
 int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
         int navigtionPosition, int weekdayNo, int desiredDispLen ) {
+
     /*
      * User keyboard input on win10
      * Increment or decrement the next desired position in the rosary sequence
@@ -153,4 +167,5 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
     }
 
     return navigtionPosition;
+
 }

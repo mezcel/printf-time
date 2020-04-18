@@ -13,6 +13,7 @@
  * */
 
 char ** strsplit( const char * src, const char * delim ) {
+
     char * pbuf     = NULL;
     char * ptok     = NULL;
     int count       = 0;
@@ -41,10 +42,13 @@ char ** strsplit( const char * src, const char * delim ) {
     *( pparr + count ) = NULL;
 
     free( pbuf );
+
     return pparr;
+
 }
 
 void strsplitfree( char ** strlist ) {
+
     int i = 0;
 
     while( strlist[ i ] ) {
@@ -52,18 +56,22 @@ void strsplitfree( char ** strlist ) {
     }
 
     free( strlist );
+
 }
 
 char *removeNewLine( char *str ) {
+
     for( int i = 0; str[ i ] != '\0'; i++ ) {
         if( str[ i ] == '\n' ) {
             str[ i ] = ' ';
         }
     }
+
     return str;
 }
 
 int returnCsvRecordCount(char * filePath) {
+
     FILE *fp;
     int count = 0;  // Line counter (result)
     char c;         // To store a character read from file
@@ -84,6 +92,7 @@ int returnCsvRecordCount(char * filePath) {
     }
 
     fclose(fp); // Close the file
+
     return count;
 }
 
@@ -92,6 +101,7 @@ int returnCsvRecordCount(char * filePath) {
  * */
 
 rosaryBead_t * parse_rosaryBead_record( char * scvline ) {
+
     char ** pp = NULL;
     char *cleanScvLine;
     rosaryBead_t * record_field = NULL;
@@ -112,10 +122,13 @@ rosaryBead_t * parse_rosaryBead_record( char * scvline ) {
     record_field -> mysteryPercent   = atoi( pp[ 9 ] );
 
     strsplitfree( pp );
+
     return record_field;
+
 }
 
 bead_t * parse_bead_record( char * scvline ) {
+
     char ** pp = NULL;
     char *cleanScvLine;
     bead_t * record_field = NULL;
@@ -128,10 +141,13 @@ bead_t * parse_bead_record( char * scvline ) {
     record_field -> beadType    = strdup( pp[ 1 ] );
 
     strsplitfree( pp );
+
     return record_field;
+
 }
 
 book_t * parse_book_record( char * scvline ) {
+
     char ** pp = NULL;
     char *cleanScvLine;
     book_t * record_field = NULL;
@@ -145,10 +161,13 @@ book_t * parse_book_record( char * scvline ) {
     record_field -> library     = strdup( pp[ 2 ] );
 
     strsplitfree( pp );
+
     return record_field;
+
 }
 
 decade_t * parse_decade_record( char * scvline ) {
+
     char ** pp = NULL;
     char *cleanScvLine;
     decade_t * record_field = NULL;
@@ -165,10 +184,13 @@ decade_t * parse_decade_record( char * scvline ) {
     record_field -> infoRefference  = strdup( pp[ 5 ] );
 
     strsplitfree( pp );
+
     return record_field;
+
 }
 
 message_t * parse_message_record( char * scvline ) {
+
     char ** pp = NULL;
     char *cleanScvLine;
     message_t * record_field = NULL;
@@ -181,10 +203,13 @@ message_t * parse_message_record( char * scvline ) {
     record_field -> mesageText = strdup( pp[ 1 ] );
 
     strsplitfree( pp );
+
     return record_field;
+
 }
 
 mystery_t * parse_mystery_record( char * scvline ) {
+
     char ** pp = NULL;
     char *cleanScvLine;
     mystery_t * record_field = NULL;
@@ -198,10 +223,13 @@ mystery_t * parse_mystery_record( char * scvline ) {
     record_field -> mysteryName = strdup( pp[ 2 ] );
 
     strsplitfree( pp );
+
     return record_field;
+
 }
 
 prayer_t * parse_prayer_record( char * scvline ) {
+
     char ** pp = NULL;
     char *cleanScvLine;
     prayer_t * record_field = NULL;
@@ -215,10 +243,13 @@ prayer_t * parse_prayer_record( char * scvline ) {
     record_field -> prayerText  = strdup( pp[ 2 ] );
 
     strsplitfree( pp );
+
     return record_field;
+
 }
 
 scripture_t * parse_scripture_record( char * scvline ) {
+
     char ** pp = NULL;
     char *cleanScvLine;
     scripture_t * record_field = NULL;
@@ -234,10 +265,12 @@ scripture_t * parse_scripture_record( char * scvline ) {
     record_field -> scriptureText = strdup( pp[ 4 ] );
 
     strsplitfree( pp );
+
     return record_field;
 }
 
 feast_t * parse_feast_record( char * scvline ) {
+
     char ** pp = NULL;
     char *cleanScvLine;
     feast_t * record_field = NULL;
@@ -253,7 +286,9 @@ feast_t * parse_feast_record( char * scvline ) {
     record_field -> monthName   = strdup( pp[ 4 ] );
 
     strsplitfree( pp );
+
     return record_field;
+
 }
 
 /*
@@ -261,6 +296,7 @@ feast_t * parse_feast_record( char * scvline ) {
  * */
 
 void csvToStruct_rosaryBead( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath ) {
+
     /*
     * Copy text string value into struct char var
     * */
@@ -296,9 +332,11 @@ void csvToStruct_rosaryBead( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, ch
     free( record_field );
     fclose( csvFile );
     free( scvline );
+
 }
 
 void csvToStruct_bead( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath ) {
+
     /*
     * Copy text string value into struct char var
     * */
@@ -326,9 +364,11 @@ void csvToStruct_bead( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fi
     free( record_field );
     fclose( csvFile );
     free( scvline );
+
 }
 
 void csvToStruct_book( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath ) {
+
     /*
     * Copy text string value into struct char var
     * */
@@ -356,9 +396,11 @@ void csvToStruct_book( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *fi
     // destroy temp string memory
     fclose( csvFile );
     free( scvline );
+
 }
 
 void csvToStruct_decade( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath ) {
+
     /*
     * Copy text string value into struct char var
     * */
@@ -390,9 +432,11 @@ void csvToStruct_decade( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
     free( record_field );
     fclose( csvFile );
     free( scvline );
+
 }
 
 void csvToStruct_message( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath ) {
+
     /*
     * Copy text string value into struct char var
     * */
@@ -420,9 +464,11 @@ void csvToStruct_message( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char 
     free( record_field );
     fclose( csvFile );
     free( scvline );
+
 }
 
 void csvToStruct_mystery( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath ) {
+
     /*
     * Copy text string value into struct char var
     * */
@@ -451,9 +497,11 @@ void csvToStruct_mystery( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char 
     free( record_field );
     fclose( csvFile );
     free( scvline );
+
 }
 
 void csvToStruct_prayer( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath ) {
+
     /*
     * Copy text string value into struct char var
     * */
@@ -482,9 +530,11 @@ void csvToStruct_prayer( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *
     free( record_field );
     fclose( csvFile );
     free( scvline );
+
 }
 
 void csvToStruct_scripture( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, char *filePath ) {
+
     /*
     * Copy text string value into struct char var
     * */
@@ -515,9 +565,11 @@ void csvToStruct_scripture( rosary_db_t *rosary_db_struct, int LINE_MAX_LEN, cha
     free( record_field );
     fclose( csvFile );
     free( scvline );
+
 }
 
 void csvToStruct_feast( feast_db_t *feast_db_struct, int LINE_MAX_LEN, char *filePath ) {
+
     /*
     * Copy text string value into struct char var
     * */
@@ -546,6 +598,7 @@ void csvToStruct_feast( feast_db_t *feast_db_struct, int LINE_MAX_LEN, char *fil
     // destroy temp string memory
     fclose( csvFile );
     free( scvline );
+
 }
 
 /*
@@ -553,6 +606,7 @@ void csvToStruct_feast( feast_db_t *feast_db_struct, int LINE_MAX_LEN, char *fil
  * */
 
 void make_struct_rosary_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_array[ 8 ] ) {
+
     // make an ER db struct from csv files
 
     csvToStruct_rosaryBead( rosary_db_struct, 300,  csv_path_array[ 0 ] );  // database/csv/rosaryBead.csv
@@ -563,9 +617,12 @@ void make_struct_rosary_db_csv( rosary_db_t *rosary_db_struct, char *csv_path_ar
     csvToStruct_mystery   ( rosary_db_struct, 67,   csv_path_array[ 5 ] );  // database/csv/mystery.csv
     csvToStruct_prayer    ( rosary_db_struct, 1250, csv_path_array[ 6 ] );  // database/csv/prayer.csv
     csvToStruct_scripture ( rosary_db_struct, 1250, csv_path_array[ 7 ] );  // database/csv/scripture.csv
+
 }
 
 void make_struct_feast_db_csv( feast_db_t *feast_db_struct, char *filePath ) {
+
     // make an ER db struct from csv files
     csvToStruct_feast( feast_db_struct, 100, filePath );                    // database/csv/feast.csv
+
 }

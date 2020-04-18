@@ -9,6 +9,7 @@
 #include "../headers/my_calendar.h"
 
 char *retrunWeekdayName( int indexNo ) {
+
     char * WEEKDAY_NAME_ARRAY[] = {
         "Sunday",
         "Monday",
@@ -20,9 +21,11 @@ char *retrunWeekdayName( int indexNo ) {
     };
 
     return WEEKDAY_NAME_ARRAY[ indexNo ];
+
 }
 
 char *retrunMonthName( int indexNo ) {
+
     char * MONTH_NAME_ARRAY[] = {
         "January", "February", "March", "April", "May",
         "June", "July", "August", "September",
@@ -30,9 +33,11 @@ char *retrunMonthName( int indexNo ) {
     };
 
     return MONTH_NAME_ARRAY[ indexNo ];
+
 }
 
 char *retrunFeastDayName( int indexNo ) {
+
     char * FEAST_DAY_ARRAY[] = {
         "Advent Start", "Immaculate Conception of Mary",
         "Christmas Day", "Solemnity of Mary", "Epiphany", "Jesus's Baptism",
@@ -41,9 +46,11 @@ char *retrunFeastDayName( int indexNo ) {
     };
 
     return FEAST_DAY_ARRAY[ indexNo ];
+
 }
 
 char *retrunLiturgicalName( int indexNo ) {
+
     char * LITURGICAL_SEASON_ARRAY[] = {
         "Advent Season",
         "Christmas Season",
@@ -53,9 +60,11 @@ char *retrunLiturgicalName( int indexNo ) {
     };
 
     return LITURGICAL_SEASON_ARRAY[ indexNo ];
+
 }
 
 char *returnWeekdayMystery( int indexNo ) {
+
     char * WEEKDAY_MYSTERY[] = {
         "Glorious",     // sun
         "Joyful",       // mon
@@ -67,18 +76,22 @@ char *returnWeekdayMystery( int indexNo ) {
     };
 
     return WEEKDAY_MYSTERY[ indexNo ];
+
 }
 
 struct tm returnTodaysDate() {
+
     // Return a time struct containing today's date values
 
     time_t currentDate  = time( NULL );
     struct tm output_tm = *localtime( &currentDate );
 
     return output_tm;
+
 }
 
 char *returnVerboseDate( struct tm tmDate ) {
+
     char *verboseDate = malloc(32);                             // Decorative Date Display
 
     sprintf( verboseDate, "%s %d %s, %d",                       // automatic int to char conversion
@@ -89,9 +102,11 @@ char *returnVerboseDate( struct tm tmDate ) {
     );
 
     return verboseDate;
+
 }
 
 struct tm setSpecificDate( int year, int month, int day ) {
+
     struct tm newTime = {
         .tm_year = year - 1900,
         .tm_mon = month,
@@ -105,9 +120,11 @@ struct tm setSpecificDate( int year, int month, int day ) {
     newTime.tm_wday = localtime( &t ) -> tm_wday;
 
     return newTime;
+
 }
 
 struct tm setEasterDate( int year ) {
+
     /*
     * algorithm source: https://en.wikipedia.org/wiki/Computus
     * */
@@ -132,39 +149,51 @@ struct tm setEasterDate( int year ) {
     struct tm easterDay = setSpecificDate( year, month - 1, day );
 
     return easterDay;
+
 }
 
 struct tm addDay( struct tm referenceDate ) {
+
     referenceDate.tm_mday   += 1;
     time_t t                = mktime( &referenceDate );
     referenceDate.tm_wday   = localtime( &t ) -> tm_wday;
 
     return referenceDate;
+
 }
 
 struct tm addDays( struct tm referenceDate, int days ) {
+
     for ( int i=0; i < days; i++ ) {
         referenceDate = addDay( referenceDate );
     }
+
     return referenceDate;
+
 }
 
 struct tm subtractDay( struct tm referenceDate ) {
+
     referenceDate.tm_mday   -= 1;
     time_t t                = mktime( &referenceDate );
     referenceDate.tm_wday   = localtime( &t ) -> tm_wday;
 
     return referenceDate;
+
 }
 
 struct tm subtractDays( struct tm startDate, int days ) {
+
     for ( int i=0; i < days; i++ ) {
         startDate = subtractDay( startDate );
     }
+
     return startDate;
+
 }
 
 void shiftTowardSunday( struct tm *tmDate ) {
+
     int intial_wday = tmDate -> tm_wday;
 
     if ( intial_wday != 0 ) {
@@ -180,9 +209,11 @@ void shiftTowardSunday( struct tm *tmDate ) {
         time_t t            = mktime( tmDate );
         tmDate -> tm_mday   = localtime( &t ) -> tm_mday;
     }
+
 }
 
 void shiftJesusBaptism( struct tm *tmDate ) {
+
     /*
     * Aprox Jan 13
     * Sunday after the Mass which celebrates the Epiphany
@@ -200,6 +231,7 @@ void shiftJesusBaptism( struct tm *tmDate ) {
 }
 
 int isFeastDay( struct tm tmNow, struct tm tmThen ) {
+
     // return 1 if the difference in time is within a 1 day duration
     int intFlag             = 0;
     double returnSeconds    = difftime( mktime( &tmNow ), mktime( &tmThen ) );
@@ -212,9 +244,11 @@ int isFeastDay( struct tm tmNow, struct tm tmThen ) {
     }
 
     return intFlag;
+
 }
 
 int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm season_end ) {
+
     /*
     * Easter season is 50 days starting at Pentecost
     * Lent season is 46 days between Ash Wed and Easter
@@ -238,6 +272,7 @@ int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm seaso
     }
 
     return returnFlag;
+
 }
 
 int returnLiturgicalSeason(
@@ -272,6 +307,7 @@ int returnLiturgicalSeason(
 }
 
 char *stringLiturgicalSeason() {
+
     struct tm todaysDate    = returnTodaysDate();
 
     struct tm advent_start  = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 );              // Dec 1
@@ -303,10 +339,13 @@ char *stringLiturgicalSeason() {
             &pentacost );   // returns 0-4
 
     char *season = retrunLiturgicalName( seasonFlag );
+
     return season;
+
 }
 
 char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeast ) {
+
     char *feast;                                                                                // feast day display
     struct tm todaysDate    = returnTodaysDate();
 
