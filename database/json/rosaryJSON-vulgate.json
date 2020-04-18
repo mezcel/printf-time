@@ -5353,7 +5353,7 @@
             "monthName": "January"
         }, {
             "feastID": 2,
-            "feastName": "Our Lady of Lourdes",
+            "feastName": "Feast of Our Lady of Lourdes",
             "feastDay": 11,
             "feastMonth": 1,
             "monthName": "February"
@@ -5381,8 +5381,7 @@
             "feastDay": 25,
             "feastMonth": 2,
             "monthName": "March"
-        },
-        {
+        }, {
             "feastID": 7,
             "feastName": "Feast of Saint Mark the Evangelist",
             "feastDay": 25,
@@ -5522,13 +5521,13 @@
             "monthName": "October"
         }, {
             "feastID": 30,
-            "feastName": "All Saints Day",
+            "feastName": "Feast for All Saints",
             "feastDay": 1,
             "feastMonth": 10,
             "monthName": "November"
         }, {
             "feastID": 31,
-            "feastName": "All Souls Day",
+            "feastName": "Feast for All Souls",
             "feastDay": 2,
             "feastMonth": 10,
             "monthName": "November"
@@ -5540,7 +5539,7 @@
             "monthName": "November"
         }, {
             "feastID": 33,
-            "feastName": "Our Lady of Guadalupe",
+            "feastName": "Feast of Our Lady of Guadalupe",
             "feastDay": 12,
             "feastMonth": 11,
             "monthName": "December"
