@@ -162,8 +162,6 @@ This is the 5th program language version in my Rosary App series.
 | lan | internet scraped mass readings | internet scraped mass readings | no interactive networking features |
 | multi user / multi session / group synchronization | multi user / multi session / group synchronization | single user | single user |
 
----
-
 ### 3.2 Misc. Development Background
 
 #### Debian Runtime Environment
