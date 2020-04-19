@@ -137,11 +137,7 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 
         // Non-mapped keys
         default:                                    // other key entries
-            printf("[use vim keys]");
-            for (int c = 1; c <= 20000; c++) {
-                for (int d = 1; d <= 15000; d++) { /* do nothing delay */ }
-            }
-            break;
+            printf("\n");
     }
 
     return navigtionPosition;
