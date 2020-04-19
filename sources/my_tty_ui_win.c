@@ -99,6 +99,31 @@ void pressEnter() {
         break;
     }
 
+    /* NOTE:
+        By pressing one arrow key getch will push three values into the buffer:
+        '\033'
+        '['
+        'A', 'B', 'C' or 'D'
+        
+        if ( getch() == '\033' ) { // if the first value is esc
+            getch(); // skip the [
+            switch( getch() ) { // the real value
+                case 'A':
+                    // code for arrow up
+                    break;
+                case 'B':
+                    // code for arrow down
+                    break;
+                case 'C':
+                    // code for arrow right
+                    break;
+                case 'D':
+                    // code for arrow left
+                    break;
+            }
+        }
+    */
+
 }
 
 int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
@@ -178,7 +203,10 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 
         // Non-mapped keys
         default:                                    // other key entries
-            printf( "use vim keys not %d", ch );
+            printf("[use vim keys]");
+            for (int c = 1; c <= 20000; c++) {
+                for (int d = 1; d <= 15000; d++) { /* do nothing delay */ }
+            }
             break;
     }
 
