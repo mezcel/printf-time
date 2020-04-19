@@ -53,11 +53,12 @@ void pressEnter() {
      * Wait for User to press enter
      * */
 
-    char ch = getchar();
+    printf( "\n\n press [ enter key ] to continue ... " );
 
-    while( ch != 10 ) {
-        ch = getchar();
-        break;
+    char chEnter = getchar();
+
+    while( chEnter != 10 ) {
+        chEnter = getchar();
     }
 
 }

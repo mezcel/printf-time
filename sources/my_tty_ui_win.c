@@ -91,38 +91,14 @@ void pressEnter() {
     /*
      * Wait for User to press enter
      * */
+    
+    printf( "\n\n press [ enter key ] to continue ... " );
 
-   char chEnter = getch();
-
+    char chEnter = getch();
+    
     while( chEnter != '\r' ) {
         chEnter = getch();
-        break;
     }
-
-    /* NOTE:
-        By pressing one arrow key getch will push three values into the buffer:
-        '\033'
-        '['
-        'A', 'B', 'C' or 'D'
-        
-        if ( getch() == '\033' ) { // if the first value is esc
-            getch(); // skip the [
-            switch( getch() ) { // the real value
-                case 'A':
-                    // code for arrow up
-                    break;
-                case 'B':
-                    // code for arrow down
-                    break;
-                case 'C':
-                    // code for arrow right
-                    break;
-                case 'D':
-                    // code for arrow left
-                    break;
-            }
-        }
-    */
 
 }
 

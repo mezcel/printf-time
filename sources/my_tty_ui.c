@@ -150,10 +150,9 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
     printf( "%s\n\n\n\n", verboseDate );
 
     borderCharPrintF( ":", desiredDispLen );
-    printf( "\n\n press [ enter key ] to continue ... " );
 
     pressEnter();   // wait for user to press enter
-    clearScreen();
+    //clearScreen();
 
 }
 
@@ -201,7 +200,6 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
         season, feast );
 
     borderCharPrintF( ":", desiredDispLen );
-    printf( "\n\n press [ enter key ] to continue ... " );
 
     pressEnter();   // wait for user to press enter
 
@@ -220,12 +218,12 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
     switch ( navigtionPosition ) {
         case 0:
             isNewMystery = 1;
-            about = "God wants us to have complete joy. He created us for it. Jesus came so we could be immersed in complete joy: “I have told you this so that my joy might be in you and your joy might be complete” (John 15:11). The Joyful Mysteries celebrate when joy entered the world, when God entered into the mess of the world because of his incredible love for us.";
+            about = "God wants us to have complete joy. He created us for it. Jesus came so we could be immersed in complete joy: \"I have told you this so that my joy might be in you and your joy might be complete\" (John 15:11). The Joyful Mysteries celebrate when joy entered the world, when God entered into the mess of the world because of his incredible love for us.";
             quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
             break;
         case 79:
             isNewMystery = 1;
-            about = "The presence of Jesus is powerful. When he was walking the earth his presence demanded a response. Especially those moments that revealed his divinity. The Luminous Mysteries, often referred to as the Mysteries of Light, capture some incredible moments filled with Jesus’ divinity. They proclaim: “This is the chosen one, the one you have been waiting upon for so very long, this is the Messiah, this is the Son of God!” How will you respond?";
+            about = "The presence of Jesus is powerful. When he was walking the earth his presence demanded a response. Especially those moments that revealed his divinity. The Luminous Mysteries, often referred to as the Mysteries of Light, capture some incredible moments filled with Jesus' divinity. They proclaim: “This is the chosen one, the one you have been waiting upon for so very long, this is the Messiah, this is the Son of God!\" How will you respond?";
             quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
             break;
         case 158:
@@ -270,7 +268,6 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
         printf( "\n\n\n\n" );
 
         borderCharPrintF( ":", desiredDispLen );
-        printf( "\n\n press [ enter key ] to continue ... " );
 
         pressEnter();   // wait for user to press enter
     }
