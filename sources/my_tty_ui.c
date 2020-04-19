@@ -217,22 +217,22 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
     char *title, *about, *quotationSource;;
 
     switch ( navigtionPosition ) {
-        case 0:
+        case 0:     // Joyful Mystery
             isNewMystery = 1;
-            about = "God wants us to have complete joy. He created us for it. Jesus came so we could be immersed in complete joy: \"I have told you this so that my joy might be in you and your joy might be complete\" (John 15:11). The Joyful Mysteries celebrate when joy entered the world, when God entered into the mess of the world because of his incredible love for us.";
+            about = "The Joyful Mysteries of the Rosary are the first of the three traditional sets of events in the life of Christ upon which Catholics meditate while praying the rosary. The Joyful Mysteries cover Christ's life from the Annunciation to the Finding in the Temple, at age 12. Each mystery is associated with a particular fruit, or virtue, which is illustrated by the actions of Christ and Mary in the event commemorated by that mystery. While meditating on the mysteries, Catholics also pray for those fruits or virtues. Traditionally, Catholics meditate on the Joyful Mysteries while praying the rosary on Monday and Thursday, as well as on the Sundays from the beginning of Advent until the beginning of Lent.";
+            quotationSource = "https://www.learnreligions.com/meditations-joyful-mysteries-of-the-rosary-542784";
+            break;
+        case 79:    // Luminous Mystery
+            isNewMystery = 1;
+            about = "The presence of Jesus is powerful. When he was walking the earth his presence demanded a response. Especially those moments that revealed his divinity. The Luminous Mysteries, often referred to as the Mysteries of Light, capture some incredible moments filled with Jesus' divinity.";
             quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
             break;
-        case 79:
+        case 158:   // Sorrowful Mystery
             isNewMystery = 1;
-            about = "The presence of Jesus is powerful. When he was walking the earth his presence demanded a response. Especially those moments that revealed his divinity. The Luminous Mysteries, often referred to as the Mysteries of Light, capture some incredible moments filled with Jesus' divinity. They proclaim: “This is the chosen one, the one you have been waiting upon for so very long, this is the Messiah, this is the Son of God!\" How will you respond?";
-            quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
+            about = "The Sorrowful Mysteries of the Rosary are the second of the three traditional sets of events in the life of Christ upon which Catholics meditate while praying the rosary. The Sorrowful Mysteries cover the events of Holy Thursday, after the Last Supper, through the Crucifixion of Christ on Good Friday.";
+            quotationSource = "https://www.learnreligions.com/meditations-sorrowful-mysteries-of-the-rosary-542786";
             break;
-        case 158:
-            isNewMystery = 1;
-            about = "For more than 2,000 years, the heroes, champions, and saints of Christianity have been meditating on the passion and death of Jesus Christ. Perhaps it is time we all spent a little time exploring the genius of the cross. The world changed at three o’clock on that Friday afternoon when Jesus laid down his life for us. The Sorrowful Mysteries of the Rosary meditate on key moments in the passion and death of Jesus.";
-            quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
-            break;
-        case 237:
+        case 237:   // Glorious Mystery
             isNewMystery = 1;
             about = "In the Glorious Mysteries, we not only see the beautiful glory of God, but we see the incredible dream that God has for each one of us. He wants us to live lives of incredible joy and purpose, and ultimately live with him for eternity.";
             quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
