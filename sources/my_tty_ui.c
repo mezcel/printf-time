@@ -152,7 +152,7 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
     borderCharPrintF( ":", desiredDispLen );
 
     pressEnter();   // wait for user to press enter
-    //clearScreen();
+    clearScreen();
 
 }
 
