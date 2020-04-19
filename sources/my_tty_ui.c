@@ -212,7 +212,8 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
      * Display some background behind the mystery
      * */
 
-    int isNewMystery, strLength, center, minAboutRows;
+    int isNewMystery = 0,
+        strLength, center, minAboutRows;
     char *title, *about, *quotationSource;;
 
     switch ( navigtionPosition ) {
@@ -236,10 +237,10 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
             about = "In the Glorious Mysteries, we not only see the beautiful glory of God, but we see the incredible dream that God has for each one of us. He wants us to live lives of incredible joy and purpose, and ultimately live with him for eternity.";
             quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
             break;
-
         default:
-            isNewMystery = 0;
-            break;
+            // isNewMystery = 0;
+            // break;
+            return;
     }
 
     if ( isNewMystery ) {
