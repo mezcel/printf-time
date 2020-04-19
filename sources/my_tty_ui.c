@@ -117,10 +117,10 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 
     int strLength, center;
 
-    char *title     = "Scriptural Rosary";
-    char *author    = "by Mezcel";
-    char *about     = "Wirtten in C for use in a ( CLI ) POSIX/GNU program environment.";
-    char *git       = "https://github.com/mezcel/printf-time.git";
+    char *title     = "Scriptural Rosary",
+         *author    = "by Mezcel",
+         *about     = "Wirtten in C for use in a ( CLI ) POSIX/GNU program environment.",
+         *git       = "https://github.com/mezcel/printf-time.git";
 
     printf( "\n\n" );
 
@@ -162,9 +162,9 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
     // display about and instructions
 
     char *season        = stringLiturgicalSeason();
-    char *feast         = stringFeast(  queryFeastViewStruct.feastDay,
-                                        queryFeastViewStruct.feastMonth,
-                                        queryFeastViewStruct.feastName );
+    char *feast         = stringFeast( queryFeastViewStruct.feastDay,
+                                       queryFeastViewStruct.feastMonth,
+                                       queryFeastViewStruct.feastName );
     char *aboutString   = "\tThis program is a scripture rosary for the command line interface ( CLI ). \
                             This app reads from a scripture database arranged in an ER schema. \
                             English readings are quoted from The New American Bible ( CSV files ), \
@@ -207,15 +207,94 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 
 }
 
+void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition, int desiredDispLen ) {
+
+    /*
+     * Display a welcome page at the start of each Mystery
+     * Display some background behind the mystery
+     * */
+
+    int isNewMystery, strLength, center, minAboutRows;
+    char *title, *about, *quotationSource;;
+
+    switch ( navigtionPosition ) {
+        case 0:
+            isNewMystery = 1;
+            about = "God wants us to have complete joy. He created us for it. Jesus came so we could be immersed in complete joy: “I have told you this so that my joy might be in you and your joy might be complete” (John 15:11). The Joyful Mysteries celebrate when joy entered the world, when God entered into the mess of the world because of his incredible love for us.";
+            quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
+            break;
+        case 79:
+            isNewMystery = 1;
+            about = "The presence of Jesus is powerful. When he was walking the earth his presence demanded a response. Especially those moments that revealed his divinity. The Luminous Mysteries, often referred to as the Mysteries of Light, capture some incredible moments filled with Jesus’ divinity. They proclaim: “This is the chosen one, the one you have been waiting upon for so very long, this is the Messiah, this is the Son of God!” How will you respond?";
+            quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
+            break;
+        case 158:
+            isNewMystery = 1;
+            about = "For more than 2,000 years, the heroes, champions, and saints of Christianity have been meditating on the passion and death of Jesus Christ. Perhaps it is time we all spent a little time exploring the genius of the cross. The world changed at three o’clock on that Friday afternoon when Jesus laid down his life for us. The Sorrowful Mysteries of the Rosary meditate on key moments in the passion and death of Jesus.";
+            quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
+            break;
+        case 237:
+            isNewMystery = 1;
+            about = "In the Glorious Mysteries, we not only see the beautiful glory of God, but we see the incredible dream that God has for each one of us. He wants us to live lives of incredible joy and purpose, and ultimately live with him for eternity.";
+            quotationSource = "https://dynamiccatholic.com/rosary/unlocking-mysteries-rosary";
+            break;
+
+        default:
+            isNewMystery = 0;
+            break;
+    }
+
+    if ( isNewMystery ) {
+        title = queryViewStruct.mysteryName;
+        minAboutRows = 0;
+
+        clearScreen();
+        printf( "\n\n" );
+
+        strLength   = ( int )strlen( title );
+        center      = ( desiredDispLen - strLength ) / 2;
+        borderCharPrintF( " ", center );
+        printf( "%s\n", title );
+
+        printf( "\n\n" );
+
+        multiLinePrintF( " About:\t\t", about, desiredDispLen, minAboutRows );
+
+        printf( "\n\n" );
+
+        strLength   = ( int )strlen( quotationSource );
+        center      = ( desiredDispLen - strLength ) / 2;
+        borderCharPrintF( " ", center );
+        printf( "%s\n", quotationSource );
+
+        printf( "\n\n\n\n" );
+
+        borderCharPrintF( ":", desiredDispLen );
+        printf( "\n\n press [ enter key ] to continue ... " );
+
+        getchar();  // pause for keyboard input
+        clearScreen();
+    }
+
+}
+
 void updateDisplayVariablesStruct( rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct,
         int navigtionPosition ) {
 
     // Redefine all string variables used in rosary text display
 
-    int rosaryPositionID = 0, beadFK = 0, decadeFK = 0, messageFK = 0, mysteryFK = 0,
-        prayerFK = 0, scriptureFK = 0, loopBody = 0;
-    int smallbeadPercent = 0, mysteryPercent = 0;
-    int decadeNo = 0, mysteryNo = 0;
+    int rosaryPositionID = 0,   // Rosary DB Query Keys
+        beadFK           = 0,
+        decadeFK         = 0,
+        messageFK        = 0,
+        mysteryFK        = 0,
+        prayerFK         = 0,
+        scriptureFK      = 0,
+        loopBody         = 0;   // Main Prayer Circuit Flag
+    int smallbeadPercent = 0,   // Progress flags
+        mysteryPercent   = 0;
+    int decadeNo         = 0,
+        mysteryNo        = 0;
 
     char *beadType, *decadeName, *decadeInfo, *mesageText, *mysteryName;
     char *scriptureText, *prayerText;

@@ -26,28 +26,28 @@
 
 int main( int argc, char **argv ) {
 
-    rosary_db_t rosary_db_struct;                               // declare app's rosary db var
-    displayVariables_t queryViewStruct;                         // declare rosary db query view var
+    rosary_db_t rosary_db_struct;                               // Declare app's rosary db var
+    displayVariables_t queryViewStruct;                         // Declare rosary db query view var
 
-    feast_db_t feast_db_struct;                                 // declare app's feast db var
-    displayFeastVariables_t queryFeastViewStruct;               // declare feast db query view var
+    feast_db_t feast_db_struct;                                 // Declare app's feast db var
+    displayFeastVariables_t queryFeastViewStruct;               // Declare feast db query view var
 
-    struct tm todaysDate    = returnTodaysDate();               // define today struct
+    struct tm todaysDate    = returnTodaysDate();               // Define today struct
     char *verboseDate       = returnVerboseDate( todaysDate );  // Decorative Date Display
-    int weekdayNo           = todaysDate.tm_wday;               // day of the week
-    int navigtionPosition   = initialMystery( weekdayNo );      // starting progress position
+    int weekdayNo           = todaysDate.tm_wday;               // Day of the week
+    int navigtionPosition   = initialMystery( weekdayNo );      // Starting progress position
 
-    char *titleLabel;                                           // string to display which db is used
+    char *titleLabel;                                           // String to display which db is used
     int nabFlag = returnLaunchArgument( argc, argv[1] );        // Sets either NAB or Vulgate
     int desiredDispLen;                                         // POSIX terminal column width
 
     // Load Database files
-    if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {              // Vulgate JSON Database with POSIX
+    if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {                              // Vulgate JSON Database with POSIX
         titleLabel              = " C/JSON Rosary ( Latin Vulgate ) ";
         char *jsonFilePath      = "database/json/rosaryJSON-vulgate.json";
 
-        make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );  // make struct database from file
-    } else {                                                            // NAB CSV Database
+        make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );          // Make struct database from file
+    } else {                                                                    // NAB CSV Database
         titleLabel = " C/CSV Rosary ( English NAB ) ";
         char *rosaryBead_path   = "database/csv/rosaryBead.csv";
         char *bead_path         = "database/csv/bead.csv";
@@ -60,26 +60,26 @@ int main( int argc, char **argv ) {
         char *csv_path_array[8] = { rosaryBead_path, bead_path, book_path, decade_path,
                 message_path, mystery_path, prayer_path, scripture_path };
 
-        make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array ); // make struct database from files
+        make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );         // Make struct database from files
     }
 
     // User defined feast days, CSV File
     char *feast_csv_file    = "database/csv/feast.csv";
     int recordCount         = returnCsvRecordCount( feast_csv_file );
 
-    make_struct_feast_db_csv( &feast_db_struct, feast_csv_file );       // fixed feast day db
+    make_struct_feast_db_csv( &feast_db_struct, feast_csv_file );               // User defined static feast day db
     updateFeastDisplayStruct(
         &feast_db_struct, &queryFeastViewStruct,
         todaysDate.tm_mday, todaysDate.tm_mon, recordCount );
 
     // Welcome display
 
-    desiredDispLen = returnScreenWidth();                               // terminal width
-    clearScreen();                                                      // clear screen
-    deactivateEcho();                                                   // deactivate posix tty echo
+    desiredDispLen = returnScreenWidth();                                       // Set terminal width
+    clearScreen();                                                              // Clear screen
+    deactivateEcho();                                                           // Deactivate POSIX tty echo
 
-    splashPage( desiredDispLen, verboseDate  );                         // display splash title
-    infoPage( queryFeastViewStruct, weekdayNo, desiredDispLen, titleLabel );    // display info/about
+    splashPage( desiredDispLen, verboseDate  );                                 // Display splash title
+    infoPage( queryFeastViewStruct, weekdayNo, desiredDispLen, titleLabel );    // Display info/about
 
     // User interface loop
 
@@ -88,14 +88,17 @@ int main( int argc, char **argv ) {
         updateDisplayVariablesStruct( &rosary_db_struct, &queryViewStruct, navigtionPosition );
 
         // render display text
-        desiredDispLen      = returnScreenWidth();                      // get tty screen width
+        desiredDispLen      = returnScreenWidth();                              // Get tty screen width
+
+        mysteryCoverPage( queryViewStruct, navigtionPosition, desiredDispLen ); // Cover page for a new mystery cycle
+
         outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel );
 
         // Prompt for keyboard navigation user input
         navigtionPosition   = pressKeyContinue( queryFeastViewStruct, navigtionPosition, weekdayNo, desiredDispLen );
     }
 
-    activateEcho();                                                     // Restore posix tty echo
+    activateEcho();                                                             // Restore posix tty echo
 
     return 0;
 

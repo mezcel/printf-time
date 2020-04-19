@@ -64,6 +64,7 @@ void splashPage( int desiredDispLen, char *verboseDate );
 void infoPage(
     displayFeastVariables_t queryFeastViewStruct,
     int weekdayNo, int desiredDispLen, char *titleLabel );
+void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition, int desiredDispLen );
 
 void updateDisplayVariablesStruct(
     rosary_db_t *rosary_db_struct, displayVariables_t *queryViewStruct,
