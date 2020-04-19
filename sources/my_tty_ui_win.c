@@ -92,10 +92,11 @@ void pressEnter() {
      * Wait for User to press enter
      * */
 
-    char ch = getch();
+   char chEnter = getch();
 
-    while( ch != '\r' ) {
-        ch = getch();
+    while( chEnter != '\r' ) {
+        chEnter = getch();
+        break;
     }
 
 }
@@ -177,6 +178,7 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 
         // Non-mapped keys
         default:                                    // other key entries
+            printf( "use vim keys not %d", ch );
             break;
     }
 

@@ -204,7 +204,6 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
     printf( "\n\n press [ enter key ] to continue ... " );
 
     pressEnter();   // wait for user to press enter
-    clearScreen();
 
 }
 
@@ -274,7 +273,6 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
         printf( "\n\n press [ enter key ] to continue ... " );
 
         pressEnter();   // wait for user to press enter
-        clearScreen();
     }
 
 }
@@ -479,7 +477,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
 
     // body
 
-    char *decadeString; // Variable decade names.
+    char *decadeString; // Variable decade names for intros and outros.
 
     if ( strcmp( queryViewStruct.decadeName, "decade.decadeName" ) ) {
         decadeString = queryViewStruct.mysteryName;

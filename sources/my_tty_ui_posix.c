@@ -57,6 +57,7 @@ void pressEnter() {
 
     while( ch != 10 ) {
         ch = getchar();
+        break;
     }
 
 }
