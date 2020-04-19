@@ -53,6 +53,7 @@ int pressKeyContinue(
     displayFeastVariables_t queryFeastViewStruct,
     int navigtionPosition, int weekdayNo, int desiredDispLen );
 
+void pressEnter();
 void deactivateEcho();
 void activateEcho();
 
@@ -73,7 +74,7 @@ void updateFeastDisplayStruct(
     feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct,
     int todayDay, int todayMonth, int recordCount );
 
-void outputTtyDisplay(
+void renderRosaryDisplay(
     displayVariables_t queryViewStruct,
     int desiredDispLen, char *titleLabel );
 

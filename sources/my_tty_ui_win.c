@@ -86,6 +86,20 @@ void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePa
 
 }
 
+void pressEnter() {
+
+    /*
+     * Wait for User to press enter
+     * */
+
+    char ch = getch();
+
+    while( ch != '\r' ) {
+        ch = getch();
+    }
+
+}
+
 int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
         int navigtionPosition, int weekdayNo, int desiredDispLen ) {
 

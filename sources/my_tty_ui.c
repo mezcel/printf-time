@@ -152,7 +152,7 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
     borderCharPrintF( ":", desiredDispLen );
     printf( "\n\n press [ enter key ] to continue ... " );
 
-    getchar();  // pause for keyboard input
+    pressEnter();   // wait for user to press enter
     clearScreen();
 
 }
@@ -203,7 +203,8 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
     borderCharPrintF( ":", desiredDispLen );
     printf( "\n\n press [ enter key ] to continue ... " );
 
-    getchar();  // pause for keyboard input
+    pressEnter();   // wait for user to press enter
+    clearScreen();
 
 }
 
@@ -272,7 +273,7 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
         borderCharPrintF( ":", desiredDispLen );
         printf( "\n\n press [ enter key ] to continue ... " );
 
-        getchar();  // pause for keyboard input
+        pressEnter();   // wait for user to press enter
         clearScreen();
     }
 
@@ -405,7 +406,7 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 
 }
 
-void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel ) {
+void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel ) {
 
     // Render all rosary bead content onto the screen
     // Primary display rendering
@@ -458,12 +459,12 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
     }
 
     if ( segment_whole == 10 ) {
-        historyDots = ( queryViewStruct.decadeNo * 10 ) - segment_whole;
+        historyDots  = ( queryViewStruct.decadeNo * 10 ) - segment_whole;
         trailingDots = 50 - ( segment_whole * queryViewStruct.decadeNo );
     } else if ( segment_whole == 7 ) {
         trailingDots = 50 - segment_whole;
     } else {
-        historyDots = 48;
+        historyDots  = 48;
     }
 
     clearScreen();
@@ -478,7 +479,15 @@ void outputTtyDisplay( displayVariables_t queryViewStruct, int desiredDispLen, c
 
     // body
 
-    printf( "\n\n Decade:\t%s", queryViewStruct.decadeName );
+    char *decadeString; // Variable decade names.
+
+    if ( strcmp( queryViewStruct.decadeName, "decade.decadeName" ) ) {
+        decadeString = queryViewStruct.mysteryName;
+    } else {
+        decadeString = queryViewStruct.decadeName;
+    }
+
+    printf( "\n\n Decade:\t%s", decadeString );
     multiLinePrintF( "\n\t\t", queryViewStruct.mesageText, desiredDispLen, minFruitsRow );
     multiLinePrintF( "\n Background:\t", queryViewStruct.decadeInfo, desiredDispLen, minBackgroundRows );
     multiLinePrintF( "\n\n Scripture:\t", queryViewStruct.scriptureText, desiredDispLen, minScriptureRows );

@@ -47,6 +47,20 @@ void activateEcho() {
 
 }
 
+void pressEnter() {
+
+    /*
+     * Wait for User to press enter
+     * */
+
+    char ch = getchar();
+
+    while( ch != 10 ) {
+        ch = getchar();
+    }
+
+}
+
 int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
         int navigtionPosition, int weekdayNo, int desiredDispLen ) {
 

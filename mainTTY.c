@@ -88,17 +88,17 @@ int main( int argc, char **argv ) {
         updateDisplayVariablesStruct( &rosary_db_struct, &queryViewStruct, navigtionPosition );
 
         // render display text
-        desiredDispLen      = returnScreenWidth();                              // Get tty screen width
+        desiredDispLen = returnScreenWidth();                                   // Get tty screen width
 
         mysteryCoverPage( queryViewStruct, navigtionPosition, desiredDispLen ); // Cover page for a new mystery cycle
 
-        outputTtyDisplay( queryViewStruct, desiredDispLen, titleLabel );
+        renderRosaryDisplay( queryViewStruct, desiredDispLen, titleLabel );     // Populate Rosary TTY Display
 
         // Prompt for keyboard navigation user input
-        navigtionPosition   = pressKeyContinue( queryFeastViewStruct, navigtionPosition, weekdayNo, desiredDispLen );
+        navigtionPosition = pressKeyContinue( queryFeastViewStruct, navigtionPosition, weekdayNo, desiredDispLen );
     }
 
-    activateEcho();                                                             // Restore posix tty echo
+    activateEcho();                                                             // Restore POSIX TTY echo
 
     return 0;
 
