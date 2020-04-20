@@ -71,6 +71,26 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 
     char ch = getchar();
 
+    // Workaround for the arrow key input buffer
+    if ( ch == '\033') {        // if the first value is esc
+        getchar();              // skip the [
+
+        switch( getchar() ) {   // the real value
+            case 'A':           // code for arrow up
+                ch = 65;
+                break;
+            case 'B':           // code for arrow down
+                ch = 66;
+                break;
+            case 'C':           // code for arrow right
+                ch = 67;
+                break;
+            case 'D':           // code for arrow left
+                ch = 68;
+                break;
+        }
+    }
+
     switch ( ch ) {
         // help screen
         case 65:                                    // ASCII up arrow
