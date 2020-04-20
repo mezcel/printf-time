@@ -113,7 +113,7 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
      * */
 
     char ch = getch();  // input keyboard key without the enter key on Win10
-
+    
     switch ( ch ) {
 
         // help screen
@@ -179,9 +179,11 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 
         // Non-mapped keys
         default:                                    // other key entries
-            printf("[use vim keys]");
-            for (int c = 1; c <= 20000; c++) {
-                for (int d = 1; d <= 15000; d++) { /* do nothing delay */ }
+            printf( "(use Vim keys.) " );           // The full arrow keys dont always get read in
+            for ( int c = 1; c <= 20000; c++ ) {
+                for ( int d = 1; d <= 15000; d++ ) {
+                    // momentary display delay
+                }
             }
             break;
     }
