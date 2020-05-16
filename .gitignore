@@ -1,0 +1,9 @@
+## ignore vscode settings
+.vscode
+
+## ignore compiled objects
+*.o
+*.obj
+*.exe
+ttyRosary
+gtkRosary
