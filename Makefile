@@ -90,6 +90,14 @@ archlinux:
 	# sudo pacman -Sy glade
 	#
 
+tclinux:
+	## Dependencies for Tiny Core Linux (busybox)
+	tce-load -wil compiletc.tcz
+	tce-load -wil json-c-dev.tcz
+	tce-load -wil gtk3-dev.tcz
+	# tce-load -wil glade-dev.tcz
+	#
+
 manpage: .manpage.md
 	## generate a man file with Pandoc from an Rmarkdown file
 	## global man page
