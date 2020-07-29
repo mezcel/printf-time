@@ -156,7 +156,7 @@ This is the 5th program language version in my Rosary App series.
 | Windows | cross platform with Electron | Linux | cross platform with Python|
 | MySql Database | JSON Database | JSON Database | JSON Database |
 | English and Latin | English and Latin | English and Latin | English only|
-|a WinForm version and a WPF/WCF version|an Electron and Heroku version|shell on Arch & Debian| a curses app |
+|a WinForm version and a WPF/WCF version|an Electron and Heroku version|shell on Archlinux, Debian, Tiny Core| a curses app |
 | [project wiki](https://mezcel.wixsite.com/rosary) : ```developed on Windows 9``` | Uses Jquery Mobile and/or Electron. Has variable color themes, liturgical calendar and feast day calculations. | It has variable tty colors, liturgical calendar calculations, windows sizing. Curses bases | just a TTY/Cli App|
 | no audio | audio theme song | audio soundtrack (latin prayer chant) | no audio |
 | lan | internet scraped mass readings | internet scraped mass readings | no interactive networking features |
