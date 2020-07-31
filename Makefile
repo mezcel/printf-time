@@ -100,9 +100,9 @@ tclinux:
 
 alpine:
 	## Dependencies for Alpine Linux (busybox, chrony)
-	sudo apk add base-build
+	sudo apk add build-base
 	sudo apk add json-c-dev
-	sudo apt add gtk+3.0-dev
+	sudo apk add gtk+3.0-dev
 	#
 
 manpage: .manpage.md
