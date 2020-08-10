@@ -545,6 +545,6 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     printf( " ]" );
 
     // Bottom placeholder char
-    printf( "\n\n: " );
+    printf( "\n\n:" );
 
 }
