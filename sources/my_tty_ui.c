@@ -51,6 +51,7 @@ void borderCharPrintF( char *charSymbol, int borderWidth ) {
     for ( int i = 0; i < borderWidth; i++ ) {
         printf( "%s", charSymbol );
     }
+    fflush(stdout); // flush output buffer
 }
 
 void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int minRows ) {
@@ -109,6 +110,8 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
         }
     }
 
+    fflush(stdout); // flush output buffer
+
 }
 
 void splashPage( int desiredDispLen, char *verboseDate ) {
@@ -151,6 +154,7 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 
     borderCharPrintF( ":", desiredDispLen );
 
+    fflush(stdout); // flush output buffer
     pressEnter();   // wait for user to press enter
     clearScreen();
 
@@ -172,7 +176,7 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 
     int titleLabelLength = ( int )strlen( titleLabel );
     borderCharPrintF( ":", 3 );
-    printf( titleLabel );
+    printf( "%s", titleLabel );
     borderCharPrintF( ":", ( desiredDispLen - ( titleLabelLength + 3 ) ) );
     printf( "\n" );
 
@@ -269,6 +273,7 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
         printf( "\n\n\n\n" );
 
         borderCharPrintF( ":", desiredDispLen );
+        fflush(stdout); // flush output buffer
 
         pressEnter();   // wait for user to press enter
     }
@@ -468,7 +473,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     // header
 
     borderCharPrintF( ":", 3 );
-    printf( titleLabel );
+    printf( "%s", titleLabel );
     borderCharPrintF( ":", desiredDispLen - titleLabelLength - mysteryLabelLength );
     printf( " %s", queryViewStruct.mysteryName );
     borderCharPrintF( ":", 3 );
@@ -493,7 +498,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     // footer
 
     borderCharPrintF( ":", 3 );
-    printf( footerLabel );
+    printf( "%s", footerLabel );
     borderCharPrintF( ":", desiredDispLen - footerLabelLength - footerLabel2Length );
 
     // Progress Status Bar Meter
@@ -540,6 +545,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     borderCharPrintF( "-", 50 - queryViewStruct.mysteryPercent );
     printf( " ]" );
 
+    fflush(stdout);     // flush output buffer
     printf( "\n:" );
 
 }

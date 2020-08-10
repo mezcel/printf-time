@@ -8,7 +8,7 @@
  * */
 
 #include <sys/ioctl.h>  // ioctl(), TIOCGWINSZ, struct winsize
-#include <unistd.h>     // STDOUT_FILENO
+#include <unistd.h>     // STDOUT_FILENO, fflush(stdout)
 
 #include "../headers/my_tty_ui.h"
 
@@ -61,6 +61,8 @@ void pressEnter() {
         chEnter = getchar();
     }
 
+    fflush(stdout);                                  // flush output buffer
+
 }
 
 int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
@@ -95,22 +97,24 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
         // help screen
         case 65:                                    // ASCII up arrow
         case 66:                                    // ASCII down arrow
-            printf( "\n" );
+            //printf( "\n" );
         case 'w':
         case 's':
         case 'j':
         case 'k':
+            fflush(stdout);                         // flush output buffer
             clearScreen();
             infoPage( queryFeastViewStruct, weekdayNo, desiredDispLen, " Instructions: " );
             break;
 
         // Navigate forward
         case 67:                                    // ASCII right arrow
-            printf( "\n" );
+            //printf( "\n" );
         case 10:                                    // ASCII enter key
         case 'n':                                   // [ n key ] navigates 1 step forward
         case 'l':                                   // vim input
         case 'd':                                   // game input
+            fflush(stdout);                         // flush output buffer
             if ( navigtionPosition < 315 ) {
                 navigtionPosition++;
             } else {
@@ -120,11 +124,12 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 
         // Navigate backward
         case 68:                                    // ASCII left arrow
-            printf( "\n" );
+            //printf( "\n" );
         case 32:                                    // ASCII space bar
         case 'h':                                   // vim input
         case 'a':                                   // game input
         case 'b':                                   // [ b key ] navigates 1 step back
+            fflush(stdout);                         // flush output buffer
             if ( navigtionPosition > 1 ) {
                 navigtionPosition--;
             } else {
@@ -158,7 +163,8 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 
         // Non-mapped keys
         default:                                    // other key entries
-            printf("\n");
+            //printf("\n");
+            fflush(stdout);                         // flush output buffer
     }
 
     return navigtionPosition;
