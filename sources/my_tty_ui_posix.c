@@ -53,7 +53,7 @@ void pressEnter() {
      * Wait for User to press enter
      * */
 
-    printf( "\n\n press [ enter key ] to continue ... " );
+    fflush(stdout);
 
     char chEnter = getchar();
 
@@ -61,7 +61,7 @@ void pressEnter() {
         chEnter = getchar();
     }
 
-    fflush(stdout);                                  // flush output buffer
+    fflush(stdout);
 
 }
 
@@ -71,6 +71,7 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
     // Increment or decrement the next desired position in the rosary sequence
     // uses traditional vim or "retro game" navigation keys
 
+    fflush(stdout);
     char ch = getchar();
 
     // Workaround for the arrow key input buffer
@@ -97,24 +98,20 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
         // help screen
         case 65:                                    // ASCII up arrow
         case 66:                                    // ASCII down arrow
-            //printf( "\n" );
         case 'w':
         case 's':
         case 'j':
         case 'k':
-            fflush(stdout);                         // flush output buffer
             clearScreen();
             infoPage( queryFeastViewStruct, weekdayNo, desiredDispLen, " Instructions: " );
             break;
 
         // Navigate forward
         case 67:                                    // ASCII right arrow
-            //printf( "\n" );
         case 10:                                    // ASCII enter key
         case 'n':                                   // [ n key ] navigates 1 step forward
         case 'l':                                   // vim input
         case 'd':                                   // game input
-            fflush(stdout);                         // flush output buffer
             if ( navigtionPosition < 315 ) {
                 navigtionPosition++;
             } else {
@@ -124,12 +121,10 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 
         // Navigate backward
         case 68:                                    // ASCII left arrow
-            //printf( "\n" );
         case 32:                                    // ASCII space bar
         case 'h':                                   // vim input
         case 'a':                                   // game input
         case 'b':                                   // [ b key ] navigates 1 step back
-            fflush(stdout);                         // flush output buffer
             if ( navigtionPosition > 1 ) {
                 navigtionPosition--;
             } else {
@@ -163,8 +158,8 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 
         // Non-mapped keys
         default:                                    // other key entries
-            //printf("\n");
-            fflush(stdout);                         // flush output buffer
+            fflush(stdout);
+            //printf( "\n" );
     }
 
     return navigtionPosition;
