@@ -10,6 +10,7 @@
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
+/*
 // Separate files used to minimize errors when compiling on Win10
 #ifdef __unix__
     // Optimized functions for POSIX
@@ -18,6 +19,7 @@
     // Optimized functions for Win10 ( compile workarounds )
     #include "../sources/my_tty_ui_win.c"
 #endif
+*/
 
 int returnLaunchArgument( int argc, char *argv ) {
 

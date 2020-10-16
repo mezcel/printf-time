@@ -1,0 +1,13 @@
+## Visual Studio EditorConfig 
+
+indent_style = space
+indent_size = 4
+
+## Editor Guidelines
+## https://marketplace.visualstudio.com/items?itemName=PaulHarrington.EditorGuidelines
+## All files
+
+[*]
+# Named color format
+guidelines_style = .2px solid Lime
+guidelines = 4, 80, 120

@@ -1,5 +1,12 @@
-## ignore vscode settings
+## ignore vs2019 & vscode configs
 .vscode
+.vs
+printf-time.vcxproj.user
+printf-time.vcxproj.filters
+printf-time.sln
+Debug
+x64
+x86
 
 ## ignore compiled objects
 *.o
