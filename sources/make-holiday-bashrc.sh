@@ -23,7 +23,7 @@ if [ $isDebian -eq 0 ]; then
 
         echo "Appended $(pwd)/ttyBashrc to ~/.bashrc ..."
         echo -e "\n## Special holiday bash text" >> $tempBashrc
-        echo -e "$(pwd)/ttyBashrc" >> $tempBashrc
+        echo -e "cd $(pwd); ./ttyBashrc; cd" >> $tempBashrc
 
         sudo mv $tempBashrc $origianlBashrc
     fi
