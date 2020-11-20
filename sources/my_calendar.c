@@ -56,7 +56,7 @@ char *retrunLiturgicalName( int indexNo ) {
         "Christmas Season",
         "Lent Season",
         "Easter Season",
-        "Ordinary Time"
+        "Ordinary Season"
     };
 
     return LITURGICAL_SEASON_ARRAY[ indexNo ];
