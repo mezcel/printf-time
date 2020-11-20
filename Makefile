@@ -79,14 +79,10 @@ mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_
 	$(CC) -c mainGtk3.c $(CFLAGS)
 	#
 
-my_bash_splash.o: sources/my_bash_splash.c headers/my_tty_ui.h my_calendar.o my_csv_structs.o
-	## compile and "build my_bash_splash.c"
-	$(CC) -c sources/my_bash_splash.c
-	#
-
 mainBashrc.o: mainBashrc.c  my_calendar.o my_csv_structs.o my_tty_ui.o
 	## compile and build "mainBashrc.c"
 	$(CC) -c mainBashrc.c
+	bash sources/make-holiday-bashrc.sh
 	#
 
 #####################
@@ -131,6 +127,7 @@ manpage: .manpage.md
 clean:
 	## removing any precompiled binaries (Linux)
 	rm -f *.o ttyRosary gtkRosary ttyBashrc *.o *.out *.obj *.exe
+	bash sources/clean-holiday-bashrc.sh
 	#
 
 #####################

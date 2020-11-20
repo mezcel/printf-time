@@ -1,5 +1,5 @@
 /*
- * mainTTY.c
+ * mainBashrc.c
  * */
 
 #include <stdio.h>
@@ -70,7 +70,7 @@ int main( int argc, char **argv ) {
     deactivateEcho();                                                           // Deactivate POSIX tty echo
 
     // Display a string representing today's Feast/Holiday state
-    bashTtyHoliday( queryFeastViewStruct, queryViewStruct );
+    bashrcHolidayDisplay( &rosary_db_struct, queryFeastViewStruct, queryViewStruct );
 
     activateEcho();                                                             // Restore POSIX TTY echo
 

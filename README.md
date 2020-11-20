@@ -9,10 +9,9 @@ lang: en-US
 
 # printf-time
 
-Version: ```v0.4.2.?```
-* misc. consolidation
-* curating the user defined feast day db
-* cleaning up some syntax and script formatting
+Version: ```v0.4.3.?```
+* Adding a feature which decorates the bash terminal through a bashrc alias call
+    * During advent, bash will launch along with an advent specific quote.
 
 
 ## About:
@@ -57,6 +56,14 @@ make gtkRosary
 
 ./gtkRosary         ## NAB English
 ./gtkRosary -v      ## Vulgate Latin
+```
+
+### 1.1.1 Holiday Themed Bashrc
+```
+## Compile an binary which is set to launch whenever GNU Bash is launched.
+## Special quotes will be displayed in Bash throughout the holiday season.
+
+make ttyBashrc
 ```
 
 ### 1.2 Debian Dependencies
