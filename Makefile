@@ -4,7 +4,7 @@
 CC=gcc
 CFLAGS = -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: notes ttyRosary gtkRosary manpage
+all: notes ttyRosary gtkRosary ttyBashrc manpage
 
 ## Notes
 notes:
@@ -34,6 +34,11 @@ ttyRosary: my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o mainTTY.
 ## GTK UI english and latin
 gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_api.o
 	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o $(CFLAGS) -ljson-c -o "gtkRosary"
+
+## holiday season bash environment splash
+ttyBashrc: my_calendar.o my_csv_structs.o  my_tty_ui.o mainBashrc.o
+	$(CC) my_calendar.o my_csv_structs.o my_tty_ui.o mainBashrc.o -o "ttyBashrc"
+
 
 ###########################
 ## Compile binary libraries
@@ -74,6 +79,16 @@ mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_
 	$(CC) -c mainGtk3.c $(CFLAGS)
 	#
 
+my_bash_splash.o: sources/my_bash_splash.c headers/my_tty_ui.h my_calendar.o my_csv_structs.o
+	## compile and "build my_bash_splash.c"
+	$(CC) -c sources/my_bash_splash.c
+	#
+
+mainBashrc.o: mainBashrc.c  my_calendar.o my_csv_structs.o my_tty_ui.o
+	## compile and build "mainBashrc.c"
+	$(CC) -c mainBashrc.c
+	#
+
 #####################
 ## Linux dependencies
 #####################
@@ -81,6 +96,7 @@ mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_
 debian:
 	## Dependencies for Debian 9 (Stretch) or later
 	sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3
+	sh sources/make-Holiday-Alias.sh
 	# sudo apt install -y glade
 	#
 
@@ -114,7 +130,7 @@ manpage: .manpage.md
 
 clean:
 	## removing any precompiled binaries (Linux)
-	rm -f *.o ttyRosary gtkRosary *.o *.out *.obj *.exe
+	rm -f *.o ttyRosary gtkRosary ttyBashrc *.o *.out *.obj *.exe
 	#
 
 #####################

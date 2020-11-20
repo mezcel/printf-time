@@ -406,6 +406,19 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 
 }
 
+void bashTtyHoliday( displayFeastVariables_t queryFeastViewStruct, displayVariables_t queryViewStruct) {
+
+    // display feast day or liturgical season state
+
+    char *season        = stringLiturgicalSeason();
+    char *feast         = stringFeast( queryFeastViewStruct.feastDay,
+                                       queryFeastViewStruct.feastMonth,
+                                       queryFeastViewStruct.feastName );
+
+    printf("Liturgical Season:\n\t%s\t%s\n\tMsg.=%s\n", season, feast, queryViewStruct.mysteryName );
+
+}
+
 void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen, char *titleLabel ) {
 
     // Render all rosary bead content onto the screen

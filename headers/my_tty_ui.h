@@ -73,6 +73,7 @@ void updateDisplayVariablesStruct(
 void updateFeastDisplayStruct(
     feast_db_t *feast_db_struct, displayFeastVariables_t *queryFeastViewStruct,
     int todayDay, int todayMonth, int recordCount );
+void bashTtyHoliday( displayFeastVariables_t queryFeastViewStruct, displayVariables_t queryViewStruct );
 
 void renderRosaryDisplay(
     displayVariables_t queryViewStruct,
