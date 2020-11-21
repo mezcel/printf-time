@@ -408,23 +408,33 @@ void updateFeastDisplayStruct( feast_db_t *feast_db_struct, displayFeastVariable
 
 void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_t queryFeastViewStruct, displayVariables_t queryViewStruct) {
 
-    // display feast day or liturgical season state
+    // display feast day or liturgical season state in a bash terminal
 
     char *season = stringLiturgicalSeason();
-    char *feast  = stringFeast( queryFeastViewStruct.feastDay, queryFeastViewStruct.feastMonth,
+    char *feast  = stringFeast( queryFeastViewStruct.feastDay,
+                    queryFeastViewStruct.feastMonth,
                     queryFeastViewStruct.feastName );
     int scriptureFK;
 
-    // Nativity scripture quotes from the Gospel of Luke
-    // scripture.csv index ( 15-40 )
+    // bold white = \e[1;37m
+    // regular white = \e[0;37m
 
-    if ( season == "Advent Season" ) {
-        scriptureFK  = queryFeastViewStruct.feastDay;
-        printf( "Liturgical Season:\n\t%s\t%s\n\tScripture:%s\n",
-                season, feast, rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText );
-    }
-    else {
-        printf( "Liturgical Season:\n\t%s\t%s\n", season, feast );
+    if ( strcmp( season, "Advent Season" ) == 0 ) {
+        // Nativity scripture quotes from the Gospel of Luke
+        // scripture.csv index ( 15-40 )
+        scriptureFK = queryFeastViewStruct.feastDay + 14;
+        borderCharPrintF( "░", 80 );
+        printf( "\n\e[1;37mLiturgy Season:\e[0;37m\t%s - %s\n", season, feast);
+        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t",
+            rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText, 80, 0 );
+        printf("\n");
+        borderCharPrintF( "░", 80 );
+        printf("\n");
+    } else {
+        borderCharPrintF( "░", 80 );
+        printf( "\n\e[1;37mLiturgy Season:\e[0;37m\t%s - %s\n", season, feast);
+        borderCharPrintF( "░", 80 );
+        printf("\n");
     }
 
 }

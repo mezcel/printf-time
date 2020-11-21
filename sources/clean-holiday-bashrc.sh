@@ -13,7 +13,7 @@ if [ $isDebian -eq 0 ]; then
         backupBashrc=$origianlBashrc.backup_$(date +%d%b%Y%H%S)
         tempBashrc=$origianlBashrc.temp
 
-        echo "Update ~/.bashrc ..."
+        echo -e "\tUpdate ~/.bashrc ..."
 
         cp $origianlBashrc $backupBashrc
         cp $origianlBashrc $tempBashrc
@@ -21,7 +21,7 @@ if [ $isDebian -eq 0 ]; then
         sed -i "/## Special holiday bash text/d" $tempBashrc
         sed -i "/ttyBashrc/d" $tempBashrc
 
-        echo "Removed $(pwd)/ttyBashrc from ~/.bashrc ..."
+        echo -e "\tRemoved $(pwd)/ttyBashrc from ~/.bashrc ..."
 
         sudo mv $tempBashrc $origianlBashrc
     fi
