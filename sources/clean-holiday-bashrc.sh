@@ -1,6 +1,6 @@
 #!/bin/sh
 
-uname -v | grep "Debian" &>/dev/null
+uname -a | grep "GNU" &>/dev/null
 isDebian=$?
 
 if [ $isDebian -eq 0 ]; then
@@ -8,12 +8,11 @@ if [ $isDebian -eq 0 ]; then
     isBash=$?
 
     if [ $isBash -eq 0 ]; then
-
         origianlBashrc=~/.bashrc
         backupBashrc=$origianlBashrc.backup_$(date +%d%b%Y%H%S)
         tempBashrc=$origianlBashrc.temp
 
-        echo -e "\tUpdate ~/.bashrc ..."
+        echo -e "#\tUpdate ~/.bashrc ..."
 
         cp $origianlBashrc $backupBashrc
         cp $origianlBashrc $tempBashrc
@@ -22,6 +21,6 @@ if [ $isDebian -eq 0 ]; then
         sed -i "/ttyBashrc/d" $tempBashrc
 
         mv $tempBashrc $origianlBashrc
-        echo -e "\tRemoved $(pwd)/ttyBashrc from ~/.bashrc ..."
+        echo -e "#\tRemoved $(pwd)/ttyBashrc from ~/.bashrc ..."
     fi
 fi
