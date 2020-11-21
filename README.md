@@ -59,9 +59,9 @@ make gtkRosary
 ```
 
 ### 1.1.1 Holiday Themed Bashrc
-```
-## Compile an binary which is set to launch whenever GNU Bash is launched.
-## Special quotes will be displayed in Bash throughout the holiday season.
+```bash
+## Compile a binary which is set to launch whenever GNU Bash is launched.
+## Holiday themed messages will be displayed on the terminal, at Bash startup, throughout the holiday season.
 
 make ttyBashrc
 ```

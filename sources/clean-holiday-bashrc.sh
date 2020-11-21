@@ -21,8 +21,7 @@ if [ $isDebian -eq 0 ]; then
         sed -i "/## Special holiday bash text/d" $tempBashrc
         sed -i "/ttyBashrc/d" $tempBashrc
 
+        mv $tempBashrc $origianlBashrc
         echo -e "\tRemoved $(pwd)/ttyBashrc from ~/.bashrc ..."
-
-        sudo mv $tempBashrc $origianlBashrc
     fi
 fi
