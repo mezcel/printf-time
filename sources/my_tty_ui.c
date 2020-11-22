@@ -427,7 +427,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
     // ansi bold white = \e[1;37m and regular white = \e[0;37m
     printf( "\n\e[1;37mLiturgy Season:\e[0;37m\t%s - %s\t(%s)\n", season, feast, monthDay );
 
-    // Advent
+    // Sequential Advent related quotes
     if ( strcmp( season, "Advent Season" ) == 0 ) {
         // Nativity scripture quotes from the Gospel of Luke // scripture.csv index: [15-40]
         scriptureFK = queryFeastViewStruct.feastDay + 14;
@@ -436,7 +436,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         printf("\n");
     }
 
-    // Christmas
+    // Random Post Nativity/Luminous mystery
     if (strcmp(season, "Christian Season") == 0) {
         // Random daily luminous theme quotes. scripture.csv index: [51-90]
         int lower = 51, upper = 90;
@@ -448,8 +448,8 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         printf("\n");
     }
 
-    // Lent
-    if (strcmp(season, "Lent Season") != 0) {
+    // Random Lent related quotes
+    if (strcmp(season, "Lent Season") == 0) {
         // Random daily lent theme quotes. scripture.csv index: [91-151]
         int lower = 91, upper = 151;
         srand( time(NULL) ); //current time as seed of random number generator
@@ -460,7 +460,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         printf("\n");
     }
 
-    // Easter
+    // Random Easter related quotes
     if (strcmp(season, "Easter Season") == 0) {
         // Random daily resurrection themed quotes. scripture.csv index: [152-200]
         int lower = 152, upper = 200;
