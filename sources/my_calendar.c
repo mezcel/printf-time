@@ -9,6 +9,7 @@
 #include "../headers/my_calendar.h"
 
 char *retrunWeekdayName( int indexNo ) {
+    /* Input an integer 0-6, and return a weekday name. 0=Sunday */
 
     char * WEEKDAY_NAME_ARRAY[] = {
         "Sunday",
@@ -25,6 +26,7 @@ char *retrunWeekdayName( int indexNo ) {
 }
 
 char *retrunMonthName( int indexNo ) {
+    /* Input an integer 0-11, and return a month name. 0=January */
 
     char * MONTH_NAME_ARRAY[] = {
         "January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
@@ -36,6 +38,7 @@ char *retrunMonthName( int indexNo ) {
 }
 
 char *retrunFeastDayName( int indexNo ) {
+    /* Input an integer 0-15, and return a feast day name. 0=Advent Start */
 
     char * FEAST_DAY_ARRAY[] = {
         "Advent Start", "Immaculate Conception of Mary",                        // Advent Season
@@ -50,6 +53,7 @@ char *retrunFeastDayName( int indexNo ) {
 }
 
 char *retrunLiturgicalName( int indexNo ) {
+    /* Input an integer 0-4, and return a liturgical season name. 0=Advent Season */
 
     char * LITURGICAL_SEASON_ARRAY[] = {
         "Advent Season",
@@ -64,6 +68,8 @@ char *retrunLiturgicalName( int indexNo ) {
 }
 
 char *returnWeekdayMystery( int indexNo ) {
+    /* Input an integer 0-6, and return a rosary mystery name. 0=Glorious
+     * 0-6 corresponds with sun-sat where 0=Sunday */
 
     char * WEEKDAY_MYSTERY[] = {
         "Glorious",     // sun
@@ -80,10 +86,7 @@ char *returnWeekdayMystery( int indexNo ) {
 }
 
 struct tm returnTodaysDate() {
-
-    /*
-     * Return a time.h struct containing today's date values
-     * */
+    /* Return a time.h struct containing today's date values */
 
     time_t currentDate  = time( NULL );
     struct tm output_tm = *localtime( &currentDate );
@@ -93,10 +96,7 @@ struct tm returnTodaysDate() {
 }
 
 char *returnVerboseDate( struct tm tmDate ) {
-
-    /*
-     * Return a human readable string displaying today's date
-     * */
+    /* Return a human readable string displaying today's date  */
 
     char *verboseDate = malloc(32);             // Decorative Date Display
 
@@ -112,10 +112,7 @@ char *returnVerboseDate( struct tm tmDate ) {
 }
 
 struct tm setSpecificDate( int year, int month, int day ) {
-
-    /*
-     * Generate a time.h char time stamp from a defined date
-     * */
+    /* Generate a time.h char time stamp from a defined date */
 
     struct tm newTime = {
         .tm_year = year - 1900,
@@ -134,11 +131,8 @@ struct tm setSpecificDate( int year, int month, int day ) {
 }
 
 struct tm setEasterDate( int year ) {
-
-    /*
-     * Calculate Easter Day based on the Paschal Full Moon Date ( PFM )
-     * algorithm source: https://en.wikipedia.org/wiki/Computus
-     * */
+    /* Calculate Easter Day based on the Paschal Full Moon Date ( PFM )
+     * algorithm source: https://en.wikipedia.org/wiki/Computus */
 
     int a, b, c, d, e, f, g, h, i, k, l, m, month, day;
 
@@ -164,11 +158,8 @@ struct tm setEasterDate( int year ) {
 }
 
 struct tm addDay( struct tm referenceDate ) {
-
-    /*
-     * Add just 1 day from a date
-     * Set that date as the new time
-     * */
+    /* Add just 1 day from a date
+     * Set that date as the new time */
 
     referenceDate.tm_mday   += 1;
     time_t t                = mktime( &referenceDate );
@@ -179,11 +170,8 @@ struct tm addDay( struct tm referenceDate ) {
 }
 
 struct tm addDays( struct tm referenceDate, int days ) {
-
-    /*
-     * Add days from a date
-     * Set that date as the new time
-     * */
+    /* Add days from a date
+     * Set that date as the new time */
 
     for ( int i=0; i < days; i++ ) {
         referenceDate = addDay( referenceDate );
@@ -194,11 +182,8 @@ struct tm addDays( struct tm referenceDate, int days ) {
 }
 
 struct tm subtractDay( struct tm referenceDate ) {
-
-    /*
-     * Subtract just 1 day from a date
-     * Set that date as the new time
-     * */
+    /* Subtract just 1 day from a date
+     * Set that date as the new time */
 
     referenceDate.tm_mday   -= 1;
     time_t t                = mktime( &referenceDate );
@@ -209,11 +194,8 @@ struct tm subtractDay( struct tm referenceDate ) {
 }
 
 struct tm subtractDays( struct tm startDate, int days ) {
-
-    /*
-     * Subtract days from a date
-     * Set that date as the new time
-     * */
+    /* Subtract days from a date
+     * Set that date as the new time */
 
     for ( int i=0; i < days; i++ ) {
         startDate = subtractDay( startDate );
@@ -224,11 +206,8 @@ struct tm subtractDays( struct tm startDate, int days ) {
 }
 
 void shiftTowardSunday( struct tm *tmDate ) {
-
-    /*
-     * Shift the date forward so that it is Sunday
-     * Set the date for that Sunday
-     * */
+    /* Shift the date forward so that it is Sunday
+     * Set the date for that Sunday */
 
     int intial_wday = tmDate -> tm_wday;
 
@@ -249,12 +228,9 @@ void shiftTowardSunday( struct tm *tmDate ) {
 }
 
 void shiftJesusBaptism( struct tm *tmDate ) {
-
-    /*
-    * Aprox Jan 13
-    * Sunday after the Mass which celebrates the Epiphany
-    * Monday if Epiphany Sunday shared the same day
-    * */
+    /* Aprox Jan 13
+     * Sunday after the Mass which celebrates the Epiphany
+     * Monday if Epiphany Sunday shared the same day */
 
     int intial_wday = tmDate -> tm_wday;
 
@@ -268,8 +244,10 @@ void shiftJesusBaptism( struct tm *tmDate ) {
 }
 
 int isFeastDay( struct tm tmNow, struct tm tmThen ) {
+    /* Input the time struct for "now" and some other time
+     * Compare the difference in time
+     * Return 1 if the difference in time is within a 1 day duration */
 
-    // return 1 if the difference in time is within a 1 day duration
     int intFlag             = 0;
     double returnSeconds    = difftime( mktime( &tmNow ), mktime( &tmThen ) );
     double days             = returnSeconds / ( 24 * 3600 );
@@ -285,14 +263,11 @@ int isFeastDay( struct tm tmNow, struct tm tmThen ) {
 }
 
 int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm season_end ) {
-
-    /*
-     * Easter season is 50 days starting at Pentecost
+    /* Easter season is 50 days starting at Pentecost
      * Lent season is 46 days between Ash Wed and Easter
      * Advent season lasts through Christmas Day
      * Christmas season lasts through the epiphany
-     * Ordinary is the time outside of the main seasons
-     * */
+     * Ordinary is the time outside of the main seasons */
 
     int returnFlag = 0;
 
@@ -320,6 +295,9 @@ int returnLiturgicalSeason(
         struct tm *ash_wednesday,
         struct tm *easter_sunday,
         struct tm *pentacost ) {
+    /* Input the time struct for "now" and liturgical calendar reference point time structs
+     * Compare the current time with known seasonal windows
+     * Return 1-4 depending on which session the current time resides in. */
 
     int isAdvent    = isLiturgicalSeason( *tmNow, *advent_start, *christmas_day );
     int isChristmas = isLiturgicalSeason( *tmNow, *christmas_day, *epiphany );
@@ -344,6 +322,8 @@ int returnLiturgicalSeason(
 }
 
 char *stringLiturgicalSeason() {
+    /* Calculate what liturgical season is currently is.
+     * Return the name of the current liturgical season. */
 
     struct tm todaysDate    = returnTodaysDate();
 
@@ -380,6 +360,9 @@ char *stringLiturgicalSeason() {
 }
 
 char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeast ) {
+    /* Input parameters to compare today's date against.
+     * Determine if today corresponds with a predefined feast days.
+     * Return today's feast day name */
 
     char *feast;                                                                                // Feast string output
     int feastFlag = 14;                                                                         // Default to Ordinary
@@ -503,11 +486,9 @@ char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeas
     if ( isUserDefinedFeast ) {
         feast = userDefinedFeast;
     } else {
-        /*
-         * [ "Advent Start", "Immaculate Conception of Mary", "Christmas Day", "Solemnity of Mary", "Epiphany",
+        /* [ "Advent Start", "Immaculate Conception of Mary", "Christmas Day", "Solemnity of Mary", "Epiphany",
          * "Jesus's Baptism", "Ash Wednesday", "Holy Thursday", "Good Friday", "Good Saturday", "Easter Sunday",
-         * "Pentecost", "Ascension of Jesus", "Ordinary Day", "Seasonal Day" ]
-         * */
+         * "Pentecost", "Ascension of Jesus", "Ordinary Day", "Seasonal Day" ] */
 
         feast = retrunFeastDayName( feastFlag );
     }
