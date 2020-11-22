@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>     // calloc(), realloc(), malloc(), system(), free()
 #include <string.h>
+#include <time.h>       // time(NULL)
 
 #include "../headers/my_calendar.h"
 #include "../headers/my_file_to_struct.h"
@@ -426,6 +427,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
     // ansi bold white = \e[1;37m and regular white = \e[0;37m
     printf( "\n\e[1;37mLiturgy Season:\e[0;37m\t%s - %s\t(%s)\n", season, feast, monthDay );
 
+    // Advent
     if ( strcmp( season, "Advent Season" ) == 0 ) {
         // Nativity scripture quotes from the Gospel of Luke // scripture.csv index: [15-40]
         scriptureFK = queryFeastViewStruct.feastDay + 14;
@@ -433,8 +435,45 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
             rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText, desiredDispLen, 0 );
         printf("\n");
     }
-        borderCharPrintF( "░", desiredDispLen );
+
+    // Christmas
+    if (strcmp(season, "Christian Season") == 0) {
+        // Random daily luminous theme quotes. scripture.csv index: [51-90]
+        int lower = 51, upper = 90;
+        srand(time(NULL)); //current time as seed of random number generator
+        scriptureFK = (rand() % (upper - lower + 1)) + lower;
+
+        multiLinePrintF("\e[1;37mScripture:\e[0;37m\t",
+            rosary_db_struct->scripture_dbArray[scriptureFK].scriptureText, desiredDispLen, 0);
         printf("\n");
+    }
+
+    // Lent
+    if (strcmp(season, "Lent Season") != 0) {
+        // Random daily lent theme quotes. scripture.csv index: [91-151]
+        int lower = 91, upper = 151;
+        srand( time(NULL) ); //current time as seed of random number generator
+        scriptureFK = ( rand() % (upper - lower + 1) ) + lower;
+
+        multiLinePrintF("\e[1;37mScripture:\e[0;37m\t",
+            rosary_db_struct->scripture_dbArray[scriptureFK].scriptureText, desiredDispLen, 0);
+        printf("\n");
+    }
+
+    // Easter
+    if (strcmp(season, "Easter Season") == 0) {
+        // Random daily resurrection themed quotes. scripture.csv index: [152-200]
+        int lower = 152, upper = 200;
+        srand(time(NULL)); //current time as seed of random number generator
+        scriptureFK = (rand() % (upper - lower + 1)) + lower;
+
+        multiLinePrintF("\e[1;37mScripture:\e[0;37m\t",
+            rosary_db_struct->scripture_dbArray[scriptureFK].scriptureText, desiredDispLen, 0);
+        printf("\n");
+    }
+
+    borderCharPrintF( "░", desiredDispLen );
+    printf("\n");
 
 }
 

@@ -1,5 +1,6 @@
-## ignore vscode settings
+## ignore vscode/vs2019 settings
 .vscode
+.vs
 
 ## ignore compiled objects
 *.o

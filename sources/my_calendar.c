@@ -355,7 +355,7 @@ char *stringLiturgicalSeason() {
             &easter_sunday,
             &pentacost );   // returns 0-4
 
-    return retrunLiturgicalName( seasonFlag );;
+    return retrunLiturgicalName( seasonFlag );
 
 }
 
