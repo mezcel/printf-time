@@ -26,6 +26,15 @@
 
 int main( int argc, char **argv ) {
 
+    if ( IS_LINUX != 1 ) {
+        printf( "\n" );
+        char *stringMessage = "The ttyBashrc binary was designed to work on POSIX terminal environments running the BASH virtual terminal software. The ideal run-time environment is Bash on Debian Linux. The full functionality of this program is not compatible with this system as it is currently configured.";
+        multiLinePrintF( "\e[1;31mIncompatible Program:\e[0m", stringMessage, 0, 0 );
+        printf("\nSource Code:\thttps://github.com/mezcel/printf-time.git\n");
+        printf( "\n" );
+        return 0;
+    }
+
     rosary_db_t rosary_db_struct;                               // Declare app's rosary db var
     displayVariables_t queryViewStruct;                         // Declare rosary db query view var
 

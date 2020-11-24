@@ -9,6 +9,7 @@
 
 #include <sys/ioctl.h>  // ioctl(), TIOCGWINSZ, struct winsize
 #include <unistd.h>     // STDOUT_FILENO, fflush(stdout)
+#include <time.h>       // my_callendar.h structs
 
 #include "../headers/my_tty_ui.h"
 
@@ -163,5 +164,91 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
     }
 
     return navigtionPosition;
+
+}
+
+void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_t queryFeastViewStruct,
+        displayVariables_t queryViewStruct, char *verboseDate, int desiredDispLen ) {
+
+    // display feast day or liturgical season state in a bash terminal
+
+    int scriptureFK;
+    struct tm todaysDate = returnTodaysDate(); // Today's date
+
+    char *season = stringLiturgicalSeason();
+    char *feast  = stringFeast( queryFeastViewStruct.feastDay,
+                    queryFeastViewStruct.feastMonth,
+                    queryFeastViewStruct.feastName );
+
+    char *monthDay = verboseDate;
+    monthDay[strlen(verboseDate)-6] = '\0'; // trim out the year chars from date. Ex: ", 2020"
+
+    if ( desiredDispLen > 79 ) { desiredDispLen = 79; } // Limit display row char length
+
+    borderCharPrintF( "░", desiredDispLen );
+    // ansi bold white = \e[1;37m and regular white = \e[0;37m
+    printf( "\n\e[1;37mLiturgy Season:\e[0;37m\t%s - %s\t(%s)\n", season, feast, monthDay );
+
+    // Advent related quote
+    if ( strcmp( season, "Advent Season" ) == 0 ) {
+        // scripture.csv index: [15-40]
+        // Nativity scripture quotes from the Gospel of Luke
+        int idxBookmark = 15;
+
+        struct tm advent_start  = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 ); // Dec 1
+            shiftTowardSunday( &advent_start ); // First Sun of Advent
+
+        scriptureFK          = (int)daysElapsed( advent_start, todaysDate) + 15;
+        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t", scriptureQuote , desiredDispLen, 0 );
+        printf("\n");
+    }
+
+    // Post Nativity quote
+    if (strcmp(season, "Christmas Season") == 0) {
+        // scripture.csv index: [51-90]
+        int idxBookmark = 51;
+
+        struct tm christmas_day = setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed Dec 25
+
+        scriptureFK          = (int)daysElapsed( christmas_day, todaysDate) + idxBookmark;
+        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t", scriptureQuote , desiredDispLen, 0 );
+        printf("\n");
+    }
+
+    // Lent related quote
+    if (strcmp(season, "Lent Season") == 0) {
+        // scripture.csv index: [91-151]
+        int idxBookmark = 91;
+
+        struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 ); // PFM Calculation Result
+        struct tm ash_wednesday = subtractDays( easter_sunday, 46 ); // count back to ash wed
+
+        scriptureFK          = (int)daysElapsed( ash_wednesday, todaysDate) + idxBookmark;
+        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t", scriptureQuote , desiredDispLen, 0 );
+        printf("\n");
+    }
+
+    // Easter related quote
+    if (strcmp(season, "Easter Season") == 0) {
+        // scripture.csv index: [152-200]
+        int idxBookmark = 152;
+
+        struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 ); // PFM Calculation Result
+
+        scriptureFK          = (int)daysElapsed( easter_sunday, todaysDate) + idxBookmark;
+        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t", scriptureQuote , desiredDispLen, 0 );
+        printf("\n");
+    }
+
+    borderCharPrintF( "░", desiredDispLen );
+    printf("\n");
 
 }
