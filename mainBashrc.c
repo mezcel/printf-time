@@ -28,7 +28,7 @@ int main( int argc, char **argv ) {
 
     // Exit program with a message if the run-time environment is not a Unix-like/Posix-like environment.
     // Redundant
-    if ( IS_LINUX == 1 ) {
+    if ( IS_LINUX == 0 ) {
         printf( "\n" );
         char *stringMessage = "The ttyBashrc binary was designed to work on POSIX terminal environments running the BASH virtual terminal software. The ideal run-time environment is Bash on Debian Linux. The full functionality of this program is not compatible with this system as it is currently configured.";
         multiLinePrintF( "\e[1;31mIncompatible Program:\e[0m", stringMessage, 0, 0 );
