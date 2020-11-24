@@ -413,62 +413,87 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
     // display feast day or liturgical season state in a bash terminal
 
     int scriptureFK;
+    struct tm todaysDate = returnTodaysDate(); // Today's date
+
     char *season = stringLiturgicalSeason();
     char *feast  = stringFeast( queryFeastViewStruct.feastDay,
                     queryFeastViewStruct.feastMonth,
                     queryFeastViewStruct.feastName );
 
     char *monthDay = verboseDate;
-    monthDay[strlen(verboseDate)-6]='\0'; // trim out the year chars. Ex: ", 2020"
+    monthDay[strlen(verboseDate)-6]='\0'; // trim out the year chars from date. Ex: ", 2020"
 
-    if ( desiredDispLen > 79 ) { desiredDispLen = 79; }
+    if ( desiredDispLen > 79 ) { desiredDispLen = 79; } // Limit display row char length
 
     borderCharPrintF( "░", desiredDispLen );
     // ansi bold white = \e[1;37m and regular white = \e[0;37m
     printf( "\n\e[1;37mLiturgy Season:\e[0;37m\t%s - %s\t(%s)\n", season, feast, monthDay );
 
-    // Sequential Advent related quotes
+    // Advent related quote
     if ( strcmp( season, "Advent Season" ) == 0 ) {
-        // Nativity scripture quotes from the Gospel of Luke // scripture.csv index: [15-40]
-        scriptureFK = queryFeastViewStruct.feastDay + 14;
-        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t",
-            rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText, desiredDispLen, 0 );
+        // scripture.csv index: [15-40]
+        // Nativity scripture quotes from the Gospel of Luke
+
+        struct tm advent_start  = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 ); // Dec 1
+            shiftTowardSunday( &advent_start ); // First Sun of Advent
+
+        scriptureFK          = (int)daysElapsed( advent_start, todaysDate) + 15;
+        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t", scriptureQuote , desiredDispLen, 0 );
         printf("\n");
     }
 
-    // Random Post Nativity/Luminous mystery
-    if (strcmp(season, "Christian Season") == 0) {
-        // Random daily luminous theme quotes. scripture.csv index: [51-90]
+    // Post Nativity quote
+    if (strcmp(season, "Christmas Season") == 0) {
+        // scripture.csv index: [51-90]
+        /* // Random daily luminous theme quotes.
         int lower = 51, upper = 90;
         srand(time(NULL)); //current time as seed of random number generator
-        scriptureFK = (rand() % (upper - lower + 1)) + lower;
+        scriptureFK = (rand() % (upper - lower + 1)) + lower; */
 
-        multiLinePrintF("\e[1;37mScripture:\e[0;37m\t",
-            rosary_db_struct->scripture_dbArray[scriptureFK].scriptureText, desiredDispLen, 0);
+        struct tm advent_start  = setSpecificDate( todaysDate.tm_year + 1900, 11, 1 ); // Dec 1
+            shiftTowardSunday( &advent_start ); // First Sun of Advent
+
+        scriptureFK          = (int)daysElapsed( advent_start, todaysDate) + 51;
+        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t", scriptureQuote , desiredDispLen, 0 );
         printf("\n");
     }
 
-    // Random Lent related quotes
+    // Lent related quote
     if (strcmp(season, "Lent Season") == 0) {
-        // Random daily lent theme quotes. scripture.csv index: [91-151]
+        // scripture.csv index: [91-151]
+        /* // Random daily lent theme quotes.
         int lower = 91, upper = 151;
         srand( time(NULL) ); //current time as seed of random number generator
-        scriptureFK = ( rand() % (upper - lower + 1) ) + lower;
+        scriptureFK = ( rand() % (upper - lower + 1) ) + lower; */
 
-        multiLinePrintF("\e[1;37mScripture:\e[0;37m\t",
-            rosary_db_struct->scripture_dbArray[scriptureFK].scriptureText, desiredDispLen, 0);
+        struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 ); // PFM Calculation Result
+        struct tm ash_wednesday = subtractDays( easter_sunday, 46 );
+
+        scriptureFK          = (int)daysElapsed( ash_wednesday, todaysDate) + 91;
+        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t", scriptureQuote , desiredDispLen, 0 );
         printf("\n");
     }
 
-    // Random Easter related quotes
+    // Easter related quote
     if (strcmp(season, "Easter Season") == 0) {
-        // Random daily resurrection themed quotes. scripture.csv index: [152-200]
+        // scripture.csv index: [152-200]
+        /* // Random daily resurrection themed quotes.
         int lower = 152, upper = 200;
         srand(time(NULL)); //current time as seed of random number generator
-        scriptureFK = (rand() % (upper - lower + 1)) + lower;
+        scriptureFK = (rand() % (upper - lower + 1)) + lower; */
 
-        multiLinePrintF("\e[1;37mScripture:\e[0;37m\t",
-            rosary_db_struct->scripture_dbArray[scriptureFK].scriptureText, desiredDispLen, 0);
+        struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 ); // PFM Calculation Result
+
+        scriptureFK          = (int)daysElapsed( easter_sunday, todaysDate) + 152;
+        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        multiLinePrintF( "\e[1;37mScripture:\e[0;37m\t", scriptureQuote , desiredDispLen, 0 );
         printf("\n");
     }
 

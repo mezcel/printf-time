@@ -9,10 +9,14 @@ lang: en-US
 
 # printf-time
 
-Version: ```v0.4.5.?``` (WIP)
-
-* Adding a feature which decorates the bash terminal with seasonal scripture readings.
-* The currently working feature will be improved upon with its own FK Class. For now, the non-Advent readings are just a demo.
+> Version: ```v0.4.5.?``` (WIP)
+Added a feature which decorates the bash terminal with seasonal scripture readings.
+```diff
++ If the bash is installed, the ~/.bashrc will launch ttyBashrc.
++ ttyBashrc will display the following upon it's initial launch
++   Current liturgical calendar season
++   Display a quote of the day from the scripture rosary scripture database.
+```
 
 ## About:
 
@@ -60,9 +64,9 @@ make gtkRosary
 
 ### 1.1.1 Holiday Themed Bashrc (WIP)
 
-* Bonus feature for the Debian Bash terminal.
+* Bonus feature for the Bash CLI UI.
 * During liturgical calendar seasons, the 1st lines of a Bash terminal instance will display a bible quote pertaining to that season.
-    * Advent will be in chronological order, the rest will be randomized.
+    * *Bash is the default terminal emulator on Debian Linux.*
 
 ```bash
 ## Compile a binary which is set to launch whenever GNU Bash is launched.

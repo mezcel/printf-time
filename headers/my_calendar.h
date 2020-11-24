@@ -71,8 +71,14 @@ void shiftJesusBaptism( struct tm *tmDate );
      * Return 1 if the difference in time is within a 1 day duration */
 int isFeastDay( struct tm tmNow, struct tm tmThen );
 
+/* Return the number of days within input time range */
 double daysDuration( struct tm season_start, struct tm season_end );
-double daysCount( struct tm tmNow, struct tm season_end );
+
+/* Return the number of days until the end of date range */
+double daysRemaining( struct tm tmNow, struct tm season_end );
+
+/* Return the number of days since the start of a time range */
+double daysElapsed( struct tm season_start, struct tm tmNow );
 
 /* Easter season is 50 days starting at Pentecost. Lent season is 46 days between Ash Wed and Easter
      * Advent season lasts through Christmas Day. Christmas season lasts through the epiphany

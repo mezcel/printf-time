@@ -263,45 +263,43 @@ int isFeastDay( struct tm tmNow, struct tm tmThen ) {
 }
 
 double daysDuration( struct tm season_start, struct tm season_end ) {
+    /* Return the number of days within input time range */
     double durationSeconds  = difftime( mktime( &season_end ), mktime( &season_start ) );
-    double durationDays     = durationSeconds / (24 * 3600 );
-
-    if ( durationDays <= 0.0 ) {
-        durationDays = 0;
-    }
+    double durationDays     = durationSeconds / ( 24 * 3600 );
 
     return durationDays;
 }
 
-double daysCount( struct tm tmNow, struct tm season_end ) {
-    double countdownSeconds = difftime( mktime(&season_end ), mktime(&tmNow ) );
-    double countdownDays    = countdownSeconds / (24 * 3600 );
+double daysRemaining( struct tm tmNow, struct tm season_end ) {
+    /* Return the number of days until the end of date range */
+    double remainingSeconds = difftime( mktime( &season_end ), mktime( &tmNow ) );
+    double remainingDays    = remainingSeconds / ( 24 * 3600 );
 
-    if ( countdownDays <= 0.0 ) {
-        countdownDays = 0;
-    }
+    return remainingDays;
+}
 
-    return countdownDays;
+double daysElapsed( struct tm season_start, struct tm tmNow ) {
+    /* Return the number of days since the start of a time range */
+    double elapsedSeconds = difftime( mktime( &tmNow ), mktime( &season_start ) );
+    double elapsedDays    = elapsedSeconds / (24 * 3600 );
+
+    return elapsedDays;
 }
 
 int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm season_end ) {
-    /* Easter season is 50 days starting at Pentecost
-     * Lent season is 46 days between Ash Wed and Easter
-     * Advent season lasts through Christmas Day
-     * Christmas season lasts through the epiphany
-     * Ordinary is the time outside of the main seasons */
+    /* Is the current date within a liturgical season window?
+     *  Easter season is 50 days starting at Pentecost
+     *  Lent season is 46 days between Ash Wed and Easter
+     *  Advent season lasts through Christmas Day
+     *  Christmas season lasts through the epiphany
+     *  Ordinary is the time outside of the main seasons */
 
     int returnFlag = 0;
 
-    //double durationSeconds  = difftime( mktime( &season_end ), mktime( &season_start ) );
-    //double durationDays     = durationSeconds / (24 * 3600 );
     double durationDays       = daysDuration(season_start, season_end);
+    double remainingDays      = daysRemaining(tmNow, season_end);
 
-    //double countdownSeconds = difftime( mktime(&season_end ), mktime(&tmNow ) );
-    //double countdownDays    = countdownSeconds / (24 * 3600 );
-    double countdownDays      = daysCount(tmNow, season_end);
-
-    if ( ( countdownDays >= 0.0 ) && ( countdownDays <= durationDays ) ) {
+    if ( ( remainingDays >= 0.0 ) && ( remainingDays <= durationDays ) ) {
         returnFlag = 1;
     } else {
         returnFlag = 0;
