@@ -262,6 +262,28 @@ int isFeastDay( struct tm tmNow, struct tm tmThen ) {
 
 }
 
+double daysDuration( struct tm season_start, struct tm season_end ) {
+    double durationSeconds  = difftime( mktime( &season_end ), mktime( &season_start ) );
+    double durationDays     = durationSeconds / (24 * 3600 );
+
+    if ( durationDays <= 0.0 ) {
+        durationDays = 0;
+    }
+
+    return durationDays;
+}
+
+double daysCount( struct tm tmNow, struct tm season_end ) {
+    double countdownSeconds = difftime( mktime(&season_end ), mktime(&tmNow ) );
+    double countdownDays    = countdownSeconds / (24 * 3600 );
+
+    if ( countdownDays <= 0.0 ) {
+        countdownDays = 0;
+    }
+
+    return countdownDays;
+}
+
 int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm season_end ) {
     /* Easter season is 50 days starting at Pentecost
      * Lent season is 46 days between Ash Wed and Easter
@@ -271,13 +293,15 @@ int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm seaso
 
     int returnFlag = 0;
 
-    double durationSeconds  = difftime( mktime( &season_end ), mktime( &season_start ) );
-    double durationDays     = durationSeconds / (24 * 3600 );
+    //double durationSeconds  = difftime( mktime( &season_end ), mktime( &season_start ) );
+    //double durationDays     = durationSeconds / (24 * 3600 );
+    double durationDays       = daysDuration(season_start, season_end);
 
-    double countdownSeconds = difftime( mktime(&season_end ), mktime(&tmNow ) );
-    double countdownDays    = countdownSeconds / (24 * 3600 );
+    //double countdownSeconds = difftime( mktime(&season_end ), mktime(&tmNow ) );
+    //double countdownDays    = countdownSeconds / (24 * 3600 );
+    double countdownDays      = daysCount(tmNow, season_end);
 
-    if ( (countdownDays >= 0 ) && (countdownDays <= durationDays ) ) {
+    if ( ( countdownDays >= 0.0 ) && ( countdownDays <= durationDays ) ) {
         returnFlag = 1;
     } else {
         returnFlag = 0;
