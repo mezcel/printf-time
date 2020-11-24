@@ -14,11 +14,16 @@ if [ $isDebian -eq 0 ]; then
 
         echo -e "#\tUpdate ~/.bashrc ..."
 
+        ## make safety backups
         cp $origianlBashrc $backupBashrc
         cp $origianlBashrc $tempBashrc
 
+        ## rm previous ttyBashrc calls
         sed -i "/## Special holiday bash text/d" $tempBashrc
         sed -i "/ttyBashrc/d" $tempBashrc
+
+        ## rm empty lines
+        sed -i "/^$/d" $tempBashrc
 
         mv $tempBashrc $origianlBashrc
         echo -e "#\tRemoved $(pwd)/ttyBashrc from ~/.bashrc ..."

@@ -14,14 +14,21 @@ if [ $isDebian -eq 0 ]; then
 
         echo -e "#\tUpdate ~/.bashrc ..."
 
+        ## make safety backups
         cp $origianlBashrc $backupBashrc
         cp $origianlBashrc $tempBashrc
 
+        ## rm previous ttyBashrc calls
         sed -i "/## Special holiday bash text/d" $tempBashrc
         sed -i "/ttyBashrc/d" $tempBashrc
 
+        ## rm empty lines
+        sed -i "/^$/d" $tempBashrc
+
         echo -e "\n## Special holiday bash text" >> $tempBashrc
-        echo -e "cd $(pwd); ./ttyBashrc; cd" >> $tempBashrc
+        projectRoot=$(pwd)
+
+        echo -e "currentDir=\$(pwd); cd $projectRoot; ./ttyBashrc; cd \$currentDir" >> $tempBashrc
 
         mv $tempBashrc $origianlBashrc
         echo -e "#\tAppended $(pwd)/ttyBashrc to ~/.bashrc ..."

@@ -10,12 +10,14 @@ lang: en-US
 # printf-time
 
 > Version: ```v0.4.5.?``` (WIP)
-Added a feature which decorates the bash terminal with seasonal scripture readings.
+
+Added a feature which decorates the BASH terminal with seasonal scripture readings.
+
 ```diff
-+ If the bash is installed, the ~/.bashrc will launch ttyBashrc.
++ If BASH is installed, the ~/.bashrc will launch ttyBashrc.
 + ttyBashrc will display the following upon it's initial launch
-+   Current liturgical calendar season
-+   Display a quote of the day from the scripture rosary scripture database.
++   * Current liturgical calendar season
++   * Display a seasonal quote of the day from the rosary scripture database.
 ```
 
 ## About:
@@ -26,7 +28,7 @@ A **( Latin / English )** scripture **Rosary** written in C/GCC for the GTK and 
 
 | CLI Version | GTK3 Version |
 | :---: | :---: |
-| LIVE DEMO (v0.3.5) i686 Debian | Screenshot (v0.2) i686 Debian |
+| Outdated LIVE DEMO (v0.3.5) i686 Debian | Outdated Screenshot (v0.2) i686 Debian |
 | [![asciicast](https://asciinema.org/a/278468.svg)](https://asciinema.org/a/278468) | ![](./img/screenshot.gif) |
 
 ---
@@ -70,7 +72,7 @@ make gtkRosary
 
 ```bash
 ## Compile a binary which is set to launch whenever GNU Bash is launched.
-## Holiday themed messages will be displayed on the terminal, at Bash startup, throughout the holiday season.
+## Holiday themed messages will be displayed on the terminal, at Bash startup
 
 make ttyBashrc
 ```
