@@ -37,15 +37,20 @@ A **( Latin / English )** scripture **Rosary** written in C/GCC for the GTK and 
 
 ## 1. Compile on Debian or WLS ( Primary OS )
 
-Makefile
+```Makefile```
 
 ```sh
-## build and compile everything
-##  generate the following executable files: ttyRosary and gtkRosary
+## Clean previously complied binary builds and undo changes made to bashrc by ttyBasrc
+
+make clean
+
+## Build and compile everything
+## The following programs will be built: ttyRosary and gtkRosary
 
 make
 
-## or
+## or build individual programs
+
 make ttyRosary
 make gtkRosary
 ```
@@ -92,7 +97,7 @@ sudo apt install autotools-dev debhelper dh-autoreconf dh-exec
 ## debian libjson-c
 sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 
-## man page (manual intervention required)
+## man page (Manually install groff and pandoc. Not included with Makefile)
 sudo apt install groff pandoc
 ```
 
@@ -125,7 +130,7 @@ I made the following to scripts to automate the compile and build preocess.
 * ```Makefile_win.bat``` and ```Makefile_win.ps1```
 * Added [Nmake](https://docs.microsoft.com/en-us/cpp/build/reference/nmake-reference?view=vs-2019) options within a  GNU [Makefile](https://en.wikipedia.org/wiki/Makefile)
 
-Makefile
+```Makefile``` or ```nmake```
 
 ```bat
 :: Win10's nmake
@@ -155,7 +160,7 @@ Developer Command Prompt for VS 2019
 
 VS Code Editor:
 
-* I just do my Win10 C coding in VS Code
+* I occasionally do Win10 C compiling in VS Code. (I prefer **VS2019** over VSCode as a Win10 C/C++ editor)
 * Launch ```code .``` from within ```Developer Powershell for VS 2019```
 
 ---
