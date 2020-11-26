@@ -51,7 +51,7 @@ SET userinput=%1
     ECHO ---------------------------------------------------
     ECHO.
 
-    SET /P userinput= Type selection option [ clean, build, run ] :
+    SET /P userinput=" Type selection option [ clean, build, run ]: "
 
 :menuOptions
     IF "%userinput%"=="quit" (

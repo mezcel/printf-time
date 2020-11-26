@@ -93,7 +93,7 @@ function menu {
             run the compile executable 'mainTTY.exe'
     "
 
-    $userinput = Read-Host -Prompt "Type selection option [ clean, build, run ] "
+    $userinput = Read-Host -Prompt " Type selection option [ clean, build, run ]: "
 
     if ( $userinput -eq "clean" ) {
         Write-Host "You entered: $userinput"
