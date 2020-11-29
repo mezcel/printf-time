@@ -51,7 +51,6 @@ void borderCharPrintF( char *charSymbol, int borderWidth ) {
     for ( int i = 0; i < borderWidth; i++ ) {
         printf( "%s", charSymbol );
     }
-
 }
 
 void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int minRows ) {
@@ -112,43 +111,53 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
 
 }
 
+void centerString( char *strIn, int desiredLineLength, int boldFlag ) {
+    // Automatically wrap string arrays that are longer than 1 terminal row
+
+    int screenWidth     = desiredLineLength;                // max chars per screen line width
+    int inputLength     = ( int )strlen( strIn );           // number of chars contained in input string
+    int padding         = 2;                                // padding from side screen
+    int max_line_chars  = screenWidth - padding;
+    int strLength, center;
+
+    strLength   = ( int )strlen( strIn );
+    center      = ( screenWidth - strLength ) / 2;
+    borderCharPrintF( " ", center );
+
+    if ( boldFlag == 1 ) {
+        printf( "\e[1;37m%s\e[0;37m\n", strIn );
+    } else {
+        printf( "%s\n", strIn );
+    }
+
+}
+
 void splashPage( int desiredDispLen, char *verboseDate ) {
 
     // display a decorative cover page
 
     int strLength, center;
 
-    char *title     = "Scriptural Rosary",
-         *author    = "by Mezcel",
-         *about     = "Wirtten in C for use in a ( CLI ) POSIX/GNU program environment.",
-         *git       = "https://github.com/mezcel/printf-time.git";
+    char *title  = "Scriptural Rosary",
+         *author = "by Mezcel",
+         *about  = "Wirtten in C for use in CLI/TUI and POSIX/GNU environments.",
+         *git    = "https://github.com/mezcel/printf-time.git";
 
     printf( "\n\n" );
 
-    strLength   = ( int )strlen( title );
-    center      = ( desiredDispLen - strLength ) / 2;
-    borderCharPrintF( " ", center );
-    printf( "%s\n", title );
+    centerString( title, desiredDispLen, 1 );
+    centerString( author, desiredDispLen, 0 );
+    printf("\n");
 
-    strLength   = ( int )strlen( author );
-    center      = ( desiredDispLen - strLength ) / 2;
-    borderCharPrintF( " ", center );
-    printf( "%s\n\n", author );
+    centerString( about, desiredDispLen, 0 );
+    printf("\n");
 
-    strLength   = ( int )strlen( about );
-    center      = ( desiredDispLen - strLength ) / 2;
-    borderCharPrintF( " ", center );
-    printf( "%s\n", about );
+    centerString( git, desiredDispLen, 0 );
+    printf("\n");
 
-    strLength   = ( int )strlen( git );
-    center      = ( desiredDispLen - strLength ) / 2;
-    borderCharPrintF( " ", center );
-    printf( "%s\n\n\n\n", git );
-
-    strLength   = ( int )strlen( verboseDate );
-    center      = ( desiredDispLen - strLength ) / 2;
-    borderCharPrintF( " ", center );
-    printf( "%s\n\n\n\n", verboseDate );
+    centerString( verboseDate, desiredDispLen, 0 );
+    printf("\n");
+    printf("\n");
 
     borderCharPrintF( ":", desiredDispLen );
 
@@ -159,8 +168,7 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 }
 
 void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int desiredDispLen, char *titleLabel ) {
-
-    // display about and instructions
+    /* Display basic controls and instructions about what this application is and how to use it. */
 
     char *season        = stringLiturgicalSeason();
     char *feast         = stringFeast( queryFeastViewStruct.feastDay,
@@ -174,6 +182,7 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 
     int titleLabelLength = ( int )strlen( titleLabel );
     int screenWidth = returnScreenWidth();
+    int screenWidthMin = 95; // used for wrapping option grid
 
     borderCharPrintF( ":", 3 );
     printf( "%s", titleLabel );
@@ -193,7 +202,7 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
     printf( "\n\t\tVi controls:\t\th = back,\t   l = next" );
     printf( "\n\t\tGame controls:\t\ta = back,\t   d = next" );
 
-    if ( screenWidth < 80 ) {
+    if ( screenWidth < screenWidthMin ) {
         printf( "\n\t\tJump to Mystery:\t0 = Today's mystery" );
         printf( "\n\t\t\t\t\t1 = Joyful" );
         printf( "\n\t\t\t\t\t2 = Joyful" );
@@ -208,7 +217,7 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 
     borderCharPrintF( ":", desiredDispLen );
 
-    if ( screenWidth < 80 ) {
+    if ( screenWidth < screenWidthMin ) {
         printf( "\n\n Today's %s mystery is the %s Mystery.\n\t( \e[1;37m%s\e[0;37m / \e[1;37m%s\e[0;37m )\n\n",
             retrunWeekdayName( weekdayNo ),
             returnWeekdayMystery( weekdayNo ),
@@ -447,7 +456,8 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     char *rosaray_region_string;
     int segment_whole, segment_part, decade_flag, footerLabel2Length;
 
-    int screenWidth = returnScreenWidth();
+    int screenWidth    = returnScreenWidth();
+    int screenWidthMin = 95; // used for wrapping progress bars, containing tabs
 
     if ( queryViewStruct.loopBody == 1 ) {
         rosaray_region_string = "Rosary Body";
@@ -526,7 +536,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     printf( " %s ", rosaray_region_string );
     borderCharPrintF( ":", 3 );
 
-    if ( screenWidth < 80 ) {
+    if ( screenWidth < screenWidthMin ) {
         printf( "\n\n Decade Counter\t\t %d / %d\n\t[ ", queryViewStruct.decadeNo, decade_flag );
     } else {
         printf( "\n\n Decade Counter\t\t %d / %d\t\t[ ", queryViewStruct.decadeNo, decade_flag );
@@ -543,13 +553,13 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
 
     if ( segment_whole == 10 ) {
         if ( segment_part < 10 ) {
-            if ( screenWidth < 80 ) {
+            if ( screenWidth < screenWidthMin ) {
                 printf( "\n Decade Progress\t %d / %d\n\t", segment_part, segment_whole );
             } else {
                 printf( "\n Decade Progress\t %d / %d\t\t", segment_part, segment_whole );
             }
         } else {
-            if ( screenWidth < 80 ) {
+            if ( screenWidth < screenWidthMin ) {
                 printf( "\n Decade Progress\t%d / %d\n\t", segment_part, segment_whole );
             } else {
                 printf( "\n Decade Progress\t%d / %d\t\t", segment_part, segment_whole );
@@ -558,7 +568,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
         borderCharPrintF( ".", historyDots );
 
     } else {
-        if ( screenWidth < 80 ) {
+        if ( screenWidth < screenWidthMin ) {
             printf( "\n Segment Progress\t %d / %d\n\t", segment_part, segment_whole );
         } else {
             printf( "\n Segment Progress\t %d / %d\t\t", segment_part, segment_whole );
@@ -576,13 +586,13 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     borderCharPrintF( ".", trailingDots );
 
     if ( queryViewStruct.mysteryPercent < 10 ) {
-        if ( screenWidth < 80 ) {
+        if ( screenWidth < screenWidthMin ) {
             printf( "\n Total Progress\t\t %d / 50\n\t[ ", queryViewStruct.mysteryPercent );
         } else {
             printf( "\n Total Progress\t\t %d / 50\t\t[ ", queryViewStruct.mysteryPercent );
         }
     } else {
-        if ( screenWidth < 80 ) {
+        if ( screenWidth < screenWidthMin ) {
             printf( "\n Total Progress\t\t%d / 50\n\t[ ", queryViewStruct.mysteryPercent );
         } else {
             printf( "\n Total Progress\t\t%d / 50\t\t[ ", queryViewStruct.mysteryPercent );

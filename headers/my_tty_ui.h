@@ -60,6 +60,7 @@ void activateEcho();
 void clearScreen();
 void borderCharPrintF( char *charSymbol, int borderWidth );
 void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int minRows );
+void centerString( char *strIn, int desiredLineLength, int boldFlag );
 
 void splashPage( int desiredDispLen, char *verboseDate );
 void infoPage(
