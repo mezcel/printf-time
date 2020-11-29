@@ -24,7 +24,7 @@ void clearScreen() {
 int returnScreenWidth() {
 
     // return a number which represents how long/wide the screen text should be
-    int col_length = 95;    // Estimate and proximate ( 85 - 120 ) chars screen width
+    int col_length = 80;    // Estimate and proximate ( 85 - 120 ) chars screen width
 
     struct winsize w;                               // terminal tty info
     ioctl( STDOUT_FILENO, TIOCGWINSZ, &w );         // tty col/row
