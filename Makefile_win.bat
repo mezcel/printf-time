@@ -22,8 +22,9 @@ SET userinput=%1
     ECHO.
     ECHO ---------------------------------------------------
     ECHO Compile and build a CLI scripture Rosary on Win10.
+    ECHO ---------------------------------------------------
     ECHO.
-    ECHO About:
+    ECHO    About:
     ECHO        This script is a DIY Makefile. Select from the following option.
     ECHO        clean, build, run
     ECHO.

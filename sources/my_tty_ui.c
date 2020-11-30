@@ -163,7 +163,6 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
 
     borderCharPrintF( ":", desiredDispLen );
 
-    printf( "\n\n press [ enter key ] to continue ... " );
     pressEnter();   // wait for user to press enter
     clearScreen();
 
@@ -237,7 +236,6 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 
     borderCharPrintF( ":", desiredDispLen );
 
-    printf( "\n\n press [ enter key ] to continue ... " );
     pressEnter();   // wait for user to press enter
 
 }
@@ -309,7 +307,6 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
 
         borderCharPrintF( ":", desiredDispLen );
 
-        printf( "\n\n press [ enter key ] to continue ... " );
         pressEnter();   // wait for user to press enter
     }
 

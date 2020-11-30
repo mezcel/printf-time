@@ -61,6 +61,7 @@ void pressEnter() {
 
     fflush(stdout);
 
+    printf("\n\n press [ enter key ] to continue ... ");
     char chEnter = getchar();
 
     while( chEnter != 10 ) {
