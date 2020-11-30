@@ -73,7 +73,10 @@ void activateEcho() {
 void boldString( char *inStr ) {
     // Print a white bold string using Win10 ANSI
     // Not implemented yet
-    printf( "%s", inStr );
+    // https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011
+    // echo ^<ESC^>[97m %ESC%[97mWhite%ESC%[0m
+
+    printf( "\\e[1;97m%s\\e[0m", inStr );
 }
 
 void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
