@@ -70,6 +70,12 @@ void activateEcho() {
 
 }
 
+void boldString( char *inStr ) {
+    // Print a white bold string using Win10 ANSI
+    // Not implemented yet
+    printf( "%s", inStr );
+}
+
 void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
 
     /*
@@ -91,11 +97,11 @@ void pressEnter() {
     /*
      * Wait for User to press enter
      * */
-    
+
     printf( "\n\n press [ enter key ] to continue ... " );
 
     char chEnter = getch();
-    
+
     while( chEnter != '\r' ) {
         chEnter = getch();
     }
@@ -113,7 +119,7 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
      * */
 
     char ch = getch();  // input keyboard key without the enter key on Win10
-    
+
     switch ( ch ) {
 
         // help screen

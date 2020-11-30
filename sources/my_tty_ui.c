@@ -63,7 +63,7 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
     int max_line_chars  = screenWidth - labelColChars;
     int rowCounter      = 1;
 
-    printf( "%s", labelChars );                             // print the content label, initial printf
+    boldString( labelChars );                               // print the content label, initial printf
 
     if ( inputLength < max_line_chars ) {                   // short enough to be 1 line
         printf( "%s\n\t\t", strIn );
@@ -118,14 +118,15 @@ void centerString( char *strIn, int desiredLineLength, int boldFlag ) {
     int inputLength     = ( int )strlen( strIn );           // number of chars contained in input string
     int padding         = 2;                                // padding from side screen
     int max_line_chars  = screenWidth - padding;
-    int strLength, center;
+    int strLength = 0;
+    int center = 0;
 
     strLength   = ( int )strlen( strIn );
     center      = ( screenWidth - strLength ) / 2;
     borderCharPrintF( " ", center );
 
     if ( boldFlag == 1 ) {
-        printf( "\e[1;37m%s\e[0;37m\n", strIn );
+        boldString( strIn );
     } else {
         printf( "%s\n", strIn );
     }
@@ -146,6 +147,7 @@ void splashPage( int desiredDispLen, char *verboseDate ) {
     printf( "\n\n" );
 
     centerString( title, desiredDispLen, 1 );
+    printf("\n");
     centerString( author, desiredDispLen, 0 );
     printf("\n");
 
@@ -189,16 +191,18 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
     borderCharPrintF( ":", ( desiredDispLen - ( titleLabelLength + 3 ) ) );
     printf( "\n" );
 
-    multiLinePrintF( "\n \e[1;37mAbout:\e[0;37m\n\t", aboutString, desiredDispLen, 0 );
+    multiLinePrintF( "\n About:\n\t", aboutString, desiredDispLen, 0 );
 
-    printf( "\n\n \e[1;37mDisplay:\e[0;37m\n\t\tOptimal Terminal Display:\n\t\t\t( +25 rows ) x ( +80 cols ) to Full Screen.\n\t\t\tCurrent Terminal Width (cols: %d)\n",
+    boldString( "\n\n Display:" );
+    printf( "\n\t\tOptimal Terminal Display:\n\t\t\t( +25 rows ) x ( +80 cols ) to Full Screen.\n\t\t\tCurrent Terminal Width (cols: %d)\n",
         returnScreenWidth() );
 
     printf( "\n\t\tNAB English\t( POSIX TTY ):\t\t./ttyRosary -n\n" );
     printf( "\t\t\t\t( CMD/Powershell ):\t.\\ttyRosary.exe\n" );
     printf( "\t\tVulgate Latin\t( Linux GTK ):\t\t./ttyRosary -v\n" );
 
-    printf( "\n \e[1;37mKeyboard:\e[0;37m\n\t\tGeneral:\t\tq = quit app,\thelp = up/down" );
+    boldString( "\n Keyboard:" );
+    printf( "\n\t\tGeneral:\t\tq = quit app,\thelp = up/down" );
     printf( "\n\t\tVi controls:\t\th = back,\t   l = next" );
     printf( "\n\t\tGame controls:\t\ta = back,\t   d = next" );
 
@@ -213,17 +217,19 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
         printf( "\n\t\tJump to Mystery:\t0 = Today's mystery\t1 = Joyful\t2 = Sorrowful" );
         printf( "\n\t\t\t\t\t\t\t\t3 = Luminous\t4 = Glorious" );
     }
-    printf( "\n \e[1;37mSource Code:\e[0;37m\n\t\thttps://github.com/mezcel/printf-time.git\n\n" );
+
+    boldString( "\n Source Code:" );
+    printf( "\n\t\thttps://github.com/mezcel/printf-time.git\n\n" );
 
     borderCharPrintF( ":", desiredDispLen );
 
     if ( screenWidth < screenWidthMin ) {
-        printf( "\n\n Today's %s mystery is the %s Mystery.\n\t( \e[1;37m%s\e[0;37m / \e[1;37m%s\e[0;37m )\n\n",
+        printf( "\n\n Today's %s mystery is the %s Mystery.\n\t( %s / %s )\n\n",
             retrunWeekdayName( weekdayNo ),
             returnWeekdayMystery( weekdayNo ),
             season, feast );
     } else {
-        printf( "\n\n Today's %s mystery is the %s Mystery. ( \e[1;37m%s\e[0;37m / \e[1;37m%s\e[0;37m )\n\n",
+        printf( "\n\n Today's %s mystery is the %s Mystery. ( %s / %s )\n\n",
             retrunWeekdayName( weekdayNo ),
             returnWeekdayMystery( weekdayNo ),
             season, feast );
@@ -284,11 +290,13 @@ void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition
         strLength   = ( int )strlen( title );
         center      = ( desiredDispLen - strLength ) / 2;
         borderCharPrintF( " ", center );
-        printf( "\e[1;37m%s\e[0;37m\n", title );
+
+        boldString( title );
+        printf( "\n" );
 
         printf( "\n\n" );
 
-        multiLinePrintF( " \e[1;37mAbout:\e[0;37m\t\t", about, desiredDispLen, minAboutRows );
+        multiLinePrintF( " About:\t\t", about, desiredDispLen, minAboutRows );
 
         printf( "\n\n" );
 
@@ -518,11 +526,12 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
         decadeString = queryViewStruct.decadeName;
     }
 
-    printf( "\n\n \e[1;37mDecade:\e[0;37m\t%s", decadeString );
+    boldString( "\n\n Decade:\t" );
+    printf( "%s", decadeString );
     multiLinePrintF( "\n\t\t", queryViewStruct.mesageText, desiredDispLen, minFruitsRow );
-    multiLinePrintF( "\n \e[1;37mBackground:\e[0;37m\t", queryViewStruct.decadeInfo, desiredDispLen, minBackgroundRows );
-    multiLinePrintF( "\n\n \e[1;37mScripture:\e[0;37m\t", queryViewStruct.scriptureText, desiredDispLen, minScriptureRows );
-    multiLinePrintF( "\n\n \e[1;37mPrayer:\e[0;37m\t", queryViewStruct.prayerText, desiredDispLen, minPrayerRows );
+    multiLinePrintF( "\n Background:\t", queryViewStruct.decadeInfo, desiredDispLen, minBackgroundRows );
+    multiLinePrintF( "\n\n Scripture:\t", queryViewStruct.scriptureText, desiredDispLen, minScriptureRows );
+    multiLinePrintF( "\n\n Prayer:\t", queryViewStruct.prayerText, desiredDispLen, minPrayerRows );
     printf( "\n\n" );
 
     // footer

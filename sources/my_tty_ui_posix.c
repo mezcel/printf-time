@@ -48,6 +48,11 @@ void activateEcho() {
 
 }
 
+void boldString( char *inStr ) {
+    // Print a white bold string using Bash ANSI
+    printf( "\e[1;37m%s\e[0m", inStr );
+}
+
 void pressEnter() {
 
     /*

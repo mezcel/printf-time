@@ -56,6 +56,7 @@ int pressKeyContinue(
 void pressEnter();
 void deactivateEcho();
 void activateEcho();
+void boldString( char *inStr );
 
 void clearScreen();
 void borderCharPrintF( char *charSymbol, int borderWidth );
