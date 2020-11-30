@@ -74,9 +74,9 @@ void boldString( char *inStr ) {
     // Print a white bold string using Win10 ANSI
     // Not implemented yet
     // https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011
-    // echo ^<ESC^>[97m %ESC%[97mWhite%ESC%[0m
+    // https://en.wikipedia.org/wiki/ANSI_escape_code
 
-    printf( "\\e[1;97m%s\\e[0m", inStr );
+    printf( "\x1b[7m%s\x1b[0m", inStr );    // highlited text on Command Prompt
 }
 
 void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePath ) {
