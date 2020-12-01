@@ -10,7 +10,7 @@ lang: en-US
 # printf-time
 
 > Version: ```v0.4.5.?``` ( rolling release )
-Though this/these application(s) is/are cross platform and stable, this repo was not scripted "for production".
+* Though this/these application(s) is/are cross platform and stable, this repo was not scripted "for production".
 * The script was written with portability and scalability in mind, yet it's design and structure was assembled "adhoc".
 * Tried to use mostly *standard libraries*.
 * The algorithm is **dumb** rather than **elegant and clever** in order to facilitate continuing the project after months of not programming in C or looking at this application.
