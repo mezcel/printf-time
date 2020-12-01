@@ -9,16 +9,11 @@ lang: en-US
 
 # printf-time
 
-> Version: ```v0.4.5.?``` (WIP)
-
-Added a feature which decorates the BASH terminal with seasonal scripture readings.
-
-```diff
-+ If BASH is installed, the ~/.bashrc will launch ttyBashrc.
-+ ttyBashrc will display the following upon it's initial launch
-+   * Current liturgical calendar season
-+   * Display a seasonal quote of the day from the rosary scripture database.
-```
+> Version: ```v0.4.5.?``` ( rolling release )
+Though this/these application(s) is/are cross platform and stable, this repo was not scripted "for production".
+* The script was written with portability and scalability in mind, yet it's design and structure was assembled "adhoc".
+* Tried to use mostly *standard libraries*.
+* The algorithm is **dumb** rather than **elegant and clever** in order to facilitate continuing the project after months of not programming in C or looking at this application.
 
 ## About:
 
@@ -185,11 +180,9 @@ This is the 5th program language version in my Rosary App series.
 | lan | internet scraped mass readings | internet scraped mass readings | no interactive networking features |
 | multi user / multi session / group synchronization | multi user / multi session / group synchronization | single user | single user |
 
-##### Another version made after this application
+#### Another version made after this application
 
-Golang (Win/Linux)
-
-* [git](https://github.com/mezcel/struct-fmt)
+Golang (Win/Linux) [git](https://github.com/mezcel/struct-fmt)
 * UI: TTY, Web Browser DOM, GTK, Native Win10 Window
     * [screenshots](https://github.com/mezcel/struct-fmt/blob/master/example/screenshots/README.md)
 * Network server host with an Electron/FireFox Web Browser client.
