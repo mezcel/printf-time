@@ -4,8 +4,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>     // system()
-#include <string.h>     // strcmp()
-#include <time.h>       // After year 2038, use an x64 compiler
+//#include <string.h>     // strcmp()
+#include <time.h>       // After year 2038, use an x64 compiler, my_calendar.h structs
 
 #include "headers/my_calendar.h"
 #include "headers/my_file_to_struct.h"

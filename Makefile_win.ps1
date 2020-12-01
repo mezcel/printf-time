@@ -39,11 +39,12 @@ function makeBuild {
     ## Compile and build object modules
     cl /c sources\my_calendar.c
     cl /c sources\my_csv_structs.c
+    cl /c sources\my_tty_ui_win.c
     cl /c sources\my_tty_ui.c
 
     ## Build the executable file
-    #cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
-    cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /Fe"ttyRosary.exe"
+    #cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj my_tty_ui_win.obj /o "ttyRosary.exe"
+    cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj my_tty_ui_win.obj /Fe"ttyRosary.exe"
     Write-Host "Done Building.
     "
 

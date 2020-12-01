@@ -7,10 +7,16 @@
  * libraries and functions are mentioned in the code algorithm.
  * */
 
+#include <stdio.h>
+#include <stdlib.h>     // calloc(), realloc(), malloc(), system(), free()
+#include <string.h>     // strcmp()
+
 #include <sys/ioctl.h>  // ioctl(), TIOCGWINSZ, struct winsize
 #include <unistd.h>     // STDOUT_FILENO, fflush(stdout)
 #include <time.h>       // my_callendar.h structs
 
+#include "../headers/my_calendar.h"
+#include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 
 void clearScreen() {

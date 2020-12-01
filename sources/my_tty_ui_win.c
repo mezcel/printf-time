@@ -11,6 +11,7 @@
 #include <windows.h>    // Win10 GetConsoleScreenBufferInfo()
 #include <conio.h>      // getch() Win10 only
 
+#include "../headers/my_calendar.h"
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
 

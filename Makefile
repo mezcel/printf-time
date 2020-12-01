@@ -28,8 +28,8 @@ notes:
 
 
 ## english and latin
-ttyRosary: my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o mainTTY.o
-	$(CC) my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o mainTTY.o -ljson-c -o "ttyRosary"
+ttyRosary: my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_tty_ui_posix.o mainTTY.o
+	$(CC) my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_tty_ui_posix.o mainTTY.o -ljson-c -o "ttyRosary"
 
 ## GTK UI english and latin
 gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_api.o
@@ -64,12 +64,17 @@ my_tty_ui.o: sources/my_tty_ui.c headers/my_tty_ui.h my_calendar.o my_csv_struct
 	$(CC) -c sources/my_tty_ui.c
 	#
 
+my_tty_ui_posix.o: sources/my_tty_ui_posix.c headers/my_tty_ui.h my_calendar.o my_csv_structs.o my_json_structs.o
+	## compile and "build my_tty_ui_posix.c"
+	$(CC) -c sources/my_tty_ui_posix.c
+	#
+
 my_gtk3_api.o: sources/my_gtk3_api.c headers/my_gtk3_api.h my_calendar.o my_csv_structs.o my_json_structs.o
 	## compile and build "my_gtk3_api.c"
 	$(CC) -c sources/my_gtk3_api.c $(CFLAGS)
 	#
 
-mainTTY.o: mainTTY.c  my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o
+mainTTY.o: mainTTY.c  my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_tty_ui_posix.o
 	## compile and build "mainTTY.c"
 	$(CC) -c mainTTY.c
 	#

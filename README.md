@@ -185,6 +185,18 @@ This is the 5th program language version in my Rosary App series.
 | lan | internet scraped mass readings | internet scraped mass readings | no interactive networking features |
 | multi user / multi session / group synchronization | multi user / multi session / group synchronization | single user | single user |
 
+##### Another version made after this application
+
+Golang (Win/Linux)
+
+* [git](https://github.com/mezcel/struct-fmt)
+* UI: TTY, Web Browser DOM, GTK, Native Win10 Window
+    * [screenshots](https://github.com/mezcel/struct-fmt/blob/master/example/screenshots/README.md)
+* Network server host with an Electron/FireFox Web Browser client.
+* JSON database
+* no audio
+* single user, multiple sessions
+
 ### 3.2 Misc. Development Background
 
 #### Debian Runtime Environment
