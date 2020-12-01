@@ -36,8 +36,8 @@ gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_a
 	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o $(CFLAGS) -ljson-c -o "gtkRosary"
 
 ## holiday season bash environment splash
-ttyBashrc: my_calendar.o my_csv_structs.o  my_tty_ui.o mainBashrc.o
-	$(CC) my_calendar.o my_csv_structs.o my_tty_ui.o mainBashrc.o -o "ttyBashrc"
+ttyBashrc: my_calendar.o my_csv_structs.o  my_tty_ui.o my_tty_ui_posix.o mainBashrc.o
+	$(CC) my_calendar.o my_csv_structs.o my_tty_ui.o my_tty_ui_posix.o mainBashrc.o -o "ttyBashrc"
 	bash sources/make-holiday-bashrc.sh
 
 ###########################
@@ -84,7 +84,7 @@ mainGtk3.o: mainGtk3.c my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_
 	$(CC) -c mainGtk3.c $(CFLAGS)
 	#
 
-mainBashrc.o: mainBashrc.c  my_calendar.o my_csv_structs.o my_tty_ui.o
+mainBashrc.o: mainBashrc.c  my_calendar.o my_csv_structs.o my_tty_ui.o my_tty_ui_posix.o
 	## compile and build "mainBashrc.c"
 	$(CC) -c mainBashrc.c
 	#
