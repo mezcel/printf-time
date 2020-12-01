@@ -9,11 +9,12 @@ lang: en-US
 
 # printf-time
 
-> Version: ```v0.4.5.?``` ( rolling release )
-* Though this/these application(s) is/are cross platform and stable, this repo was not scripted "for production".
-* The script was written with portability and scalability in mind, yet it's design and structure was assembled "adhoc".
-* Tried to use mostly *standard libraries*.
-* The algorithm is **dumb** rather than **elegant and clever** in order to facilitate continuing the project after months of not programming in C or looking at this application.
+> Version: ```v0.4.5.?``` ( **rolling release** )
+* Application(s) work, is cross platform, and is stable.
+* The script is written with portability and scalability in mind.
+* Focuses on *standard libraries* to minimize cross compatibility incompatibilities.
+* The algorithm is **dumb** rather than **elegant and clever** in order to facilitate *re-continuing* the project after months of not programming in C or looking at this application. (eye sore, yet readable, commented, and procedurally linear)
+    * Name schemes are long, ```*.c``` files are divided into theme categories, some functionalities are redundantly modularized.
 
 ## About:
 
