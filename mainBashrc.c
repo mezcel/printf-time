@@ -43,16 +43,13 @@ int main( int argc, char **argv ) {
     displayFeastVariables_t queryFeastViewStruct;               // Declare feast db query view var
 
     struct tm todaysDate    = returnTodaysDate();               // Define today struct
-    char *verboseDate       = returnVerboseDate( todaysDate );  // Decorative Date Display
+    char *verboseDate       = returnVerboseDate( todaysDate, 1 );  // Decorative Date Display (abbreviated)
     int weekdayNo           = todaysDate.tm_wday;               // Day of the week
-    //int navigtionPosition   = initialMystery( weekdayNo );      // Starting progress position
 
-    char *titleLabel;                                           // String to display which db is used
     int nabFlag = returnLaunchArgument( argc, argv[1] );        // Sets either NAB or Vulgate
     int desiredDispLen;                                         // POSIX terminal column width
 
     // Load Database files // NAB CSV Database
-    titleLabel = " C/CSV Rosary ( English NAB ) ";
     char *rosaryBead_path   = "database/csv/rosaryBead.csv";
     char *bead_path         = "database/csv/bead.csv";
     char *book_path         = "database/csv/book.csv";

@@ -224,12 +224,12 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 
     if ( screenWidth < screenWidthMin ) {
         printf( "\n\n Today's %s mystery is the %s Mystery.\n\t( %s / %s )\n\n",
-            retrunWeekdayName( weekdayNo ),
+            retrunWeekdayName( weekdayNo, 0 ),
             returnWeekdayMystery( weekdayNo ),
             season, feast );
     } else {
         printf( "\n\n Today's %s mystery is the %s Mystery. ( %s / %s )\n\n",
-            retrunWeekdayName( weekdayNo ),
+            retrunWeekdayName( weekdayNo, 0 ),
             returnWeekdayMystery( weekdayNo ),
             season, feast );
     }

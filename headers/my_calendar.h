@@ -35,14 +35,14 @@ struct tm subtractDays( struct tm startDate, int days );
  * Define time manipulation and verification functions
  * **************************************************** */
 
-/* Input an integer 0-6, and return a weekday name. 0=Sunday */
-char *retrunWeekdayName( int indexNo );
+/* Input an integer 0-6, and return a weekday name. 0=Sunday, Input 1 for abbreviated weekday name. */
+char *retrunWeekdayName( int indexNo, int shortFlag  );
 
-/* Input an integer 0-11, and return a month name. 0=January */
-char *retrunMonthName( int indexNo );
+/* Input an integer 0-11, and return a month name. 0=January, Input 1 for abbreviated month name. */
+char *retrunMonthName( int indexNo, int shortFlag  );
 
-/* Return a human readable string displaying today's date  */
-char *returnVerboseDate( struct tm tmDate );
+/* Return a human readable string displaying today's date, Input 1 for abbreviated date.  */
+char *returnVerboseDate( struct tm tmDate, int shortFlag );
 
 /* Input an integer 0-15, and return a feast day name. 0=Advent Start */
 char *retrunFeastDayName( int indexNo );

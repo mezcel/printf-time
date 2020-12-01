@@ -34,10 +34,10 @@ int main( int argc, char **argv ) {
     feast_db_t feast_db_struct;                                 // Declare app's feast db struct
     displayFeastVariables_t queryFeastViewStruct;               // Declare feast db query view struct
 
-    struct tm todaysDate    = returnTodaysDate();               // Set today's date struct
-    char *verboseDate       = returnVerboseDate( todaysDate );  // Decorative Date Display
-    int weekdayNo           = todaysDate.tm_wday;               // Set of the week number
-    int navigtionPosition   = initialMystery( weekdayNo );      // Set starting progress position record
+    struct tm todaysDate   = returnTodaysDate();                // Set today's date struct
+    char *verboseDate      = returnVerboseDate( todaysDate, 0 );    // Decorative Date Display
+    int weekdayNo          = todaysDate.tm_wday;                // Set of the week number
+    int navigtionPosition  = initialMystery( weekdayNo );       // Set starting progress position record
 
     char *titleLabel;                                           // String to display which db is used
     int nabFlag = returnLaunchArgument( argc, argv[1] );        // Sets either NAB or Vulgate
@@ -45,17 +45,17 @@ int main( int argc, char **argv ) {
 
     /*  DB file path variables */
 
-    char *jsonFilePath      = "database/json/rosaryJSON-vulgate.json"; // Optional Latin Vulgate database
+    char *jsonFilePath     = "database/json/rosaryJSON-vulgate.json"; // Optional Latin Vulgate database
 
     /*  English NAB Database */
-    char *rosaryBead_path   = "database/csv/rosaryBead.csv";    // Scripted sequence of foreign keys
-    char *bead_path         = "database/csv/bead.csv";          // Bead types and names
-    char *book_path         = "database/csv/book.csv";          // Book Titles
-    char *decade_path       = "database/csv/decade.csv";        // Decade beads readings
-    char *message_path      = "database/csv/message.csv";       // Decade mystery information
-    char *mystery_path      = "database/csv/mystery.csv";       // Mystery names
-    char *prayer_path       = "database/csv/prayer.csv";        // Prayer database
-    char *scripture_path    = "database/csv/scripture.csv";     // Scripture quote database
+    char *rosaryBead_path  = "database/csv/rosaryBead.csv";    // Scripted sequence of foreign keys
+    char *bead_path        = "database/csv/bead.csv";          // Bead types and names
+    char *book_path        = "database/csv/book.csv";          // Book Titles
+    char *decade_path      = "database/csv/decade.csv";        // Decade beads readings
+    char *message_path     = "database/csv/message.csv";       // Decade mystery information
+    char *mystery_path     = "database/csv/mystery.csv";       // Mystery names
+    char *prayer_path      = "database/csv/prayer.csv";        // Prayer database
+    char *scripture_path   = "database/csv/scripture.csv";     // Scripture quote database
 
     /* User defined feast days, CSV File */
 

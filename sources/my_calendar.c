@@ -8,32 +8,52 @@
 
 #include "../headers/my_calendar.h"
 
-char *retrunWeekdayName( int indexNo ) {
-    /* Input an integer 0-6, and return a weekday name. 0=Sunday */
+char *retrunWeekdayName( int indexNo, int shortFlag ) {
+    /* Input an integer 0-6, and return a weekday name. 0=Sunday.
+     * Input 1 for abbreviated weekday name. */
 
-    char * WEEKDAY_NAME_ARRAY[] = {
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-    };
+    char *weekdayName;
 
-    return WEEKDAY_NAME_ARRAY[ indexNo ];
+    if ( shortFlag ) {
+        char * WEEKDAY_NAME_ARRAY[] = {
+            "Sun", "Mon", "Tue", "Wed",
+            "Thu", "Fri", "Sat" };
+        weekdayName = WEEKDAY_NAME_ARRAY[ indexNo ];
+
+    } else {
+        char * WEEKDAY_NAME_ARRAY[] = {
+            "Sunday", "Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday" };
+        weekdayName = WEEKDAY_NAME_ARRAY[ indexNo ];
+    }
+
+    return weekdayName;
 
 }
 
-char *retrunMonthName( int indexNo ) {
-    /* Input an integer 0-11, and return a month name. 0=January */
+char *retrunMonthName( int indexNo, int shortFlag ) {
+    /* Input an integer 0-11, and return a month name. 0=January
+     * Input 1 for abbreviated month name. */
 
-    char * MONTH_NAME_ARRAY[] = {
-        "January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-        "November", "December"
-    };
+    char *monthName;
 
-    return MONTH_NAME_ARRAY[ indexNo ];
+    if ( shortFlag ) {
+        char * MONTH_NAME_ARRAY[] = {
+            "Jan", "Feb", "Mar", "Apr",
+            "May", "Jun", "Jul", "Aug",
+            "Sep", "Oct", "Nov", "Dec" };
+
+        monthName = MONTH_NAME_ARRAY[ indexNo ];
+    } else {
+        char * MONTH_NAME_ARRAY[] = {
+            "January", "February", "March", "April",
+            "May", "June", "July", "August",
+            "September", "October", "November", "December" };
+
+        monthName = MONTH_NAME_ARRAY[ indexNo ];
+    }
+
+    return monthName;
 
 }
 
@@ -95,17 +115,26 @@ struct tm returnTodaysDate() {
 
 }
 
-char *returnVerboseDate( struct tm tmDate ) {
-    /* Return a human readable string displaying today's date  */
+char *returnVerboseDate( struct tm tmDate, int shortFlag ) {
+    /* Return a human readable string displaying today's date
+     * Input 1 for abbreviated date. */
 
     char *verboseDate = malloc(32);             // Decorative Date Display
 
-    sprintf( verboseDate, "%s %d %s, %d",       // automatic int to char conversion
-        retrunWeekdayName( tmDate.tm_wday ),
-        tmDate.tm_mday,
-        retrunMonthName( tmDate.tm_mon ),
-        tmDate.tm_year + 1900
-    );
+    if ( shortFlag == 1 ) {
+        sprintf( verboseDate, "%s %d %s",       // automatic int to char conversion
+            retrunWeekdayName( tmDate.tm_wday, shortFlag ),
+            tmDate.tm_mday,
+            retrunMonthName( tmDate.tm_mon, shortFlag )
+        );
+    } else {
+        sprintf( verboseDate, "%s %d %s, %d",       // automatic int to char conversion
+            retrunWeekdayName( tmDate.tm_wday, shortFlag ),
+            tmDate.tm_mday,
+            retrunMonthName( tmDate.tm_mon, shortFlag ),
+            tmDate.tm_year + 1900
+        );
+    }
 
     return verboseDate;
 
