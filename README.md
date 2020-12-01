@@ -10,9 +10,9 @@ lang: en-US
 # printf-time
 
 > Version: ```v0.4.5.?``` ( **rolling release** )
-* Application are cross platform and scripted with scalabile portability in mind.
-* The algorithm is **dumb** rather than **elegant and clever** in order to facilitate <u>*re-continuing*</u> the project after months of not programming in ```C``` or looking at this application.
+* The algorithms are **dumb** rather than **elegant and smart** in order to facilitate <u>*re-continuing*</u> the project after months of not programming in ```C``` or looking at this application.
     * Focused on *standard libraries* to minimize cross compatibility incompatibilities.
+    * Cross platform and scripted with scalabile portability in mind.
 
 ## About:
 
