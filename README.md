@@ -10,11 +10,9 @@ lang: en-US
 # printf-time
 
 > Version: ```v0.4.5.?``` ( **rolling release** )
-* Application(s) work, is cross platform, and is stable.
-* The script is written with portability and scalability in mind.
-* Focuses on *standard libraries* to minimize cross compatibility incompatibilities.
-* The algorithm is **dumb** rather than **elegant and clever** in order to facilitate *re-continuing* the project after months of not programming in C or looking at this application. (eye sore, yet readable, commented, and procedurally linear)
-    * Name schemes are long, ```*.c``` files are divided into theme categories, some functionalities are redundantly modularized.
+* Application(s) are cross platform and is stable, and scripted with portability and scalability in mind.
+* The algorithm is **dumb** rather than **elegant and clever** in order to facilitate *re-continuing* the project after months of not programming in C or looking at this application.
+    * Focused on *standard libraries* to minimize cross compatibility incompatibilities.
 
 ## About:
 
