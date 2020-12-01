@@ -187,14 +187,16 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
                     queryFeastViewStruct.feastName );
 
     char *monthDay = verboseDate;
+    char *seasonString = malloc(32); // liturgical season string
 
     if ( desiredDispLen > 79 ) { desiredDispLen = 79; } // Limit display row char length
 
-    borderCharPrintF( "░", desiredDispLen );
+    sprintf( seasonString, "%s: %s ( %s )", season, feast, verboseDate ); // combine strings
 
+    borderCharPrintF( "░", desiredDispLen );
     printf( "\n" );
-    boldString( "Liturgy Season:" );
-    printf( "\t%s - %s\t( %s )\n", season, feast, monthDay );
+
+    multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen - 1, 0 );
 
     // Advent related quote
     if ( strcmp( season, "Advent Season" ) == 0 ) {
@@ -208,8 +210,8 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         scriptureFK          = (int)daysElapsed( advent_start, todaysDate) + 15;
         char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
 
+        printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
-        printf("\n");
     }
 
     // Post Nativity quote
@@ -222,8 +224,8 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         scriptureFK          = (int)daysElapsed( christmas_day, todaysDate) + idxBookmark;
         char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
 
+        printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
-        printf("\n");
     }
 
     // Lent related quote
@@ -237,8 +239,8 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         scriptureFK          = (int)daysElapsed( ash_wednesday, todaysDate) + idxBookmark;
         char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
 
+        printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
-        printf("\n");
     }
 
     // Easter related quote
@@ -251,10 +253,11 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         scriptureFK          = (int)daysElapsed( easter_sunday, todaysDate) + idxBookmark;
         char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
 
+        printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
-        printf("\n");
     }
 
+    printf("\n");
     borderCharPrintF( "░", desiredDispLen );
     printf("\n");
 

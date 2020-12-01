@@ -43,7 +43,7 @@ int main( int argc, char **argv ) {
     displayFeastVariables_t queryFeastViewStruct;               // Declare feast db query view var
 
     struct tm todaysDate    = returnTodaysDate();               // Define today struct
-    char *verboseDate       = returnVerboseDate( todaysDate, 1 );  // Decorative Date Display (abbreviated)
+    char *verboseDate       = returnVerboseDate( todaysDate, 0 );  // Decorative Date Display (abbreviated)
     int weekdayNo           = todaysDate.tm_wday;               // Day of the week
 
     int nabFlag = returnLaunchArgument( argc, argv[1] );        // Sets either NAB or Vulgate
