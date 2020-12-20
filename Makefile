@@ -95,8 +95,13 @@ mainBashrc.o: mainBashrc.c  my_calendar.o my_csv_structs.o my_tty_ui.o my_tty_ui
 
 debian:
 	## Dependencies for Debian 9 (Stretch) or later
-	sudo apt install -y build-essential gcc libgtk-3-dev libjson-c-dev libjson-c-doc libjson-c3
-	sh sources/make-Holiday-Alias.sh
+	## gcc
+	sudo apt install -y build-essential gcc
+	## gtk
+	sudo apt install -y libgtk-3-dev
+	## json-c
+	sudo apt install -y libjson-c-dev libjson-c-doc libjson-c3
+	## glade ide
 	# sudo apt install -y glade
 	#
 
