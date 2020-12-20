@@ -59,12 +59,12 @@ my_json_structs.o: sources/my_json_structs.c headers/my_file_to_struct.h
 	$(CC) -c sources/my_json_structs.c
 	#
 
-my_tty_ui.o: sources/my_tty_ui.c headers/my_tty_ui.h my_calendar.o my_csv_structs.o my_json_structs.o
+my_tty_ui.o: sources/my_tty_ui.c headers/my_tty_ui.h my_calendar.o my_csv_structs.o
 	## compile and "build my_tty_ui.c"
 	$(CC) -c sources/my_tty_ui.c
 	#
 
-my_tty_ui_posix.o: sources/my_tty_ui_posix.c headers/my_tty_ui.h my_calendar.o my_csv_structs.o my_json_structs.o
+my_tty_ui_posix.o: sources/my_tty_ui_posix.c headers/my_tty_ui.h my_calendar.o my_csv_structs.o
 	## compile and "build my_tty_ui_posix.c"
 	$(CC) -c sources/my_tty_ui_posix.c
 	#
