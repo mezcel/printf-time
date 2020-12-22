@@ -46,6 +46,8 @@ typedef struct displayFeastVariables_struct {
  * Prototypes
  * */
 
+char *stringReplace(char *original, char *pattern, char *replacement);
+
 int returnLaunchArgument( int argc, char *argv );
 int returnScreenWidth();
 int initialMystery( int weekdayNo );

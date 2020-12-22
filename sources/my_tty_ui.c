@@ -21,6 +21,37 @@
 #endif
 */
 
+char *stringReplace(char *original, char *pattern, char *replacement) {
+    size_t outsize = strlen(original) + 1;
+    // TODO maybe avoid reallocing by counting the non-overlapping occurences of pattern
+    char *res = malloc(outsize);
+    // use this to iterate over the output
+    size_t resoffset = 0;
+
+    char *needle;
+    while (needle = strstr(original, pattern)) {
+        // copy everything up to the pattern
+        memcpy(res + resoffset, original, needle - original);
+        resoffset += needle - original;
+
+        // skip the pattern in the input-string
+        original = needle + strlen(pattern);
+
+        // adjust space for replacement
+        outsize = outsize - strlen(pattern) + strlen(replacement);
+        res = realloc(res, outsize);
+
+        // copy the pattern
+        memcpy(res + resoffset, replacement, strlen(replacement));
+        resoffset += strlen(replacement);
+    }
+
+    // copy the remaining input
+    strcpy(res + resoffset, original);
+
+    return res;
+}
+
 int returnLaunchArgument( int argc, char *argv ) {
 
     int nabFlag = 0;

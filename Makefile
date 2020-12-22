@@ -139,6 +139,10 @@ clean:
 	bash sources/clean-holiday-bashrc.sh
 	#
 
+cleanBashrc:
+	## remove backup ~/.bashrc
+	rm ~/.bashrc.backup*
+
 #####################
 ## Windows 10 nmake
 #####################

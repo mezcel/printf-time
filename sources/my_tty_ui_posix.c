@@ -217,7 +217,12 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
             shiftTowardSunday( &advent_start ); // First Sun of Advent
 
         scriptureFK          = (int)daysElapsed( advent_start, todaysDate) + 15;
-        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+        //char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
+        // The following will revert each instance of "<semicolon>" back to ";".
+        char * original = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+        char * scriptureQuote = stringReplace(original, "<semicolon>", ";");
 
         //purple \e[0;35m
         sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
@@ -234,7 +239,12 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         struct tm christmas_day = setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed Dec 25
 
         scriptureFK          = (int)daysElapsed( christmas_day, todaysDate) + idxBookmark;
-        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+        //char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
+        // The following will revert each instance of "<semicolon>" back to ";".
+        char * original = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+        char * scriptureQuote = stringReplace(original, "<semicolon>", ";");
 
         //light purple \e[1;35m
         sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
@@ -252,13 +262,19 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         struct tm ash_wednesday = subtractDays( easter_sunday, 46 ); // count back to ash wed
 
         scriptureFK          = (int)daysElapsed( ash_wednesday, todaysDate) + idxBookmark;
-        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+        //char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
+        // The following will revert each instance of "<semicolon>" back to ";".
+        char * original = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+        char * scriptureQuote = stringReplace(original, "<semicolon>", ";");
 
         //red \e[0;31m
         sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
         multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen , 0 );
         printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
+
     }
 
     // Easter related quote
@@ -269,7 +285,12 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 ); // PFM Calculation Result
 
         scriptureFK          = (int)daysElapsed( easter_sunday, todaysDate) + idxBookmark;
-        char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+        //char *scriptureQuote = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+
+        // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
+        // The following will revert each instance of "<semicolon>" back to ";".
+        char * original = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+        char * scriptureQuote = stringReplace(original, "<semicolon>", ";");
 
         //yellow \e[0;33m
         sprintf( seasonString, "\e[1;33m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
