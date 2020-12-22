@@ -499,7 +499,8 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
 
     // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
     // The following will revert each instance of "<semicolon>" back to ";".
-    char *scriptureQuote = stringReplace( queryViewStruct.scriptureText, "<semicolon>", ";" );
+    char *scriptureSemicolon = stringReplace( queryViewStruct.scriptureText, "<semicolon>", ";" );
+    char *scriptureQuote = stringReplace( scriptureSemicolon, "\"\"", "\"" ); // Remove inner double quotes
 
     if ( queryViewStruct.loopBody == 1 ) {
         rosaray_region_string = "Rosary Body";
