@@ -21,33 +21,33 @@
 #endif
 */
 
-char *stringReplace(char *original, char *pattern, char *replacement) {
-    size_t outsize = strlen(original) + 1;
+char *stringReplace( char *original, char *pattern, char *replacement ) {
+    size_t outsize = strlen( original ) + 1;
     // TODO maybe avoid reallocing by counting the non-overlapping occurences of pattern
-    char *res = malloc(outsize);
+    char *res = malloc( outsize );
     // use this to iterate over the output
     size_t resoffset = 0;
 
     char *needle;
-    while (needle = strstr(original, pattern)) {
+    while (needle = strstr( original, pattern )) {
         // copy everything up to the pattern
-        memcpy(res + resoffset, original, needle - original);
+        memcpy( res + resoffset, original, needle - original );
         resoffset += needle - original;
 
         // skip the pattern in the input-string
-        original = needle + strlen(pattern);
+        original = needle + strlen( pattern );
 
         // adjust space for replacement
-        outsize = outsize - strlen(pattern) + strlen(replacement);
-        res = realloc(res, outsize);
+        outsize = outsize - strlen( pattern ) + strlen( replacement );
+        res = realloc( res, outsize );
 
         // copy the pattern
-        memcpy(res + resoffset, replacement, strlen(replacement));
-        resoffset += strlen(replacement);
+        memcpy( res + resoffset, replacement, strlen( replacement ) );
+        resoffset += strlen( replacement );
     }
 
     // copy the remaining input
-    strcpy(res + resoffset, original);
+    strcpy( res + resoffset, original );
 
     return res;
 }
@@ -497,6 +497,10 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     int screenWidth    = returnScreenWidth();
     int screenWidthMin = 95; // used for wrapping progress bars, containing tabs
 
+    // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
+    // The following will revert each instance of "<semicolon>" back to ";".
+    char *scriptureQuote = stringReplace( queryViewStruct.scriptureText, "<semicolon>", ";" );
+
     if ( queryViewStruct.loopBody == 1 ) {
         rosaray_region_string = "Rosary Body";
         footerLabel2Length    = ( int )strlen( rosaray_region_string ) + 5;
@@ -560,7 +564,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     printf( "%s", decadeString );
     multiLinePrintF( "\n\t\t", queryViewStruct.mesageText, desiredDispLen, minFruitsRow );
     multiLinePrintF( "\n Background:\t", queryViewStruct.decadeInfo, desiredDispLen, minBackgroundRows );
-    multiLinePrintF( "\n\n Scripture:\t", queryViewStruct.scriptureText, desiredDispLen, minScriptureRows );
+    multiLinePrintF( "\n\n Scripture:\t", scriptureQuote, desiredDispLen, minScriptureRows );
     multiLinePrintF( "\n\n Prayer:\t", queryViewStruct.prayerText, desiredDispLen, minPrayerRows );
     printf( "\n\n" );
 

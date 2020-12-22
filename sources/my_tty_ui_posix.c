@@ -222,7 +222,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
         // The following will revert each instance of "<semicolon>" back to ";".
         char * original = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
-        char * scriptureQuote = stringReplace(original, "<semicolon>", ";");
+        char * scriptureQuote = stringReplace( original, "<semicolon>", ";" );
 
         //purple \e[0;35m
         sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
@@ -244,7 +244,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
         // The following will revert each instance of "<semicolon>" back to ";".
         char * original = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
-        char * scriptureQuote = stringReplace(original, "<semicolon>", ";");
+        char * scriptureQuote = stringReplace( original, "<semicolon>", ";" );
 
         //light purple \e[1;35m
         sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
@@ -267,7 +267,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
         // The following will revert each instance of "<semicolon>" back to ";".
         char * original = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
-        char * scriptureQuote = stringReplace(original, "<semicolon>", ";");
+        char * scriptureQuote = stringReplace( original, "<semicolon>", ";" );
 
         //red \e[0;31m
         sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
@@ -290,7 +290,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
         // The following will revert each instance of "<semicolon>" back to ";".
         char * original = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
-        char * scriptureQuote = stringReplace(original, "<semicolon>", ";");
+        char * scriptureQuote = stringReplace( original, "<semicolon>", ";" );
 
         //yellow \e[0;33m
         sprintf( seasonString, "\e[1;33m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings

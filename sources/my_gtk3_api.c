@@ -45,7 +45,7 @@ void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widget
     widgets -> levelBar_decade          = GTK_WIDGET( gtk_builder_get_object( builder, "levelBar_decade" ) );
     widgets -> levelBar_mystery         = GTK_WIDGET( gtk_builder_get_object( builder, "levelBar_mystery" ) );
 
-    gtk_label_set_text( GTK_LABEL( widgets -> lblTextDate ), retrunWeekdayName( todaysDate.tm_wday ) );
+    gtk_label_set_text( GTK_LABEL( widgets -> lblTextDate ), retrunWeekdayName( todaysDate.tm_wday, 0 ) );
     gtk_label_set_text( GTK_LABEL( widgets -> lblTextLiturgicalCalendar ), retrunLiturgicalName( seasonFlag ) );
 
     if ( userDefinedFeast[0] != '\0' ) {
