@@ -23,7 +23,7 @@
 
 char *stringReplace( char *original, char *pattern, char *replacement ) {
     size_t outsize = strlen( original ) + 1;
-    // TODO maybe avoid reallocing by counting the non-overlapping occurences of pattern
+    // TODO maybe avoid reallocating by counting the non-overlapping occurrences of pattern
     char *res = malloc( outsize );
     // use this to iterate over the output
     size_t resoffset = 0;
@@ -50,6 +50,15 @@ char *stringReplace( char *original, char *pattern, char *replacement ) {
     strcpy( res + resoffset, original );
 
     return res;
+}
+
+char *cleanQuote( char * originalCsv ) {
+    // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
+    // The following will revert each instance of "<semicolon>" back to ";".
+
+    char * scriptureSemicolon = stringReplace( originalCsv, "<semicolon>", ";" );
+    char * scriptureQuote = stringReplace( scriptureSemicolon, "\"\"", "\"" ); // Remove inner double quotes
+    return scriptureQuote;
 }
 
 int returnLaunchArgument( int argc, char *argv ) {
@@ -99,10 +108,15 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
     boldString( labelChars );                               // print the content label, initial printf
 
     if ( inputLength < max_line_chars ) {                   // short enough to be 1 line
-        printf( "%s\n\t\t", strIn );
-        rowCounter++;
-    } else { // longer than one line
 
+        if ( rowCounter == 1 ) {
+            printf( "%s", strIn,inputLength ,max_line_chars  );         // Initial line
+        } else {
+            printf( "%s\n\t\t", strIn, inputLength ,max_line_chars  );  // tabbed line
+        }
+
+        rowCounter++;
+    } else {                                                // longer than one line
         // input string to an array of words
         char *tmpStringArray = malloc( inputLength + 1 );
         strcpy( tmpStringArray, strIn );
@@ -497,10 +511,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     int screenWidth    = returnScreenWidth();
     int screenWidthMin = 95; // used for wrapping progress bars, containing tabs
 
-    // The CSV db uses semicolon delineation. So for each instance of ";" I use "<semicolon>".
-    // The following will revert each instance of "<semicolon>" back to ";".
-    char *scriptureSemicolon = stringReplace( queryViewStruct.scriptureText, "<semicolon>", ";" );
-    char *scriptureQuote = stringReplace( scriptureSemicolon, "\"\"", "\"" ); // Remove inner double quotes
+    char *scriptureQuote = cleanQuote( queryViewStruct.scriptureText );
 
     if ( queryViewStruct.loopBody == 1 ) {
         rosaray_region_string = "Rosary Body";

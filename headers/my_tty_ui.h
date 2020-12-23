@@ -47,6 +47,7 @@ typedef struct displayFeastVariables_struct {
  * */
 
 char *stringReplace(char *original, char *pattern, char *replacement);
+char *cleanQuote( char * original );
 
 int returnLaunchArgument( int argc, char *argv );
 int returnScreenWidth();
