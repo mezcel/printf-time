@@ -202,7 +202,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
     if ( strcmp( season, "Ordinary Season" ) == 0 ) {
         //green \e[0;32m
         sprintf( seasonString, "\e[1;32m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
-        multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen , 0 );
+        multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen  + 13, 0 );
     }
 
     // Advent related quote
@@ -240,7 +240,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
 
         //light purple \e[1;35m
         sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
-        multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen , 0 );
+        multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen + 13, 0 );
         printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
     }
@@ -260,7 +260,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
 
         //red \e[0;31m
         sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
-        multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen , 0 );
+        multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen  + 13, 0 );
         printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
 
@@ -280,7 +280,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
 
         //yellow \e[0;33m
         sprintf( seasonString, "\e[1;33m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
-        multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen , 0 );
+        multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen  + 13, 0 );
         printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
     }
