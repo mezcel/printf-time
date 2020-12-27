@@ -100,6 +100,9 @@ void infoPage(
     displayFeastVariables_t queryFeastViewStruct,
     int weekdayNo, int desiredDispLen, char *titleLabel );
 
+/* Display a warning and instruction if program was launch with an invalid argument. */
+void badArgMsg( int desiredDispLen );
+
 /* Display a formatted screen with information about the next upcoming mystery. */
 void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition, int desiredDispLen );
 

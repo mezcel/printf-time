@@ -66,12 +66,16 @@ int returnLaunchArgument( int argc, char *argv ) {
     int nabFlag = 0;
     if ( argc == 2 ) {                  // set Latin Vulgate from app launch
         nabFlag = strcmp( "-v", argv );
+
+        if ( nabFlag != 1 ) {
+            nabFlag = 2; // Returns a value other than 1 or 0
+        }
+
     } else {                            // no input, default to NAB English
         nabFlag = 1;
     }
 
     return nabFlag;
-
 }
 
 int initialMystery( int weekdayNo ) {
@@ -285,6 +289,19 @@ void infoPage( displayFeastVariables_t queryFeastViewStruct, int weekdayNo, int 
 
     pressEnter();   // wait for user to press enter
 
+}
+
+void badArgMsg( int desiredDispLen ) {
+    printf("!!! ttyRosary terminated !!!\n\n");
+    multiLinePrintF(
+        "Abort Msg.", "\tThis program was launched using an invalid input argument.",
+        desiredDispLen, 1 );
+    printf("\n");
+    multiLinePrintF(
+        "Try again.", "\tUse either \"-v\" or nothing at all.",
+        desiredDispLen, 1 );
+    printf("\n\t\tExample: ./ttyRosary\n\t\t     or: ./ttyRosary -v\n");
+    printf("\n");
 }
 
 void mysteryCoverPage( displayVariables_t queryViewStruct, int navigtionPosition, int desiredDispLen ) {

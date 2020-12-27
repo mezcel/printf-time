@@ -28,11 +28,11 @@ notes:
 
 
 ## english and latin
-ttyRosary: my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_tty_ui_posix.o mainTTY.o
+ttyRosary: my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_tty_ui_posix.o mainTTY.o manpage
 	$(CC) my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_tty_ui_posix.o mainTTY.o -ljson-c -o "ttyRosary"
 
 ## GTK UI english and latin
-gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_api.o
+gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_api.o manpage
 	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o $(CFLAGS) -ljson-c -o "gtkRosary"
 
 ## holiday season bash environment splash
@@ -142,7 +142,8 @@ clean:
 	## removing any precompiled binaries (Linux)
 	rm -f *.o ttyRosary gtkRosary ttyBashrc *.o *.out *.obj *.exe
 	bash sources/clean-holiday-bashrc.sh
-	rm man/printf-time
+	if [ -f man/printf-time ]; then rm man/printf-time; fi
+	if [ -f /usr/bin/printf-time ]; then sudo rm /usr/bin/printf-time; fi
 	#
 
 cleanBashrc:

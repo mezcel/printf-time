@@ -62,9 +62,17 @@ int main( int argc, char **argv ) {
     char *feast_csv_file    = "database/csv/feast.csv";
     int recordCount         = returnCsvRecordCount( feast_csv_file );
 
+    desiredDispLen = returnScreenWidth();                                       // Set terminal width
+    clearScreen();                                                              // Clear screen
+    deactivateEcho();                                                           // Deactivate POSIX tty echo
+
     /* Load Database files */
 
-    if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {                      // Vulgate JSON Database with POSIX
+    if ( nabFlag > 1 ) {
+        badArgMsg( desiredDispLen );    // Display a warning and instruction message
+        activateEcho();                 // Restore POSIX TTY echo
+        return 0;                       // Abort program
+    } else if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {                // Vulgate JSON Database with POSIX
         titleLabel = " C/JSON Rosary ( Latin Vulgate ) ";               // Decorative label showing which DB is used
         make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );  // Make struct database from file
 
@@ -83,10 +91,6 @@ int main( int argc, char **argv ) {
         todaysDate.tm_mon, recordCount );
 
     /* Welcome display */
-
-    desiredDispLen = returnScreenWidth();                                       // Set terminal width
-    clearScreen();                                                              // Clear screen
-    deactivateEcho();                                                           // Deactivate POSIX tty echo
 
     splashPage( desiredDispLen, verboseDate  );                                 // Display splash title
     infoPage( queryFeastViewStruct, weekdayNo, desiredDispLen, titleLabel );    // Display info/about
