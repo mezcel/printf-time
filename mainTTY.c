@@ -66,13 +66,18 @@ int main( int argc, char **argv ) {
     clearScreen();                                                              // Clear screen
     deactivateEcho();                                                           // Deactivate POSIX tty echo
 
-    /* Load Database files */
-
+    /* Abort script */
+    /*
     if ( nabFlag > 1 ) {
         badArgMsg( desiredDispLen );    // Display a warning and instruction message
         activateEcho();                 // Restore POSIX TTY echo
         return 0;                       // Abort program
-    } else if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {                // Vulgate JSON Database with POSIX
+    }
+    */
+
+    /* Load Database files */
+
+    if ( ( nabFlag == 0 ) && ( IS_LINUX == 1 ) ) {                      // Vulgate JSON Database with POSIX
         titleLabel = " C/JSON Rosary ( Latin Vulgate ) ";               // Decorative label showing which DB is used
         make_struct_rosary_db_json( &rosary_db_struct, jsonFilePath );  // Make struct database from file
 

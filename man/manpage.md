@@ -54,10 +54,6 @@ USECASE EXAMPLE:
 **w, s, j, k, up arrow, down arrow**
 : show information about using printf-time
 
-# SEE ALSO
-
-gcc, printf, make, tty, gtk3, pandoc, c-json
-
 # BASHRC
 
 **Using ./ttyBashrc with ~/.bashrc**
@@ -68,16 +64,23 @@ gcc, printf, make, tty, gtk3, pandoc, c-json
 
 # MAN PAGE
 
-Render a man page from a markdown. Must have pandoc installed.
+: Render a man page from a markdown. Must have pandoc installed.
 
 **Debian External Prerequisites:**
 : sudo apt install -y man-db groff pandoc
 
-**Usecase Example:**
-: Global Manpage: pandoc ./man/manpage.md -s -t man > /usr/bin/printf-time
-: Local Manpage: pandoc ./man/manpage.md -s -t man > ./man/printf-time
+USECAE EXAMPLE:
+
+- Global Manpage: pandoc ./man/manpage.md -s -t man > /usr/bin/printf-time
+
+- Local Manpage: pandoc ./man/manpage.md -s -t man > ./man/printf-time
 
 # GIT
 
 **github:**
 : https://github.com/mezcel/printf-time.git
+
+# SEE ALSO
+
+gcc, printf, make, tty, gtk3, pandoc, c-json
+

@@ -73,9 +73,6 @@ navigate forwards
 show information about using printf\-time
 .RS
 .RE
-.SH SEE ALSO
-.PP
-gcc, printf, make, tty, gtk3, pandoc, c\-json
 .SH BASHRC
 .TP
 .B \f[B]Using ./ttyBashrc with ~/.bashrc\f[]
@@ -89,29 +86,32 @@ currentDir=(\f[I]p\f[]\f[I]w\f[]\f[I]d\f[]); \f[I]c\f[]\f[I]d\f[]/\f[I]h\f[]\f
 \&./ttyBashrc; cd $currentDir
 .RS
 .RE
-.SH MAN PAGE
-.PP
+.TP
+.B # MAN PAGE
 Render a man page from a markdown.
 Must have pandoc installed.
+.RS
+.RE
 .TP
 .B \f[B]Debian External Prerequisites:\f[]
 sudo apt install \-y man\-db groff pandoc
 .RS
 .RE
-.TP
-.B \f[B]Usecase Example:\f[]
+.PP
+USECAE EXAMPLE:
+.IP \[bu] 2
 Global Manpage: pandoc ./man/manpage.md \-s \-t man >
 /usr/bin/printf\-time
-.RS
-.RE
+.IP \[bu] 2
 Local Manpage: pandoc ./man/manpage.md \-s \-t man > ./man/printf\-time
-.RS
-.RE
 .SH GIT
 .TP
 .B \f[B]github:\f[]
 https://github.com/mezcel/printf\-time.git
 .RS
 .RE
+.SH SEE ALSO
+.PP
+gcc, printf, make, tty, gtk3, pandoc, c\-json
 .SH AUTHORS
 Mezcel.
