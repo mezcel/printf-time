@@ -14,6 +14,8 @@ printf-time - an English & Latin scripture Rosary for TTY and GTK
 
 **ttyBashrc**
 
+**manpage**
+
 # DESCRIPTION
 
 printf-time is a  scripture rosary written in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
@@ -68,8 +70,12 @@ gcc, printf, make, tty, gtk3, pandoc, c-json
 
 Render a man page from a markdown. Must have pandoc installed.
 
-**Example:**
-: pandoc .manpage.md -s -t man > /usr/bin/printf-time
+**Debian External Prerequisites:**
+: sudo apt install -y man-db groff pandoc
+
+**Usecase Example:**
+: Global Manpage: pandoc ./man/manpage.md -s -t man > /usr/bin/printf-time
+: Local Manpage: pandoc ./man/manpage.md -s -t man > ./man/printf-time
 
 # GIT
 

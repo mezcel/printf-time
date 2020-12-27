@@ -90,7 +90,7 @@ mainBashrc.o: mainBashrc.c  my_calendar.o my_csv_structs.o my_tty_ui.o my_tty_ui
 	#
 
 #####################
-## Linux dependencies
+## GNU/Linux dependencies
 #####################
 
 debian:
@@ -101,6 +101,8 @@ debian:
 	sudo apt install -y libgtk-3-dev
 	## json-c
 	sudo apt install -y libjson-c-dev libjson-c-doc libjson-c3
+	## man page
+	sudo apt install -y man-db groff pandoc
 	## glade ide
 	# sudo apt install -y glade
 	#
@@ -126,18 +128,21 @@ alpine:
 	sudo apk add gtk+3.0-dev
 	#
 
-manpage: .manpage.md
-	## generate a man file with Pandoc from an Rmarkdown file
+manpage: man/manpage.md
+	## generate a manpage file with Pandoc from an Rmarkdown file
 	## global man page
-	# pandoc .manpage.md -s -t man > /usr/bin/printf-time
+	# pandoc man/manpage.md -s -t man > /usr/bin/printf-time
 	## local man page
-	pandoc .manpage.md -s -t man > printf-time
+	pandoc ./man/manpage.md -s -t man > man/printf-time
+
+help: man/printf-time
+	man ./man/printf-time
 
 clean:
 	## removing any precompiled binaries (Linux)
 	rm -f *.o ttyRosary gtkRosary ttyBashrc *.o *.out *.obj *.exe
 	bash sources/clean-holiday-bashrc.sh
-	rm printf-time
+	rm man/printf-time
 	#
 
 cleanBashrc:
