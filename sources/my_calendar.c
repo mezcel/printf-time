@@ -331,7 +331,12 @@ int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm seaso
     if ( ( remainingDays >= 0.0 ) && ( remainingDays <= durationDays ) ) {
         returnFlag = 1;
     } else {
-        returnFlag = 0;
+        if ( remainingDays > 0.0 ) {
+            // Workarround for December 26 – January 6 Christmas tide
+            returnFlag = 1;
+        } else {
+            returnFlag = 0;
+        }
     }
 
     return returnFlag;
@@ -357,9 +362,9 @@ int returnLiturgicalSeason(
 
     int returnFlag;
 
-    if( isAdvent ) {
+    if ( ( isAdvent == 1 ) && ( isAdvent != isChristmas ) ) {
         returnFlag = 0;     // Advent
-    } else if ( isChristmas ) {
+    } else if ( isAdvent == isChristmas ) {
         returnFlag = 1;     // Christmas
     } else if ( isLent ) {
         returnFlag = 2;     // Lent

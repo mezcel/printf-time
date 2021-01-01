@@ -232,8 +232,16 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         int idxBookmark = 51;
 
         struct tm christmas_day = setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed Dec 25
+        //scriptureFK          = (int)daysElapsed( christmas_day, todaysDate) + idxBookmark;
+        struct tm epiphany      = addDays( christmas_day, 12 );                          // 12 days after Christmas
 
-        scriptureFK          = (int)daysElapsed( christmas_day, todaysDate) + idxBookmark;
+        int remainingDays = (int)daysRemaining( todaysDate, epiphany);
+        if ( remainingDays <= 6) {
+            scriptureFK          = (int)daysElapsed( christmas_day, todaysDate) + idxBookmark;
+        } else {
+            // workarround for Dec/Jan year overlap
+            scriptureFK          = idxBookmark + (int)daysRemaining( todaysDate, epiphany) - 365 ;
+        }
 
         char * originalCsv = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
         char * scriptureQuote = cleanQuote( originalCsv ); // clean csv text formatting
