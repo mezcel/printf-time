@@ -48,10 +48,20 @@ typedef struct displayFeastVariables_struct {
  * Prototypes
  * */
 
+/* Returns a full file path of a child directory of the current working directory */
 char *returnDefaultDbDir( char *childPath);
+
+/* Set variable flags based on the programs input arguments
+ * The file database directory path and language translation flag will be set. */
 void SetTranslationDatabase( int argc, char **argv, char **database, int *translationFlag);
+
+/* Manually concatenate 2 strings. */
 void myConcatenate( char *first, char *second );
+
+/* Manually copy chars from one variable into another. */
 void myCopyString( char *new, char *original );
+
+/* Set the full file path of a resource file. */
 void setResourcePath (char *pathVariable, char *parentPath, char *childPath);
 
 /* Replace substring sequence within a string. */

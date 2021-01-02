@@ -10,10 +10,82 @@
 //#include <stdlib.h>   // system()
 #include <windows.h>    // Win10 GetConsoleScreenBufferInfo()
 #include <conio.h>      // getch() Win10 only
+#include <direct.h>     // _getcwd
 
 #include "../headers/my_calendar.h"
 #include "../headers/my_file_to_struct.h"
 #include "../headers/my_tty_ui.h"
+
+char *returnDefaultDbDir( char *childPath) {
+    // _getcwd() depends on #include <direct.h>
+    char currentDirPath[FILENAME_MAX];
+    _getcwd( currentDirPath, FILENAME_MAX );
+    return strcat(currentDirPath, childPath);
+}
+
+void SetTranslationDatabase( int argc, char **argv, char **database, int *translationFlag) {
+
+    /*
+     * Getopt() API, #include <unistd.h> // getopt()
+     * Optarg: contains pointer to command line valid option’s argument
+     * Optopt: contains command line option if mandatory command line option is missing
+     * Opterr: set to non-zero when invalid option is provided or value of mandatory command line option is not given */
+
+
+    int opt = 0;
+    char *in_database = NULL;
+    char *in_translation = NULL;
+    int nabFlag, vulgateFlag, isDBInput;
+
+    while ((opt = getopt(argc, argv, "d:t:")) != -1) {
+        switch(opt) {
+
+            case 't':
+
+                in_translation = optarg;
+                nabFlag = strcmp( "nab", in_translation );
+                vulgateFlag = strcmp( "vulgate", in_translation );
+
+                if ( nabFlag == 0 ) {
+                    //printf("\n Translation = %s, English", in_translation);
+                    *translationFlag = 1;
+                } else if ( vulgateFlag == 0 ) {
+                    //printf("\n Translation = %s, Latin", in_translation);
+                    *translationFlag = 0;
+                } else {
+                    //printf("\n \"%s\" is an invalid translation option. Using default translation database.", in_translation);
+                    *translationFlag = 1;
+                }
+                break;
+
+            case 'd':
+                isDBInput = strcmp( "-t", optarg );
+                if ( isDBInput != 0 ) {
+                    in_database = optarg;
+                    //printf("\n Database parent directory path = %s", in_database);
+                    database[0] = in_database;
+                }
+                break;
+
+            /*case '?':
+                    printf("\n Invalid option received");
+                if (optopt == 'd') {
+                    printf("\n Missing database parent directory path");
+                    printf("\n\tExample:");
+                    printf("\n\tPath is \"~/Downloads/\" if the following is true:");
+                    printf("\n\t~/Downloads/csv and ~/Downloads/json");
+
+                }
+                if (optopt == 't') {
+                    printf("\n Translation was not set. ");
+                    printf("\n\t Enter either \"nab\" or \"vulgate\"");
+                    printf("\n\t \"nab\" = English. \"vulgate\" = Latin.");
+                }
+
+                break;*/
+        }
+    }
+}
 
 void clearScreen() {
 
