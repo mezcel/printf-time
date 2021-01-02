@@ -27,5 +27,19 @@ if [ $isDebian -eq 0 ]; then
 
         mv $tempBashrc $origianlBashrc
         echo -e "#\tRemoved $(pwd)/ttyBashrc from ~/.bashrc ..."
+
+        ## remove misc aliases and bin copies
+        if [ -f man/printf-time ]; then rm man/printf-time; fi
+        if [ -f /usr/bin/printf-time ]; then sudo rm /usr/bin/printf-time; fi
+        if [ -f /usr/bin/ttyRosary ]; then sudo rm /usr/bin/ttyRosary; fi
+        if [ -f /usr/bin/gtkRosary ]; then sudo rm /usr/bin/gtkRosary; fi
+
+        if [ -f /usr/bin/ttyBashrc ]; then sudo rm /usr/bin/ttyBashrc; fi
+        if [ -f /bin/ttyBashrc ]; then sudo rm /bin/ttyBashrc; fi
+
+        echo -e "#\tRemoved misc aliases and bin copies ..."
+
     fi
+
+
 fi

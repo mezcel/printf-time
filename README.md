@@ -54,13 +54,16 @@ make gtkRosary
 ```sh
 ## TTY App
 
-./ttyRosary         ## NAB English, using a CSV database
-./ttyRosary -v      ## Vulgate Latin, using a JSON database
+./ttyRosary             ## NAB English, using default CSV database
+./ttyRosary -t nab      ## NAB English, using default CSV database
+./ttyRosary -t vulgate  ## Vulgate Latin, using default JSON database
+
+./ttyRosary -d "path"   ## Import database from remote location
 
 ## GTK App
 
-./gtkRosary         ## NAB English
-./gtkRosary -v      ## Vulgate Latin
+./gtkRosary             ## NAB English
+./gtkRosary -v          ## Vulgate Latin
 ```
 
 ### 1.1.1 Holiday Themed Bashrc (WIP)

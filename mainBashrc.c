@@ -7,6 +7,8 @@
 #include <string.h>     // strcmp()
 #include <time.h>       // After year 2038, use an x64 compiler
 
+#include <unistd.h>
+
 #include "headers/my_calendar.h"
 #include "headers/my_file_to_struct.h"
 #include "headers/my_tty_ui.h"
@@ -24,6 +26,7 @@
     #define IS_LINUX 0  // Not UNIX
 #endif
 
+
 int main( int argc, char **argv ) {
 
     // Exit program with a message if the run-time environment is not a Unix-like/Posix-like environment.
@@ -36,6 +39,10 @@ int main( int argc, char **argv ) {
         printf( "\n" );
     }
 
+    int translationFlag = 1; // N/A
+    char *database_path = returnDefaultDbDir("/database/");
+    SetTranslationDatabase( argc, argv, &database_path, &translationFlag);
+
     rosary_db_t rosary_db_struct;                               // Declare app's rosary db var
     displayVariables_t queryViewStruct;                         // Declare rosary db query view var
 
@@ -46,26 +53,34 @@ int main( int argc, char **argv ) {
     char *verboseDate       = returnVerboseDate( todaysDate, 0 );  // Decorative Date Display (abbreviated)
     int weekdayNo           = todaysDate.tm_wday;               // Day of the week
 
-    int nabFlag = returnLaunchArgument( argc, argv[1] );        // Sets either NAB or Vulgate
     int desiredDispLen;                                         // POSIX terminal column width
 
-    // Load Database files // NAB CSV Database
-    char *rosaryBead_path   = "database/csv/rosaryBead.csv";
-    char *bead_path         = "database/csv/bead.csv";
-    char *book_path         = "database/csv/book.csv";
-    char *decade_path       = "database/csv/decade.csv";
-    char *message_path      = "database/csv/message.csv";
-    char *mystery_path      = "database/csv/mystery.csv";
-    char *prayer_path       = "database/csv/prayer.csv";
-    char *scripture_path    = "database/csv/scripture.csv";
+    char rosaryBead_path[FILENAME_MAX];
+    setResourcePath(rosaryBead_path, database_path, "csv/rosaryBead.csv");
+    char bead_path[FILENAME_MAX];          // Bead types and names
+    setResourcePath(bead_path, database_path, "csv/bead.csv");
+    char book_path[FILENAME_MAX];          // Book Titles
+    setResourcePath(book_path, database_path, "csv/book.csv");
+    char decade_path[FILENAME_MAX];        // Decade beads readings
+    setResourcePath(decade_path, database_path, "csv/decade.csv");
+    char message_path[FILENAME_MAX];       // Decade mystery information
+    setResourcePath(message_path, database_path, "csv/message.csv");
+    char mystery_path[FILENAME_MAX];       // Mystery names
+    setResourcePath(mystery_path, database_path, "csv/mystery.csv");
+    char prayer_path[FILENAME_MAX];        // Prayer database
+    setResourcePath(prayer_path, database_path, "csv/prayer.csv");
+    char scripture_path[FILENAME_MAX];
+    setResourcePath(scripture_path, database_path, "csv/scripture.csv");
+
     char *csv_path_array[8] = { rosaryBead_path, bead_path, book_path, decade_path,
             message_path, mystery_path, prayer_path, scripture_path };
 
     make_struct_rosary_db_csv( &rosary_db_struct, csv_path_array );         // Make struct database from files
 
-
     // User defined feast days, CSV File
-    char *feast_csv_file    = "database/csv/feast.csv";
+    char feast_csv_file[FILENAME_MAX];
+    setResourcePath(feast_csv_file, database_path, "csv/feast.csv");
+
     int recordCount         = returnCsvRecordCount( feast_csv_file );
 
     make_struct_feast_db_csv( &feast_db_struct, feast_csv_file );               // User defined static feast day db

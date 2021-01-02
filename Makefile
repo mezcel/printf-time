@@ -142,8 +142,6 @@ clean:
 	## removing any precompiled binaries (Linux)
 	rm -f *.o ttyRosary gtkRosary ttyBashrc *.o *.out *.obj *.exe
 	bash sources/clean-holiday-bashrc.sh
-	if [ -f man/printf-time ]; then rm man/printf-time; fi
-	if [ -f /usr/bin/printf-time ]; then sudo rm /usr/bin/printf-time; fi
 	#
 
 cleanBashrc:

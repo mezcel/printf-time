@@ -21,6 +21,44 @@
 #endif
 */
 
+
+
+void myConcatenate( char *first, char *second ) {
+    int i, j;
+
+    i = 0;
+    while( first[i]!='\0') {
+        i++;
+    }
+
+    j = 0;
+    while( second[j]!='\0') {
+        first[i] = second[j];
+        i++;
+        j++;
+    }
+
+    first[i] = '\0';
+}
+
+void myCopyString( char *new, char *original ) {
+    int c = 0;
+
+    while (original[c] != '\0') {
+        new[c] = original[c];
+        c++;
+    }
+
+    new[c] = '\0';
+}
+
+void setResourcePath (char *pathVariable, char *parentPath, char *childPath) {
+    myCopyString( pathVariable, parentPath);
+    myConcatenate( pathVariable, childPath);
+}
+
+
+
 char *stringReplace( char *original, char *pattern, char *replacement ) {
     size_t outsize = strlen( original ) + 1;
     // TODO maybe avoid reallocating by counting the non-overlapping occurrences of pattern
@@ -529,6 +567,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     int screenWidthMin = 95; // used for wrapping progress bars, containing tabs
 
     char *scriptureQuote = cleanQuote( queryViewStruct.scriptureText );
+    char *prayerQuote = cleanQuote( queryViewStruct.prayerText );
 
     if ( queryViewStruct.loopBody == 1 ) {
         rosaray_region_string = "Rosary Body";
@@ -594,7 +633,7 @@ void renderRosaryDisplay( displayVariables_t queryViewStruct, int desiredDispLen
     multiLinePrintF( "\n\t\t", queryViewStruct.mesageText, desiredDispLen, minFruitsRow );
     multiLinePrintF( "\n Background:\t", queryViewStruct.decadeInfo, desiredDispLen, minBackgroundRows );
     multiLinePrintF( "\n\n Scripture:\t", scriptureQuote, desiredDispLen, minScriptureRows );
-    multiLinePrintF( "\n\n Prayer:\t", queryViewStruct.prayerText, desiredDispLen, minPrayerRows );
+    multiLinePrintF( "\n\n Prayer:\t", prayerQuote, desiredDispLen, minPrayerRows );
     printf( "\n\n" );
 
     // footer

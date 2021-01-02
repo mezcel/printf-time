@@ -28,9 +28,18 @@ if [ $isDebian -eq 0 ]; then
         echo -e "\n## Special holiday bash text" >> $tempBashrc
         projectRoot=$(pwd)
 
-        echo -e "currentDir=\$(pwd); cd $projectRoot; ./ttyBashrc; cd \$currentDir" >> $tempBashrc
+        #echo -e "currentDir=\$(pwd); cd $projectRoot; ./ttyBashrc; cd \$currentDir" >> $tempBashrc
+        #echo -e "exec $(pwd)/ttyBashrc -d $(pwd)/" >> $tempBashrc
+        #echo -e "ttyBashrc -d $(pwd)/database/" >> $tempBashrc
+        echo -e "alias ttyBashrc=\"ttyBashrc -d $(pwd)/database/\"; ttyBashrc" >> $tempBashrc
 
         mv $tempBashrc $origianlBashrc
         echo -e "#\tAppended $(pwd)/ttyBashrc to ~/.bashrc ..."
+
+
+        #sudo ln -s ttyBashrc /usr/bin/ttyBashrc
+
+        sudo cp ttyBashrc /usr/bin/
+        echo -e "#\tMade global user /usr/bin/ttyBashrc copy..."
     fi
 fi

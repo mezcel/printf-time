@@ -48,6 +48,12 @@ typedef struct displayFeastVariables_struct {
  * Prototypes
  * */
 
+char *returnDefaultDbDir( char *childPath);
+void SetTranslationDatabase( int argc, char **argv, char **database, int *translationFlag);
+void myConcatenate( char *first, char *second );
+void myCopyString( char *new, char *original );
+void setResourcePath (char *pathVariable, char *parentPath, char *childPath);
+
 /* Replace substring sequence within a string. */
 char *stringReplace(char *original, char *pattern, char *replacement);
 

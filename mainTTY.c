@@ -40,40 +40,46 @@ int main( int argc, char **argv ) {
     int navigtionPosition  = initialMystery( weekdayNo );       // Set starting progress position record
 
     char *titleLabel;                                           // String to display which db is used
-    int nabFlag = returnLaunchArgument( argc, argv[1] );        // Sets either NAB or Vulgate
+    //int nabFlag = returnLaunchArgument( argc, argv[1] );        // Sets either NAB or Vulgate
+    int nabFlag = 1;
+    char *database_path = returnDefaultDbDir("/database/");
+    SetTranslationDatabase( argc, argv, &database_path, &nabFlag);
+
     int desiredDispLen;                                         // POSIX terminal column width
 
     /*  DB file path variables */
 
-    char *jsonFilePath     = "database/json/rosaryJSON-vulgate.json"; // Optional Latin Vulgate database
+    char jsonFilePath[FILENAME_MAX];
+        setResourcePath(jsonFilePath, database_path, "json/rosaryJSON-vulgate.json");
 
     /*  English NAB Database */
-    char *rosaryBead_path  = "database/csv/rosaryBead.csv";    // Scripted sequence of foreign keys
-    char *bead_path        = "database/csv/bead.csv";          // Bead types and names
-    char *book_path        = "database/csv/book.csv";          // Book Titles
-    char *decade_path      = "database/csv/decade.csv";        // Decade beads readings
-    char *message_path     = "database/csv/message.csv";       // Decade mystery information
-    char *mystery_path     = "database/csv/mystery.csv";       // Mystery names
-    char *prayer_path      = "database/csv/prayer.csv";        // Prayer database
-    char *scripture_path   = "database/csv/scripture.csv";     // Scripture quote database
+
+    char rosaryBead_path[FILENAME_MAX];
+        setResourcePath(rosaryBead_path, database_path, "csv/rosaryBead.csv");
+    char bead_path[FILENAME_MAX];          // Bead types and names
+        setResourcePath(bead_path, database_path, "csv/bead.csv");
+    char book_path[FILENAME_MAX];          // Book Titles
+        setResourcePath(book_path, database_path, "csv/book.csv");
+    char decade_path[FILENAME_MAX];        // Decade beads readings
+        setResourcePath(decade_path, database_path, "csv/decade.csv");
+    char message_path[FILENAME_MAX];       // Decade mystery information
+        setResourcePath(message_path, database_path, "csv/message.csv");
+    char mystery_path[FILENAME_MAX];       // Mystery names
+        setResourcePath(mystery_path, database_path, "csv/mystery.csv");
+    char prayer_path[FILENAME_MAX];        // Prayer database
+        setResourcePath(prayer_path, database_path, "csv/prayer.csv");
+    char scripture_path[FILENAME_MAX];
+        setResourcePath(scripture_path, database_path, "csv/scripture.csv");
 
     /* User defined feast days, CSV File */
 
-    char *feast_csv_file    = "database/csv/feast.csv";
+    char feast_csv_file[FILENAME_MAX];
+        setResourcePath(feast_csv_file, database_path, "csv/feast.csv");
     int recordCount         = returnCsvRecordCount( feast_csv_file );
 
     desiredDispLen = returnScreenWidth();                                       // Set terminal width
     clearScreen();                                                              // Clear screen
     deactivateEcho();                                                           // Deactivate POSIX tty echo
-
-    /* Abort script */
-    /*
-    if ( nabFlag > 1 ) {
-        badArgMsg( desiredDispLen );    // Display a warning and instruction message
-        activateEcho();                 // Restore POSIX TTY echo
-        return 0;                       // Abort program
-    }
-    */
 
     /* Load Database files */
 
