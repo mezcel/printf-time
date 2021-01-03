@@ -22,43 +22,6 @@
 */
 
 
-
-void myConcatenate( char *first, char *second ) {
-    int i, j;
-
-    i = 0;
-    while( first[i]!='\0') {
-        i++;
-    }
-
-    j = 0;
-    while( second[j]!='\0') {
-        first[i] = second[j];
-        i++;
-        j++;
-    }
-
-    first[i] = '\0';
-}
-
-void myCopyString( char *new, char *original ) {
-    int c = 0;
-
-    while (original[c] != '\0') {
-        new[c] = original[c];
-        c++;
-    }
-
-    new[c] = '\0';
-}
-
-void setResourcePath (char *pathVariable, char *parentPath, char *childPath) {
-    myCopyString( pathVariable, parentPath);
-    myConcatenate( pathVariable, childPath);
-}
-
-
-
 char *stringReplace( char *original, char *pattern, char *replacement ) {
     size_t outsize = strlen( original ) + 1;
     // TODO maybe avoid reallocating by counting the non-overlapping occurrences of pattern
@@ -127,6 +90,40 @@ int initialMystery( int weekdayNo ) {
     }
     return navigtionPosition[ weekdayNo ];
 
+}
+
+void myConcatenate(char* first, char* second) {
+    int i, j;
+
+    i = 0;
+    while (first[i] != '\0') {
+        i++;
+    }
+
+    j = 0;
+    while (second[j] != '\0') {
+        first[i] = second[j];
+        i++;
+        j++;
+    }
+
+    first[i] = '\0';
+}
+
+void myCopyString(char* new, char* original) {
+    int c = 0;
+
+    while (original[c] != '\0') {
+        new[c] = original[c];
+        c++;
+    }
+
+    new[c] = '\0';
+}
+
+void setResourcePath(char* pathVariable, char* parentPath, char* childPath) {
+    myCopyString(pathVariable, parentPath);
+    myConcatenate(pathVariable, childPath);
 }
 
 void borderCharPrintF( char *charSymbol, int borderWidth ) {

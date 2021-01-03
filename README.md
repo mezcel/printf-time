@@ -34,6 +34,7 @@ A **( Latin / English )** scripture **Rosary** written in C/GCC for the GTK and 
 ```Makefile```
 
 ```sh
+## Debian Makefile/Gcc
 ## Clean previously complied binary builds and undo changes made to bashrc by ttyBasrc
 
 make clean
@@ -52,7 +53,7 @@ make gtkRosary
 ### 1.1 Run
 
 ```sh
-## TTY App
+## Debian TTY App
 
 ./ttyRosary             ## NAB English, using default CSV database
 ./ttyRosary -t nab      ## NAB English, using default CSV database
@@ -60,7 +61,7 @@ make gtkRosary
 
 ./ttyRosary -d "path"   ## Import database from remote location
 
-## GTK App
+## Debian GTK App
 
 ./gtkRosary             ## NAB English
 ./gtkRosary -v          ## Vulgate Latin
@@ -98,7 +99,7 @@ sudo apt install libjson-c-dev libjson-c-doc libjson-c3
 sudo apt install groff pandoc
 ```
 
-## 2. Compile on Win10 ( Secondary OS )
+## 2. Compile on Win10 VS2019 ( Secondary OS )
 
 ### 2.1 Visual Studio's Developer Powershell / Command Prompt
 
@@ -120,7 +121,7 @@ cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
 .\ttyRosary.exe
 ```
 
-### 2.2 Homebrew Makefile scripts
+### 2.2 Homebrew Nmake "Makefile" scripts (Win10 VS2019 Cpp)
 
 I made the following to scripts to automate the compile and build preocess.
 

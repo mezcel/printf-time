@@ -51,19 +51,6 @@ typedef struct displayFeastVariables_struct {
 /* Returns a full file path of a child directory of the current working directory */
 char *returnDefaultDbDir( char *childPath);
 
-/* Set variable flags based on the programs input arguments
- * The file database directory path and language translation flag will be set. */
-void SetTranslationDatabase( int argc, char **argv, char **database, int *translationFlag);
-
-/* Manually concatenate 2 strings. */
-void myConcatenate( char *first, char *second );
-
-/* Manually copy chars from one variable into another. */
-void myCopyString( char *new, char *original );
-
-/* Set the full file path of a resource file. */
-void setResourcePath (char *pathVariable, char *parentPath, char *childPath);
-
 /* Replace substring sequence within a string. */
 char *stringReplace(char *original, char *pattern, char *replacement);
 
@@ -83,6 +70,19 @@ int initialMystery( int weekdayNo );
 int pressKeyContinue(
     displayFeastVariables_t queryFeastViewStruct,
     int navigtionPosition, int weekdayNo, int desiredDispLen );
+
+/* Set variable flags based on the programs input arguments
+ * The file database directory path and language translation flag will be set. */
+void SetTranslationDatabase(int argc, char** argv, char** database, int* translationFlag);
+
+/* Manually concatenate 2 strings. */
+void myConcatenate(char* first, char* second);
+
+/* Manually copy chars from one variable into another. */
+void myCopyString(char* new, char* original);
+
+/* Set the full file path of a resource file. */
+void setResourcePath(char* pathVariable, char* parentPath, char* childPath);
 
 /* Pause and prompt user to press enter. */
 void pressEnter();
