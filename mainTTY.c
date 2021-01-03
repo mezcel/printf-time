@@ -20,8 +20,10 @@
 
 #ifdef __unix__
     #define IS_LINUX 1  // This app was tested on Debian Linux Gcc ( x86/x64 ) Jan 2020
+    /* #include "sources/my_tty_ui_posix.c" */
 #else
     #define IS_LINUX 0  // This app was tested on Win10 Visual Studio 2019 ( x86/x64 ) Jan 2020
+    /* #include "sources/my_tty_ui_win.c" */
 #endif
 
 int main( int argc, char **argv ) {
@@ -42,7 +44,7 @@ int main( int argc, char **argv ) {
     char *titleLabel;                                           // String to display which db is used
     //int nabFlag = returnLaunchArgument( argc, argv[1] );        // Sets either NAB or Vulgate
     int nabFlag = 1;
-    char *database_path = returnDefaultDbDir("/database/");
+    char* database_path = returnDefaultDbDir("/database/");
     SetTranslationDatabase( argc, argv, &database_path, &nabFlag);
 
     int desiredDispLen;                                         // POSIX terminal column width

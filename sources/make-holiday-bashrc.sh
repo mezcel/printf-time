@@ -31,7 +31,7 @@ if [ $isDebian -eq 0 ]; then
         #echo -e "currentDir=\$(pwd); cd $projectRoot; ./ttyBashrc; cd \$currentDir" >> $tempBashrc
         #echo -e "exec $(pwd)/ttyBashrc -d $(pwd)/" >> $tempBashrc
         #echo -e "ttyBashrc -d $(pwd)/database/" >> $tempBashrc
-        echo -e "alias ttyBashrc=\"ttyBashrc -d $(pwd)/database/\"; ttyBashrc" >> $tempBashrc
+        echo -e "alias ttyBashrc=\"ttyBashrc -d $(pwd)/database/\"\nttyBashrc" >> $tempBashrc
 
         mv $tempBashrc $origianlBashrc
         echo -e "#\tAppended $(pwd)/ttyBashrc to ~/.bashrc ..."

@@ -88,7 +88,6 @@ void SetTranslationDatabase( int argc, char **argv, char **database, int *transl
     }
 }
 
-
 void clearScreen() {
 
     // POSIX
