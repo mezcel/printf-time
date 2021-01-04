@@ -9,26 +9,21 @@ lang: en-US
 
 # printf-time
 
-> Version: ```v0.4.5.?``` ( **rolling release** )
-* The algorithms are **dumb** rather than **elegant and smart** in order to facilitate <u>*re-continuing*</u> the project after months of not programming in ```C``` or looking at this application.
-    * Focused on *standard libraries* to minimize cross compatibility incompatibilities.
-    * Cross platform and scripted with scalabile portability in mind.
-    * Gcc for Debian OS
-    * Cpp for Win10 VS2019
+> Version: ```v0.5.?``` ( **rolling release** )
 
 ## About:
 #### Primary:
 
-A **( Latin / English )** scripture **Rosary** written in C/GCC for the GTK and the TTY. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
+A **( Latin / English )** scripture **Rosary** written in ```C``` for the ```GTK``` and the ```TTY```. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
+    * Gcc for Debian OS
+    * Cpp for Win10 VS2019
 
 #### Secondary:
 
-This project also contains a calculated liturgical season calendar. If using a Debian OS, the ```bash``` tty will have seasonally appropriate decorations and feast day notifications. ( *This feature should probably ported into it's own separate and dedicated application. It lacks seasonal potency since I recycled existing resources from the Rosary app.* )
+This project also contains a calculated liturgical season calendar.
+> If using a Debian OS, the ```bash``` tty will have seasonally appropriate decorations and feast day notifications. ( *This feature should probably ported into it's own separate and dedicated application. It lacks seasonal potency since I recycled existing resources from the Rosary app.* )
 
-<b>Calendar Reference:</b>
-
-* Each year the Secretariat of Divine Worship of the United States Conference of Catholic Bishops publishes the Liturgical Calendar for the Dioceses of the United States of America.
-* [liturgical-calendar](https://www.usccb.org/committees/divine-worship/liturgical-calendar)
+* [official liturgical calendar](https://www.usccb.org/committees/divine-worship/liturgical-calendar)
 
 ## UI Options:
 
