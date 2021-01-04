@@ -90,7 +90,9 @@ int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm seaso
      * Return 1-4 depending on which session the current time resides in. */
 int returnLiturgicalSeason(
     struct tm *tmNow, struct tm *advent_start,
-    struct tm *christmas_day, struct tm *epiphany, struct tm *ash_wednesday,
+    struct tm *christmas_day, struct tm *dec_thirtyone,
+    struct tm *solemnity_of_mary, struct tm *epiphany,
+    struct tm *jesus_baptism, struct tm *ash_wednesday,
     struct tm *easter_sunday, struct tm *pentacost );
 
 #endif

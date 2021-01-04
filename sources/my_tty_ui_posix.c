@@ -302,23 +302,27 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
 
     // Post Nativity quote
     if (strcmp(season, "Christmas Season") == 0) {
-        // scripture.csv index: [51-90]
-        int idxBookmark = 51;
+        // scripture.csv index: [41-53]
+        int idxBookmark = 41;
+        int remainingDec = 0; // elapsed days in Christmas tide December
+        int remainingJan = 6; // remaining days of Christmastide January
 
-        struct tm christmas_day = setSpecificDate( todaysDate.tm_year + 1900, 11, 25 ); // wed Dec 25
-        //scriptureFK          = (int)daysElapsed( christmas_day, todaysDate) + idxBookmark;
-        struct tm epiphany      = addDays( christmas_day, 12 );                          // 12 days after Christmas
+        struct tm dec_thirtyone  = setSpecificDate( todaysDate.tm_year + 1900, 11, 31 ); // Dec 31
+        remainingDec = (int)daysRemaining( todaysDate, dec_thirtyone);
 
-        int remainingDays = (int)daysRemaining( todaysDate, epiphany);
-        if ( remainingDays <= 6) {
-            scriptureFK          = (int)daysElapsed( christmas_day, todaysDate) + idxBookmark;
-        } else {
-            // workarround for Dec/Jan year overlap
-            scriptureFK          = idxBookmark + (int)daysRemaining( todaysDate, epiphany) - 365 ;
+        struct tm jesus_baptism = setSpecificDate( todaysDate.tm_year + 1900, 0, 6 );
+        shiftJesusBaptism( &jesus_baptism );                    // Baptism of Jesus (Circa Epiphany)
+
+        remainingJan = (int)daysRemaining( todaysDate, jesus_baptism);
+
+        if ( remainingDec <= 6 ) {
+            scriptureFK = ( 6 -remainingDec ) + idxBookmark;
+        } else if ( remainingJan >= 0 ) {
+            scriptureFK = ( 6 + remainingJan ) + idxBookmark;
         }
 
         char * originalCsv = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
-        char * scriptureQuote = cleanQuote( originalCsv ); // clean csv text formatting
+        char * scriptureQuote = cleanQuote( originalCsv );      // clean csv text formatting
 
         //light purple \e[1;35m
         sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
@@ -332,12 +336,12 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         // scripture.csv index: [91-151]
         int idxBookmark = 91;
 
-        struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 ); // PFM Calculation Result
-        struct tm ash_wednesday = subtractDays( easter_sunday, 46 ); // count back to ash wed
+        struct tm easter_sunday = setEasterDate( todaysDate.tm_year + 1900 );   // PFM Calculation Result
+        struct tm ash_wednesday = subtractDays( easter_sunday, 46 );            // count back to ash wed
 
-        scriptureFK          = (int)daysElapsed( ash_wednesday, todaysDate) + idxBookmark;
+        scriptureFK = (int)daysElapsed( ash_wednesday, todaysDate) + idxBookmark;
 
-        char * originalCsv = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
+        char * originalCsv    = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
         char * scriptureQuote = cleanQuote( originalCsv ); // clean csv text formatting
 
         //red \e[0;31m
