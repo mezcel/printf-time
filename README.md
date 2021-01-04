@@ -14,14 +14,14 @@ lang: en-US
 ## About:
 #### Primary:
 
-A **( Latin / English )** scripture **Rosary** written in ```C``` for the ```GTK``` and the ```TTY```. It uses both a CSV and a JSON Database. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
-    * Gcc for Debian OS
-    * Cpp for Win10 VS2019
+An **English/Latin** scripture **Rosary** written in ```C```, with a ```GTK```, and a ```TTY``` user interface. It uses CSV and JSON databases. The CSV contains NAB quotes in English and the JSON contains Vulgate quotes in Latin.
+* Gcc for Debian OS
+* Cpp for Win10 VS2019
 
 #### Secondary:
 
-This project also contains a calculated liturgical season calendar.
-> If using a Debian OS, the ```bash``` tty will have seasonally appropriate decorations and feast day notifications. ( *This feature should probably ported into it's own separate and dedicated application. It lacks seasonal potency since I recycled existing resources from the Rosary app.* )
+This project also contains a liturgical season calendar algorithm.
+> The ```Bash``` tty on ```Debian OS``` will display seasonally appropriate decorations and feast day notifications.
 
 * [official liturgical calendar](https://www.usccb.org/committees/divine-worship/liturgical-calendar)
 
