@@ -149,7 +149,7 @@ void multiLinePrintF( char *labelChars, char *strIn, int desiredLineLength, int 
     if ( inputLength < max_line_chars ) {                   // short enough to be 1 line
 
         if ( rowCounter == 1 ) {
-            printf( "%s", strIn,inputLength ,max_line_chars  );         // Initial line
+            printf( "%s", strIn, inputLength ,max_line_chars  );         // Initial line
         } else {
             printf( "%s\n\t\t", strIn, inputLength ,max_line_chars  );  // tabbed line
         }

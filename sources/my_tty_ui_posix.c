@@ -229,7 +229,11 @@ void activateEcho() {
 
 void boldString( char *inStr ) {
     // Print a white bold string using Bash ANSI
-    printf( "\e[1;37m%s\e[0m", inStr );
+    //printf( "\e[1;30m%s\e[0m", inStr ); // bold black, looks gray
+    //printf( "\e[1;37m%s\e[0m", inStr ); // bold white
+    printf( "\e[1;34m%s\e[0m", inStr ); // bold Blue
+    //printf( "\e[0;36m%s\e[0m", inStr ); // bold Cyan
+
 }
 
 void pressEnter() {
@@ -273,7 +277,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
     printf( "\n" );
 
     // Basic Ordinary time
-    if ( strcmp( season, "Ordinary Season" ) == 0 ) {
+    if ( strcmp( season, "Ordinary Time" ) == 0 ) {
         //green \e[0;32m
         sprintf( seasonString, "\e[1;32m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
         multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen  + 13, 0 );
