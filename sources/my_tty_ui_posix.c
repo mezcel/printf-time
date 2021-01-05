@@ -301,19 +301,22 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
     }
 
     // Post Nativity quote
-    if (strcmp(season, "Christmas Season") == 0) {
+    if ( strcmp(season, "Christmas Season" ) == 0) {
         // scripture.csv index: [41-53]
         int idxBookmark = 41;
-        int remainingDec = 0; // elapsed days in Christmas tide December
-        int remainingJan = 6; // remaining days of Christmastide January
+        int remainingDec = 31 - 25; // elapsed days in Christmas tide December
+        int remainingJan = 1 + 5;   // remaining days of Christmastide January
 
+        // Remaining days in December
         struct tm dec_thirtyone  = setSpecificDate( todaysDate.tm_year + 1900, 11, 31 ); // Dec 31
         remainingDec = (int)daysRemaining( todaysDate, dec_thirtyone);
 
-        struct tm jesus_baptism = setSpecificDate( todaysDate.tm_year + 1900, 0, 6 );
-        shiftJesusBaptism( &jesus_baptism );                    // Baptism of Jesus (Circa Epiphany)
+        // Initial days in January
+        struct tm epiphany = setSpecificDate( todaysDate.tm_year + 1900, 0, 6 );
+        shiftTowardSunday( &epiphany );                    // Epiphany Sunday
+        shiftJesusBaptism( &epiphany );                    // Baptism of Jesus
 
-        remainingJan = (int)daysRemaining( todaysDate, jesus_baptism);
+        remainingJan = (int)daysRemaining( todaysDate, epiphany );
 
         if ( remainingDec <= 6 ) {
             scriptureFK = ( 6 -remainingDec ) + idxBookmark;

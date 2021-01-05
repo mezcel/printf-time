@@ -257,14 +257,21 @@ void shiftTowardSunday( struct tm *tmDate ) {
 }
 
 void shiftJesusBaptism( struct tm *tmDate ) {
-    /* Aprox Jan 13
+    /* Epiphany is aprox 12 days after Christmas Day, Jan 6-ish
+     * Epiphany Sunday is close to, or on Jan 6
+     * Jesus's baptism is the sunday after Epiphany Sunday
      * Sunday after the Mass which celebrates the Epiphany
      * Monday if Epiphany Sunday shared the same day */
 
-    int intial_wday = tmDate -> tm_wday;
+    int intial_wday = tmDate -> tm_wday; // Weekday [0-6] sun=0
+    int intial_mday = tmDate -> tm_mday; // Day of the month [1-31]
 
     if ( intial_wday == 0 ) {
-        tmDate -> tm_mday   += 1;
+        if ( intial_mday <= 6) {
+            tmDate -> tm_mday   += 7; // 6 Move to next Sunday
+        } else {
+            tmDate -> tm_mday   += 1; // Move to upcoming Monday
+        }
 
         time_t t            = mktime( tmDate );
         tmDate -> tm_mday   = localtime( &t ) -> tm_mday;
@@ -369,7 +376,7 @@ int returnLiturgicalSeason(
 
     if ( ( isAdvent == 1 ) && ( isAdvent != isChristmasDec ) ) {
         returnFlag = 0;     // Advent
-    } else if ( ( isChristmasDec == 1 ) || (isChristmasJan == 1 ) ) {
+    } else if ( ( isChristmasDec == 1 ) || ( isChristmasJan == 1 ) ) {
         returnFlag = 1;     // Christmas
     } else if ( isLent ) {
         returnFlag = 2;     // Lent
@@ -401,6 +408,7 @@ char *stringLiturgicalSeason() {
     shiftTowardSunday( &epiphany );                                                 // Epiphany Sunday This Year
 
     struct tm jesus_baptism = setSpecificDate( todaysDate.tm_year + 1900, 0, 6 );
+    shiftTowardSunday( &jesus_baptism );
     shiftJesusBaptism( &jesus_baptism );                                            // Baptism of Jesus (Circa Epiphany)
 
     // Lent Season
@@ -454,6 +462,7 @@ char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeas
     shiftTowardSunday( &epiphany );                                                 // Epiphany Sunday This Year
 
     struct tm jesus_baptism = setSpecificDate( todaysDate.tm_year + 1900, 0, 6 );
+    shiftTowardSunday( &jesus_baptism );
     shiftJesusBaptism( &jesus_baptism );                                            // Baptism of Jesus (Circa Epiphany)
 
     // Lent Season Feasts
