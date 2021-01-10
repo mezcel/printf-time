@@ -304,7 +304,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
     }
 
-    // Post Nativity quote
+    // Post Nativity / Christmastide quote
     if ( strcmp(season, "Christmas Season" ) == 0) {
         // scripture.csv index: [41-53]
         int idxBookmark = 41;
@@ -332,7 +332,8 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         char * scriptureQuote = cleanQuote( originalCsv );      // clean csv text formatting
 
         //light purple \e[1;35m
-        sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
+        //yellow \e[1;33m
+        sprintf( seasonString, "\e[1;33m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
         multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen + 13, 0 );
         printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
@@ -371,7 +372,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         char * originalCsv = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
         char * scriptureQuote = cleanQuote( originalCsv ); // clean csv text formatting
 
-        //yellow \e[0;33m
+        //yellow \e[1;33m
         sprintf( seasonString, "\e[1;33m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
         multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen  + 13, 0 );
         printf( "\n" );
