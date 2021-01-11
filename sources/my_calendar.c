@@ -332,10 +332,13 @@ int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm seaso
 
     int returnFlag = 0;
 
-    double durationDays       = daysDuration(season_start, season_end);
-    double remainingDays      = daysRemaining(tmNow, season_end);
+    double durationDays  = daysDuration(season_start, season_end);
+    double remainingDays = daysRemaining(tmNow, season_end);
+    double upcomingDays  = daysRemaining(tmNow, season_start);
 
-    if ( ( remainingDays >= 0.0 ) && ( remainingDays <= durationDays ) ) {
+    if ( upcomingDays > 0.0 ) {
+        returnFlag = 0;
+    } else if ( ( remainingDays >= 0.0 ) && ( remainingDays <= durationDays ) ) {
         returnFlag = 1;
     } else {
         if ( remainingDays > 0.0 ) {
@@ -374,11 +377,13 @@ int returnLiturgicalSeason(
 
     int returnFlag;
 
-    if ( ( isAdvent == 1 ) && ( isAdvent != isChristmasDec ) ) {
+    if ( ( isAdvent ) && ( isAdvent != isChristmasDec ) ) {
         returnFlag = 0;     // Advent
-    } else if ( ( isChristmasDec == 1 ) || ( isChristmasJan == 1 ) ) {
+    } else if ( isChristmasDec ) {
         returnFlag = 1;     // Christmas
-    } else if ( isLent ) {
+    } else if ( isChristmasJan ) {
+        returnFlag = 1;     // Christmas
+    }else if ( isLent ) {
         returnFlag = 2;     // Lent
     } else if ( isEasterTide ) {
         returnFlag = 3;     // Easter
