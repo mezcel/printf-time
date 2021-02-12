@@ -7,7 +7,7 @@
 #include <string.h>     // strcmp()
 #include <time.h>       // After year 2038, use an x64 compiler
 
-#include <unistd.h>
+//#include <unistd.h>
 
 #include "headers/my_calendar.h"
 #include "headers/my_file_to_struct.h"
@@ -22,22 +22,14 @@
 
 #ifdef __unix__
     #define IS_LINUX 1  // This app was tested on Debian Linux ( x86/x64 ) Nov 2020
+
+    #include <unistd.h>
 #else
     #define IS_LINUX 0  // Not UNIX
 #endif
 
 
 int main( int argc, char **argv ) {
-
-    // Exit program with a message if the run-time environment is not a Unix-like/Posix-like environment.
-    // Redundant
-    if ( IS_LINUX == 0 ) {
-        printf( "\n" );
-        char *stringMessage = "The ttyBashrc binary was designed to work on POSIX terminal environments running the BASH virtual terminal software. The ideal run-time environment is Bash on Debian Linux. The full functionality of this program is not compatible with this system as it is currently configured.";
-        multiLinePrintF( "\e[1;31mIncompatible Program:\e[0m", stringMessage, 0, 0 );
-        printf("\nSource Code:\thttps://github.com/mezcel/printf-time.git\n");
-        printf( "\n" );
-    }
 
     int translationFlag = 1; // N/A
     char *database_path = returnDefaultDbDir("/database/");

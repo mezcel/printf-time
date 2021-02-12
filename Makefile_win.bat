@@ -16,6 +16,7 @@ SET userinput=%1
 :about
     IF "%userinput%"=="clean" GOTO menuOptions
     IF "%userinput%"=="build" GOTO menuOptions
+    IF "%userinput%"=="buildBashrc" GOTO menuOptions
     IF "%userinput%"=="run" GOTO menuOptions
 
     :: splash screen and instructions
@@ -41,6 +42,7 @@ SET userinput=%1
     ECHO        clean:
     ECHO            clear previous builds
     ECHO        build:
+    ECHO        buildBashrc:
     ECHO            clear previous builds
     ECHO            compile and build
     ECHO        run:
@@ -52,7 +54,7 @@ SET userinput=%1
     ECHO ---------------------------------------------------
     ECHO.
 
-    SET /P userinput=" Type selection option [ clean, build, run ]: "
+    SET /P userinput=" Type selection option [ clean, build, buildBashrc, run ]: "
 
 :menuOptions
     IF "%userinput%"=="quit" (
@@ -64,6 +66,10 @@ SET userinput=%1
     IF "%userinput%"=="build" (
         CALL :makeClean EOF
         CALL :makeBuild EOF
+    )
+    IF "%userinput%"=="buildBashrc" (
+        CALL :makeClean EOF
+        CALL :makeBashrc EOF
     )
     IF "%userinput%"=="run" (
         CALL :makeClean EOF
@@ -98,6 +104,19 @@ SET userinput=%1
     :: Build the executable file
     :: cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyRosary.exe"
     cl mainTTY.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj my_tty_ui_win.obj /Fe"ttyRosary.exe"
+    GOTO %~1
+
+:makeBashrc
+    ECHO Building ...
+    :: Compile and build object modules
+    cl /c sources\my_calendar.c
+    cl /c sources\my_csv_structs.c
+    cl /c sources\my_tty_ui.c
+    cl /c sources\my_tty_ui_win.c
+
+    :: Build the executable file
+    :: cl mainBashrc.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj /o "ttyBashrc.exe"
+    cl mainBashrc.c my_calendar.obj my_csv_structs.obj my_tty_ui.obj my_tty_ui_win.obj /Fe"ttyBashrc.exe"
     GOTO %~1
 
 :makeRun
