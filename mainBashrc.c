@@ -84,7 +84,7 @@ int main( int argc, char **argv ) {
     deactivateEcho();                                                           // Deactivate POSIX tty echo
 
     // Display a string representing today's Feast/Holiday state
-    bashrcHolidayDisplay( &rosary_db_struct, queryFeastViewStruct, queryViewStruct, verboseDate, desiredDispLen );
+    bashrcHolidayDisplay( &rosary_db_struct, queryFeastViewStruct, verboseDate, desiredDispLen );
 
     activateEcho();                                                             // Restore POSIX TTY echo
 

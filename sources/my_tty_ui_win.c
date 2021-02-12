@@ -29,7 +29,7 @@ void SetTranslationDatabase( int argc_NA, char **argv_NA, char **database, int *
      * In the Gcc version of this function, it would have set
      * the parent directory of the database files and set the translation flag. */
 
-    return 0;
+    return;
 }
 
 void clearScreen() {
@@ -38,7 +38,7 @@ void clearScreen() {
     // system( "@cls||clear" );
     system( "@cls" );
 
-    return 0;
+    return;
 
 }
 
@@ -75,7 +75,7 @@ void deactivateEcho() {
      * used to deactivate echo on posix compliant terminals
      * */
 
-    return 0;
+    return;
 
 }
 
@@ -86,7 +86,7 @@ void activateEcho() {
      * used to reactivate echo on posix compliant terminals
      * */
 
-    return 0;
+    return;
 
 }
 
@@ -111,7 +111,7 @@ void make_struct_rosary_db_json( rosary_db_t *rosary_db_struct, char *jsonFilePa
      * this is based on my_json_structs.c which was not loaded
      * */
 
-    return 0;
+    return;
 
 }
 
@@ -222,7 +222,7 @@ int pressKeyContinue( displayFeastVariables_t queryFeastViewStruct,
 }
 
 void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_t queryFeastViewStruct,
-        displayVariables_t queryViewStruct, char *verboseDate, int desiredDispLen ) {
+        char *verboseDate, int desiredDispLen ) {
 
     // display feast day or liturgical season state in a bash terminal
 

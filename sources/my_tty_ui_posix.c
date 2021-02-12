@@ -256,7 +256,7 @@ void pressEnter() {
 }
 
 void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_t queryFeastViewStruct,
-        displayVariables_t queryViewStruct, char *verboseDate, int desiredDispLen ) {
+        char *verboseDate, int desiredDispLen ) {
 
     // display feast day or liturgical season state in a bash terminal
 

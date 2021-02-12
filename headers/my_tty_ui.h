@@ -134,7 +134,7 @@ void updateFeastDisplayStruct(
 
 /* Render liturgical season theme in bash prompt */
 void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_t queryFeastViewStruct,
-    displayVariables_t queryViewStruct, char *verboseDate, int desiredDispLen );
+    char *verboseDate, int desiredDispLen );
 
 
 /* Render scripture rosary text to terminal. Primary UI and content display. */
