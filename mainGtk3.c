@@ -79,7 +79,10 @@ int main( int argc, char *argv[] ) {
     updateFeastDisplayStruct(
         &feast_db_struct, &queryFeastViewStruct,
         todaysDate.tm_mday, todaysDate.tm_mon, recordCount );
-    userDefinedFeast = stringFeast( todaysDate.tm_mday , todaysDate.tm_mon, queryFeastViewStruct.feastName );
+
+    userDefinedFeast  = stringFeast( queryFeastViewStruct.feastDay,
+                    queryFeastViewStruct.feastMonth,
+                    queryFeastViewStruct.feastName );
 
     gtk_init( &argc, &argv );
 

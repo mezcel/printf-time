@@ -17,8 +17,7 @@
 void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widgets *widgets, char *userDefinedFeast ) {
 
     struct tm todaysDate    = returnTodaysDate();
-    int seasonFlag          = 4; // ordinary time
-    int feastFlag           = 14; // ordinary day
+    char *seasonString      = stringLiturgicalSeason(); // liturgical season string
 
     // labels
     widgets -> lblTextDate              = GTK_WIDGET( gtk_builder_get_object( builder, "lblTextDate" ) );
@@ -46,11 +45,13 @@ void initializeLabelPointers( GtkBuilder *builder, GtkWidget *window, app_widget
     widgets -> levelBar_mystery         = GTK_WIDGET( gtk_builder_get_object( builder, "levelBar_mystery" ) );
 
     gtk_label_set_text( GTK_LABEL( widgets -> lblTextDate ), retrunWeekdayName( todaysDate.tm_wday, 0 ) );
-    gtk_label_set_text( GTK_LABEL( widgets -> lblTextLiturgicalCalendar ), retrunLiturgicalName( seasonFlag ) );
+    gtk_label_set_text( GTK_LABEL( widgets -> lblTextLiturgicalCalendar ), seasonString );
 
     if ( userDefinedFeast[0] != '\0' ) {
         gtk_label_set_text( GTK_LABEL( widgets -> lblTextFeast ), userDefinedFeast );
     } else {
+        // manually set feast
+        int feastFlag           = 14; // ordinary day
         gtk_label_set_text( GTK_LABEL( widgets -> lblTextFeast ), retrunFeastDayName( feastFlag ) );
     }
 
