@@ -40,8 +40,11 @@ This project also contains a liturgical season calendar algorithm.
 
 ```Makefile```
 
+* Compilations assumes [prequisite](#12-debian-dependencies) software packages are installed. 
+
 ```sh
 ## Debian Makefile/Gcc
+
 ## Clean previously complied binary builds and undo changes made to bashrc by ttyBasrc
 
 make clean
