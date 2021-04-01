@@ -23,6 +23,11 @@ char *returnDefaultDbDir( char *childPath_NA ) {
     return localRelPath;
 }
 
+char *coloredString( char *inputString, int colorFlag ) {
+    // dummy function representing a function used to convert a string into an ansii colored posix string
+    return;
+}
+
 void SetTranslationDatabase( int argc_NA, char **argv_NA, char **database, int *translationFlag) {
 
     /* n/a.
@@ -239,6 +244,9 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
 
     if ( desiredDispLen > 79 ) { desiredDispLen = 79; } // Limit display row char length
 
+    borderCharPrintF( ".", desiredDispLen );
+    printf("\n");
+
     // Basic Ordinary time
     if ( strcmp( season, "Ordinary Time" ) == 0 ) {
 
@@ -338,5 +346,5 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
     }
 
     printf("\n");
-
+    borderCharPrintF( ".", desiredDispLen );
 }

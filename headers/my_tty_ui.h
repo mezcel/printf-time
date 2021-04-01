@@ -57,6 +57,9 @@ char *stringReplace(char *original, char *pattern, char *replacement);
 /* Parse out pre-defined char patters from a string. */
 char *cleanQuote( char * original );
 
+/* Wrap string with ansii color chars */
+char *coloredString( char *inputString, int colorFlag );
+
 /* Return 0 if no input argument, return 1 otherwise. Used to initialize NAB or Vulgate readings.*/
 int returnLaunchArgument( int argc, char *argv );
 
@@ -135,7 +138,6 @@ void updateFeastDisplayStruct(
 /* Render liturgical season theme in bash prompt */
 void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_t queryFeastViewStruct,
     char *verboseDate, int desiredDispLen );
-
 
 /* Render scripture rosary text to terminal. Primary UI and content display. */
 void renderRosaryDisplay(
