@@ -14,7 +14,7 @@
 #include "headers/my_tty_ui.h"
 
 /*
- * // Dependency:
+ * // Dependency scripts:
  * #include "sources/my_calendar.c"
  * #include "sources/my_csv_structs.c"
  * #include "sources/my_tty_ui.c"
@@ -31,8 +31,11 @@
 
 int main( int argc, char **argv ) {
 
-    int translationFlag = 1; // N/A
+    // A var flag to set which translation to use.
+    int translationFlag = 1; // N/A. This is a dummy variable used for SetTranslationDatabase()
+
     char *database_path = returnDefaultDbDir("/database/");
+
     SetTranslationDatabase( argc, argv, &database_path, &translationFlag);
 
     rosary_db_t rosary_db_struct;                               // Declare app's rosary db var
