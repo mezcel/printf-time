@@ -336,6 +336,8 @@ int isLiturgicalSeason( struct tm tmNow, struct tm season_start, struct tm seaso
     double remainingDays = daysRemaining(tmNow, season_end);
     double upcomingDays  = daysRemaining(tmNow, season_start);
 
+    // printf( "\n## isLiturgicalSeason ##\ndurationDays %f\n remainingDays %f\n upcomingDays %f\n", durationDays, remainingDays, upcomingDays ); // debug
+
     if ( upcomingDays > 0.0 ) {
         returnFlag = 0;
     } else if ( ( remainingDays >= 0.0 ) && ( remainingDays <= durationDays ) ) {
@@ -502,6 +504,7 @@ char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeas
             &pentacost );   // returns 0-4
 
     // Determine Available Feast Day Strings
+    // printf("\nseasonFlag %d\n", seasonFlag); // debug
     switch ( seasonFlag ) {
         case 0:
             isAdvent        = isFeastDay( todaysDate, advent_start );
@@ -540,6 +543,8 @@ char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeas
             isGoodSat       = isFeastDay( todaysDate, good_saturday );
             isEaster        = isFeastDay( todaysDate, easter_sunday );
 
+            // printf("\nisGoodFri %d\nisGoodSat %d\nisEaster %d\n", isGoodFri, isGoodSat, isEaster ); // debug
+
             if ( isAshWed ) {
                 feastFlag = 6;
             } else if ( isHolyThurs ) {
@@ -555,10 +560,13 @@ char *stringFeast( int additionalDay, int additionalMonth, char *userDefinedFeas
             break;
 
         case 3:
+            isEaster        = isFeastDay( todaysDate, easter_sunday );
             isPentacost     = isFeastDay( todaysDate, pentacost );
             isAssension     = isFeastDay( todaysDate, assension_of_jesus );
 
-            if ( isPentacost ) {
+             if ( isEaster ) {
+                feastFlag = 10;
+            } else if ( isPentacost ) {
                 feastFlag = 11;
             } else if ( isAssension ) {
                 feastFlag = 12;
