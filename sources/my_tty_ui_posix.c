@@ -176,10 +176,11 @@ void SetTranslationDatabase( int argc, char **argv, char **database, int *transl
     char *in_translation = NULL;
     int nabFlag, vulgateFlag, isDBInput;
 
-    while ((opt = getopt(argc, argv, "d:t:")) != -1) {
-        switch(opt) {
+    while ( (opt = getopt( argc, argv, "d:t:" )) != -1 ) {
 
-            case 't':
+        switch( opt ) {
+
+            case 't': /* set stanslation flag */
 
                 in_translation = optarg;
                 nabFlag = strcmp( "nab", in_translation );
@@ -195,33 +196,33 @@ void SetTranslationDatabase( int argc, char **argv, char **database, int *transl
                     //printf("\n \"%s\" is an invalid translation option. Using default translation database.", in_translation);
                     *translationFlag = 1;
                 }
+                
                 break;
 
-            case 'd':
+            case 'd': /* set parent directory flag */
                 isDBInput = strcmp( "-t", optarg );
+                
                 if ( isDBInput != 0 ) {
                     in_database = optarg;
                     //printf("\n Database parent directory path = %s", in_database);
                     database[0] = in_database;
                 }
+
                 break;
 
-            /*case '?':
-                    printf("\n Invalid option received");
-                if (optopt == 'd') {
-                    printf("\n Missing database parent directory path");
-                    printf("\n\tExample:");
-                    printf("\n\tPath is \"~/Downloads/\" if the following is true:");
-                    printf("\n\t~/Downloads/csv and ~/Downloads/json");
+            case '?': /* invalid flag input */
+                printf("\n Invalid option received.");
+                
+                printf("\n Use -d to set database parent directory.");
+                printf("\n\tExample:");
+                printf("\n\tPath is \"~/Downloads/\" if the following is true:");
+                printf("\n\t~/Downloads/csv and ~/Downloads/json\n");
+                
+                printf("\n Use -t to set translation.");
+                printf("\n\t Enter either \"nab\" or \"vulgate\"");
+                printf("\n\t \"nab\" = English. \"vulgate\" = Latin.");
 
-                }
-                if (optopt == 't') {
-                    printf("\n Translation was not set. ");
-                    printf("\n\t Enter either \"nab\" or \"vulgate\"");
-                    printf("\n\t \"nab\" = English. \"vulgate\" = Latin.");
-                }
-
-                break;*/
+                break;
         }
     }
 }
