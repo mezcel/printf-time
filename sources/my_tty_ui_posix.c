@@ -321,7 +321,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
     if ( strcmp( season, "Ordinary Time" ) == 0 ) {
         char *coloredSeason = coloredString( season, greenColor ); // green
         
-        sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", coloredSeason, feast, verboseDate ); // combine strings
+        sprintf( seasonString, "%s - %s ( %s )", coloredSeason, feast, verboseDate ); // combine strings
         multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen  + 13, 0 );
     }
 
@@ -341,7 +341,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
 
         char *coloredSeason = coloredString( season, purpleColor ); // purple
         
-        sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", coloredSeason, feast, verboseDate ); // combine strings
+        sprintf( seasonString, "%s - %s ( %s )", coloredSeason, feast, verboseDate ); // combine strings
         multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen  + 13, 0 );
 
         printf( "\n" );
@@ -375,9 +375,10 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
         char * originalCsv = rosary_db_struct -> scripture_dbArray[ scriptureFK ].scriptureText;
         char * scriptureQuote = cleanQuote( originalCsv );      // clean csv text formatting
 
-        //light purple \e[1;35m
-        //yellow \e[1;33m
-        sprintf( seasonString, "\e[1;33m%s\e[0m - %s ( %s )", season, feast, verboseDate ); // combine strings
+        char *coloredSeason = coloredString( season, yellowColor ); // yellow
+
+        sprintf( seasonString, "%s - %s ( %s )", coloredSeason, feast, verboseDate ); // combine strings
+
         multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen + 13, 0 );
         printf( "\n" );
         multiLinePrintF( "Scripture:\t", scriptureQuote , desiredDispLen, 0 );
@@ -398,7 +399,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
 
         char *coloredSeason = coloredString( season, redColor ); // red
         
-        sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", coloredSeason, feast, verboseDate ); // combine strings
+        sprintf( seasonString, "%s - %s ( %s )", coloredSeason, feast, verboseDate ); // combine strings
         multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen  + 13, 0 );
 
         printf( "\n" );
@@ -420,7 +421,7 @@ void bashrcHolidayDisplay( rosary_db_t *rosary_db_struct, displayFeastVariables_
 
         char *coloredSeason = coloredString( season, yellowColor ); // yellow
         
-        sprintf( seasonString, "\e[1;35m%s\e[0m - %s ( %s )", coloredSeason, feast, verboseDate ); // combine strings
+        sprintf( seasonString, "%s - %s ( %s )", coloredSeason, feast, verboseDate ); // combine strings
         multiLinePrintF( "Liturgy Season:\t", seasonString , desiredDispLen  + 13, 0 );
 
         printf( "\n" );
