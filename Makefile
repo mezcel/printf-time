@@ -4,7 +4,8 @@
 CC=gcc
 CFLAGS = -Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 
-all: notes ttyRosary gtkRosary ttyBashrc manpage
+#all: notes ttyRosary gtkRosary ttyBashrc manpage
+all: notes ttyRosary gtkRosary ttyBashrc 
 
 ## Notes
 notes:
@@ -28,11 +29,11 @@ notes:
 
 
 ## english and latin
-ttyRosary: my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_tty_ui_posix.o mainTTY.o manpage
+ttyRosary: my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_tty_ui_posix.o mainTTY.o 
 	$(CC) my_calendar.o my_csv_structs.o my_json_structs.o my_tty_ui.o my_tty_ui_posix.o mainTTY.o -ljson-c -o "ttyRosary"
 
 ## GTK UI english and latin
-gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_api.o manpage
+gtkRosary: mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o my_gtk3_api.o 
 	$(CC) mainGtk3.o my_calendar.o my_csv_structs.o my_json_structs.o  my_gtk3_api.o $(CFLAGS) -ljson-c -o "gtkRosary"
 
 ## holiday season bash environment splash
