@@ -52,7 +52,7 @@ if [ $isUnixPass -eq 0 ]; then
         #echo -e "ttyBashrc -d $(pwd)/database/" >> $tempBashrc
 		
 		if [ $isCygwin -eq 0 ]; then
-	        echo -e "alias ttyBashrc=\"ttyBashrc -d $(pwd)/database/\"\nttyBashrc.exe" >> $tempBashrc
+	        echo -e "alias ttyBashrc.exe=\"ttyBashrc -d $(pwd)/database/\"\nttyBashrc.exe" >> $tempBashrc
 		else
 	        echo -e "alias ttyBashrc=\"ttyBashrc -d $(pwd)/database/\"\nttyBashrc" >> $tempBashrc
 		fi
@@ -67,9 +67,10 @@ if [ $isUnixPass -eq 0 ]; then
 		isSudo=$?
 		if [ $isSudo -eq 0 ]; then
 			sudo cp ttyBashrc /usr/bin/
+        else
+            cp ttyBashrc /usr/bin/
 		fi
 
-		cp ttyBashrc /usr/bin/
 		echo -e "#\tMade global user /usr/bin/ttyBashrc copy..."
 
     fi
